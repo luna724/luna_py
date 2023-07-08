@@ -16,7 +16,6 @@ for file_path in file_list:
     print("File Extension:", file_extension)
 
     if file_extension.count(".jpg") >= 1:
-        # 使用例
         input_file = file_path
         output_file = f"{file_name}.png"
         convert_jpg_to_png(input_file, output_file)
