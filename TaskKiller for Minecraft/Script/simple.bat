@@ -1,0 +1,47 @@
+rem tasklist /FI "SESSIONNAME eq Services" /FO CSV
+
+:check
+python ./checkout.py
+pause
+kill = "taskkill /f /im "
+%windir%/System32/powershell/v1.0/powershell.exe ./realtime-protection-stopper.ps1
+
+rem taskkill /f /im "explorer.exe"sss
+taskkill /f /im "ApplicationFrameHost.exe"
+taskkill /f /im "dllhost.exe"
+taskkill /f /im "CompPkgSrv.exe"
+taskkill /f /im "dasHost.exe"
+taskkill /f /im "Everything.exe"
+taskkill /f /im "GoogleCrashHandler.exe"
+taskkill /f /im "GoogleCrashHandler64.exe"
+taskkill /f /im "igfxCUIService.exe"
+taskkill /f /im "igfxEM.exe"
+taskkill /f /im "IntelCpHDCPSvc.exe"
+taskkill /f /im "IntelCpHeciSvc.exe"
+taskkill /f /im "esif_uf.exe"
+taskkill /f /im "OneApp.IGCC.WinService.exe"
+taskkill /f /im "ImeBroker.exe"
+taskkill /f /im "ctfmon.exe"
+taskkill /f /im "SearchIndexer.exe"
+taskkill /f /im "msdtc.exe"
+taskkill /f /im "MoUsoCoreWorker.exe"
+taskkill /f /im "RtkBtManServ.exe"
+taskkill /f /im "Locator.exe"
+taskkill /f /im "SMSvcHost.exe"
+taskkill /f /im "snmptrap.exe"
+taskkill /f /im "ssh-agent.exe"
+taskkill /f /im "SgrmBroker.exe"
+taskkill /f /im "TrafSvc.exe"
+taskkill /f /im "UserOOBEBroker.exe"
+taskkill /f /im "fontdrvhost.exe"
+taskkill /f /im "WUDFHost.exe"
+taskkill /f /im "TiWorker.exe"
+taskkill /f /im "SecurityHealthService.exe"
+taskkill /f /im "taskhostw.exe"
+taskkill /f /im "TrustedInstaller.exe"
+taskkill /f /im "WmiApSrv.exe"
+taskkill /f /im "alg.exe"
+taskkill /f /im "spoolsv.exe"
+taskkill /f /im "TabTip.exe"
+taskkill /f /im "WpcMon.exe"
+taskkill /f /im "taskmgr.exe"
