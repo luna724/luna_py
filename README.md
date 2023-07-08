@@ -7,6 +7,7 @@ lunapy v1.0.2
 - Taskkiller for Minecraft (β2)
 - Output Cleaner (β1)
 
+-----------
 
 lunapy v1.0.3 作りたいなと思うもの
 - jpg to png Converter
