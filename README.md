@@ -20,3 +20,6 @@ lunapy v1.0.3 作りたいなと思うもの
 - luna.py.ipynb
   - lunapyの簡易実行(Jupyter Notebookから実行可能に)
   
+- lunapy
+  - venvの統一、requirements.txtなどでのモジュール一括管理
+  - luna_GlobalScriptの統一
