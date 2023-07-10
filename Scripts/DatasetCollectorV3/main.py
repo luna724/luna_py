@@ -1,5 +1,8 @@
 # https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_84_01_rip/voice_ev_shuffle_28_01_11_01.mp3
-import time;import requests;import os;import luna_GlobalScript.downloading_script.main as lunadl
+import time
+import requests
+import os
+import luna_GlobalScript.downloading_script.main as lunadl
 
 # 定義、入力待ち
 urls = "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_[EventID_CharaUnit]_[SNum]_rip/voice_ev_shuffle_28_01_[ChatC]_[CID].mp3"
