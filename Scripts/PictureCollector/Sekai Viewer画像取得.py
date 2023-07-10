@@ -2,7 +2,7 @@ import os
 import time
 import requests
 import Deleter as delete
-
+import subprocess
 # 定義づけ、ユーザー入力
 members = input("画像を取得したいキャラクターの名前を入力(例: ichika)\nALLにも対応: ")
 #trainingonly = int(input("特訓状況を入力(0 = 両方 1 = 特訓前のみ, 2 = 特訓後のみ): "))
@@ -229,7 +229,5 @@ if trainings == "ALL" or "NOT":
             time.sleep(cd)  # クールダウン
             count -= 1  # 実行回数の入力
 
-#NA_folder = f"{save_folder}NA\\"
-#delete.move_files(save_folder, "E:\\TEMP FILE\\NAN")
-#elif
-#
+
+subprocess.run("Deleter.py")

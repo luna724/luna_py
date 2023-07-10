@@ -50,8 +50,9 @@ lunapy v1.0.3 作りたいなと思うもの
   - lunapyの簡易実行(Jupyter Notebookから実行可能に)
   
 - lunapy
-  - venvの統一、requirements.txtなどでのモジュール一括管理
+  - requirements.txtなどでのモジュール一括管理
   - luna_GlobalScriptの統一
+  - 
 
 -----------
 
@@ -59,3 +60,20 @@ lunapy v1.0.3 作りたいなと思うもの
 
 main.pyを直接実行
 ipynbの簡易起動では、batchファイルを介して実行しているため、Windows環境以外ではPythonファイルを直接実行する必要がある。
+
+
+
+
+
+
+
+
+
+| Feature Name | Latest Version | Type |
+|---|---|---|
+| CurseForge AutoDownload | v1.0.1 | Web Scraping | 
+| Dataset Collector | v3.0.3 | Web Scraping | 
+| jpg to png Converter | v1.0.1 | Converter | 
+| Picture Collector | v1.2.1 | Web Scraping | 
+| Taskkiller for Minecraft | β2.1 | Unknown | 
+| Output Cleaner | β1.1 | Unknown | Windows | 
