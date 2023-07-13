@@ -3,12 +3,12 @@
 **setup.bat** を実行する
 
 
-# lunapy v1.0.3pre3
+# lunapy v1.0.3pre4
 
 - curseforge-autodownload (v1.0.1)
 - Dataset Collector V3 (v3.0.4)
-- jpg to png Converter (v1.0.1)
-- Picture Collector (v1.2.1)
+- jpg to png Converter (v1.0.2)
+- Picture Collector (v1.2.2)
 - Taskkiller for Minecraft (β2.1)
 - Output Cleaner (β1.1)
 
@@ -70,6 +70,6 @@ lunapy v1.0.3 作りたいなと思うもの
 | jpg to png Converter | v1.0.1 | Converter |
 | Luna's Global Script | v1.0 | Python Module |
 | Picture Collector | v1.2.1 | Web Scraping |
-| MP3 to wav Converter | Unknown | Converter |
+| MP3 to wav Converter | No Release | Converter |
 | Taskkiller for Minecraft | β2.1 | Unknown |
 | Output Cleaner | β1.1 | Unknown | Windows |
