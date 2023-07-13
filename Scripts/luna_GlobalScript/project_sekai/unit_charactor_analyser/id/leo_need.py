@@ -1,4 +1,4 @@
-def name_extractor(input, base):
+def name_extractor_DatasetCollector(input, base):
     checker = "00"
     base = f"_{checker}.mp3"
     if input.count("_01.mp3") >= 1:
