@@ -1,9 +1,12 @@
-# luna_py
+# 事前準備
 
-lunapy v1.0.3pre2
+*setup.bat* を実行する
+
+
+# lunapy v1.0.3pre3
 
 - curseforge-autodownload (v1.0.1)
-- Dataset Collector V3 (v3.0.3)
+- Dataset Collector V3 (v3.0.4)
 - jpg to png Converter (v1.0.1)
 - Picture Collector (v1.2.1)
 - Taskkiller for Minecraft (β2.1)
@@ -11,29 +14,35 @@ lunapy v1.0.3pre2
 
 -----------
 
-Changelogs (v1.0.3)
+Changelogs (v1.0.3pre4)
 
 - curseforge-autodownload v1.0.1
-  - 簡易実行用にrun.batを追加
 
-- Dataset Collector v3.0.3
-  - 簡易実行用にrun.batを追加
-  - よくわからんメモファイルを削除
+- Dataset Collector v3.0.3 -> v3.0.4
+  - run.batでvenvを使用するように変更
+  - venvからluna_GlobalScriptを呼び出すように
 
-- jpg to png Converter v1.0.1
-  - 簡易実行用にrun.batを追加
+- jpg to png Converter v1.0.1 -> v1.0.2
+  - run.batでvenvを使用するように変更
+  - venvからluna_GlobalScriptを呼び出すように
 
-- Picture Collector v1.2.1
-  - 簡易実行用にrun.batを追加
+- luna's Global Script v1.0 (First Release)
+  - 統一のため、モジュールから分離
+
+- Picture Collector v1.2.1 -> v1.2.2
+  - run.batでvenvを使用するように変更
+  - venvからluna_GlobalScriptを呼び出すように
+
+- mp3 To wav Converter <現在未実装>
+  - DatasetCollectorからの分離を予定
 
 - Taskkiller for Minecraft β2.1
-  - 簡易実行用にrun.batを追加
 
 - Output Cleaner β1.1
-  - 簡易実行用にrun.batを追加
 
-- Lunapy v1.0.3
-  - Jupyter Notebookからの簡易実行用にmain_script.pyとその他関連ファイルを追加
+- Lunapy v1.0.3pre4
+  - venvを作成。実行可能なすべてのスクリプトがvenvを使用するように変更
+  - setup.batでセットアップを可能に変更 
 
 -----------
 
@@ -52,28 +61,15 @@ lunapy v1.0.3 作りたいなと思うもの
 - lunapy
   - requirements.txtなどでのモジュール一括管理
   - luna_GlobalScriptの統一
-  - 
 
 -----------
-
-# Windows以外の環境での実行
-
-main.pyを直接実行
-ipynbの簡易起動では、batchファイルを介して実行しているため、Windows環境以外ではPythonファイルを直接実行する必要がある。
-
-
-
-
-
-
-
-
-
 | Feature Name | Latest Version | Type |
 |---|---|---|
-| CurseForge AutoDownload | v1.0.1 | Web Scraping | 
-| Dataset Collector | v3.0.3 | Web Scraping | 
-| jpg to png Converter | v1.0.1 | Converter | 
-| Picture Collector | v1.2.1 | Web Scraping | 
-| Taskkiller for Minecraft | β2.1 | Unknown | 
-| Output Cleaner | β1.1 | Unknown | Windows | 
+| CurseForge AutoDownload | v1.0.1 | Web Scraping |
+| Dataset Collector | v3.0.3 | Web Scraping |
+| jpg to png Converter | v1.0.1 | Converter |
+| Luna's Global Script | v1.0 | Python Module |
+| Picture Collector | v1.2.1 | Web Scraping |
+| MP3 to wav Converter | Unknown | Converter |
+| Taskkiller for Minecraft | β2.1 | Unknown |
+| Output Cleaner | β1.1 | Unknown | Windows |

@@ -1,0 +1,5 @@
+Pillow
+BeautifulSoup4
+requests
+pyautogui
+jupyter
