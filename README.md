@@ -1,6 +1,6 @@
 # 事前準備
 
-*setup.bat* を実行する
+**setup.bat** を実行する
 
 
 # lunapy v1.0.3pre3
