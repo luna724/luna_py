@@ -8,7 +8,8 @@
 - curseforge-autodownload (v1.0.1)
 - Dataset Collector V3 (v3.0.4)
 - jpg to png Converter (v1.0.3)
-- Picture Collector (v1.2.2)
+- Luna's Global Script (v1.0.1)
+- Picture Collector (v1.2.3)
 - Taskkiller for Minecraft (β2.1)
 - Output Cleaner (β1.1)
 
