@@ -1,7 +1,6 @@
 import os
 import time
 import requests
-# import Deleter as delete
 import subprocess
 import luna_GlobalScript.misc.output_folder as lout
 import luna_GlobalScript.project_sekai.unit_charactor_analyser.id.any_roma2idxname as roma2idxname
@@ -10,12 +9,7 @@ members = input("画像を取得したいキャラクターの名前を入力(�
 #trainingonly = int(input("特訓状況を入力(0 = 両方 1 = 特訓前のみ, 2 = 特訓後のみ): "))
 trainingonly = 0
 dl_cooldown = input("ダウンロード時のクールダウンを設定(数字のみで入力 秒単位): ")
-#dl_cooldown = 0.0001
 counted = input("実行回数を入力(数字のみ): ")
-#counted = 100
-#save_dir = input("ファイルの保存位置を入力")
-#save_dir = "E:\\TEMP"
-#savefolder = input("セーブするフォルダのパスを入力してください (例: C:\\\\Users\\\\ichik\\\\Downloads): ")
 save_dir = lout.output(False)
 
 # スクリプト使用用に変換
@@ -33,10 +27,7 @@ else:
     print("指定された数値のいずれかを入力してください。")
     exit("Error Code 101 \nInvalid Count")
 training_date = "Unknown"
-# else:                     # 未実損
-#    print("特訓状況を正しく入力してください")
-#    exit()
-# クールダウン
+
 if 0.0001 <= float(dl_cooldown) <= 30:
     cd = float(dl_cooldown)
 else:
@@ -162,4 +153,5 @@ if trainings == "ALL" or "NOT":
             count -= 1  # 実行回数の入力
 
 
+# なにこれ
 subprocess.run("Deleter.py")
