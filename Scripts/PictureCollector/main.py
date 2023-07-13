@@ -1,93 +1,27 @@
 import os
 import time
 import requests
-import Deleter as delete
+# import Deleter as delete
 import subprocess
+import luna_GlobalScript.misc.output_folder as lout
+import luna_GlobalScript.project_sekai.unit_charactor_analyser.id.any_roma2idxname as roma2idxname
 # 定義づけ、ユーザー入力
 members = input("画像を取得したいキャラクターの名前を入力(例: ichika)\nALLにも対応: ")
 #trainingonly = int(input("特訓状況を入力(0 = 両方 1 = 特訓前のみ, 2 = 特訓後のみ): "))
 trainingonly = 0
-#dl_cooldown = input("ダウンロード時のクールダウンを設定(数字のみで入力 秒単位): ")
-dl_cooldown = 0.0001
+dl_cooldown = input("ダウンロード時のクールダウンを設定(数字のみで入力 秒単位): ")
+#dl_cooldown = 0.0001
 counted = input("実行回数を入力(数字のみ): ")
 #counted = 100
-save_dir = input("ファイルの保存位置を入力")
+#save_dir = input("ファイルの保存位置を入力")
 #save_dir = "E:\\TEMP"
 #savefolder = input("セーブするフォルダのパスを入力してください (例: C:\\\\Users\\\\ichik\\\\Downloads): ")
+save_dir = lout.output(False)
 
 # スクリプト使用用に変換
 # 各キャラごとにファイル名、url名を指定
-if members == "ichika":
-    member_name = "星乃一歌"
-    member_id = "001"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "saki":
-    member_name = "天馬咲希"
-    member_id = "002"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "honami":
-    member_name = "望月穂波"
-    member_id = "003"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "shiho":
-    member_name = "日野森志歩"
-    member_id = "004"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "kanade":
-    member_name = "宵崎奏"
-    member_id = "017"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "mafuyu":
-    member_name = "朝比奈まふゆ"
-    member_id = "018"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "ena":
-    member_name = "東雲絵名"
-    member_id = "019"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "mizuki":
-    member_name = "暁山瑞希"
-    member_id = "200"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "nene":
-    member_name = "草薙寧々"
-    member_id = "015"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "minori":
-    member_name = "花里みのり"
-    member_id = "005"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "haruka":
-    member_name = "桐谷遥"
-    member_id = "006"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "airi":
-    member_name = "桃井愛莉"
-    member_id = "007"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "shizuku":
-    member_name = "日野森雫"
-    member_id = "008"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "kohane":
-    member_name = "小豆沢こはね"
-    member_id = "009"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "ann":
-    member_name = "白石杏"
-    member_id = "010"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members == "emu":
-    member_name = "鳳えむ"
-    member_id = "014"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-elif members =="ALL":
-    member_name = "取得機能未実装"
-    member_id = "021"
-    print(f"Successfully Setup for Charactor\nName:{member_name} ID:{member_id}")
-else:
-    print("そのキャラクターは存在しない、またはスクリプトで未実装か、入力方法が間違っています")
-    exit("Error Code 404-2 \nCharactor Not Found")
+member_name, member_id = roma2idxname.returnmode_03d(members)
+
 # 特訓状況
 if trainingonly == 0:
     trainings = "ALL"
@@ -114,6 +48,7 @@ if 1 <= int(counted) <= 1000:
 else:
     print("実行回数には1以上1000以下の正の値を入力してください")
     exit("Error Code 101 \nInvalid Count")
+    
 temp = "temp"
  # ファイルの保存先
 #save_folder = savefolder
@@ -125,9 +60,6 @@ num = 1
 numis2 = False
 numis3 = False
 # image_url = [f'https://storage.sekai.best/sekai-assets/character/member/res{member_id}_no{num}_rip/card_normal.png']
-# 保存先のフォルダがない場合は作成する
-if not os.path.exists(save_folder):
-    os.makedirs(save_folder)
 
 # 処理開始通知
 print("処理が開始されました。\n停止したい場合はctrl+Cを入力してください。")

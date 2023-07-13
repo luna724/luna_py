@@ -1,5 +1,6 @@
 venv/
 .idea/
 out/
+outputs/
 __pycache__/
 lunamemo/

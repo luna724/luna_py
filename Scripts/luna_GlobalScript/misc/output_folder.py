@@ -7,7 +7,7 @@ def output(IsInput):
             os.mkdir(return_)
         return return_
     if IsInput == False:
-        return_ = "./out"
+        return_ = "./outputs"
         if not os.path.exists(return_):
             os.mkdir(return_)
         return return_

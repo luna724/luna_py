@@ -13,11 +13,17 @@ IF %ERRORLEVEL% EQU 0 (
 
 rem ファイルパス取得
 set "current_dir=%~dp0"
-set "main_dir=%current_dir%main.py"
+set "main_dir=%windir%System32\cmd.exe %current_dir%run.bat"
 
 REM レジストリキーの作成・変更
-reg add HKEY_CLASSES_ROOT\.jpg\Shell\ConvertToPNG /ve /d "Convert to PNG" /f
-reg add HKEY_CLASSES_ROOT\.jpg\Shell\ConvertToPNG\Command /ve /d "python "%main_dir%"" /f
+reg add HKEY_CLASSES_ROOT\.jpg\shell\ConvertToPNG /ve /d "Convert to PNG" /f
+reg add HKEY_CLASSES_ROOT\.jpg\shell\ConvertToPNG\Command /ve /d ""%main_dir%"" /f
+
+reg add HKEY_CLASSES_ROOT\.jpeg\shell\ConvertToPNG /ve /d "Convert to PNG" /f
+reg add HKEY_CLASSES_ROOT\.jpeg\shell\ConvertToPNG\Command /ve /d ""%main_dir%"" /f
+
+reg add HKEY_CLASSES_ROOT\.webp\shell\ConvertToPNG /ve /d "Convert to PNG" /f
+reg add HKEY_CLASSES_ROOT\.webp\shell\ConvertToPNG\Command /ve /d ""%main_dir%"" /f
 
 echo Setup Successful
 pause

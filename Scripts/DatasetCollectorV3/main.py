@@ -51,7 +51,7 @@ for z in success_urls:
     num += 1
     checker = ""
     check = "_{checker}.mp3"
-    returns = luna2.name_extractor(z, check)
+    returns = luna2.name_extractor_DatasetCollector(z, check)
     save_name = f"{returns}_{num}-(Event ID {x}).mp3"
     with open(os.path.join(save_folder, save_name), 'wb') as f:  # 新しく保存
         f.write(y.content)
