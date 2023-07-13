@@ -4,3 +4,4 @@ requests
 pyautogui
 jupyter
 ffmpeg
+pywin32

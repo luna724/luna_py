@@ -2,9 +2,9 @@
 
 **setup.bat** を実行する
 
-# lunapy v1.0.3
+# lunapy v1.0.4pre1
 
-- curseforge-autodownload (β1)
+- curseforge-autodownload (v1.0.0)
 - Dataset Collector V3 (v3.0.4)
 - jpg to png Converter (v1.0.3)
 - Luna's Global Script (v1.0.1)
@@ -15,6 +15,12 @@
 - Output Cleaner (β1.1)
 
 -----------
+
+Changelog v1.0.4pre1
+
+- CurseForge AutoDownload β1 -> v1.0.0
+  - luna_GlobalScriptの依存関係の修正
+  - 動くように修正
 
 -----------
 
@@ -37,7 +43,7 @@ lunapy v1.0.4 作りたいなと思うもの
 -----------
 | Feature Name | Latest Version | Type |
 |---|---|---|
-| CurseForge AutoDownload | β1 | Web Scraping |
+| CurseForge AutoDownload | v1.0.0 | Web Scraping |
 | Dataset Collector | v3.0.3 | Web Scraping |
 | jpg to png Converter | v1.0.3 | Converter |
 | Luna's Global Script | v1.0.2-r2 | Python Module |
