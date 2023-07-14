@@ -2,10 +2,10 @@
 
 **setup.bat** を実行する
 
-# lunapy v1.0.4pre3
+# lunapy v1.1.0pre1
 
 - curseforge-autodownload (v1.0.0)
-- Dataset Collector V3 (v4.0pre1)
+- Dataset Collector V3 (v4.0pre2)
 - jpg to png Converter (v1.0.3)
 - Luna's Global Script (v1.0.3-r9)
 - Picture Collector (v1.2.3)
@@ -22,7 +22,7 @@
 lunapy v1.1.0までに作るものたち
 
 - Dataset Collector β4 (-> v5.0)
-  - エミュレータ等を使用して46440Kbps(wav)での録音データの取得 (pyautogui)
+  - エミュレータ等を使用して5644Kbps(wav)での録音データの取得 (pyautogui)
     - いっちゃんだけの実装を予定
     - それ以外はファイル分けは手動
   - イベント分け
