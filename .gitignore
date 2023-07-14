@@ -4,3 +4,7 @@ out/
 outputs/
 __pycache__/
 lunamemo/
+test_input/
+RVC_Result_analyse/
+RVC-QuickSetup/
+Stable-DiffusionResult-Analyse/

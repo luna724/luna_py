@@ -2,12 +2,12 @@
 
 **setup.bat** を実行する
 
-# lunapy v1.0.4pre2
+# lunapy v1.0.4pre3
 
 - curseforge-autodownload (v1.0.0)
-- Dataset Collector V3 (v3.0.4)
+- Dataset Collector V3 (v4.0pre1)
 - jpg to png Converter (v1.0.3)
-- Luna's Global Script (v1.0.2-r8)
+- Luna's Global Script (v1.0.3-r9)
 - Picture Collector (v1.2.3)
 - Music Collector (β1)
 - MP3 to wav Converter (v1.0.0)
@@ -16,24 +16,25 @@
 
 -----------
 
-Changelog v1.0.4pre2
+Changelog lunapy v1.0.4pre3
 
-- Luna's Global Script v1.0.1-r2 -> v1.0.2-r8
-  - misc/input_folder.py
-    - output_folder.pyのInput Version
-  - music_file/mp32wav.py
-    - mp3 to wav変換
-  - music_file/wav2mp3.py
-    - wav to mp3変換
-  - music_file/wav2flac.py
-    - wav to flac変換
-  - music_file/ogg2wav.py
-    - ogg to wav変換
-  - music_file/flac2wav.py
-    - flac to wav変換
+- Luna's Global Script v1.0.2-r8 -> v1.0.3-r9
+  - pjsekai/uca/id/any_roma2idxname.py
+    - 02dモード、ユニットモードをサポート
+  - __init__.py
+    - 不足していた位置に追加
   
-- MP3 to wav Converter v1.0.0 (First Release)
-  - mp3 to wav, wav to mp3, wav to flac, flac to wav, ogg to wavのサポート
+- Dataset Collector β4  v3.0.4 -> v4.0pre1
+  - Singleモード(一人を対象)のサポート
+  - Multiモード(ユニットごと)のサポート
+  - Leo/need以外のキャラクターもサポート
+  - 視覚的なログを追加(Output Promptに)
+  - luna_GlobalScriptとの依存関係を改善
+    - 相互importが起こらないように
+  (現在 main.pyが未完全なので実行不可能)
+
+- luna.py.ipynb
+  - 一時的に更新を停止
 
 -----------
 
@@ -41,15 +42,14 @@ lunapy v1.0.4 作りたいなと思うもの の残り
 
 - Dataset Collector
   - wav形式の取得を追加
-  - Leo/need以外にも対応
 
 -----------
 | Feature Name | Latest Version | Type |
 |---|---|---|
 | CurseForge AutoDownload | v1.0.0 | Web Scraping |
-| Dataset Collector | v3.0.3 | Web Scraping |
+| Dataset Collector | v4.0pre1 | Web Scraping |
 | jpg to png Converter | v1.0.3 | Converter |
-| Luna's Global Script | v1.0.2-r8 | Python Module |
+| Luna's Global Script | v1.0.3-r9 | Python Module |
 | Picture Collector | v1.2.3 | Web Scraping |
 | MP3 to wav Converter | v1.0.0 | Converter |
 | Music Collector | β1 | Web  Scraping |

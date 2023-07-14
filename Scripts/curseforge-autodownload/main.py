@@ -128,6 +128,9 @@ if len(load_url) > 0:
     for failed in fail_url:
         print(f"Failed: {failed}")
         print("time.sleep関数の値を大きくしてみて下さい。")
+       
+    print("処理終了")
+    time.sleep(10**3)
 else:
     print("ロード可能なURLがありません。")
     exit()
