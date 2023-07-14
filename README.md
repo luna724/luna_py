@@ -16,33 +16,40 @@
 
 -----------
 
-Changelog lunapy v1.0.4pre3
-
-- Luna's Global Script v1.0.2-r8 -> v1.0.3-r9
-  - pjsekai/uca/id/any_roma2idxname.py
-    - 02dモード、ユニットモードをサポート
-  - __init__.py
-    - 不足していた位置に追加
-  
-- Dataset Collector β4  v3.0.4 -> v4.0pre1
-  - Singleモード(一人を対象)のサポート
-  - Multiモード(ユニットごと)のサポート
-  - Leo/need以外のキャラクターもサポート
-  - 視覚的なログを追加(Output Promptに)
-  - luna_GlobalScriptとの依存関係を改善
-    - 相互importが起こらないように
-  (現在 main.pyが未完全なので実行不可能)
-
-- luna.py.ipynb
-  - 一時的に更新を停止
 
 -----------
 
-lunapy v1.0.4 作りたいなと思うもの の残り
+lunapy v1.1.0までに作るものたち
 
-- Dataset Collector
-  - wav形式の取得を追加
+- Dataset Collector β4 (-> v5.0)
+  - エミュレータ等を使用して46440Kbps(wav)での録音データの取得 (pyautogui)
+    - いっちゃんだけの実装を予定
+    - それ以外はファイル分けは手動
+  - イベント分け
+    - キャラによってそのキャラが一切喋らないイベントもあるので、指定されたIDに基づいた指定を行えるように
+  - イベントURLの指定 
+    - 現在、Leo/need以外ユーザー処理になっているイベントの取得ベースURLをすべてexist_event.py url_dictに追加
+  - サイレントモード
+    - アウトプットプロンプトへの表示の抑制
 
+- Curseforge autodownload v1.0.0 (-> v1.0.1)
+  - クールダウンのユーザー側での指定
+
+- jpg to png Converter v1.0.3 (-> v1.1)
+  - もっとたくさんのパターンを追加したい
+
+- Music Collector β1 (-> v1.0)
+  - そもそも動かんから作成
+  - flac, MP3形式でのダウンロードのサポート
+  - flacの初期の無音時間消去
+  - ダウンロードフィルタの追加
+  - それでもバラバラなので、構造的にpyautogui, bs4, chromedriverでは厳しそう
+
+- Picture Collector v1.2.3 (-> v1.3)
+  - 特訓後、特訓前、両方の設定をしっかりと
+  - ファイルのリネームの設定の見直し
+
+- 
 -----------
 | Feature Name | Latest Version | Type |
 |---|---|---|
