@@ -5,3 +5,5 @@ pyautogui
 jupyter
 ffmpeg
 pywin32
+pyaudio
+pydub
