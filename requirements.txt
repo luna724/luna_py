@@ -7,3 +7,4 @@ ffmpeg
 pywin32
 pyaudio
 pydub
+pytesseract

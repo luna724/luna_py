@@ -4,7 +4,6 @@ import wave
 def wav_32bit(duration, sample_rate, chunk, channels, output_filename):
     # 呼び出し方法
     # example.wav_32bit(録音時間, サンプリングレート, チャンク数, チャンネル, 出力ファイル)
-    # チャンネルとは
     # 1 = モノラル  |  2 = ステレオを表す
     #
     #　推奨値

@@ -8,7 +8,7 @@ import luna_GlobalScript.project_sekai.analyser.charactor_analyser as analyse_me
 import luna_GlobalScript.project_sekai.analyser.unit_analyser as analyse
 import luna_GlobalScript.project_sekai.dataset as pjdata
 import luna_GlobalScript.autogui.chrome_optimizer.url_moving as move
-import luna_GlobalScript.autogui.chrome_optimizer.clicker as click
+#import luna_GlobalScript.autogui.chrome_optimizer.clicker as click
 import time
 import requests
 
