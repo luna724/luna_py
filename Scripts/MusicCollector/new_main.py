@@ -3,6 +3,7 @@ import pyautogui as pygui
 import subprocess
 import time
 import requests
+import pyperclip as pyclip
 import luna_GlobalScript.autogui.convertRGBToHex as convert
 import webbrowser
 import mv_filtering as mvf
@@ -12,6 +13,7 @@ import luna_GlobalScript.misc.compact_input as compact
 import luna_GlobalScript.misc.output_folder as out_gen
 from luna_GlobalScript.misc.global_math import cursor_relative_position as relative
 import win32gui
+from luna_GlobalScript.misc.global_math import cursor_exchanger as cur
 
 isWhite, end = False, False
 a = 0
@@ -314,5 +316,139 @@ else: # 通常モード
     time.sleep(5)
     # 開いて、いろいろと
     hwnd = win32gui.FindWindow(None, "chrome.exe")
-    if hwnd != 0:
+    if hwnd != 0: # Chromeをアクティブ化
         win32gui.SetForegroundWindow(hwnd)
+    
+    # 開いて色々するメイン処理
+    e = 1
+    ok = False
+    
+    # Start line forked From curseforge-autodownload/main.py
+    
+    for url in can_load:
+        # アドレスバーをクリックして選択する
+        x = cur.cursor_exchanger(600, 1280, "x")
+        y = cur.cursor_exchanger(50, 800, "y")
+        pygui.click(x=x, y=y)  # def 1280, 800  click = 600, 50
+        time.sleep(0.5)
+        
+        # すでにあるURLをクリーンアップ
+        pygui.hotkey('ctrl', 'a')
+        pygui.hotkey('ctrl', 'backspace')
+        # URLを入力する
+        print(f"Trying Open {url}")
+        pyclip.copy(url)  # URLをクリップボードにコピー
+        pygui.hotkey("ctrl", "v")  # クリップボードの内容を貼り付け
+        pygui.press('enter')
+        time.sleep(7)
+        
+        #time.sleep(10) # ロード待機
+        
+    # End line forked From curseforge-autodownload/main.py
+
+        # まずはそのままダウンロード
+        # TAB を 8回
+        while e < 9:
+            pygui.hotkey("shift","tab")
+            time.sleep(0.1)
+            e += 1
+        e = 1
+        time.sleep(1)
+        # 一致するなら # 452, 459
+        click.click(452, 459, mx, my, True)
+        while ok:
+            if convert.c_hex("#FFFFFF"):
+                pygui.press("enter") # 一致したら終わり
+                ok = True
+                break
+            else: # コメントのせいでずれたなら
+                pygui.hotkey("shift","tab")
+                time.sleep(0.15) # 一致するまで
+                ok = False
+        ok = False # リセット
+        time.sleep(3) # 多分これだけ待てばされるはず
+        click.click(636, 261, mx, my, False) # 一人目のセレクト位置に移動
+        time.sleep(1.3)
+        if convert.c_hex("#298A7B"):
+            t = "#298A7B"
+        else:
+            print(f"エラー: HEX不一致\n636, 261のHexが #298A7Bと一致しませんでした。\n{url}の処理はスキップされました。")
+            continue
+        #298A7B # 636 261 # 653 213
+        # 開始位置に移動
+        click.click(636, 261, mx, my, True)
+        
+        # 同じカラーはどこかなーw
+        while ok:
+            # ok が Falseなら
+            while not convert.c_hex("#1F2726"):
+                relative(1, "x", True) # tと現在の位置のコードが一致しないなら
+                if convert.c_hex("#121212"): # 41 to 105
+                    ok = True
+                    break # もしフィールドオーバーしていたら
+                time.sleep(0.05)
+            if convert.c_hex(t):
+                temp_x, temp_y = pygui.position() # 一致したら
+                ez_click(452, 459) # ダウンロード
+                # 待機
+                time.sleep(3)
+                pygui.moveTo(temp_x, temp_y + 64) # 重複実行停止処理
+            elif ok == True:# 633, 5282段目にまだ何かあるなら
+                pygui.moveTo(633, 528)
+                if convert.c_hex("#1F2726"):
+                    pygui.moveTo(620,528) # 620, 528
+                    ok = False
+            else: 
+                print("エラー: 不明な理由でwhileループが終了しました\n (line 381)")
+                ok = True
+                break
+            time.sleep(0.01)
+        
+        # 全部押し終えたら(多分)
+        # 3回 SHIFT+TAB -> 右 を押してflacモード
+        pygui.hotkey("shift", "tab")
+        time.sleep(0.1)
+        pygui.hotkey("shift", "tab")
+        time.sleep(0.1)
+        pygui.hotkey("shift", "tab")
+        time.sleep(0.1)
+        pygui.press("right")
+        time.sleep(0.5)
+        
+        # 一人目へ
+        click.click(636, 261, mx, my, False) # 一人目のセレクト位置に移動
+        # ちょっと待って検出
+        time.sleep(1.3)
+        if convert.c_hex("#298A7B"):
+            t = "#298A7B" # 一致したら
+            # ダウンロード
+            temp_x, temp_y = pygui.position() # 一致したら
+            ez_click(452, 459) # ダウンロード
+        
+        
+        while ok:
+            # ok が Falseなら
+            while not convert.c_hex("#1F2726"):
+                relative(1, "x", True) # tと現在の位置のコードが一致しないなら
+                if convert.c_hex("#121212"): # 41 to 105
+                    ok = True
+                    break # もしフィールドオーバーしていたら
+                time.sleep(0.05)
+            if convert.c_hex(t):
+                temp_x, temp_y = pygui.position() # 一致したら
+                ez_click(452, 459) # ダウンロード
+                # 待機
+                time.sleep(3)
+                pygui.moveTo(temp_x, temp_y + 64) # 重複実行停止処理
+            elif ok == True:# 633, 5282段目にまだ何かあるなら
+                pygui.moveTo(633, 214)
+                if convert.c_hex("#1F2726"):
+                    pygui.moveTo(620,214) # 620, 528
+                    ok = False
+            else: 
+                print("エラー: 不明な理由でwhileループが終了しました\n (line 381)")
+                ok = True
+                break
+            time.sleep(0.01)
+        
+        
