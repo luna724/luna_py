@@ -2,7 +2,7 @@
 
 **setup.bat** を実行する
 
-# lunapy v1.1.0pre1
+# lunapy v1.1.0pre2
 
 - curseforge-autodownload (v1.0.0)
 - Dataset Collector V3 (v4.0pre2)
