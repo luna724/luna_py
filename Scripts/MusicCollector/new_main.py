@@ -11,10 +11,18 @@ import luna_GlobalScript.project_sekai.unit_charactor_analyser.id.any_roma2idxna
 import luna_GlobalScript.misc.compact_input as compact
 import luna_GlobalScript.misc.output_folder as out_gen
 from luna_GlobalScript.misc.global_math import cursor_relative_position as relative
+import win32gui
 
 isWhite, end = False, False
 a = 0
 mx, my = 1440, 900 # デフォルトのx, y の値
+def lowfile_remover(directory):
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if os.path.isfile(filepath) and filename.lower().endswith(".txt"):
+            if os.path.getsize(filepath) < 1:  # ファイルサイズが1bytes未満の場合
+                os.remove(filepath)
+                print(f"Deleted: {filename}")
 def ez_click(x, y):
     click.click(x, y, mx, my, False)
 
@@ -268,4 +276,43 @@ else: # 通常モード
     time.sleep(10)
     
     ez_click(28, 16) # OneTabに移動
+    a = False
     
+    # ロードし、ダウンロードする処理
+    while a == True:
+        subprocess.run("del url_write_here.txt", shell=True)
+        subprocess.run("type nul > ./url_write_here.txt", shell=True)
+        print("メモ帳に、OneTabにて、開いたページのURLをすべてまとめてペーストして下さい。\nメモ帳を消して続行")
+        subprocess.run("notepad.exe url_write_here.txt", shell=True)
+        time.sleep(0.5)
+        lowfile_remover("./")
+        if os.path.exists("./url_write_here.txt"):
+            a = True
+            break
+        else:
+            a = False
+    
+    time.sleep(5)
+    a = 0
+    url_based = "https://sekai.best/music/"
+    can_load = []
+    # ファイルから読み込み
+    with open('url_write_here.txt', 'r') as file:
+        urls = file.readlines()
+    
+    # 読み込んだ内容を処理
+    for check in urls:
+        check = check.replace(check[check.find(" "):], "")
+        check.strip()
+        if check.startswith(url_based):
+            print(f"Loading Success: {check}")
+            can_load.append(check)
+        else:
+            print(f"Failed: {check}\nText type does not start with {url_based}")
+    
+    print("Chrome(フルスクリーン)にフォーカスを充ててください")
+    time.sleep(5)
+    # 開いて、いろいろと
+    hwnd = win32gui.FindWindow(None, "chrome.exe")
+    if hwnd != 0:
+        win32gui.SetForegroundWindow(hwnd)
