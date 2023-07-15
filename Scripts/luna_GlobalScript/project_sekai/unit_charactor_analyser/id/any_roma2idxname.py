@@ -196,7 +196,7 @@ def returnmode_02d(members, unit_mode):
         print(f"Successfully Getting Charactor Data\nName:{member_name} ID:{member_id}")
     elif members =="akito":
         member_name = "東雲彰人"
-        member_id = "08"
+        member_id = "11"
         print(f"Successfully Getting Charactor Data\nName:{member_name} ID:{member_id}")
     elif members =="miku":
         member_name = "初音ミク"

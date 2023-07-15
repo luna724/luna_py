@@ -16,34 +16,36 @@ import requests
 mx = 1440
 my = 900
 isInput = True
-isInput = input("入力確認処理を行いますか？\n(デフォルト Leo/need, 星乃一歌 フィルタ)\nTrue / False: ")
+isInput = input("入力処理を行いますか？\n(デフォルト Leo/need, 星乃一歌 フィルタ)\nTrue / False: ")
 
 if isInput == "True":
     print("processing..")
+    charactor = str(input("キャラクターの選択フィルタ 名前、またはID(例: ichika)\n(Noneで無効化): "))
+    unit_select = str(input("ユニットフィルタ ユニット名、またはID(例: Leo/need)\nこれを選択した場合、キャラクターフィルタは適用されません。: "))
+    #use_emulator = str(input("エミュレータ(ChromeDriverによる仮想環境)での実行 (非推奨)\n(True / False): "))
+    filter_mv = str(input("2DMBなどのありなしフィルタ(例: 3DMV)\n(3DMV / 2DMV / Original-MV / Static-Image / None): "))
+    #print_only = str(input("楽曲名や、アーティスト情報だけの書き出し\n(True / False): "))
+
 elif isInput == "False":
     print("Selected: False\nprocessing..")
 
 # ユーザ入力
 # charactor (キャラフィルタ検出処理 一部キャラ非対応 選択したものだけ表示)
-charactor = str(input("キャラクターの選択フィルタ 名前、またはID(例: ichika)\n(Noneで無効化): "))
-unit_select = str(input("ユニットフィルタ ユニット名、またはID(例: Leo/need)\nこれを選択した場合、キャラクターフィルタは適用されません。: "))
-use_emulator = input("エミュレータ(ChromeDriverによる仮想環境)での実行 (非推奨)\n(True / False): ")
-filter_mv = str(input("2DMBなどのありなしフィルタ(例: 3DMV)\n(3DMV / 2DMV / Original-MV / Static-Image / None): "))
-print_only = input("楽曲名や、アーティスト情報だけの書き出し\n(True / False): ")
+
 
 # 処理
-if print_only == "True" or print_only == "False":
-    NA = 0
-else:
-    print("print_onlyの値を正常に入力してください。(True / False)")
-    exit("Can't Running Syntax")
-if use_emulator == "True" or use_emulator == "False":
-    NA = 0
-    if use_emulator == "True":
-        cdriver = input("Chromeドライバのフルパスを入力: ")
-else:
-    print("use_emulatorの値を正常に入力してください。(False)")
-    exit("Can't Running Syntax")
+#if print_only == "True" or print_only == "False":
+#    NA = 0
+#else:
+#    print("print_onlyの値を正常に入力してください。(True / False)")
+#    exit("Can't Running Syntax")
+#if use_emulator == "True" or use_emulator == "False":
+#    NA = 0
+#    if use_emulator == "True":
+#        cdriver = input("Chromeドライバのフルパスを入力: ")
+#else:
+#    print("use_emulatorの値を正常に入力してください。(False)")
+#    exit("Can't Running Syntax")
 if unit_select == "Virtual Singer":
     print("Virtual Singerは現在未実装です。")
     exit()
