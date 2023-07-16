@@ -16,9 +16,9 @@ rem Update pip
 python -m pip install --upgrade pip
 
 rem luna_GlobalScriptの取得
-if exist ./venv/Scripts/site-packages/luna_GlobalScript (
+if exist ./venv/Lib/site-packages/luna_GlobalScript (
     rem 存在する場合、アップデート
-    rd ./venv/Scripts/site-packages/luna_GlobalScript /q
+    rd ./venv/Lib/site-packages/luna_GlobalScript /q
     xcopy "./Scripts/luna_GlobalScript" "./venv/Lib/site-packages/luna_GlobalScript" /e /c /i /y
 ) else (
     xcopy "./Scripts/luna_GlobalScript" "./venv/Lib/site-packages/luna_GlobalScript" /e /c /i /y
