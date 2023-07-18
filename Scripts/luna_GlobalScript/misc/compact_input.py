@@ -13,9 +13,9 @@ def yngen(inf): # yngen (Yes, Noの文字列で返す)
     else:
         return str(inf)
 def tfgen_boolean(inf): # tfgen_boolean (True, Falseをboolean形式で返す)
-    if inf == 0:
+    if inf == "0":
         return "False"
-    elif inf == 1:
+    elif inf == "1":
         return "True"
     else:
         return str(inf)

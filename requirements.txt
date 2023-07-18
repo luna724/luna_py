@@ -8,3 +8,4 @@ pywin32
 pyaudio
 pydub
 pytesseract
+pygetwindow

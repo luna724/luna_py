@@ -3,6 +3,7 @@ import pyautogui as pygui
 import subprocess
 import time
 import requests
+import pygetwindow as gw
 import pyperclip as pyclip
 import luna_GlobalScript.autogui.convertRGBToHex as convert
 import webbrowser
@@ -24,7 +25,7 @@ def lowfile_remover(directory):
         if os.path.isfile(filepath) and filename.lower().endswith(".txt"):
             if os.path.getsize(filepath) < 1:  # ファイルサイズが1bytes未満の場合
                 os.remove(filepath)
-                print(f"Deleted: {filename}")
+                print(f"Deleted: {filename} Because under 1bytes")
 def ez_click(x, y):
     click.click(x, y, mx, my, False)
 
@@ -32,6 +33,7 @@ def ez_click(x, y):
 members = str(input("取得したいキャラクターまたはユニット (未入力で全員)\n (e.g: ichika) or (e.g: Leo/need): "))
 filter_mv = str(input("MVタイプのフィルタを行いますか? (0 or 1): "))
 ExperimentalMode = input("実験的モード (非推奨) (True / False / ?): ")
+chrome_path = str(input("Chromeのパスを入力してください (未入力でデフォルトパス): "))
 
 # 実験モードのプリントアウト
 if ExperimentalMode == "?":
@@ -50,8 +52,14 @@ else: # 未入力なら実行
     print("\n\n警告: キャラクターフィルタなしでの実行はベータ版です")
     NoCharactorFilter = True
 
+if chrome_path == "": # 未入力だったらデフォルト
+    chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+elif chrome_path == "luna": # デバッグ用
+    chrome_path = "E:/Application/Google/Chrome/Application/chrome.exe"
+
 if compact.tfgen_boolean(filter_mv): # MVフィルタオンの場合
     mv3d, mv2d, mv_original, mv_static = mvf.main()
+    NoMVFilter = False
 else:
     NoMVFilter = True
 
@@ -66,13 +74,22 @@ else:
 out_gen.output(False)
 output_folder = "./outputs"
 
+# WebBrowserのセットアップ
+webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+
 # メイン処理
 url = "https://sekai.best/music"  # 開くURLを指定
 webbrowser.get("chrome").open(url)  # Chromeを起動して指定したURLを開く
 # Chromeの取得
 chrome_window = pygui.getWindowsWithTitle("Google Chrome")[0]  # ウィンドウのタイトルで特定のウィンドウを取得
 # フォーカス + フルスクリーン
-pygui.hotkey("win", "up")
+window = gw.getWindowsWithTitle("Google Chrome")[0]
+
+# ウィンドウをフォーカスする
+window.activate()
+
+# ウィンドウをフルスクリーン化する
+window.maximize()
 time.sleep(10)
 
 # フィルタ処理

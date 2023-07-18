@@ -7,7 +7,7 @@ def main():
 
     a = c.tfgen_boolean(mv3d)
     b = c.tfgen_boolean(mv2d)
-    c = c.tfgen_boolean(mv_original)
+    c_ = c.tfgen_boolean(mv_original)
     d = c.tfgen_boolean(mv_static)
     
-    return a, b, c, d
+    return a, b, c_, d
