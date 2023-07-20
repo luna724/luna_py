@@ -9,5 +9,5 @@ def delete_small_png_files(directory):
                 print(f"Deleted: {filename}")
 
 # 特定のディレクトリを指定して実行
-target_directory = "./out/minori"
+target_directory = "./outputs"
 delete_small_png_files(target_directory)
