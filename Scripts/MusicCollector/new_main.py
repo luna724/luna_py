@@ -15,8 +15,10 @@ import luna_GlobalScript.misc.output_folder as out_gen
 from luna_GlobalScript.misc.global_math import cursor_relative_position as relative
 import win32gui
 from luna_GlobalScript.misc.global_math import cursor_exchanger as cur
+from luna_GlobalScript.misc.debug_tool import dprint as dp
 
 isWhite, end = False, False
+debug = True
 a = 0
 mx, my = 1440, 900 # デフォルトのx, y の値
 def lowfile_remover(directory):
@@ -28,15 +30,24 @@ def lowfile_remover(directory):
                 print(f"Deleted: {filename} Because under 1bytes")
 def ez_click(x, y):
     click.click(x, y, mx, my, False)
+    
+def dprint(str):
+    if debug == True:
+        dp(str)
 
 # 入力処理
 members = str(input("取得したいキャラクターまたはユニット (未入力で全員)\n (e.g: ichika) or (e.g: Leo/need): "))
+dprint(f"User Selected: members = \"{members}\"")
 filter_mv = str(input("MVタイプのフィルタを行いますか? (0 or 1): "))
+dprint(f"User Selected: filter_mv = \"{filter_mv}\"")
 ExperimentalMode = input("実験的モード (非推奨) (True / False / ?): ")
+dprint(f"User Selected: ExperimentalMode = \"{ExperimentalMode}\"")
 chrome_path = str(input("Chromeのパスを入力してください (未入力でデフォルトパス): "))
+dprint(f"User Selected: chrome_path = \"{chrome_path}\"")
 
 # 実験モードのプリントアウト
 if ExperimentalMode == "?":
+    dprint("ExperimentalMode = \"?\"  - Return")
     print("""
     実験的モードとは                             \n
 現在開発中の、画面操作機能を使用したモードです。    \n
@@ -46,6 +57,7 @@ if ExperimentalMode == "?":
     ExperimentalMode = input("実験的モード (非推奨) (True / False): ")    
 # 前処理
 if not members == "": # 入力があったらチェック
+    dprint("Starting Member ID Analysing..")
     name, id = lunaidanalyse.returnmode_02d(members, True)
 else: # 未入力なら実行
     print("Successfully Getting Charactor Data\nName:Any ID:range(1,27)")
@@ -54,13 +66,20 @@ else: # 未入力なら実行
 
 if chrome_path == "": # 未入力だったらデフォルト
     chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
-elif chrome_path == "luna": # デバッグ用
-    chrome_path = "E:/Application/Google/Chrome/Application/chrome.exe"
+    dprint(f"Updated chrome_path = \"{chrome_path}\"")
+elif debug == True: # デバッグ用
+    if chrome_path =="":
+        chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+    else:
+        chrome_path = "E:/Application/Google/Chrome/Application/chrome.exe"
+    dprint(f"Automatic Selected Debugging ChromePath")
 
 if compact.tfgen_boolean(filter_mv): # MVフィルタオンの場合
+    dprint("MVFilter = True")
     mv3d, mv2d, mv_original, mv_static = mvf.main()
     NoMVFilter = False
 else:
+    dprint("MVFilter = False")
     NoMVFilter = True
 
 
@@ -69,19 +88,24 @@ if not NoMVFilter and NoCharactorFilter:
     filtering = False
 else:
     filtering = True
+dprint(f"Any Filtering {str(filtering)}")
     
 # アウトプットフォルダ
 out_gen.output(False)
 output_folder = "./outputs"
+dprint("Successfully Created ./outputs")
 
 # WebBrowserのセットアップ
 webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+dprint("Webbrowser Registing Success")
 
 # メイン処理
 url = "https://sekai.best/music"  # 開くURLを指定
 webbrowser.get("chrome").open(url)  # Chromeを起動して指定したURLを開く
+dprint("Trying Open URL")
 # Chromeの取得
 chrome_window = pygui.getWindowsWithTitle("Google Chrome")[0]  # ウィンドウのタイトルで特定のウィンドウを取得
+dprint("Trying get Chrome Window")
 # フォーカス + フルスクリーン
 window = gw.getWindowsWithTitle("Google Chrome")[0]
 
@@ -91,6 +115,7 @@ window.activate()
 # ウィンドウをフルスクリーン化する
 window.maximize()
 time.sleep(10)
+dprint("Trying Chrome Fullscreen and Focused")
 
 # フィルタ処理
 if filtering == True: # もしフィルタがあるなら
@@ -254,6 +279,7 @@ if ExperimentalMode == "True": # 実験的モード
     exit("実験的モードでの実行が正常に終了しました")
 
 else: # 通常モード
+    dprint("Starting Download with Normal Mode..")
     # 824, 252 が白になるまでTABを押す
     while isWhite: # 白ならおわり
         click.click(824, 252, mx, my, True)
@@ -344,8 +370,8 @@ else: # 通常モード
     
     for url in can_load:
         # アドレスバーをクリックして選択する
-        x = cur.cursor_exchanger(600, 1280, "x")
-        y = cur.cursor_exchanger(50, 800, "y")
+        x = cur(600, 1280, "x")
+        y = cur(50, 800, "y")
         pygui.click(x=x, y=y)  # def 1280, 800  click = 600, 50
         time.sleep(0.5)
         
