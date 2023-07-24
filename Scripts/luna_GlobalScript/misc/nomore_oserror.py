@@ -7,3 +7,5 @@ def filename_resizer(resize_name, type, replaceTo):
     if type == "filename":
         for x in wincannotaddfilename:
             configname = configname.replace(x, replaceTo)
+    
+    return configname

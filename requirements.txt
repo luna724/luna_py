@@ -9,3 +9,4 @@ pyaudio
 pydub
 pytesseract
 pygetwindow
+winshell

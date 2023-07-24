@@ -2,20 +2,30 @@
 
 **setup.bat** を実行する
 
-# lunapy v1.1.0pre2
+# lunapy v1.1.0pre3
 
 - curseforge-autodownload (v1.0.0)
 - Dataset Collector V3 (v4.0pre2)
 - jpg to png Converter (v1.0.3)
-- Luna's Global Script (v1.1.0-r24)
+- Luna's Global Script (v1.1.0-r27)
 - Picture Collector (v1.2.3)
 - Music Collector (v1.0pre1)
 - MP3 to wav Converter (v1.0.0)
 - Taskkiller for Minecraft (β2.1)
-- Output Cleaner (β1.1)
+- QuickLauncher (v1.0pre1)
+- Light Changer (v1.0)
 
 -----------
 
+- QuickLauncher v1.0pre1
+  - 実装
+  - Windowsのファイル名を指定して実行 (Win+R)からlunapyの実行を可能にする
+  - %windir%/System32 下にショートカットを生成するため、使用は自己責任で
+
+- Light Changer v1.0
+  - 実装
+  - Windowsのpowercfgを使用して、画面の明るさを簡単に変更できる。
+  - 基本的な環境下では不要
 
 -----------
 
@@ -27,7 +37,7 @@ lunapy v1.1.0までに作るものたち
     - それ以外はファイル分けは手動
   - イベント分け
     - キャラによってそのキャラが一切喋らないイベントもあるので、指定されたIDに基づいた指定を行えるように
-  - イベントURLの指定 
+  - イベントURLの指定
     - 現在、Leo/need以外ユーザー処理になっているイベントの取得ベースURLをすべてexist_event.py url_dictに追加
   - サイレントモード
     - アウトプットプロンプトへの表示の抑制
@@ -61,4 +71,5 @@ lunapy v1.1.0までに作るものたち
 | MP3 to wav Converter | v1.0.0 | Converter |
 | Music Collector | v1.0pre1 | Web  Scraping |
 | Taskkiller for Minecraft | β2.1 | Unknown |
-| Output Cleaner | β1.1 | Unknown | Windows |
+| Quick Launcher | v1.0pre1 | Launcher |
+| Light Changer | v1.0 | QoL |

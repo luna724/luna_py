@@ -10,6 +10,16 @@ def hiresfix(value):
     else:
         return 0
 
+def adetailer(value):
+    global adetailer_model
+    if value:
+        # ADetailer有効時の処理
+        n = input("15-2. ADetailer model: ")
+        adetailer_model = exc("Model", "adetailer_model", n)
+        
+    else:
+        return 0
+
 # メイン処理
 if os.path.exists(f"./cache/prompt_config.json"): # 上書きを行わないための読み込み処理
     main = jsonconfig.read("./cache/prompt_config.json")
@@ -47,7 +57,8 @@ def cnp(config_name_printout, value): # プリントアウト用の処理
     return f"{cnp}: {value}"
 
 def exc(cnp, config, value="NOTHING_INPUT_USE_HISTORY-98421651924", type_num=False, isboolean=False, isonly_selected_can_here=False, not_normalize=False, special_function=False, special_function_name=""):
-    dict_name = {"Hires_fix": "hiresfix"}
+    dict_name = {"Hires_fix": "hiresfix",
+                 "ADetailer": "adetailer"}
     if isonly_selected_can_here: # それぞれの属性を取得
         value = value
         writing_config_dict[f"{config}"] = f"{value}"
@@ -112,6 +123,15 @@ n = input("10. Tilling (0 or 1): ")
 tilling = exc("Tilling", "tilling", n, False, True)
 n = input("11. Hires.fix (0 or 1): ")
 hires_fix = exc("Hires.fix", "hires_fix", n, False, True, False, False, True, "Hires_fix")
+n = input("12. Sampling Method: ")
+smethod = exc("Sampling Method", "sampling_method", n)
+n = input("13. Sampling Steps: ")
+ssteps = exc("Sampling Steps", "sampling_steps", n, True)
+n = input("14. ToMe Extension (0 or 1): ")
+tome = exc("To Me Enabled", "tome_enable", n, False, True)
+n = input("15. ADetailer Enabled (0 or 1): ")
+adetailer = exc("ADetailer Extension Enabled", "adetailer_enable", n, False, True, False, False, True, "ADetailer")
+
 
 # 上書きを行わないための書き込み処理
 writing = {"latest_session": f"{session_number}",
