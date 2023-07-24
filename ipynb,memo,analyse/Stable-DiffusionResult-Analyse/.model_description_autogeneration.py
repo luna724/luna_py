@@ -35,7 +35,7 @@ def generate_markdown(input_datas):
 
     for _ in a:
         markdown += " --- |"
-    markdown += "\n"
+    markdown += "\n|"
 
     # データ行の作成
     for prompt in input_data.keys():
@@ -59,13 +59,13 @@ def generate_markdown(input_datas):
             for prompt in copied_dict.keys():
                 markdown += f" {prompt} |"
 
-            markdown += "\n"
+            markdown += "\n|"
             this_part = 0
-
-        markdown += f"| <img src=./sample/facal_expression/{prompt}.png width=80x80> |"
+        
+        markdown += f' <img src="./sample/hair/{prompt}.png" width=80x80> |'
         this_part += 1
 
-    markdown += "\n|\n---\n\n</details>\n\n<details>\n<summary>サンプル画像取得先</summary>\n(取得先のURLやモデル)\n</details>\n\n<br>\n"
+    markdown += """\n|\n---\n\n</details>\n\n<details>\n<summary>サンプル画像取得先</summary>\nhttps://e-penguiner.com/hair-prompt-list-for-image-generation-ai/\n</details>\n\n<br>\n"""
 
     return markdown
 
