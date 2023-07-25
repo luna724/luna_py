@@ -10,3 +10,5 @@ pydub
 pytesseract
 pygetwindow
 winshell
+librosa
+numpy

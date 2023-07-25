@@ -1,0 +1,21 @@
+Source: https://chat.openai.com/c/bd0038c3-7201-4078-93f6-5ec436550e2a
+
+augment Type: # Any
+ピッチ変換 (pitch shift)
+値: 0.65 ~ 1.6 (LGS/audio_tool/pitch_shift.py)
+確率分布
+    
+
+ボリューム変換 # Any
+値: 0.5 ~ 1.5 (LGS/audio_tool/volume_exchange.py)
+ 
+時間シフト # SoX
+値: -0.3 ~ 0.3 (LGS/audio_tool/time_shift.py)
+
+ホワイトノイズ
+値: 0 ~ 0.4 (LGS/audio_tool/white_noise.py)
+
+タイプストレッチ
+値: 0.5 ~ 2
+
+エコーの追加

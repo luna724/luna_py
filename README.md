@@ -2,7 +2,7 @@
 
 **setup.bat** を実行する
 
-# lunapy v1.1.0pre3
+# lunapy v1.1.0pre4
 
 - curseforge-autodownload (v1.0.0)
 - Dataset Collector V3 (v4.0pre2)
@@ -17,15 +17,17 @@
 
 -----------
 
-- QuickLauncher v1.0pre1
-  - 実装
-  - Windowsのファイル名を指定して実行 (Win+R)からlunapyの実行を可能にする
-  - %windir%/System32 下にショートカットを生成するため、使用は自己責任で
+- Audio Segmentation (v1.0pre1)
+  - 主に機械学習データセット用の音声データ拡張を行える。
+  - もう少しバリエーションを増やしたいと思ってるため、プレリリース
+  
+- LGS (v2.0)
+  - Luna_GlobalScript とかいう馬鹿みたいにながい名前から LGS に改名
+  - 旧式でも、v2.0 までのスクリプトなら使用可能
 
-- Light Changer v1.0
-  - 実装
-  - Windowsのpowercfgを使用して、画面の明るさを簡単に変更できる。
-  - 基本的な環境下では不要
+- その他
+  - venvの使用を任意化
+  - LGSを pip install -e . でインストールするように。
 
 -----------
 
