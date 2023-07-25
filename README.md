@@ -14,10 +14,11 @@
 - Taskkiller for Minecraft (β2.1)
 - QuickLauncher (v1.0pre1)
 - Light Changer (v1.0)
+- Audio Augmentation (v1.0pre1)
 
 -----------
 
-- Audio Segmentation (v1.0pre1)
+- Audio Augmentation (v1.0pre1)
   - 主に機械学習データセット用の音声データ拡張を行える。
   - もう少しバリエーションを増やしたいと思ってるため、プレリリース
   
@@ -75,3 +76,4 @@ lunapy v1.1.0までに作るものたち
 | Taskkiller for Minecraft | β2.1 | Unknown |
 | Quick Launcher | v1.0pre1 | Launcher |
 | Light Changer | v1.0 | QoL |
+| Audio Augmentation | v1.0pre1 | Data Augmentation |
