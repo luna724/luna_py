@@ -9,7 +9,7 @@ audio_tool/any_noise.py
 audio_tool/global_augmentation.py
 audio_tool/magentastyle_augmentation.py
 audio_tool/pitch_shift.py
-audio_tool/time_shfit.py
+audio_tool/time_shift.py
 audio_tool/volume_exchange.py
 audio_tool/white_noise.py
 autogui/__init__.py

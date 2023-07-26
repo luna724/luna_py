@@ -1,3 +1,7 @@
+# 何のために作られたのか
+
+私がpythonやそれに関係する様々な言語や内部的使用について理解、学習することを目的とした何とも言えんものとゴミの集合
+
 # 事前準備
 
 **setup.bat** を実行する
@@ -15,6 +19,7 @@
 - QuickLauncher (v1.0pre1)
 - Light Changer (v1.0)
 - Audio Augmentation (v1.0pre2)
+- lunapy Gradio UI (v1.0pre1)
 
 -----------
 
@@ -24,12 +29,19 @@
   - ホワイトノイズ、ピンクノイズ、ブラウンノイズ、ピッチ変換、タイムシフト、ボリューム変換をサポート
   - 一部にMagentaソースコードを使用。 (https://github.com/magenta/magenta/tree/main)
   
-- LGS (v2.0.1)
-  - pip関係を修正。
+- lunapy Gradio UI (V1.0pre1)
+  - プレリリースでいいのかと思うほど何もない。
 
 -----------
 
 lunapy v1.1.0までに作るものたち
+
+- Audio Augmentation v1.0pre3 (-> v1.0)
+  - 様々なオーディオ拡張の追加
+  - 例: 音声反響、ピッチ変更2重ボーカル、正則化 etc..
+  - FFmpeg, SoXの組み込み
+  - ogg2wavによるoggのサポート
+  - mp4などの動画ファイルからの音声摘出を利用したmp4のサポート
 
 - Dataset Collector β4 (-> v5.0)
   - エミュレータ等を使用して5644Kbps(wav)での録音データの取得 (pyautogui)
