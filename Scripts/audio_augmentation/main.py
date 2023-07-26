@@ -8,18 +8,22 @@ import shutil
 import luna_GlobalScript.music_file.flac2wav as flac2wav
 import luna_GlobalScript.audio_tool.pitch_shift as pitch_shifts
 import luna_GlobalScript.audio_tool.volume_exchange as vol_change
-import luna_GlobalScript.audio_tool.time_shfit as time_shifts
+import luna_GlobalScript.audio_tool.time_shfit as time_shifts_OLD
 import time
+import sys
+sys.path.append("..\\..\\")
+import module.LGS.audio_tool.white_noise as wn
+import audio_tool.time_shfit as time_shifts
+import audio_tool.any_noise as noise
 
 # 入力処理 / 事前処理
-use_type_stretch = input("タイプストレッチの使用 (0 or 1): ")
+use_type_stretch = input("タイムストレッチの使用 (0 or 1): ")
 use_type_stretch = ci.tfgen_boolean(use_type_stretch)
-use_echo = input("エコーの追加 (0 or 1): ")
-use_echo = ci.tfgen_boolean(use_echo)
+chance = float(input("オプション拡張の適用率 (0.1 ~ 100): "))
 
 # 実行ディレクトリを保存
 white_noise_dir = os.getcwd()
-white_noise_dir = f"{white_noise_dir}\\white_noise"
+white_noise_dir = f"{white_noise_dir}\\white_noise\\"
 
 # ホワイトノイズがあるか確認
 if not os.path.exists("./white_noise/wn_0.1.wav"):
@@ -92,16 +96,27 @@ def volume_exchange(audio_file):
 def time_shift(audio_file):
     time_shift_factor = round(random.uniform(0.5, 1.5), 5)
     print(f"Starting Convert \"Time Shift(Using SoX Mode)\"\n \
-            Time Shift Factor: {time_shift_factor} || Target Audio: {audio_file}")
+            Time Shift Factor: {time_shift_factor} | Target Audio: {audio_file}")
     time_shifts.sox_mode(audio_file, time_shift_factor, f"./augmentation/outputs/{audio_file}.wav")
 
+def white_noise(audio_file):
+    noise_strength = round(random.uniform(0.001, 0.01), 4)
+    print(f"Starting Convert  \"White Noise\"\n\
+            White Noise Strength: {white_noise}  |  Target Audio: {audio_file}")
+    if roll.random_roll(0.5):
+        # 50% で SoXモード
+        wn.sox_mode(audio_file, f"{white_noise_dir}wn_{str(noise_strength)}.wav", f"./augmentation/outputs/{audio_file}.wav")
+    else:
+        # ロールしなかった場合Librosaモード
+        wn.librosa_mode(audio_file, noise_strength, True, f"./augmentation/outputs/{audio_file}.wav")
+    
+def time_stretch(audio_file):
+    
 # 拡張リスト # ランダム値に基づき、これらが実行される
 augmentations = [pitch_shift, volume_exchange, time_shift, white_noise]
 # Treuの場合追加
 if use_type_stretch:
-    augmentations.append(type_stretch)
-if use_echo:
-    augmentations.append(echo)
+    augmentations.append(time_stretch)
 
 # 各ファイルに対して拡張を適用
 for audio_file in audio_list:
@@ -109,10 +124,17 @@ for audio_file in audio_list:
     chosen_augmentation = random.choice(augmentations)
     
     # 確率に基づいて処理を行う
-    if roll.random_roll(0.95):
-        # 選ばれた拡張をファイルに適用
-        augmented_audio = chosen_augmentation(audio_file)
-        
+    if roll.random_roll(0.7):
+        if roll.random_roll(chance):
+            # 選ばれた拡張をファイルに適用
+            augmented_audio = chosen_augmentation(audio_file)
+        if roll.random_roll(0.35): # 35%でホワイトノイズモード
+            augmented = white_noise(audio_file)
+        else:
+            # ノイズの強さ、タイプのロール
+            noise_strength = round(random.uniform(0.001, 0.05), 4)
+            noise_type = random.choice(["whitenoise", "pinknoise", "brownnoise"])
+            noise.add_noise(audio_file, f"./augmentation/outputs/{audio_file}.wav", noise_strength, noise_type)
         # ロール時の処理を行う
         # ...
 

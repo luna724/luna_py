@@ -7,8 +7,8 @@ def create(noise_strength, filename, extension="wav"):
 
 os.makedirs("./white_noise", exist_ok=True)
 
-for x in range(10, 61):
-    x  /= 100
+for x in range(10, 100):
+    x  /= 10000
     print(f"Creating White Noise.. \nStrength: {str(x)}")
     create(x, f"wn_{str(x)}")
 

@@ -12,3 +12,6 @@ pygetwindow
 winshell
 librosa
 numpy
+sox
+magenta
+tensorflow

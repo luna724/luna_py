@@ -25,15 +25,8 @@ def librosa_mode(input_file, volume_factor=1.0, output=False, output_file="2"):
     return y_volume, sr
 
 
-def sox_mode(input_file, volume_factor=1.0, output_file="", waiting=True, return_output=False):
-    if waiting:
-        process_handle = subprocess.Popen(
-            ["sox", input_file, output_file, "vol", str(volume_factor)],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True
-        )
-        process_handle.communicate()
-    else:    
-        subprocess.run(["sox", input_file, output_file, "vol", str(volume_factor)])
+def sox_mode(input_file, volume_factor=1.0, output_file="", return_output=False):
+    subprocess.run(["sox", input_file, output_file, "vol", str(volume_factor)])
 
     if return_output:
         return output_file
