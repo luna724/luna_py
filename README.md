@@ -2,35 +2,32 @@
 
 私がpythonやそれに関係する様々な言語や内部的使用について理解、学習することを目的とした何とも言えんものとゴミの集合
 
-# 事前準備
+# 参考、使用、パクったコードやアプリたち
+FFmpeg, SoX, google-magenta sourceCode
 
-**setup.bat** を実行する
 
 # lunapy v1.1.0pre5
 
-- curseforge-autodownload (v1.0.0)
-- Dataset Collector V3 (v4.0pre2)
-- jpg to png Converter (v1.0.3)
-- Luna's Global Script (v2.0.1)
-- Picture Collector (v1.2.3)
-- Music Collector (v1.0pre1)
-- MP3 to wav Converter (v1.0.0)
-- Taskkiller for Minecraft (β2.1)
-- QuickLauncher (v1.0pre1)
-- Light Changer (v1.0)
-- Audio Augmentation (v1.0pre2)
-- lunapy Gradio UI (v1.0pre1)
+-----------
+| Feature Name | Latest Version | Type |
+|---|---|---|
+| CurseForge AutoDownload | v1.0.0 | Web Scraping |
+| Dataset Collector | v4.0pre2 | Web Scraping |
+| jpg to png Converter | v1.0.3 | Converter |
+| Luna's Global Script | v2.0.1 | Python Module |
+| Picture Collector | v1.2.3 | Web Scraping |
+| MP3 to wav Converter | v1.0.0 | Converter |
+| Music Collector | v1.0pre1 | Web  Scraping |
+| Taskkiller for Minecraft | β2.1 | Unknown |
+| Quick Launcher | v1.0pre1 | Launcher |
+| Light Changer | v1.0 | QoL |
+| Audio Augmentation | v1.0pre2 | Data Augmentation |
+| lunapy GradioUI | v1.0pre1 | QoL |
 
 -----------
 
-- Audio Augmentation (v1.0pre2)
-  - 主に機械学習データセット用の音声データ拡張を行える。
-  - もう少しバリエーションを増やしたいと思ってるため、プレリリース
-  - ホワイトノイズ、ピンクノイズ、ブラウンノイズ、ピッチ変換、タイムシフト、ボリューム変換をサポート
-  - 一部にMagentaソースコードを使用。 (https://github.com/magenta/magenta/tree/main)
-  
-- lunapy Gradio UI (V1.0pre1)
-  - プレリリースでいいのかと思うほど何もない。
+# Changelogs
+
 
 -----------
 
@@ -72,17 +69,4 @@ lunapy v1.1.0までに作るものたち
   - ファイルのリネームの設定の見直し
 
 - 
------------
-| Feature Name | Latest Version | Type |
-|---|---|---|
-| CurseForge AutoDownload | v1.0.0 | Web Scraping |
-| Dataset Collector | v4.0pre2 | Web Scraping |
-| jpg to png Converter | v1.0.3 | Converter |
-| Luna's Global Script | v2.0.1 | Python Module |
-| Picture Collector | v1.2.3 | Web Scraping |
-| MP3 to wav Converter | v1.0.0 | Converter |
-| Music Collector | v1.0pre1 | Web  Scraping |
-| Taskkiller for Minecraft | β2.1 | Unknown |
-| Quick Launcher | v1.0pre1 | Launcher |
-| Light Changer | v1.0 | QoL |
-| Audio Augmentation | v1.0pre2 | Data Augmentation |
+
