@@ -13,6 +13,5 @@ winshell
 librosa
 numpy
 sox
-magenta
 tensorflow
 gradio

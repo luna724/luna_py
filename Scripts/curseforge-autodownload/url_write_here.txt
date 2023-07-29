@@ -1,106 +1,14 @@
-https://www.curseforge.com/minecraft/mc-mods/client-tweaks | Client Tweaks - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/sound-filters | Sound Filters - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/mixinbootstrap | MixinBootstrap - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/phosphor-forge | Phosphor (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/waila-harvestability | Waila Harvestability - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/antighost | AntiGhost - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/wall-jump | Wall-Jump! [FORGE] - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/applecore | AppleCore - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/atomicstrykers-infernal-mobs | AtomicStryker's Infernal Mobs - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/pickle-tweaks | Pickle Tweaks - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/ambient-environment | Ambient Environment - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/scaling-health | Scaling Health - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/entity-culling | Entity Culling - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/death-backup | Death Backup - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/tiny-progressions | Tiny Progressions - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/particle-culling | Particle Culling - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/reach-fix | Reach Fix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/tinkers-complement | Tinkers' Complement - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/realistic-torches | Realistic Torches - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/performant | Performant - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/just-enough-calculation | Just Enough Calculation - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/mixin-0-7-0-8-compatibility | Mixin 0.7-0.8 Compatibility - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/xp-from-harvest | XP From Harvest - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/multi-mine | Multi Mine - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/no-tree-punching | No Tree Punching - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/vanillafix | VanillaFix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/tough-as-nails | Tough As Nails - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/not-enough-wands | Not Enough Wands - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/rlcombat | RLCombat - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/unique-enchantments-utils | Unique Enchantments - Utils - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/unique-enchantments-battle | Unique Enchantments - Battle - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/colytra | Colytra (Fabric/Forge/Quilt) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/no-potion-shift | No Potion Shift - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/weather-storms-tornadoes | Weather, Storms & Tornadoes - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/useful-railroads | Useful Railroads - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/harder-branch-mining | Harder Branch Mining - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/bow-infinity-fix | Bow Infinity Fix (Forge/Fabric) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/vanilla-tools | Vanilla Plus Tools - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/everlastingabilities | EverlastingAbilities - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/mystical-agriculture-tiered-crystals | Mystical Agriculture Tiered Crystals - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/animania | Animania Base - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/advanced-shulkerboxes | Advanced Shulkerboxes - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/epic-siege-mod | Epic Siege Mod - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/lan-server-properties | Lan Server Properties - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/minicoal | MiniCoal - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/spiders-2-0 | Spiders 2.0 - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/portable-crafting-table | Portable Crafting Table - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/minemenu | MineMenu - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/nether-portal-spread | Nether Portal Spread - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/placeable-items | Placeable Items - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/projecte-integration | ProjectE Integration - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/tinkers-reforged | Tinkers Reforged - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/materialis | Materialis - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/death-counter | Death Counter (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/cplpibalds-tweaks | CplPibald's Tweaks - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/animania-extra | Animania Extra Animals - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/gravelminer | GravelMiner - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/infinite-trading | Infinite Trading - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/keyboard-wizard | Keyboard Wizard - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/bottle-your-xp | Bottle Your Xp - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/underwater-enchanting | Underwater Enchanting - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/simple-world-timer | Simple World Timer - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/zombie-players | Zombie Players - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/better-sprinting | Better Sprinting - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/apple-trees-revived | Apple Trees Revived [Forge & Fabric][1.12.x - 1.19.4] - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/animania-cats-dogs | Animania Cats & Dogs - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/heat-and-climate | Heat And Climate - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/heat-and-climate-lib | Heat And Climate Lib - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/memory-cleaner-mod | Memory Cleaner Mod - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/cloud-boots | Cloud Boots (Forge/Fabric) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/clay-conversion | Clay Conversion - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/jei | Just Enough Items (JEI) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/mouse-tweaks | Mouse Tweaks - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/controlling | Controlling - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/appleskin | AppleSkin - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/clumps | Clumps - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/spark | spark - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/collective | Collective - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/attributefix | AttributeFix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer | Just Enough Resources (JER) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/storage-drawers | Storage Drawers - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/carry-on | Carry On - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fastworkbench | FastWorkbench - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fast-leaf-decay | Fast Leaf Decay - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/tinkers-construct | Tinkers Construct - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/aquaculture | Aquaculture 2 - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/botania | Botania - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/netherportalfix | NetherPortalFix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fastfurnace | FastFurnace - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/mystical-agriculture | Mystical Agriculture - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/serene-seasons | Serene Seasons - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/mystical-agradditions | Mystical Agradditions - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/ice-and-fire-dragons | Ice and Fire: Dragons - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/foamfix-optimization-mod | Foam​Fix - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files?version=1.16.5 | Just Enough Resources (JER) - Minecraft Mods - CurseForge
 https://www.curseforge.com/minecraft/mc-mods/fps-reducer | FPS Reducer - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/the-one-probe | The One Probe - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/hwyla | Hwyla - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/champions | Champions - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/betternether | BetterNether - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/ftb-ultimine-forge | FTB Ultimine (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/findme | FindMe - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/dynamic-surroundings | Dynamic Surroundings - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/spice-of-life-carrot-edition | Spice of Life: Carrot Edition - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/cyclic | Cyclic - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/progressive-bosses | Progressive Bosses - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/charm | Charm - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/rubidium | Rubidium - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/calcium | Calcium - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/smooth-boot-forge | Smooth Boot (Forge) - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/lazydfu | LazyDFU - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/clumps | Clumps - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/controlling | Controlling - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/sound-filters | Sound Filters - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/dynamic-lights | Dynamic Lights - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/appleskin | AppleSkin - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/rpg-hud | RPG-Hud [Forge] - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/mouse-tweaks | Mouse Tweaks - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/xaeros-minimap | Xaero's Minimap - Minecraft Mods - CurseForge

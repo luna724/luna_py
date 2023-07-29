@@ -253,7 +253,7 @@ def returnmode_02d(members, unit_mode):
             print(f"Successfully Getting Unit Data\nName:{member_name} ID:{member_id} Member ID: 21, 22, 23, 24, 25, 26")  
         else:
             print("そのキャラクターは存在しない、または入力方法が間違っています")
-            exit()
+            raise {"ValueError: Can't Analyse Charactor Data"}
     else:
         print("そのキャラクターは存在しない、または入力方法が間違っています")
         exit()

@@ -2,7 +2,6 @@ import random
 import os
 import subprocess
 import luna_GlobalScript.misc.compact_input as ci
-import luna_GlobalScript.misc.random_roll as roll
 from luna_GlobalScript.misc.nomore_oserror import file_extension_filter as filter_files_by_extension
 import shutil
 import luna_GlobalScript.music_file.flac2wav as flac2wav
@@ -12,6 +11,7 @@ import luna_GlobalScript.audio_tool.time_shfit as time_shifts_OLD
 import time
 import sys
 sys.path.append("..\\..\\")
+import misc.randomroll as roll
 import module.LGS.audio_tool.white_noise as wn
 import audio_tool.time_shfit as time_shifts
 import audio_tool.any_noise as noise
@@ -110,7 +110,7 @@ def white_noise(audio_file):
         # ロールしなかった場合Librosaモード
         wn.librosa_mode(audio_file, noise_strength, True, f"./augmentation/outputs/{audio_file}.wav")
     
-def time_stretch(audio_file):
+# def time_stretch(audio_file):
     
 # 拡張リスト # ランダム値に基づき、これらが実行される
 augmentations = [pitch_shift, volume_exchange, time_shift, white_noise]

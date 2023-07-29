@@ -37,6 +37,7 @@ exit
 rem 今後削除予定
 :lgs_old
 rem luna_GlobalScriptの取得
+cd /d ..\
 if exist ./venv/Lib/site-packages/luna_GlobalScript (
      rem 存在する場合、アップデート
      rd ./venv/Lib/site-packages/luna_GlobalScript /q
