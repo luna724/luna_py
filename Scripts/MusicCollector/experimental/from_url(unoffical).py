@@ -14,6 +14,7 @@ Debug_Mode = True
 
 import requests
 import os
+import random
 import hashlib
 import time
 import LGS.misc.output_folder as out
@@ -33,6 +34,7 @@ def dp(str):
         dprint(str)
 def errorgen(str):
     print(str)
+    # raise f"str"
 def get(url, save_name, dir):
     response = requests.get(url)
     if response.status_code == 200:
@@ -162,7 +164,7 @@ dp(f"Setting Output Directory: {dir}")
 for url in old_url:
     filename_num += 1
     filename = find.extract(r"/(\d+_\d+)\.flac", url)
-    save_name = f"{filename_num}-{filename}"
+    save_name = f"{filename_num}-{filename}.flac"
 
     get(url, save_name, dir)
     
@@ -178,7 +180,7 @@ for url in url_list:
     filename = find.extract(r"/([a-zA-Z]+_\d+_\d+)\.flac", url)
     filename_bytes = filename.encode("utf-8") # バイト列に変換
     hashs = hashlib.sha1(filename_bytes).hexdigest()
-    save_name_ = f"f{hashs}.{filename_num}-{filename}"
+    save_name_ = f"f{hashs}.{filename_num}-{filename}.flac"
     # 正則化
     save_name = los.filename_resizer(save_name_, replaceTo="0")
 
