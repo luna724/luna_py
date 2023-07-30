@@ -1,4 +1,4 @@
 cd ..\..\
-call venv\Scripts\activate
+call .venv\Scripts\activate
 cd ./Scripts/LightChanger
 python main.py

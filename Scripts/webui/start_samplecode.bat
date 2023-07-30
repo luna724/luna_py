@@ -1,5 +1,5 @@
 cd ..\..\
-call venv\Scripts\activate
+call .venv\Scripts\activate
 cd ./Scripts/webui
 
 cd /d ./sample_code

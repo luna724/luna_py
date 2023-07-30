@@ -5,3 +5,5 @@ __pycache__/
 white_noise/
 .venv/
 .vscode/
+out/
+outputs/

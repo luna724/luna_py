@@ -1,4 +1,6 @@
 cd ..\..\
-call venv\Scripts\activate
-cd ./Scripts/MusicCollector
-python new_main.py
+call .venv\Scripts\activate
+cd ./Scripts/MusicCollector/experimental
+python from_url(unoffical).py
+
+pause

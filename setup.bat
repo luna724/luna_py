@@ -9,17 +9,17 @@ if exist venv (
 
     if errorlevel 2 (
         echo Local Support COMING SOON.. 
-        python -m venv venv
+        python -m venv .venv
         goto :pip_ins
     ) else (
-        python -m venv venv 
+        python -m venv .venv 
         goto :venv
     )
 )
 
 rem Install Requirements.txt
 :venv
-call venv\scripts\activate
+call .venv\scripts\activate
 pip3 install -r requirements.txt
 python -m pip install --upgrade pip
 cd /d ./module/lgs

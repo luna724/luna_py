@@ -6,7 +6,7 @@
 FFmpeg, SoX, google-magenta sourceCode
 
 
-# lunapy v1.1.0pre5
+# lunapy v1.1.0pre6
 
 -----------
 | Feature Name | Latest Version | Type |
@@ -17,7 +17,7 @@ FFmpeg, SoX, google-magenta sourceCode
 | Luna's Global Script | v2.0.1 | Python Module |
 | Picture Collector | v1.2.3 | Web Scraping |
 | MP3 to wav Converter | v1.0.0 | Converter |
-| Music Collector | v1.0pre1 | Web  Scraping |
+| Music Collector | v1.0pre2 | Web  Scraping |
 | Taskkiller for Minecraft | β2.1 | Unknown |
 | Quick Launcher | v1.0pre1 | Launcher |
 | Light Changer | v1.0 | QoL |
@@ -28,6 +28,13 @@ FFmpeg, SoX, google-magenta sourceCode
 
 # Changelogs
 
+- Music Collector v1.0pre1 -> v1.0pre2
+  - 基礎機能を完全に実装
+  - ファイル名の完全な取得ができないため、ベータ実装
+  - フィルタも動かない
+
+- lunapy v1.1.0pre6
+  - 新しいvenvの名前にすべてのrun.batを対応
 
 -----------
 

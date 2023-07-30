@@ -1,7 +1,7 @@
 import os
 wincannotaddfilename = ["?","/",'"',"\"",":","|","<",">","*"]
 
-def filename_resizer(resize_name, type, replaceTo):
+def filename_resizer(resize_name, type="filename", replaceTo=""):
     configname = resize_name
     if replaceTo == "":
         replaceTo = "_"
