@@ -198,7 +198,7 @@ for url in url_list:
 listfile に取得ファイルのリストを保存
 flacの拡張子のみに厳選
 -{filename} に当たる位置を x に取得
-
+さらに 0xxx に絞り込み
 forループ内で、値に応じたファイル名を取得
 ファイル名に応じてリネーム
 
@@ -210,16 +210,16 @@ os.chdir(dir)
 
 for file in listfile:
     x = file.split("-", 1)[-1]
-    
+    x = find.extract(r"[a-zA-Z]+_(\d+)_\.flac", x)    
     # この先には値に応じてファイル名を変更する機能を実装する
-    """
+    # """
     
     info_dict = jsoncfg.read("./song_info.json")
     new_name = info_dict[x]
     os.rename(x, new_name)
     print(f"{x} -> {new_name}")
     
-    """
+    # """
     
     # 変換がオンの場合
     if convertWAV:
