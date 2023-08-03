@@ -8,3 +8,4 @@ white_noise/
 out/
 outputs/
 outputs2/
+.cache/

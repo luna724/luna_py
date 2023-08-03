@@ -8,7 +8,7 @@ FFmpeg, SoX, google-magenta sourceCode
 
 # 事前準備
 
-スクリプトによっては FFmpeg, SoX, Tessetactを要求するため、インストール+システム環境変数 "PATH" への追加
+スクリプトによっては FFmpeg, SoX, Tesseractを要求するため、インストール+システム環境変数 "PATH" への追加
 
 あとは old_setup.batを実行するだけ
 
@@ -34,9 +34,7 @@ FFmpeg, SoX, google-magenta sourceCode
 
 # Changelogs
 
-- Music Collector v1.0pre4 -> v1.0pre5
-  - ファイル名取得のサポート
-  - Wav変換、MP3変換のサポート
+
 
 -----------
 

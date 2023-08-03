@@ -3,7 +3,7 @@ BeautifulSoup4
 requests
 pyautogui
 jupyter
-ffmpeg
+ffmpeg-python
 pywin32
 pyaudio
 pydub
