@@ -1,141 +1,126 @@
+"""
+1. それぞれに何の拡張を適用するか、定義
+
+"""
+Debug_Mode = True
+
+# 0
+  # ファイル取得、辞書追加、定義
+import LGS.misc.debug_tool as dt
+def dprint(str): 
+  if Debug_Mode: 
+    dt.dprint(str)
+import augment as augmentation
+import LGS.misc.random_roll as roll
 import random
-import os
-import subprocess
-import luna_GlobalScript.misc.compact_input as ci
-from luna_GlobalScript.misc.nomore_oserror import file_extension_filter as filter_files_by_extension
-import shutil
-import luna_GlobalScript.music_file.flac2wav as flac2wav
-import luna_GlobalScript.audio_tool.pitch_shift as pitch_shifts
-import luna_GlobalScript.audio_tool.volume_exchange as vol_change
-import luna_GlobalScript.audio_tool.time_shfit as time_shifts_OLD
+import LGS.misc.jsonconfig as jsoncfg
 import time
 import sys
-sys.path.append("..\\..\\")
-import misc.randomroll as roll
-import module.LGS.audio_tool.white_noise as wn
-import audio_tool.time_shfit as time_shifts
-import audio_tool.any_noise as noise
+import os
+import LGS.misc.compact_input as cin
+import LGS.misc.nomore_oserror as los
 
-# 入力処理 / 事前処理
-use_type_stretch = input("タイムストレッチの使用 (0 or 1): ")
-use_type_stretch = ci.tfgen_boolean(use_type_stretch)
-chance = float(input("オプション拡張の適用率 (0.1 ~ 100): "))
+#
+y = 0
 
-# 実行ディレクトリを保存
-white_noise_dir = os.getcwd()
-white_noise_dir = f"{white_noise_dir}\\white_noise\\"
-
-# ホワイトノイズがあるか確認
-if not os.path.exists("./white_noise/wn_0.1.wav"):
-    print(f"White Noise Data Not Found.\nCreating White Noise..")
-    subprocess.Popen("create_whitenoise.bat", shell=True)
-    time.sleep(12)
-
-# 音声リストを取得 
-input_dir = input("拡張音声ディレクトリ: ")
-allowed_extensions = ["wav", "flac", "mp3"] # 許可する拡張子
-flac = ["flac"]
-os.chdir(input_dir)
-file_list = os.listdir("./") # /augmentationを作成、ファイルのリストアップ
-audio_list = filter_files_by_extension(file_list, allowed_extensions)
-if len(audio_list) < 1: # ファイルがない場合
-    print(f"""Audio File Not Found. (Only can Input "wav", "flac", "mp3")""")
-    exit()
-os.makedirs("./augmentation", exist_ok=True)
-if len(os.listdir("./augmentation")) != 0:  # もし何か入ってるなら
-    if os.path.exists("./old_augmentation"):
-        os.remove("./old_augmentation") # リネーム、古いほうを削除
-    os.rename("./augmentation", "./old_augmentation")
-    os.makedirs("./augmentation", exist_ok=True)
-    os.makedirs("./augmentation/cache", exist_ok=True)
+# 前処理 (処理済みファイルがある場合、そっちを使用)
+target_dir = input("Target Directory (未入力で前回の設定引継ぎ): ")
+if cin.isnone(target_dir):
+  if os.path.exists("./latest_date.json"):
+    filelist_dict = jsoncfg.read("./latest_date.json")
+  else:
+    raise ValueError("前回のコンフィグが見つかりませんでした。")
+  
 else:
-    os.makedirs("./augmentation/cache", exist_ok=True)
+  filelist_raw = os.listdir(target_dir)
 
-# flacはwavに変換
-flac_list = filter_files_by_extension(audio_list, flac)
-if len(flac_list) > 0:
-    os.makedirs("./augmentation/cache/flac", exist_ok=True)
-    for x in flac_list:
-        shutil.move(f"./{x}", "./augmentation/cache/flac")
-    # 移動したのち、リストアップし、wavに変換
-    directory = os.listdir("./augmentation/cache/flac")
-    path = f"{input_dir}\\augmentation\\cache\\flac"
-    for x in directory: 
-        flac2wav.main(x, path) # 変換
-    # 変換したものを戻す
-    directory = os.listdir("./augmentation/cache/flac")
-    flac2wav_list = filter_files_by_extension(directory, ["wav"])
-    for x in flac2wav_list:
-        shutil.move(f"./augmentation/cache/flac/{x}", "./")
-# MP3はwavではなく、mp3で書き出しするように。
-mp3_list = filter_files_by_extension(audio_list, ["mp3"])
-if len(mp3_list) > 0:
-    in_mp3 = True
-    os.makedirs("./augmentation/cache/mp3", exist_ok=True)
-    for x in mp3_list:
-        shutil.move(f"./{x}", "./augmentation/cache/mp3")
+  # ファイルチェック (拡張可能な拡張子)
+
+  filelist_filteling = los.file_extension_filter(filelist_raw, allowed_extensions=[".mp3", ".wav", ".flac"])
+  filelist_dict = {}
+  dprint(f"リストアップファイル: {filelist_raw}\n \
+  チェック後リスト: {filelist_filteling}")
+
+  # 拡張可能なものが0なら
+  if not len(filelist_filteling) > 0:
+    raise ValueError("対象ファイルが見つかりません。")
+
+  # 辞書追加
+  for file in filelist_filteling:
+    # 拡張子の取得
+    file_extension = os.path.splitext(file)[1].lower()
+    filelist_dict[file] = [{"format":f"{file_extension}"}]
+    ## {"file": [{"format": {extension}}]}
+    
+    # 有効な拡張リストから、ランダムで選出
+    filelist_dict[file][0]["augment"] = [random.choice(augmentation.augment_list)]
+    #{"file": [{"format": "extension", 
+    # "augment": [{"augment_1": "augment_1"}, 
+    #{"augment_2": "augment_2"}] }]}
+    
+    # ここから先は確率で付与
+    if roll.random_roll(0.2):
+      # 20% で一つ追加
+      """
+      "augment" 辞書内のキーにアクセス
+      その中のリストに、新たな拡張を追加
+      """
+      filelist_dict[file][0]["augment"].append(random.choice(augmentation.augment_list))
+      # 同じものがロールされたら、消す
+      if filelist_dict[file][0]["augment"][0] == filelist_dict[file][0]["augment"][1]:
+        filelist_dict[file][0]["augment"].pop(1)
+      
+    if roll.random_roll(0.05):
+      # 5% でもういっこ (1%で二つ)
+      # リストインデックス1 がある場合
+      if len(filelist_dict[file][0]["augment"]) == 2:
+        filelist_dict[file][0]["augment"].append(random.choice(augmentation.augment_list))
+      # 同じものがロールされたら、消す
+        if filelist_dict[file][0]["augment"][0] == filelist_dict[file][0]["augment"][2] or filelist_dict[file][0]["augment"][1] == filelist_dict[file][0]["augment"][2]:
+          filelist_dict[file][0]["augment"].pop(2)
+      
+      # 20% がロールされてないなら
+      else:
+        filelist_dict[file][0]["augment"].append(random.choice(augmentation.augment_list))
+        # 同じものがロールされたら、消す
+        if filelist_dict[file][0]["augment"][0] == filelist_dict[file][0]["augment"][1]:
+          filelist_dict[file][0]["augment"].pop(1)
+    
+    # ノイズがロールされたら、ノイズタイプをロール
+    x = len(filelist_dict[file][0]["augment"])
+    while x != 0:
+      x -= 1
+      inner_dict = filelist_dict[file][0]["augment"][x]  # 内側の辞書を取得
+      if "1" in inner_dict:
+        filelist_dict[file][0]["augment"][x]["1"] = random.choice(augmentation.noise_type_list)
+      
+    # ID割り当て (ファイル名重複防止)
+    y += 1
+    filelist_dict[file][0]["ID"] = "{:04d}".format(y)
+    
+    # ファイル名を取得
+    filelist_dict[file][0]["NAME"] = os.path.splitext(file)[0]
+    
+
+dprint(filelist_dict)
+# とりあえず、保存
+jsoncfg.write(filelist_dict, "./latest_date.json")
+
+# 拡張実行の前に..
+# 許可: mp3, wav, flac, auto
+output_type_raw = input("(Available: wav, flac, mp3, auto(Keep-format type)\nOutput Format: ").lower()
+
+if not output_type_raw in ["mp3", "flac", "wav", "auto"]:
+  raise ValueError("拡張子タイプが不明です。\n[mp3, flac, wav, auto]のいずれかを入力してください。")
+
+# AUTO じゃない場合
+if not output_type_raw == "auto":
+  out_extension = output_type_raw
+
 else:
-    in_mp3 = False
+  auto_detection = True
+  out_extension = "wav"
+  
 
-# 作業位置の変更    
-
-
-# 関数
-def pitch_shift(audio_file):
-    pitch_factor = round(random.uniform(0.65, 1.6), 5)
-    print(f"Starting Convert \"Pitch Shift\"\n \
-            Pitch Factor: {pitch_factor}  |  Target Audio: {audio_file}")
-    pitch_shifts.librosa_mode(audio_file, pitch_factor, True, f"./augmentation/outputs/{audio_file}.wav")
-    
-def volume_exchange(audio_file):
-    volume_factor = round(random.uniform(0.5, 1.5), 5)
-    print(f"Starting Convert \"Volume Exchange\"\n \
-            Volume Factor: {volume_factor}  |  Target Audio: {audio_file}")
-    vol_change.librosa_mode(audio_file, volume_factor, True, f"./augmentation/outputs/{audio_file}.wav")
-
-def time_shift(audio_file):
-    time_shift_factor = round(random.uniform(0.5, 1.5), 5)
-    print(f"Starting Convert \"Time Shift(Using SoX Mode)\"\n \
-            Time Shift Factor: {time_shift_factor} | Target Audio: {audio_file}")
-    time_shifts.sox_mode(audio_file, time_shift_factor, f"./augmentation/outputs/{audio_file}.wav")
-
-def white_noise(audio_file):
-    noise_strength = round(random.uniform(0.001, 0.01), 4)
-    print(f"Starting Convert  \"White Noise\"\n\
-            White Noise Strength: {white_noise}  |  Target Audio: {audio_file}")
-    if roll.random_roll(0.5):
-        # 50% で SoXモード
-        wn.sox_mode(audio_file, f"{white_noise_dir}wn_{str(noise_strength)}.wav", f"./augmentation/outputs/{audio_file}.wav")
-    else:
-        # ロールしなかった場合Librosaモード
-        wn.librosa_mode(audio_file, noise_strength, True, f"./augmentation/outputs/{audio_file}.wav")
-    
-# def time_stretch(audio_file):
-    
-# 拡張リスト # ランダム値に基づき、これらが実行される
-augmentations = [pitch_shift, volume_exchange, time_shift, white_noise]
-# Treuの場合追加
-if use_type_stretch:
-    augmentations.append(time_stretch)
-
-# 各ファイルに対して拡張を適用
-for audio_file in audio_list:
-    # ランダムに拡張を選択
-    chosen_augmentation = random.choice(augmentations)
-    
-    # 確率に基づいて処理を行う
-    if roll.random_roll(0.7):
-        if roll.random_roll(chance):
-            # 選ばれた拡張をファイルに適用
-            augmented_audio = chosen_augmentation(audio_file)
-        if roll.random_roll(0.35): # 35%でホワイトノイズモード
-            augmented = white_noise(audio_file)
-        else:
-            # ノイズの強さ、タイプのロール
-            noise_strength = round(random.uniform(0.001, 0.05), 4)
-            noise_type = random.choice(["whitenoise", "pinknoise", "brownnoise"])
-            noise.add_noise(audio_file, f"./augmentation/outputs/{audio_file}.wav", noise_strength, noise_type)
-        # ロール時の処理を行う
-        # ...
-
-    # ロールされなかった場合の処理を行う
+# 拡張実行
+augmentation.augment(filelist_dict)

@@ -1,28 +1,14 @@
-# 何のために作られたのか
-
-私がpythonやそれに関係する様々な言語や内部的使用について理解、学習することを目的とした何とも言えんものとゴミの集合
-
-# 参考、使用、パクったコードやアプリたち
-
-FFmpeg, SoX, google-magenta sourceCode
-
-# 事前準備
-
-スクリプトによっては FFmpeg, SoX, Tesseractを要求するため、インストール+システム環境変数 "PATH" への追加
-
-あとは old_setup.batを実行するだけ
-
-# lunapy v1.1.0pre6
+# lunapy v1.1.0pre7
 
 -----------
 | Feature Name | Latest Version | Type |
 |---|---|---|
 | CurseForge AutoDownload | v1.0.0 | Web Scraping |
 | Dataset Collector | v4.0pre2 | Web Scraping |
-| jpg to png Converter | v1.0.3 | Converter |
+| jpg To png Converter | v1.1.0 | Converter |
 | Luna's Global Script | v2.0.1 | Python Module |
 | Picture Collector | v1.2.3 | Web Scraping |
-| MP3 to wav Converter | v1.0.0 | Converter |
+| MP3 To wav Converter | v1.1.0 | Converter |
 | Music Collector | v1.0pre5 | Web  Scraping |
 | Taskkiller for Minecraft | β2.1 | Unknown |
 | Quick Launcher | v1.0pre1 | Launcher |
@@ -32,18 +18,36 @@ FFmpeg, SoX, google-magenta sourceCode
 
 -----------
 
-# Changelogs
+## 参考、使用、パクったコードやアプリたち
 
+FFmpeg, SoX, Google magenta Code, Google Tesseract, cWebp
 
+## 事前準備
+
+スクリプトによっては FFmpeg, SoX, Tesseract, cwebp を要求するため、インストール+システム環境変数 "PATH" への追加
+
+あとは old_setup.batを実行するだけ
+
+## Changelogs
+
+- jpg To png Converter v1.1.0
+  - jpg2png, jpeg2png, png2cwebp, png2webp, png2jpg, png2jpeg, webp2jpg, webp2png, raw2jpg, raw2png, raw2webp のサポート  <details><summary>cwebp = ?</summary>cwebp = Compressed WebP 非可逆式WebP</details>
+  - 変換後に、元ファイルの削除のオプション化
+
+- MP3 To wav Converter v1.1.0
+  - wav2mp3, flac2wav, wav2flac, ogg2wav, wave2wav, wave2mp3, wave2flac, flac2mp3, mp32flac, ogg2mp3, ogg2flac のサポート
+  - 変換後に、元ファイルの削除オプションを追加
+  - ffmpegではなく ffmpeg-python のインストールに変更
+
+- Audio Augmentation v1.0
 
 -----------
 
 lunapy v1.1.0までに作るものたち
 
-- Audio Augmentation v1.0pre3 (-> v1.0)
+- Audio Augmentation v1.0 (-> v2.0)
   - 様々なオーディオ拡張の追加
   - 例: 音声反響、ピッチ変更2重ボーカル、正則化 etc..
-  - FFmpeg, SoXの組み込み
   - ogg2wavによるoggのサポート
   - mp4などの動画ファイルからの音声摘出を利用したmp4のサポート
 
@@ -58,22 +62,21 @@ lunapy v1.1.0までに作るものたち
   - サイレントモード
     - アウトプットプロンプトへの表示の抑制
 
-- Curseforge autodownload v1.0.0 (-> v1.0.1)
+- Curseforge autodownload v1.0.0 (-> v1.1)
   - クールダウンのユーザー側での指定
+  - 変更されたCFのサイトへの対応
 
-- jpg to png Converter v1.0.3 (-> v1.1)
-  - もっとたくさんのパターンを追加したい
-
-- Music Collector β1 (-> v1.0)
-  - そもそも動かんから作成
-  - flac, MP3形式でのダウンロードのサポート
+- Music Collector v1.0pre5 (-> v1.0)
+  - ファイル名取得の完全サポート
+  - MP3形式でのダウンロードのサポート
   - flacの初期の無音時間消去
   - ダウンロードフィルタの追加
-  - それでもバラバラなので、構造的にpyautogui, bs4, chromedriverでは厳しそう
+  - mp3 to wav Converterの組み込みによる、flac2wavのサポート
 
 - Picture Collector v1.2.3 (-> v1.3)
-  - 特訓後、特訓前、両方の設定をしっかりと
+  - フィルタ設定の修正
   - ファイルのリネームの設定の見直し
 
-- 
+### 何のために作られたのか
 
+私がpythonやそれに関係する様々な言語や内部的使用について理解、学習することを目的とした何とも言えんものとゴミの集合

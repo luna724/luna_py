@@ -1,32 +1,10 @@
-https://www.curseforge.com/minecraft/mc-mods/alcatrazcore | AlcatrazCore - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/storagebox-mod | StorageBox mod - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/cubic-villager | Cubic Villager - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/torcherino | Torcherino - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/surge | Surge - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/particle-culling | Particle Culling - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/fastworkbench | FastWorkbench - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/fastfurnace | FastFurnace - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/get-it-together-drops | Get It Together, Drops! - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/born-in-a-barn | Born in a Barn - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/stackie | Stackie - Minecraft Mods - CurseForge
 https://www.curseforge.com/minecraft/mc-mods/baubles | Baubles - Minecraft Mods - CurseForge
 https://www.curseforge.com/minecraft/mc-mods/baublelicious | Baublelicious - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/hwyla | Hwyla - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/waila-harvestability | Waila Harvestability - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/jei | Just Enough Items (JEI) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/findme | FindMe - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer | Just Enough Resources (JER) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/betterfps | BetterFps - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fastfurnace | FastFurnace - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fastworkbench | FastWorkbench - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/foamfix-optimization-mod | Foam​Fix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fps-reducer | FPS Reducer - Minecraft Mods - CurseForge
-https://optifine.net/downloads | OptiFine Downloads
-https://www.curseforge.com/minecraft/mc-mods/ai-improvements | AI Improvements - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/clumps | Clumps - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/performant | Performant - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/phosphor-forge | Phosphor (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/unloader | Unloader - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/vanillafix | VanillaFix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/mouse-tweaks | Mouse Tweaks - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/wall-jump | Wall-Jump! [FORGE] - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/netherportalfix | NetherPortalFix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/vanilladeathchest-forge | VanillaDeathChest (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/classic-combat | Classic Combat - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/carry-on | Carry On - Minecraft Mods - CurseForge
-https://www.dropbox.com/s/v2r0yhjmfm9uepp/ReverseCraft-1.12.2-1.0.3.jar?dl=0 | ReverseCraft-1.12.2-1.0.3.jar
-https://www.curseforge.com/minecraft/mc-mods/lootbags | LootBags - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/no-tree-punching | No Tree Punching - Minecraft Mods - CurseForge
+ds/projecte | ProjectE - Minecraft Mods - CurseForge

@@ -18,3 +18,12 @@ def read_text(filename, strip_mode=True):
             if strip_mode:
                 line = line.strip()
     return line
+
+def write_text(data, filepath="./out.txt", overwrite=True):
+    if overwrite:
+        with open(filepath, "w") as f:
+            f.write(data)
+    
+    else:
+        with open(filepath, "a") as f:
+            f.write(data)

@@ -1,0 +1,77 @@
+{
+    "5_STAGE OF SEKAI-full-\u671b\u6708 \u7a42\u6ce2+\u661f\u4e43 \u4e00\u6b4c+\u93e1\u97f3 \u30ec\u30f3+\u5929\u99ac \u54b2\u5e0c+\u65e5\u91ce\u68ee \u5fd7\u6b69_(Vocals) ichika.wav": [
+        {
+            "format": ".wav",
+            "augment": [
+                {
+                    "1": "brown_noise"
+                },
+                {
+                    "2": "pitch_shift"
+                }
+            ],
+            "ID": "0001",
+            "NAME": "5_STAGE OF SEKAI-full-\u671b\u6708 \u7a42\u6ce2+\u661f\u4e43 \u4e00\u6b4c+\u93e1\u97f3 \u30ec\u30f3+\u5929\u99ac \u54b2\u5e0c+\u65e5\u91ce\u68ee \u5fd7\u6b69_(Vocals) ichika"
+        }
+    ],
+    "6_glow-full-\u521d\u97f3 \u30df\u30af+\u661f\u4e43 \u4e00\u6b4c+\u5929\u99ac \u54b2\u5e0c+\u671b\u6708 \u7a42\u6ce2+\u65e5\u91ce\u68ee \u5fd7\u6b69_(Vocals ichika).wav": [
+        {
+            "format": ".wav",
+            "augment": [
+                {
+                    "2": "pitch_shift"
+                }
+            ],
+            "ID": "0002",
+            "NAME": "6_glow-full-\u521d\u97f3 \u30df\u30af+\u661f\u4e43 \u4e00\u6b4c+\u5929\u99ac \u54b2\u5e0c+\u671b\u6708 \u7a42\u6ce2+\u65e5\u91ce\u68ee \u5fd7\u6b69_(Vocals ichika)"
+        }
+    ],
+    "6_the WALL-full-\u661f\u4e43 \u4e00\u6b4c+\u521d\u97f3 \u30df\u30af+\u5929\u99ac \u54b2\u5e0c+\u671b\u6708 \u7a42\u6ce2+\u65e5\u91ce\u68ee \u5fd7\u6b69_(Vocals) ichika.wav": [
+        {
+            "format": ".wav",
+            "augment": [
+                {
+                    "2": "pitch_shift"
+                }
+            ],
+            "ID": "0003",
+            "NAME": "6_the WALL-full-\u661f\u4e43 \u4e00\u6b4c+\u521d\u97f3 \u30df\u30af+\u5929\u99ac \u54b2\u5e0c+\u671b\u6708 \u7a42\u6ce2+\u65e5\u91ce\u68ee \u5fd7\u6b69_(Vocals) ichika"
+        }
+    ],
+    "7_Hello, Worler-full-\u661f\u4e43 \u4e00\u6b4c+\u5929\u99ac \u54b2\u5e0c_(Vocals)ichika.wav": [
+        {
+            "format": ".wav",
+            "augment": [
+                {
+                    "2": "pitch_shift"
+                }
+            ],
+            "ID": "0004",
+            "NAME": "7_Hello, Worler-full-\u661f\u4e43 \u4e00\u6b4c+\u5929\u99ac \u54b2\u5e0c_(Vocals)ichika"
+        }
+    ],
+    "9_Journey-full-\u661f\u4e43 \u4e00\u6b4c_(Vocals) ichika.wav": [
+        {
+            "format": ".wav",
+            "augment": [
+                {
+                    "1": "brown_noise"
+                }
+            ],
+            "ID": "0005",
+            "NAME": "9_Journey-full-\u661f\u4e43 \u4e00\u6b4c_(Vocals) ichika"
+        }
+    ],
+    "from Y to Y-full-\u661f\u4e43\u4e00\u6b4c+\u671b\u6708\u7a42\u6ce2_(Vocals) ichika.wav": [
+        {
+            "format": ".wav",
+            "augment": [
+                {
+                    "2": "pitch_shift"
+                }
+            ],
+            "ID": "0006",
+            "NAME": "from Y to Y-full-\u661f\u4e43\u4e00\u6b4c+\u671b\u6708\u7a42\u6ce2_(Vocals) ichika"
+        }
+    ]
+}
