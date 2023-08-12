@@ -30,16 +30,10 @@ FFmpeg, SoX, Google magenta Code, Google Tesseract, cWebp
 
 ## Changelogs
 
-- jpg To png Converter v1.1.0
-  - jpg2png, jpeg2png, png2cwebp, png2webp, png2jpg, png2jpeg, webp2jpg, webp2png, raw2jpg, raw2png, raw2webp のサポート  <details><summary>cwebp = ?</summary>cwebp = Compressed WebP 非可逆式WebP</details>
-  - 変換後に、元ファイルの削除のオプション化
-
-- MP3 To wav Converter v1.1.0
-  - wav2mp3, flac2wav, wav2flac, ogg2wav, wave2wav, wave2mp3, wave2flac, flac2mp3, mp32flac, ogg2mp3, ogg2flac のサポート
-  - 変換後に、元ファイルの削除オプションを追加
-  - ffmpegではなく ffmpeg-python のインストールに変更
-
 - Audio Augmentation v1.0
+  - 実装
+  - ホワイトノイズ、イコライザ、ピッチシフト、リバーブ、タイムシフト、ボリューム変換、正則化 のサポート (White Noise, equalizer, pitch shift, reverb, time shift, volume change, normallize)
+  - SoX-python の使用
 
 -----------
 

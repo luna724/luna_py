@@ -14,8 +14,6 @@ import augment as augmentation
 import LGS.misc.random_roll as roll
 import random
 import LGS.misc.jsonconfig as jsoncfg
-import time
-import sys
 import os
 import LGS.misc.compact_input as cin
 import LGS.misc.nomore_oserror as los
@@ -40,11 +38,14 @@ else:
   filelist_dict = {}
   dprint(f"リストアップファイル: {filelist_raw}\n \
   チェック後リスト: {filelist_filteling}")
-
+  
   # 拡張可能なものが0なら
   if not len(filelist_filteling) > 0:
     raise ValueError("対象ファイルが見つかりません。")
-
+  
+  # ディレクトリ乗法
+  filelist_dict["Target_Directory_INFO"] = target_dir 
+  
   # 辞書追加
   for file in filelist_filteling:
     # 拡張子の取得
@@ -102,11 +103,22 @@ else:
     filelist_dict[file][0]["NAME"] = os.path.splitext(file)[0]
     
 
-dprint(filelist_dict)
+
+
+  # 出力先
+  out_dir = input("Output Directory: ")
+  if cin.isnone(out_dir):
+    print("未記入のため、\"./augmented/\" に出力します。")
+    out_dir = "./augmented/"
+
+  filelist_dict["Target_Directory_OUT"] = out_dir
+  
 # とりあえず、保存
 jsoncfg.write(filelist_dict, "./latest_date.json")
 
+dprint(filelist_dict)
 # 拡張実行の前に..
+# アウトプットディレクトリ
 # 許可: mp3, wav, flac, auto
 output_type_raw = input("(Available: wav, flac, mp3, auto(Keep-format type)\nOutput Format: ").lower()
 
@@ -116,11 +128,12 @@ if not output_type_raw in ["mp3", "flac", "wav", "auto"]:
 # AUTO じゃない場合
 if not output_type_raw == "auto":
   out_extension = output_type_raw
-
+  auto_detection = False
+  
 else:
   auto_detection = True
   out_extension = "wav"
   
 
 # 拡張実行
-augmentation.augment(filelist_dict)
+augmentation.augment(filelist_dict, auto_detection, out_extension)

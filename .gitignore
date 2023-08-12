@@ -11,3 +11,4 @@ outputs2/
 .cache/
 lunamemo/
 out.txt
+Scripts/json2n/model_setup/in/json.json

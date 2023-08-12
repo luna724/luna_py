@@ -1,5 +1,6 @@
 from pydub import AudioSegment
 import librosa
+import numpy as np
 import soundfile as sf
 import subprocess
 
@@ -12,7 +13,8 @@ def pydub_mode(input_file, time_shift_ms=500, output=False, output_file="", form
     new_sound = sound._spawn(sound.raw_data, overrides={
         "frame_position": int(time_shift_ms * sound.frame_rate / 1000)
     })
-    new_sound.export(output_file, format="wav")
+    if output:
+        new_sound.export(output_file, format="wav")
 
 
 # time_shift_factor = 0.5  # 時間シフトの変更率
@@ -38,3 +40,12 @@ def sox_mode(input_file, time_shift_factor, output_file, waiting=True, return_ou
     
     if return_output:
         return output_file
+    
+def numpy_mode(input_file, time_shift_factor=1000, output=False, output_file=""):
+    y, sr = librosa.load(input_file, sr=None)
+    y_time_shift = np.roll(y, time_shift_factor)
+    
+    if output:
+        sf.write(output_file, y_time_shift, sr=sr)
+        
+    return y_time_shift, sr
