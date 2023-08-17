@@ -19,7 +19,9 @@ def dprint(str):
 
 
 noise_type_list = \
-["white_noise", "pink_noise", "brown_noise"]
+["white_noise", 
+ #"pink_noise", "brown_noise"
+ ]
 
 # 関数
 # 変換値設定関数
@@ -56,8 +58,9 @@ def time_shift(input_file):
   duration = librosa.get_duration(y=y, sr=sr) 
   audio_mstime = duration * 1000
   time_shift_factor = audio_mstime * round(random.uniform(0.5, 0.7), 4)
-  
-  audio, sr = time_shifts.numpy_mode(input_file=input_file, time_shift_factor=time_shift_factor)
+  print(f"time_shift_factor: {time_shift_factor}")
+  print(f"y shape: {duration} ")
+  audio, sr = time_shifts.numpy_mode(input_file=input_file, time_shift_factor=int(time_shift_factor))
   
   return audio, False, sr
     # sound = AudioSegment.from_file(input_file)
@@ -94,12 +97,14 @@ def reverbs(input_file):
 
 # データ 
 augment_list = \
-[{"1": "type_noise"}, {"2": "pitch_shift"}, {"3": "time_shift"}, {"4": "volume_change"},
+[{"1": "type_noise"}, {"2": "pitch_shift"}, 
+ # {"3": "time_shift"}, 
+ {"4": "volume_change"},
  {"5": "equalizer"}, {"6": "reverb"}]
 augment_list_dict = \
 {"white_noise": add_white_noise, 
  "pitch_shift": pitch_change_relative,
- "time_shift": time_shift,
+ # "time_shift": time_shift,
  "volume_change": volume_change_relative,
  "equalizer": eq,
  "reverb": reverbs}

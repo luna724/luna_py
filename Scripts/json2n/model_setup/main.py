@@ -78,7 +78,7 @@ for x in data_list:
     TYPE_D2 = "Lora"
   elif x["TYPE"] == "Lycoris":
     TYPE = "LyCORIS/"
-    TYPE_D2 = "Lycoris"
+    TYPE_D2 = "LyCORIS"
   elif x["TYPE"] == "sd.cp":
     TYPE = ""
     TYPE_D2 = "stable-diffusion"
@@ -102,7 +102,7 @@ Download_{x["MODEL_NAME"]}{IS_NSFW} = False #@param {{type: "boolean"}}'
   
   if_str = f'\
 if Download_{x["MODEL_NAME"]}{IS_NSFW}:\n\
-  !cp -r "{dir}/{TYPE}{x["FILE_NAME"]}.{x["EXTENSION"]}" "{dir2}/{TYPE_D2}/{x["FILE_NAME"]}.{x["EXTENSION"]}'
+  !cp -r "{dir}/{TYPE}{x["FILE_NAME"]}.{x["EXTENSION"]}" "{dir2}/{TYPE_D2}/{x["FILE_NAME"]}.{x["EXTENSION"]}"'
       
   wgets.append(wget)
   params.append(param)

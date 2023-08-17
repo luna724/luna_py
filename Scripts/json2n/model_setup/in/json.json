@@ -1,5 +1,8 @@
 {
-	"Example": ["Model_Name", "Model_Type(Lora / LyCORIS)", "Extension (safetensors, ckpt, pt)", "url", "isNSFW str(0 / 1)","Model File Name"],
-	"nene": ["Bondage_Suspension", "Lora", "safetensors", "https://civitai.com/api/download/models/15553", "1", "Bondage_suspension"],
-	"nens": ["Milking_Machine", "Lora", "safetensors", "https://civitai.com/api/download/models/112103", "1", "Milking_Machine"]
+	"Example": ["Model_Name", "Model_Type(Lora / Lycoris)", "Extension (safetensors, ckpt, pt)", "url", "isNSFW str(0 / 1)","Model File Name"],
+	"nene": ["Yuri Kiss", "Lora", "safetensors", "https://civitai.com/api/download/models/30101", "1", "yuri-kiss"],
+	"nann": ["pose_Mutual_masturbation0yuri0", "Lycoris", "safetensors", "https://civitai.com/api/download/models/80742", "1", "yuri-mutual-masturbation"],
+	"yuri": ["hoshi119_POV_yuri_cunnilingus", "Lora", "safetensors", "https://civitai.com/api/download/models/58906", "1", "yuri-cunnilingus"],
+	"6969": ["69_yuri", "Lora", "safetensors", "https://civitai.com/api/download/models/107570", "1", "69-yuri"],
+	"nens": ["Naked_belt_outfit_of_ayachi_nene_cosplay", "Lora", "safetensors", "https://civitai.com/api/download/models/68769", "1", "naked_belt_ayachi_nene"]
 }

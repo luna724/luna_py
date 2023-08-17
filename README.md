@@ -13,8 +13,8 @@
 | Taskkiller for Minecraft | β2.1 | Unknown |
 | Quick Launcher | v1.0pre1 | Launcher |
 | Light Changer | v1.0 | QoL |
-| Audio Augmentation | v1.0pre2 | Data Augmentation |
-| lunapy GradioUI | v1.0pre1 | QoL |
+| Audio Augmentation | v1.0.1 | Data Augmentation |
+| lunapy GradioUI | v1.0pre2 | QoL |
 
 -----------
 
@@ -30,10 +30,11 @@ FFmpeg, SoX, Google magenta Code, Google Tesseract, cWebp
 
 ## Changelogs
 
-- Audio Augmentation v1.0
-  - 実装
-  - ホワイトノイズ、イコライザ、ピッチシフト、リバーブ、タイムシフト、ボリューム変換、正則化 のサポート (White Noise, equalizer, pitch shift, reverb, time shift, volume change, normallize)
-  - SoX-python の使用
+- Audio Augmentation v1.0.1
+  - 一部非対応の拡張関数を無効化
+  
+- lunapy GradioUI v1.0pre2
+  - LightChanger, Audio Augmentationの対応
 
 -----------
 
