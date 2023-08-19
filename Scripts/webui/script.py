@@ -37,6 +37,20 @@ def browse_folder():
         root.destroy()
         return str(filename)
 
+# ファイル選択画面の関数
+def browse_file():
+  root = Tk()
+  root.attributes("-topmost", True)
+  root.withdraw()
+  
+  filenames = filedialog.askopenfilenames()
+  if len(filenames) > 0:
+      root.destroy()
+      return str(filenames)
+  else:
+      filename = "Files not seleceted"
+      root.destroy()
+      return str(filename)
 
 # Audio Augmentation
 import audio_augmentation.main as aa
@@ -49,3 +63,11 @@ def launch_Audio_Augmentation(input_dir, output_dir, output_type):
   aa.Function_mode(inputs, outputs, out_type)
   
   return f"Done."
+
+# jtp (jpg to png)
+import jpgTopngConverter.main as jtp
+
+def launch_pics_format_converter(a, b, c, d, e, f, g, h):
+  jtp.Function_mode(a, b, c, d, e, f, g, h)
+  
+  return f"Convert Done."

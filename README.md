@@ -5,16 +5,16 @@
 |---|---|---|
 | CurseForge AutoDownload | v1.0.0 | Web Scraping |
 | Dataset Collector | v4.0pre2 | Web Scraping |
-| jpg To png Converter | v1.1.0 | Converter |
+| jpg To png Converter | v1.1.1 | Converter |
 | Luna's Global Script | v2.0.1 | Python Module |
-| Picture Collector | v1.2.3 | Web Scraping |
+| Picture Collector | v1.2.4 | Web Scraping |
 | MP3 To wav Converter | v1.1.0 | Converter |
 | Music Collector | v1.0pre5 | Web  Scraping |
 | Taskkiller for Minecraft | β2.1 | Unknown |
 | Quick Launcher | v1.0pre1 | Launcher |
 | Light Changer | v1.0 | QoL |
 | Audio Augmentation | v1.0.1 | Data Augmentation |
-| lunapy GradioUI | v1.0pre2 | QoL |
+| lunapy GradioUI | v1.0pre3 | QoL |
 
 -----------
 
@@ -29,12 +29,13 @@ FFmpeg, SoX, Google magenta Code, Google Tesseract, cWebp
 あとは old_setup.batを実行するだけ
 
 ## Changelogs
-
-- Audio Augmentation v1.0.1
-  - 一部非対応の拡張関数を無効化
   
-- lunapy GradioUI v1.0pre2
-  - LightChanger, Audio Augmentationの対応
+- lunapy GradioUI v1.0pre3
+  - jpg to png Converterの対応
+  
+- Jpg to png Converter v1.1.1
+  - -> jpg の際に KeyError が起こる問題を修正
+  - ファイル単体指定のサポート (WebUIのみ)
 
 -----------
 
