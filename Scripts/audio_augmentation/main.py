@@ -148,8 +148,9 @@ if __name__ == "__main__":
   # WebUI用
 else:
   
-  def Function_mode(target_dir, out_dir, output_type_raw):
+  def Function_mode(target_dir, out_dir, output_type_raw, augment_p=100):
     y = 0
+    augment_p /= 100
 
     # 前処理 (処理済みファイルがある場合、そっちを使用)
     # target_dir = input("Target Directory (未入力で前回の設定引継ぎ): ")
@@ -184,7 +185,11 @@ else:
         ## {"file": [{"format": {extension}}]}
         
         # 有効な拡張リストから、ランダムで選出
-        filelist_dict[file][0]["augment"] = [random.choice(augmentation.augment_list)]
+        if roll.random_roll(augment_p):
+          filelist_dict[file][0]["augment"] = [random.choice(augmentation.augment_list)]
+          
+        else:
+          continue
         #{"file": [{"format": "extension", 
         # "augment": [{"augment_1": "augment_1"}, 
         #{"augment_2": "augment_2"}] }]}

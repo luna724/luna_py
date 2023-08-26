@@ -10,6 +10,7 @@ import librosa
 import LGS.audio_tool.volume_exchange as volume_exchange
 import LGS.audio_tool.equalizer as eqs
 import LGS.audio_tool.reverb as reverb
+import time 
 
 Debug_Mode = True
 
@@ -118,6 +119,9 @@ def augment(date_dict_____, automode, out_format):
   del date_dict_____["Target_Directory_OUT"]
   
   for date in date_dict_____.values():
+    if not "augment" in date[0]:
+      continue
+    
     augment_type = []
     dprint(f"{date}")
     IN_FORMAT = date[0]["format"]
@@ -209,6 +213,8 @@ HR_augment_list = {augment_type}")
     
     # 拡張済みデータを受け取る
     for aug in augment_type:
+      os.chdir(INPUT_DIRECTORY)
+      time.sleep(1)
       OUTPUT_DATE, use_librosa, DATE_SR = augment_list_dict[aug](INPUT)
 
       normalizer = False
