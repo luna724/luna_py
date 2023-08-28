@@ -185,7 +185,7 @@ with gr.Blocks() as main_interface:
                    apas_t_title, apas_t_artist,
                    apas_t_album, apas_t_genre,
                    apas_t_composer, apas_songname]
-  
+    
     apas_outputs = gr.HTML("")
     
     apas_btn = gr.Button("Start")
@@ -193,4 +193,6 @@ with gr.Blocks() as main_interface:
                    inputs=apas_inputs,
                    outputs=apas_outputs)
     
+
+        
 main_interface.launch(inbrowser=True)

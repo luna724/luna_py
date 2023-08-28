@@ -17,4 +17,4 @@ tensorflow
 gradio
 eyed3
 mutagen
-selenium==3.14.1  
+selenium==3.14.1

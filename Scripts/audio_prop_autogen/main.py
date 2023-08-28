@@ -143,10 +143,12 @@ def main(target_dir,
       #                                    </dd>
       
       html = requests.get(result_url)
+      print(f"result_url: {result_url}")
+      print(f"Status Code: {html.status_code}")
       
-      soup = BeautifulSoup(html, 'html.parser')
+      soup = BeautifulSoup(html.text, 'html.parser')
       new_lyric_body_elements = soup.find_all(class_='newLyricWork__body')  # classが "newLyricWork__body" の要素をすべて検索
-
+      print(f"New_Lyrics_body: {new_lyric_body_elements}")
 
       target_element = new_lyric_body_elements[1]
       a_tag = target_element.find('a')  # <a> 要素を検索
