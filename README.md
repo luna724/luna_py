@@ -59,26 +59,10 @@ FFmpeg, SoX, Google magenta Code, Google Tesseract, ChromeDriver, cWebp
 
 lunapy v1.1.0までに作るものたち
 
-- Audio Augmentation v1.0 (-> v2.0)
-  - 様々なオーディオ拡張の追加
-  - 例: 音声反響、ピッチ変更2重ボーカル、正則化 etc..
-  - ogg2wavによるoggのサポート
-  - mp4などの動画ファイルからの音声摘出を利用したmp4のサポート
-
-- Dataset Collector β4 (-> v5.0)
-  - エミュレータ等を使用して5644Kbps(wav)での録音データの取得 (pyautogui)
-    - いっちゃんだけの実装を予定
-    - それ以外はファイル分けは手動
-  - イベント分け
-    - キャラによってそのキャラが一切喋らないイベントもあるので、指定されたIDに基づいた指定を行えるように
-  - イベントURLの指定
-    - 現在、Leo/need以外ユーザー処理になっているイベントの取得ベースURLをすべてexist_event.py url_dictに追加
-  - サイレントモード
-    - アウトプットプロンプトへの表示の抑制
-
-- Curseforge autodownload v1.0.0 (-> v1.1)
+- Curseforge autodownload v1.0.0 (-> v2)
   - クールダウンのユーザー側での指定
   - 変更されたCFのサイトへの対応
+  - MOD名のみを入力するだけでダウンロードできる機能を追加
 
 - Music Collector v1.0pre5 (-> v1.0)
   - ファイル名取得の完全サポート
