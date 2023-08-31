@@ -1,4 +1,4 @@
-# lunapy v1.1.0pre8
+# lunapy v1.1.0pre9
 
 -----------
 | Feature Name | Latest Version | Type |
@@ -6,7 +6,7 @@
 | Audio Duration Calculator | v1.0pre3 | QoL |
 | Audio Augmentation | v1.0.2 | Data Augmentation |
 | Audio Properties Auto Setting | v1.1 | Macro |
-| CurseForge AutoDownload | v1.0.0 | Web Scraping |
+| CurseForge AutoDownload | v2.1 | Web Scraping |
 | Dataset Collector | v4.0pre3 | Web Scraping |
 | jpg To png Converter | v1.1.1 | Converter |
 | Luna's Global Script | v2.0.1 | Python Module |
@@ -31,29 +31,16 @@ FFmpeg, SoX, Google magenta Code, Google Tesseract, ChromeDriver, cWebp
 あとは old_setup.batを実行するだけ
 
 ## Changelogs
-  
-- lunapy GradioUI v1.0pre5
-  - JPG2PNG, Audio Duration Calculator, Audio Augmentation, Audio Properties Auto Setting のサポート
-  - レイアウトの見直し
 
-- Dataset Collector v4.0pre3
-  - バーチャルライブからの取得をサポート
-  - キャラクターストーリーからの取得をサポート
-  - マルチプロセス化による取得時間の短縮
-  - プロセス進行度、成功数などの可視化
-
-- Audio Augmentation v1.0.2
-  - 拡張適用確率を設定できるように
-
-- Audio Duration Calculator v1.0pre3
-  - 音声ファイルの合計時間を計算する
-  - 特定の時間分のファイルの摘出する機能を追加
-  
-- Audio Properties Auto Setting v1.1
-  - 実装
-  - 音声ファイルのプロパティ (タイトル、アーティスト、アルバム、ジャンル、作曲者) の自動設定を行う
-  - 作曲者の自動取得をサポート
-  - 曲名をタイトルに代入をサポート
+- Curseforge Autodownload v2.1
+  - クールダウンの指定を可能に
+  - WebUIの対応
+  - MOD名のみでダウンロードを可能に
+  - Seleniumを利用したWebDriverによる画面の動きを制限しない取得をサポート
+  - Modrinthをサポート
+  - Versionチェックをサポート
+  - 前提MODの取得をサポート
+  - ランダム取得をサポート  
 
 -----------
 

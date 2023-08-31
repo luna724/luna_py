@@ -1,10 +1,30 @@
-https://www.curseforge.com/minecraft/mc-mods/surge | Surge - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/particle-culling | Particle Culling - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fastworkbench | FastWorkbench - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fastfurnace | FastFurnace - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/get-it-together-drops | Get It Together, Drops! - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/born-in-a-barn | Born in a Barn - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/stackie | Stackie - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/baubles | Baubles - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/baublelicious | Baublelicious - Minecraft Mods - CurseForge
-ds/projecte | ProjectE - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/top-addons
+https://www.curseforge.com/minecraft/mc-mods/cherished-worlds
+https://www.curseforge.com/minecraft/mc-mods/tough-as-nails
+https://www.curseforge.com/minecraft/mc-mods/obfuscate
+https://www.curseforge.com/minecraft/mc-mods/project-red-core
+https://www.curseforge.com/minecraft/mc-mods/mysticallib
+https://www.curseforge.com/minecraft/mc-mods/fnars-roguelike-dungeons
+https://www.curseforge.com/minecraft/mc-mods/hats
+https://www.curseforge.com/minecraft/mc-mods/rl-artifacts
+https://www.curseforge.com/minecraft/mc-mods/scaling-health
+https://www.curseforge.com/minecraft/mc-mods/bonsai-trees
+https://www.curseforge.com/minecraft/mc-mods/tiny-progressions
+https://www.curseforge.com/minecraft/mc-mods/fps-reducer
+https://www.curseforge.com/minecraft/mc-mods/cyclic
+https://www.curseforge.com/minecraft/mc-mods/spartan-shields
+https://www.curseforge.com/minecraft/mc-mods/psi
+https://www.curseforge.com/minecraft/mc-mods/item-collectors
+https://www.curseforge.com/minecraft/mc-mods/endercore
+https://www.curseforge.com/minecraft/mc-mods/silent-gear
+https://www.curseforge.com/minecraft/mc-mods/shieldbreak
+https://www.curseforge.com/minecraft/mc-mods/shadowfacts-forgelin
+https://www.curseforge.com/minecraft/mc-mods/tinkers-complement
+https://www.curseforge.com/minecraft/mc-mods/nuclearcraft-mod
+https://www.curseforge.com/minecraft/mc-mods/performant
+https://www.curseforge.com/minecraft/mc-mods/ceramics
+https://www.curseforge.com/minecraft/mc-mods/spartan-weaponry
+https://www.curseforge.com/minecraft/mc-mods/forgiving-void
+https://www.curseforge.com/minecraft/mc-mods/gunpowderlib
+https://www.curseforge.com/minecraft/mc-mods/zen-summoning
+https://www.curseforge.com/minecraft/mc-mods/top-addons
