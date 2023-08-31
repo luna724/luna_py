@@ -95,7 +95,7 @@ with gr.Blocks() as iface:
     gr.Markdown('''- PCが操作できなくなります''')
     auto_url = gr.Textbox(label="ダウンロードするMODのURL", max_lines=50, placeholder="URLを一行づつペースト OneTabが後ろにつけるものは消さなくてもよい", lines=10)
     at_mcver = gr.Dropdown(labels="Minecraftバージョン", choices=at_mcver_list, value="1.12.2")
-    auto_cd = gr.Slider(1, 3, value=1.5, step=0.01, label="クールダウン設定 (2秒以上推奨)")
+    auto_cd = gr.Slider(1, 3, value=1.8, step=0.01, label="クールダウン設定 (2秒以上推奨)")
     gr.Markdown("<br>")
     auto_btn = gr.Button("スタート")
     gr.Markdown("# Chromeをフルスクリーンにして選択してください \n\
@@ -111,12 +111,16 @@ with gr.Blocks() as iface:
     rd_mcv = gr.Dropdown(label="Minecraftバージョン", choices=["1.12.2", "1.16.5"], value="1.12.2")
     # rd_sortby = gr.Dropdown(label="ソート順 (Curseforge)", choices=["Relevancy (関連順)", "Popularity (人気順)", "Latest update (最終更新日時順)", "Creation Date (作成順)", "Total Downloads (ダウンロード数順)", "A-Z (アルファベット順)"], value="Popularity")
     rd_randtar = gr.Radio(choices=[500, 5000], label="抽選対象数", value=500)
-    rd_chance = gr.Slider(1, 100, value=20, label="抽選チャンス (%)")
+    rd_chance = gr.Slider(0.1, 100, value=20, label="抽選チャンス (%)")
     rd_modc = gr.Slider(0, 250, value=30, label="MOD数")
     
     gr.Markdown("<br>")
-    rd_btn = gr.Button("スタート")
+    with gr.Row():
+      rd_btn = gr.Button("ロール")
+      rd_stn = gr.Button("ダウンロードスタート")
     rd_out = gr.Markdown("")
+    rd_stn.click(fn=pyautogui_mode.launch,
+                inputs=[rd_mcv, auto_cd])
     rd_btn.click(fn=random_get.choice_,
                 inputs=[rd_mcv, rd_randtar, rd_chance, rd_modc],
                 outputs=rd_out)
