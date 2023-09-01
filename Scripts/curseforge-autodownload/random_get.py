@@ -53,9 +53,9 @@ if __name__ == "__main__":
 
 def choice_(mcver, target_count, rd_chance, mod_count):
   if mcver == "1.12.2" and target_count == 500:
-    data = jsoncfg.read("./modlist_1.12.2-500.json")
+    data = jsoncfg.read("./jsondata/modlist_1.12.2-500.json")
   elif mcver == "1.12.2" and target_count == 5000:
-    data = jsoncfg.read("./modlist_1.12.2-5000.json")
+    data = jsoncfg.read("./jsondata/modlist_1.12.2-5000.json")
   else:
     return "Error. 設定は未実装です" 
   

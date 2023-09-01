@@ -9,7 +9,7 @@ if exist venv (
 
 :after_venv
 call .venv\Scripts\activate
-rem CPU なので CPU Torch
+rem CPU Torch
 pip install torch==1.13.1+cpu torchvision==0.14.1+cpu torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cpu
 
 rem CUDA があるなら (11.7)

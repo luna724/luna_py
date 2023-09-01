@@ -8,7 +8,7 @@ at_mcver_list = ["1.6.4", "1.7.10", "1.8.9", "1.10.2", "1.11.2", "1.12.2", "1.13
             "1.17.1", "1.18.2", "1.19.4", "1.20.1"]
 dl_mcver = ["1.7.10", "1.12.2", "1.14.4", "1.16.5",
             "1.17.1", "1.18.2", "1.19.4", "1.20.1"]
-vdate = "v2.1"
+vdate = "v2.2"
 
 def preprocessing_auto(indata, cd, mcver):
   with open("./url_write_here.txt", "w") as f:
@@ -30,7 +30,7 @@ def browse_folder():
             root.destroy()
             return str(filename)
     else:
-        filename = "Folder not seleceted"
+        filename = "フォルダが選択されませんでした。"
         root.destroy()
         return str(filename)
       
@@ -42,11 +42,12 @@ def browse_folder():
   
 #   return "### Done."
   
-def preprocessing_ja(indata, mcver, modname_search, search_engine, sm, of):
-  with open("./JA_f9823umv9dasm89vd9m2qvfhuew82qjaidsd2.txt", "w") as f:
+def preprocessing_ja(indata, mcver, modname_search, search_engine, sm, of,
+                    use_legacy, use_multi):
+  with open("./jsondata/.txt", "w") as f:
     f.write(indata)
 
-  new_main.main("./JA_f9823umv9dasm89vd9m2qvfhuew82qjaidsd2.txt", mcver, modname_search, search_engine, sm, of)
+  new_main.main("./jsondata/.txt", mcver, modname_search, search_engine, sm, of, use_legacy, use_multi)
   
   return "### 処理終了"
 
@@ -70,15 +71,19 @@ with gr.Blocks() as iface:
   
   with gr.Tab("通常ダウンロード"):
     gr.Markdown('''- Modrinthでは対応バージョンチェックは利用できません。\n
-                  - Modrinth では安定モードは利用できません。\n
-                  - Curseforgeでは前提MODの自動ダウンロードは利用できません。\n
-                  - CurseforgeではSeleniumを使用したダウンロードは利用できません。''')
+                  - Modrinth, Legacy Curseforge では安定モードは利用できません。\n
+                  - Curseforgeでは前提MODの自動ダウンロードは利用できません。(Legacy Curseforge の場合可能)\n
+                  - CurseforgeではSeleniumを使用したダウンロードは利用できません。(Legacy Curseforge の場合可能)\n
+                  - Legacy Curseforgeを使用した取得は実験段階です。\n
+                  - マルチプロセスモードは実験段階です。''')
     ja_sm = gr.Checkbox(label="ダウンロードにMOD名を使用する", value=True)
     ja_indata = gr.Textbox(label="ダウンロードするMODの名前 または URL", max_lines=50, placeholder="MODの名前を使用する場合は、MOD名を使用するを有効化してください", lines=10)
     gr.Markdown("<br>")
     ja_mcv = gr.Dropdown(label="Minecraftバージョン", choices=dl_mcver, value="1.12.2")
     ja_se = gr.Radio(choices=["modrinth.com", "curseforge.com"], label="MOD名の検索に使用するサイト", value="curseforge.com")    
     jasm = gr.Checkbox(label="安定モード (有効化した場合、時間がかかる)", value=True)
+    jalegacy = gr.Checkbox(label="Legacy Curseforgeサイトを使う (Experimental)", value=True)
+    jamultimode = gr.Checkbox(label="マルチプロセスモード (Experimental)", value=False)
     with gr.Row():
       ja_outfile = gr.Textbox(label="ダウンロード先フォルダ")
       ja_brbtn = gr.Button("フォルダ選択")
@@ -88,7 +93,7 @@ with gr.Blocks() as iface:
     ja_btn = gr.Button("スタート")
     ja_out = gr.Markdown("")
     ja_btn.click(fn=preprocessing_ja,
-                inputs=[ja_indata, ja_mcv, ja_sm, ja_se, jasm, ja_outfile],
+                inputs=[ja_indata, ja_mcv, ja_sm, ja_se, jasm, ja_outfile, jalegacy, jamultimode],
                 outputs=ja_out)
   
   with gr.Tab("自動操作ダウンロード"):
@@ -112,7 +117,7 @@ with gr.Blocks() as iface:
     # rd_sortby = gr.Dropdown(label="ソート順 (Curseforge)", choices=["Relevancy (関連順)", "Popularity (人気順)", "Latest update (最終更新日時順)", "Creation Date (作成順)", "Total Downloads (ダウンロード数順)", "A-Z (アルファベット順)"], value="Popularity")
     rd_randtar = gr.Radio(choices=[500, 5000], label="抽選対象数", value=500)
     rd_chance = gr.Slider(0.1, 100, value=20, label="抽選チャンス (%)")
-    rd_modc = gr.Slider(0, 250, value=30, label="MOD数")
+    rd_modc = gr.Slider(0, 500, value=30, label="MOD数", step=1)
     
     gr.Markdown("<br>")
     with gr.Row():

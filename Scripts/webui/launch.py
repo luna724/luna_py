@@ -4,7 +4,7 @@ version_date = {
 "light_changer": "v1.0",
 
 # CurseForge AutoDownload
-"curseforge_autodownload": "v1.0.0",
+"curseforge_autodownload": "v2.2",
 
 # Dataset Collector
 "dataset_collector": "v4.0pre3",
@@ -19,7 +19,7 @@ version_date = {
 "music_collector": "v1.0pre5",
 
 # Picture Collector
-"picture_collector": "v1.2.3",
+"picture_collector": "v1.2.4",
 
 # Audio Augmentation
 "audio_augmentation": "v1.0.2",
