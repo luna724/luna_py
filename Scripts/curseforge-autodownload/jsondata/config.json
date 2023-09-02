@@ -1,5 +1,4 @@
 {
   "Chrome_binary": "E:\\Application\\Google\\Chrome\\Application\\chrome.exe",
-  "Webdriver": "E:\\Program\\py, python\\chromedriver_win32\\chromedriver.exe",
-  "a": ""
+  "Webdriver": "E:\\Program\\py, python\\chromedriver_win32\\chromedriver.exe"
 }

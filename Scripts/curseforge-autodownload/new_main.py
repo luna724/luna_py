@@ -1,14 +1,14 @@
 import LGS.web_tool.google as ls
 import LGS.misc.jsonconfig as jsoncfg
-import random
+import LGS.web_tool.move_chrome as access_url
 from tqdm import tqdm
 import requests
 import time
-import os 
-from selenium.webdriver.support import expected_conditions as EC
+import os
 from request_curseforge import request_curseforge
 from request_modrinth import request_modrinth
 from request_legacy_curseforge import request_legacy_curseforge
+from request_legacy_curseforge import legacy_cf_download
 
 def url_split(data, legacy_split=False):
   mr = []
@@ -31,7 +31,10 @@ def url_split(data, legacy_split=False):
 
 def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com", stable_mode=True,
         output_path="./out", use_legacy_url=False, use_multi_mode=False):
-  mcver_format_dict = {"1.12.2": "2020709689%3A6756"}
+  # データの取得
+  mcver_format_dict = jsoncfg.read("./jsondata/mcver_legacy_formatted.json")
+  legacy_api_dict = jsoncfg.read("./jsondata/legacy_curseforge_apilink_cache.json")
+  
   if modname_search:
     with open(data_filepath, "r") as f:
       pre_data = f.readlines()
@@ -82,8 +85,7 @@ def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com
   
   # 0なら停止
   if len(curseforge) < 1 and len(modrinth) < 1:
-    print("Minecraft MOD URL Not Found.")
-    return " # ERROR "
+    raise ValueError("Minecraft MOD URL Not Found.")
 
   # Curseforgeのほうを実行
   if not len(curseforge) < 1:
@@ -108,40 +110,59 @@ def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com
     download_from_api_cf = {}
     for content in tqdm(curseforge_preurl, desc="Curseforge API Request Processing.."):
       if use_legacy_url:
-        api_url, filename = request_legacy_curseforge(url=content, mcver=mcver)
-        download_from_api_cf[filename] = api_url
+        if content in legacy_api_dict.keys():
+          try:
+            api_url = legacy_api_dict[content][0]
+            filename = legacy_api_dict[content][1]
+            download_from_api_cf[filename] = api_url
+          except IndexError:
+            print(f"in File: {content}\n in Cache Getting: IndexError")
+            raise IndexError("Please Reset \"Legacy_curseforge_apilink cache.json\"")
+            
+        else:      
+          api_url, filename, dependies = request_legacy_curseforge(url=content, mcver=mcver)
+          if api_url == None and filename == None and dependies == None:
+            continue
+          
+          download_from_api_cf[filename] = api_url
+          legacy_api_dict[content] = [api_url, filename]
+
+          if not dependies_list == None:
+            for contents in tqdm(dependies, desc="Installing Dependies"):
+              mcver_formatted = mcver_format_dict[mcver]
+              contents += f"/files/all?filter-game-version={mcver_formatted}"
+              api_url2, filename2, _ = request_legacy_curseforge(contents, mcver)
+              
+              if api_url2 == None and filename2 == None:
+                continue
+              
+              download_from_api_cf[filename2] = api_url2
+              
+        #legacy_cf_download(url=api_url, download_path=output_path)
+          
       else:
         api_url, filename = request_curseforge(url=content, mcver=mcver, stable_mode=stable_mode)
         download_from_api_cf[filename] = api_url
     
-    if use_legacy_url:
-      pass
-    else:
-      print("Download Data Dict: ", download_from_api_cf)
-      if os.path.exists("./api_link_cache_curseforge.json"):
-        previous_cache = jsoncfg.read("./api_link_cache_curseforge.json")
-        previous_cache.update(download_from_api_cf)
-        save_d = previous_cache
-      else:
-        save_d = download_from_api_cf
-      
-      jsoncfg.write(save_d, "./api_link_cache_curseforge.json")
-    
     # ダウンロード
     for filename, url in download_from_api_cf.items():
       print(f"Requesting {url}")
-      response = requests.get(url)
-      
-      # Status code
-      if not response.status_code == 200:
-        print(f"Can't Get Response Status Code: {response.status_code}")
-      
-      # ファイル名に基づいて保存
-      os.makedirs(output_path, exist_ok=True)
-      output_paths = os.path.join(output_path, filename)
-      with open(output_paths, "wb") as f:
-        f.write(response.content)
-      print(f"Saving File.. {output_paths}")
+      if use_legacy_url:
+        access_url.forcemove_pyautogui(url)
+        
+      else:  
+        response = requests.get(url)
+        
+        # Status code
+        if not response.status_code == 200:
+          print(f"Can't Get Response Status Code: {response.status_code}")
+        
+        # ファイル名に基づいて保存
+        os.makedirs(output_path, exist_ok=True)
+        output_paths = os.path.join(output_path, filename)
+        with open(output_paths, "wb") as f:
+          f.write(response.content)
+        print(f"Saving File.. {output_paths}")
     
   # Modrinth
   if not len(modrinth) < 1:

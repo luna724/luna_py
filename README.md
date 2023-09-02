@@ -30,16 +30,10 @@ FFmpeg, SoX, Google magenta Code, Google Tesseract, ChromeDriver, cWebp
 
 ## Changelogs
 
-- Curseforge Autodownload v2.2
-  - Legacyサイトを使用することで、CurseforgeでのSeleniumを使った自動取得にも対応
-  - Multi Process Modeによる取得時間の短縮に対応 (したいなぁ)
-  - その他小さな変更
-
-- lunapy
-  - Taskkiller for Minecraft, QuickLauncher を開発停止されてたので削除
-  - module/luna_GlobalScript の削除
-  - lunapy.ipynbなどの開発停止されてたものを削除
-  - .gitignoreをいろいろと追加
+- Curseforge Autodownload v2.3
+  - Legacy Curseforgeでの出力先の指定をサポート
+  - Legacy Curseforgeでの前提MODの取得をサポート
+  - 細かな修正
 
 -----------
 

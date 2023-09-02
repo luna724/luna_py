@@ -85,7 +85,7 @@ with gr.Blocks() as iface:
     jalegacy = gr.Checkbox(label="Legacy Curseforgeサイトを使う (Experimental)", value=True)
     jamultimode = gr.Checkbox(label="マルチプロセスモード (Experimental)", value=False)
     with gr.Row():
-      ja_outfile = gr.Textbox(label="ダウンロード先フォルダ")
+      ja_outfile = gr.Textbox(label="ダウンロード先フォルダ", value="E:/System/ichika/Downloads")
       ja_brbtn = gr.Button("フォルダ選択")
       ja_brbtn.click(fn=browse_folder,
                     outputs=ja_outfile)
@@ -99,7 +99,7 @@ with gr.Blocks() as iface:
   with gr.Tab("自動操作ダウンロード"):
     gr.Markdown('''- PCが操作できなくなります''')
     auto_url = gr.Textbox(label="ダウンロードするMODのURL", max_lines=50, placeholder="URLを一行づつペースト OneTabが後ろにつけるものは消さなくてもよい", lines=10)
-    at_mcver = gr.Dropdown(labels="Minecraftバージョン", choices=at_mcver_list, value="1.12.2")
+    at_mcver = gr.Dropdown(label="Minecraftバージョン", choices=at_mcver_list, value="1.12.2")
     auto_cd = gr.Slider(1, 3, value=1.8, step=0.01, label="クールダウン設定 (2秒以上推奨)")
     gr.Markdown("<br>")
     auto_btn = gr.Button("スタート")
