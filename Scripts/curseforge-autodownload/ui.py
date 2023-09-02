@@ -43,11 +43,11 @@ def browse_folder():
 #   return "### Done."
   
 def preprocessing_ja(indata, mcver, modname_search, search_engine, sm, of,
-                    use_legacy, use_multi):
+                    use_legacy, use_multi, adblock):
   with open("./jsondata/.txt", "w") as f:
     f.write(indata)
 
-  new_main.main("./jsondata/.txt", mcver, modname_search, search_engine, sm, of, use_legacy, use_multi)
+  new_main.main("./jsondata/.txt", mcver, modname_search, search_engine, sm, of, use_legacy, use_multi, adblock)
   
   return "### 処理終了"
 
@@ -71,6 +71,7 @@ with gr.Blocks() as iface:
   
   with gr.Tab("通常ダウンロード"):
     gr.Markdown('''- Modrinthでは対応バージョンチェックは利用できません。\n
+                  - Modrinthでは広告ブロッカーは利用できません。\n
                   - Modrinth, Legacy Curseforge では安定モードは利用できません。\n
                   - Curseforgeでは前提MODの自動ダウンロードは利用できません。(Legacy Curseforge の場合可能)\n
                   - CurseforgeではSeleniumを使用したダウンロードは利用できません。(Legacy Curseforge の場合可能)\n
@@ -81,9 +82,12 @@ with gr.Blocks() as iface:
     gr.Markdown("<br>")
     ja_mcv = gr.Dropdown(label="Minecraftバージョン", choices=dl_mcver, value="1.12.2")
     ja_se = gr.Radio(choices=["modrinth.com", "curseforge.com"], label="MOD名の検索に使用するサイト", value="curseforge.com")    
-    jasm = gr.Checkbox(label="安定モード (有効化した場合、時間がかかる)", value=True)
-    jalegacy = gr.Checkbox(label="Legacy Curseforgeサイトを使う (Experimental)", value=True)
-    jamultimode = gr.Checkbox(label="マルチプロセスモード (Experimental)", value=False)
+    with gr.Row():
+      jasm = gr.Checkbox(label="安定モード (有効化した場合、時間がかかる)", value=True)
+      jalegacy = gr.Checkbox(label="Legacy Curseforgeサイトを使う (Experimental)", value=True)
+    with gr.Row():
+      jamultimode = gr.Checkbox(label="マルチプロセスモード (Experimental)", value=False)
+      jaadblock = gr.Checkbox(label="広告をブロックする (Experimental)", value=False)
     with gr.Row():
       ja_outfile = gr.Textbox(label="ダウンロード先フォルダ", value="E:/System/ichika/Downloads")
       ja_brbtn = gr.Button("フォルダ選択")
@@ -93,7 +97,7 @@ with gr.Blocks() as iface:
     ja_btn = gr.Button("スタート")
     ja_out = gr.Markdown("")
     ja_btn.click(fn=preprocessing_ja,
-                inputs=[ja_indata, ja_mcv, ja_sm, ja_se, jasm, ja_outfile, jalegacy, jamultimode],
+                inputs=[ja_indata, ja_mcv, ja_sm, ja_se, jasm, ja_outfile, jalegacy, jamultimode, jaadblock],
                 outputs=ja_out)
   
   with gr.Tab("自動操作ダウンロード"):
@@ -115,7 +119,7 @@ with gr.Blocks() as iface:
               - 開始したら、フルスクリーンの大きさ90%のChromeを表示して放置してください''')
     rd_mcv = gr.Dropdown(label="Minecraftバージョン", choices=["1.12.2", "1.16.5"], value="1.12.2")
     # rd_sortby = gr.Dropdown(label="ソート順 (Curseforge)", choices=["Relevancy (関連順)", "Popularity (人気順)", "Latest update (最終更新日時順)", "Creation Date (作成順)", "Total Downloads (ダウンロード数順)", "A-Z (アルファベット順)"], value="Popularity")
-    rd_randtar = gr.Radio(choices=[500, 5000], label="抽選対象数", value=500)
+    rd_randtar = gr.Slider(0, 5000, step=1, label="抽選対象数", value=500)
     rd_chance = gr.Slider(0.1, 100, value=20, label="抽選チャンス (%)")
     rd_modc = gr.Slider(0, 500, value=30, label="MOD数", step=1)
     

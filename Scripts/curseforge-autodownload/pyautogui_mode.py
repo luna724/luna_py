@@ -2,7 +2,7 @@
 import pyautogui
 import pyperclip
 import time
-import luna_GlobalScript.misc.global_math as cur
+import LGS.misc.global_math as cur
 import win32gui
 def launch(mcver, cd=1):
     next_check = []

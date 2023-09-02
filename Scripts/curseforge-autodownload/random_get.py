@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 if __name__ == "__main__":
     # データを取得
-  config = jsoncfg.read("./config.json")
+  config = jsoncfg.read("./jsondata/config.json")
   chromebinary = config["Chrome_binary"]
 
   chrome_options = webdriver.ChromeOptions()
@@ -52,9 +52,7 @@ if __name__ == "__main__":
 
 
 def choice_(mcver, target_count, rd_chance, mod_count):
-  if mcver == "1.12.2" and target_count == 500:
-    data = jsoncfg.read("./jsondata/modlist_1.12.2-500.json")
-  elif mcver == "1.12.2" and target_count == 5000:
+  if mcver == "1.12.2":
     data = jsoncfg.read("./jsondata/modlist_1.12.2-5000.json")
   else:
     return "Error. 設定は未実装です" 
@@ -67,6 +65,11 @@ def choice_(mcver, target_count, rd_chance, mod_count):
   # シャッフルされたキーと値のペアに基づいて新しい辞書を作成
   shuffled_data = {key: value for key, value in items}
   
+  # Target countの数まで減らす
+  while len(shuffled_data) > target_count:
+    key_to_remove = random.choice(list(shuffled_data.keys()))
+    del shuffled_data[key_to_remove]
+    
   copy_target_key = []
   while len(copy_target_key) <= mod_count:
     for content in shuffled_data.keys():

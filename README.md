@@ -30,9 +30,7 @@ FFmpeg, SoX, Google magenta Code, Google Tesseract, ChromeDriver, cWebp
 
 ## Changelogs
 
-- Curseforge Autodownload v2.3
-  - Legacy Curseforgeでの出力先の指定をサポート
-  - Legacy Curseforgeでの前提MODの取得をサポート
+- Curseforge Autodownload v2.4
   - 細かな修正
 
 -----------

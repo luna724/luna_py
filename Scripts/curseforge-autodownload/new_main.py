@@ -30,10 +30,13 @@ def url_split(data, legacy_split=False):
 
 
 def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com", stable_mode=True,
-        output_path="./out", use_legacy_url=False, use_multi_mode=False):
+        output_path="./out", use_legacy_url=False, use_multi_mode=False,
+        use_adblock=False):
   # データの取得
   mcver_format_dict = jsoncfg.read("./jsondata/mcver_legacy_formatted.json")
   legacy_api_dict = jsoncfg.read("./jsondata/legacy_curseforge_apilink_cache.json")
+  config = jsoncfg.read("./jsondata/config.json")
+  chromebinary = config["Chrome_binary"]
   
   if modname_search:
     with open(data_filepath, "r") as f:
@@ -52,7 +55,7 @@ def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com
     # 検索
     for content in tqdm(search, desc="Mod URL Searching.."):
       # まずは結果を受け取る
-      content_url = ls.simple_search(f"{content} {mcver} {search_mode}")
+      content_url = ls.simple_search(f"{content} {mcver} {search_mode}", chromebinary)
       print(f"{content} -> {content_url}")
       
       # チェックして追加
@@ -120,18 +123,18 @@ def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com
             raise IndexError("Please Reset \"Legacy_curseforge_apilink cache.json\"")
             
         else:      
-          api_url, filename, dependies = request_legacy_curseforge(url=content, mcver=mcver)
+          api_url, filename, dependies = request_legacy_curseforge(url=content, mcver=mcver, adb=use_adblock)
           if api_url == None and filename == None and dependies == None:
             continue
           
           download_from_api_cf[filename] = api_url
           legacy_api_dict[content] = [api_url, filename]
 
-          if not dependies_list == None:
+          if not dependies == None:
             for contents in tqdm(dependies, desc="Installing Dependies"):
               mcver_formatted = mcver_format_dict[mcver]
               contents += f"/files/all?filter-game-version={mcver_formatted}"
-              api_url2, filename2, _ = request_legacy_curseforge(contents, mcver)
+              api_url2, filename2, _ = request_legacy_curseforge(contents, mcver, use_adblock)
               
               if api_url2 == None and filename2 == None:
                 continue

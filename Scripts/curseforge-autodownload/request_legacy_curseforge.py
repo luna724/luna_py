@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.alert import Alert
 import time
 
-def request_legacy_curseforge(url, mcver):
+def request_legacy_curseforge(url, mcver, adb):
   try:
     # データを取得
     config = jsoncfg.read("./jsondata/config.json")
@@ -17,6 +17,8 @@ def request_legacy_curseforge(url, mcver):
     
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = chromebinary
+    if adb:
+      chrome_options.add_argument(f"--load-extension=./ublock_origin/cjpalhdlnbpafiamejdnhcphjbkeiagm")
     
     # Driver
     driver = webdriver.Chrome(options=chrome_options)
@@ -53,8 +55,8 @@ def request_legacy_curseforge(url, mcver):
         # 最初の要素が現れるまで待機
     section_element = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@class='flex flex-col']/div/section[@class='flex flex-col']")))
 
-    elements = driver.find_elements(By.XPATH, "//h4[text()='Required Dependency']/div[@class='flex flex-wrap -mx-1 w-full']/div/div/div/p[@class='font-bold']/a")
-    elements = driver.find_elements(By.XPATH, "//h4[text()='Required Dependency']/div[@class='flex flex-wrap -mx-1 w-full']/div/div/div/p[@class='font-bold']/a")
+    elements = driver.find_elements(By.XPATH, "//div[@class='flex flex-wrap -mx-1 w-full']/div/div/div/p[@class='font-bold']/a")
+    elements = driver.find_elements(By.XPATH, "//div[@class='flex flex-wrap -mx-1 w-full']/div/div/div/p[@class='font-bold']/a")
     
     if len(elements) > 0:
       dependies = []
@@ -62,14 +64,14 @@ def request_legacy_curseforge(url, mcver):
         href_value = element.get_attribute("href")
         print("Found Dependies: ", href_value)
         # 前処理して、追加
-        dependies.append(f"https://legacy.curseforge.com{href_value}")
+        dependies.append(href_value)
     
       driver.quit()
-      return api_link, filename. dependies
+      return api_link, filename, dependies
     
     driver.quit()
     
-    return api_link, filename
+    return api_link, filename, None
     
   except TimeoutException:
     driver.quit()
