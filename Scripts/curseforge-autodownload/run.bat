@@ -1,6 +1,6 @@
 cd ..\..\
 call .venv\Scripts\activate
 cd ./Scripts/curseforge-autodownload
-python pyautogui_mode.py
+python random_get.py
 
 pause

@@ -17,11 +17,14 @@ def request_legacy_curseforge(url, mcver, adb):
     
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = chromebinary
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
     if adb:
-      chrome_options.add_argument(f"--load-extension=./ublock_origin/cjpalhdlnbpafiamejdnhcphjbkeiagm")
+      chrome_options.add_argument(f"--load-extension=E:/System/ichika/AppData/Local/Google/Chrome/User Data/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm/1.51.0_0")
     
     # Driver
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=driverpath ,options=chrome_options)
+    time.sleep(2)
     driver.get(url)
     wait = WebDriverWait(driver, 30)
     

@@ -73,7 +73,7 @@ def launch(mcver, cd=1):
         if hwnd != 0:
             win32gui.SetForegroundWindow(hwnd)
         
-        time.sleep(cd * 12) # Debug用待機
+        time.sleep(20) # Debug用待機
 
         # 新しいウィンドウを作成し、最大化する
         # pyautogui.hotkey("ctrl", "n")
@@ -84,7 +84,7 @@ def launch(mcver, cd=1):
             x = cur.cursor_exchanger(600, 1280, "x")
             y = cur.cursor_exchanger(50, 800, "y")
             pyautogui.click(x=x, y=y)  # def 1280, 800  click = 600, 50
-            time.sleep(cd * 0.5)
+            time.sleep(cd * 0.15)
 
             # すでにあるURLをクリーンアップ
             pyautogui.hotkey('ctrl', 'a')
@@ -104,7 +104,7 @@ def launch(mcver, cd=1):
             x = cur.cursor_exchanger(760, 1440, "x")  # 760, 300
             y = cur.cursor_exchanger(300, 900, "y")  # 1270, 211
             pyautogui.click(x=x, y=y)
-            time.sleep(cd * 3)
+            time.sleep(cd * 2)
 
             # 成功したか、チェック
             x = cur.cursor_exchanger(600, 1280, "x")  # アドレスバーのクリック
@@ -113,27 +113,31 @@ def launch(mcver, cd=1):
             time.sleep(cd * 0.5)
 
             pyautogui.hotkey("ctrl", "c")  # コピー
-            time.sleep(cd * 0.5)
+            time.sleep(cd * 0.25)
             copied_text = pyperclip.paste()  # 内容取得
             if copied_text.count("/download/") >= 1:
                 print(f"Download Success: {copied_text}")
             else:
                 print(f"Download Failed: time.sleep関数の値を大きくしてみて下さい")
                 fail_url.append(copied_text)
-            time.sleep(cd * 2)  # 負化防止の停止処理
+            time.sleep(cd * 0.5)  # 負化防止の停止処理
 
         # 終了時の処理
+        print("\n\n\n\nProcess Done.")
         for legacy in legacy:
             print(f"Can't Load legacy URL: {legacy}")
         for failed in fail_url:
             print(f"Failed: {failed}")
-            print("time.sleep関数の値を大きくしてみて下さい。")
+            # print("time.sleep関数の値を大きくしてみて下さい。")
         
         print("処理終了")
+        print(f"失敗数: {len(fail_url)}")
+        pyautogui.hotkey("ctrl", "w")
     else:
         print("ロード可能なURLがありません。")
-        exit()
-        
+    
+    
+    return f"### 処理終了\n失敗数: {len(fail_url)}"
 
 if __name__ == "__main__":
     launch("1.12.2", 2.25)

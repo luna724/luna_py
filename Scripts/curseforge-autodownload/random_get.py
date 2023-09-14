@@ -21,7 +21,7 @@ if __name__ == "__main__":
   INFOMATION = {}
   
   for page_num in range(1, 101):
-    url = f"https://www.curseforge.com/minecraft/search?class=mc-mods&gameFlavorsIds=1&gameVersion=1.12.2&page={page_num}&pageSize=50&sortType=2"
+    url = f"https://www.curseforge.com/minecraft/search?class=mc-mods&gameFlavorsIds=1&gameVersion=1.16.5&page={page_num}&pageSize=50&sortType=2"
     driver.get(url)
     wait = WebDriverWait(driver, 60)
 
@@ -45,15 +45,27 @@ if __name__ == "__main__":
     # 結果を表示
     print("取得した情報:", INFOMATION)
     
-  jsoncfg.write(INFOMATION, "./modlist_1.12.2-5000.json")
+  jsoncfg.write(INFOMATION, "./jsondata/modlist_1.16.5-5000.json")
 
   # ブラウザを閉じる
   driver.quit()
 
 
-def choice_(mcver, target_count, rd_chance, mod_count):
-  if mcver == "1.12.2":
+def choice_(mcver, target_count, rd_chance, mod_count, database):
+  if mcver == "1.12.2" and database == "5000MOD":
     data = jsoncfg.read("./jsondata/modlist_1.12.2-5000.json")
+  elif mcver == "1.12.2" and database == "500MOD":
+    data = jsoncfg.read("./jsondata/modlist_1.12.2-500.json")
+  elif mcver == "1.16.5" and database == "5000MOD":
+    data = jsoncfg.read("./jsondata/modlist_1.16.5-5000.json")
+  elif mcver == "1.16.5" and database == "500MOD":
+    data = jsoncfg.read("./jsondata/modlist_1.16.5-500.json")
+  elif mcver == "1.16.5" and database == "10000MOD (1.16.5のみ)":
+    data = jsoncfg.read("./jsondata/modlist_1.16.5-10000.json")
+  elif mcver == "1.12.2" and database == "10000MOD (1.16.5のみ)":
+    print("database: 10000MOD is Not available on 1.12.2.\n Loaded From 5000MOD..")
+    data = jsoncfg.read("./jsondata/modlist_1.12.2-5000.json")
+    
   else:
     return "Error. 設定は未実装です" 
   
@@ -66,17 +78,21 @@ def choice_(mcver, target_count, rd_chance, mod_count):
   shuffled_data = {key: value for key, value in items}
   
   # Target countの数まで減らす
-  while len(shuffled_data) > target_count:
-    key_to_remove = random.choice(list(shuffled_data.keys()))
-    del shuffled_data[key_to_remove]
-    
-  copy_target_key = []
-  while len(copy_target_key) <= mod_count:
-    for content in shuffled_data.keys():
-      if roll.random_roll((rd_chance / 100)):
-        copy_target_key.append(content)
-      if len(copy_target_key) >= mod_count:
-        break
+  if len(shuffled_data) > target_count:
+    while len(shuffled_data) > target_count:
+      key_to_remove = random.choice(list(shuffled_data.keys()))
+      del shuffled_data[key_to_remove]
+      
+    copy_target_key = []
+    while len(copy_target_key) <= mod_count:
+      for content in shuffled_data.keys():
+        if roll.random_roll((rd_chance / 100)):
+          copy_target_key.append(content)
+        if len(copy_target_key) >= mod_count:
+          break
+  else:
+    print(f"stderr: Shuffled data is low from target_count ({len(shuffled_data)} / {target_count})")
+    copy_target_key = shuffled_data
 
   # 抽選結果に基づいた値を取得
   url_list = []

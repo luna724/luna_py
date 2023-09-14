@@ -1,8 +1,4 @@
 {
-	"Example": ["Model_Name", "Model_Type(Lora / Lycoris)", "Extension (safetensors, ckpt, pt)", "url", "isNSFW str(0 / 1)","Model File Name"],
-	"nene": ["Yuri Kiss", "Lora", "safetensors", "https://civitai.com/api/download/models/30101", "1", "yuri-kiss"],
-	"nann": ["pose_Mutual_masturbation0yuri0", "Lycoris", "safetensors", "https://civitai.com/api/download/models/80742", "1", "yuri-mutual-masturbation"],
-	"yuri": ["hoshi119_POV_yuri_cunnilingus", "Lora", "safetensors", "https://civitai.com/api/download/models/58906", "1", "yuri-cunnilingus"],
-	"6969": ["69_yuri", "Lora", "safetensors", "https://civitai.com/api/download/models/107570", "1", "69-yuri"],
-	"nens": ["Naked_belt_outfit_of_ayachi_nene_cosplay", "Lora", "safetensors", "https://civitai.com/api/download/models/68769", "1", "naked_belt_ayachi_nene"]
+	"Example": ["Model_Name", "Model_Type(Lora / Lycoris / sd.cp)", "Extension (safetensors, ckpt, pt)", "url", "isNSFW str(0 / 1)","Model File Name"],
+	"0001":["BlueArchive_Saiba_Momoi", "Lora", "safetensors","https://civitai.com/api/download/models/104696","0","saiba_momoi"]
 }

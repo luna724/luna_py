@@ -1,5 +1,6 @@
 import LGS.misc.jsonconfig as jsoncfg
 from selenium import webdriver
+import time
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -14,9 +15,12 @@ def request_modrinth(url, mcver):
     
     chrome_options = webdriver.ChromeOptions()
     chrome_options.binary_location = chromebinary
-    
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+        
     # Driver
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(executable_path=driverpath ,options=chrome_options)
+    time.sleep(2)
     driver.get(url)
     wait = WebDriverWait(driver, 30)
     

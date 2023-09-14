@@ -1,6 +1,6 @@
 """ 
 入力
-{"なんかしら英語4文字(小文字)": ["モデル名", "タイプ (Lora / Lycoris)", "拡張子", "DL URL", "NSFW (0 / 1)", "モデルファイル名"]}
+{"なんかしら英語4文字(小文字)": ["モデル名", "タイプ (Lora / Lycoris / Checkpoints)", "拡張子", "DL URL", "NSFW (0 / 1)", "モデルファイル名"]}
 
 出力
 1.
@@ -81,7 +81,7 @@ for x in data_list:
     TYPE_D2 = "LyCORIS"
   elif x["TYPE"] == "sd.cp":
     TYPE = ""
-    TYPE_D2 = "stable-diffusion"
+    TYPE_D2 = "Stable-diffusion" # Stable-diffusion/
   else:
     print("不明なタイプです。\"TYPE\" \n(Lora / Lycoris / sd.cp)を入力してください。")
     continue

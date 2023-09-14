@@ -1,0 +1,4 @@
+{ "example": [{"Prompt": "Prompt HERE","Negative": "Negative Prompt HERE"}, ["%LORA%", "%CH_NAME%", "%CH_PROMPT%", "%LOCATION%", "%FACE%"]],
+  "restainent_lite": [{"Prompt":"nsfw, %LORA%, small breasts, %CH_NAME%, kneeling, leaning forward, %LOCATION%, solo, 1girl, %FACE%, %CH_PROMPT%, bondage outfit, harness, o-ring, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii) <lora:BondageOutfitV2:0.89>, pussy juice", "Negative":"(worst quality:1.4), (low quality:1.4), (normal quality:1.4), (depth of field, blurry:1.2), (greyscale, monochrome:1.1), 3D face, nose, cropped, lowres, text, jpeg artifacts, signature, watermark, username, blurry, artist name, trademark, watermark, ((multiple view)), realistic"}, ["None", "None", "None", "None", "None"]],
+  "black_cloth": [{"Prompt": ""},{"Negative": ""}]
+}

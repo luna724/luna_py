@@ -1,0 +1,4 @@
+*.txt
+cache/
+*.log
+*.lunacache

@@ -15,3 +15,4 @@ Scripts/json2n/model_setup/in/json.json
 luna.py.ipynb
 QuickLaunch.bat
 main_script.py
+*.js

@@ -3,8 +3,9 @@ import time
 import pyperclip
 from LGS.misc.global_math import cursor_exchanger as cur
 
-def forcemove_pyautogui(url):
-  pyautogui.hotkey('ctrl', 't')
+def forcemove_pyautogui(url, use_NewTab=True):
+  if use_NewTab:
+    pyautogui.hotkey('ctrl', 't')
   time.sleep(2.5)
   x = cur(600, 1280, "x")
   y = cur(50, 800, "y")

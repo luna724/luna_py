@@ -1,51 +1,33 @@
 import gradio as gr
-import os
-from tkinter import Tk, filedialog
 
+with gr.Blocks() as demo:
+    error_box = gr.Textbox(label="Error", visible=False)
 
-def on_browse(data_type):
-    root = Tk()
-    root.attributes("-topmost", True)
-    root.withdraw()
-    if data_type == "Files":
-        filenames = filedialog.askopenfilenames()
-        if len(filenames) > 0:
-            root.destroy()
-            return str(filenames)
-        else:
-            filename = "Files not seleceted"
-            root.destroy()
-            return str(filename)
+    name_box = gr.Textbox(label="Name")
+    age_box = gr.Number(label="Age", minimum=0, maximum=100)
+    symptoms_box = gr.CheckboxGroup(["Cough", "Fever", "Runny Nose"])
+    submit_btn = gr.Button("Submit")
 
-    elif data_type == "Folder":
-        filename = filedialog.askdirectory()
-        if filename:
-            if os.path.isdir(filename):
-                root.destroy()
-                return str(filename)
-            else:
-                root.destroy()
-                return str(filename)
-        else:
-            filename = "Folder not seleceted"
-            root.destroy()
-            return str(filename)
+    with gr.Column(visible=False) as output_col:
+        diagnosis_box = gr.Textbox(label="Diagnosis")
+        patient_summary_box = gr.Textbox(label="Patient Summary")
 
+    def submit(name, age, symptoms):
+        if len(name) == 0:
+            return {error_box: gr.update(value="Enter name", visible=True)}
+        return {
+            output_col: gr.update(visible=True),
+            diagnosis_box: "covid" if "Cough" in symptoms else "flu",
+            patient_summary_box: f"{name}, {age} y/o",
+        }
 
-def main():
-    with gr.Blocks() as demo:
-        data_type = gr.Radio(choices=["Files", "Folder"], value="Files", label="Offline data type")
-        input_path = gr.Textbox(label="Select Multiple videos", scale=5, interactive=False)
-        image_browse_btn = gr.Button("Browse", min_width=1)
-        image_browse_btn.click(on_browse, inputs=data_type, outputs=input_path, show_progress="hidden")
-    return demo
-
-
-demo = main()
-demo.launch(inbrowser=True)
-
-    # ボタンがクリックされた時のアクションを指定
-    # テキスト反転
-    text_button.click(flip_text, inputs=text_input, outputs=text_output)
-    # 画像反転
-    image_button.click(flip_image, inputs=image_input, outputs=image_output)
+    submit_btn.click(
+        submit,
+        [name_box, age_box, symptoms_box],
+        [error_box, diagnosis_box, patient_summary_box, output_col]
+    )
+    
+    n = gr.Button("this is btn")
+    n.click(fn=None, inputs=[diagnosis_box, patient_summary_box])
+    
+demo.launch()
