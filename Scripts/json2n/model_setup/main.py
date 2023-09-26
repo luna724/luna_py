@@ -1,6 +1,7 @@
 """ 
 入力
-{"なんかしら英語4文字(小文字)": ["モデル名", "タイプ (Lora / Lycoris / Checkpoints)", "拡張子", "DL URL", "NSFW (0 / 1)", "モデルファイル名"]}
+{"なんかしら英語4文字(小文字)": ["モデル名", "タイプ (Lora / Lycoris / Checkpoints)", "拡張子", "DL URL", "NSFW (0 / 1)", "モデルファイル名",
+[トリガーワード(リスト)], "Sample Image", "Image Generation Data", "URL"]}
 
 出力
 1.
@@ -14,7 +15,7 @@ if Download_<MODEL_NAME><IS_NSFW>:
   !cp -r <dir>/<TYPE>/<FILE_NAME>.<EXTENSION> <dir2>/<TYPE>/<FILE_NAME>.<EXTENSION>
 
 4.
-# "view_target": ["Title", "Trigger Word", "LoRA Model Name", "Template", "sample_image_path_list", "image generation data", "CivitAI URL"]
+"view_target": ["<MODEL_SITE_NAME>", "[<TRIGGER_WORD>]", "?", "None", "<Sample Image>", "<image generation data>", "<CivitAI URL>"]
 
 """
 # ゴミ処理 + 定義
