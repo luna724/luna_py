@@ -1,4 +1,5 @@
 {
 	"Example": ["Model_Name", "Model_Type(Lora / Lycoris / sd.cp)", "Extension (safetensors, ckpt, pt)", "url", "isNSFW str(0 / 1)","Model File Name"],
-	"0001":["BlueArchive_Saiba_Momoi", "Lora", "safetensors","https://civitai.com/api/download/models/104696","0","saiba_momoi"]
+	"0001":["CatCat-XL_AnimeStyle_SDXL", "sd.cp", "safetensors","https://civitai.com/api/download/models/130054","0","CatCat_XL_SDXL"],
+	"0002":["
 }

@@ -1,6 +1,6 @@
 import gradio as gr
-import WHB_generator as whbgen
-import Masturbation_generator as mastgen
+# import WHB_generator as whbgen
+# import Masturbation_generator as mastgen
 import tentacle_clothes as tcgen
 import log_writer as log_writer
 import simple_generator as data
@@ -12,66 +12,66 @@ import template_generator as tg
 
 with gr.Blocks() as itrmain:
   gr.Markdown("Colab: https://colab.research.google.com/drive/1NJJrxjKK3YzfiElHrmS2AmzXv65Y38TR#scrollTo=TmcYoEe8dFK9")
-  with gr.Tab("WHB_Generator"):
-    whbgen_chname = gr.Textbox(label="Charactor Prompt Name")
-    whbgen_chprom = gr.Textbox(label="Charactor Prompt")
-    whbgen_template_type = gr.Radio(choices=["着衣h", "服なんていらない☆"], value="着衣h", label="Template Type")
-    whbgen_clothes = gr.Textbox(label="Charactor Clothes (Only Work with 着衣h)", value="black serafuku, grey serafuku")
-    whbgen_facetype = gr.Radio(choices=["blush", "orgasm"], value="blush", label="Face Type")
-    whbgen_adetailer = gr.Radio(choices=["0", "1"], value="0", label="ADetailer Modify")
-    whbgen_whb__ = gr.Radio(choices=["0", "1"], label="Powerful WHB Draw", value="0")
-    whbgen_vibrator = gr.Radio(choices=["0", "1"], label="Breasts on Vibrator", value="0")
-    whbgen_ezclothH = gr.Radio(choices=["0", "1"], label="Easy 着衣H Generator", value="0")
+  # with gr.Tab("WHB_Generator"):
+  #   whbgen_chname = gr.Textbox(label="Charactor Prompt Name")
+  #   whbgen_chprom = gr.Textbox(label="Charactor Prompt")
+  #   whbgen_template_type = gr.Radio(choices=["着衣h", "服なんていらない☆"], value="着衣h", label="Template Type")
+  #   whbgen_clothes = gr.Textbox(label="Charactor Clothes (Only Work with 着衣h)", value="black serafuku, grey serafuku")
+  #   whbgen_facetype = gr.Radio(choices=["blush", "orgasm"], value="blush", label="Face Type")
+  #   whbgen_adetailer = gr.Radio(choices=["0", "1"], value="0", label="ADetailer Modify")
+  #   whbgen_whb__ = gr.Radio(choices=["0", "1"], label="Powerful WHB Draw", value="0")
+  #   whbgen_vibrator = gr.Radio(choices=["0", "1"], label="Breasts on Vibrator", value="0")
+  #   whbgen_ezclothH = gr.Radio(choices=["0", "1"], label="Easy 着衣H Generator", value="0")
     
-    whbgen_inputs = [whbgen_chname, whbgen_chprom,
-                     whbgen_clothes,
-                     whbgen_template_type,
-                     whbgen_facetype,
-                     whbgen_adetailer,
-                     whbgen_whb__,
-                     whbgen_vibrator,
-                     whbgen_ezclothH]
+  #   whbgen_inputs = [whbgen_chname, whbgen_chprom,
+  #                    whbgen_clothes,
+  #                    whbgen_template_type,
+  #                    whbgen_facetype,
+  #                    whbgen_adetailer,
+  #                    whbgen_whb__,
+  #                    whbgen_vibrator,
+  #                    whbgen_ezclothH]
     
-    whbgen_outputs = [gr.Markdown(""), gr.Markdown("")]
+  #   whbgen_outputs = [gr.Markdown(""), gr.Markdown("")]
 
-    whbgen_buttons = gr.Button("Convert")
+  #   whbgen_buttons = gr.Button("Convert")
     
-  whbgen_buttons.click(fn=whbgen.WHB_Generator, inputs=whbgen_inputs,
-                       outputs=whbgen_outputs)
+  # whbgen_buttons.click(fn=whbgen.WHB_Generator, inputs=whbgen_inputs,
+  #                      outputs=whbgen_outputs)
     
-  with gr.Tab("Masturbation_Generator"):
-    gr.Markdown("standingやsmall breasts などの項目は キャラクタープロンプト、または服装プロンプトに代入")
-    mast_chname = gr.Textbox(label="Charactor Prompt Name")
-    mast_chprom = gr.Textbox(label="Charactor Prompe")
-    mast_cloth  = gr.Textbox(label="Charactor Clothes")
-    mast_draw_at = gr.Textbox(label="Position Prompt")
-    mast_type = gr.Radio(choices=["Solo", "yuri"], label="Masturbation Type", value="Solo")
-    mast_facetype = gr.Radio(choices=["blush", "orgasm", "露出えっち"], label="Face Types", value="blush")
-    mast_onbed = gr.Checkbox(label="Charactor Sitting on bed?", value=False)
-    mast_isnude = gr.Checkbox(label="Charactor is nude?", value=False )
-    mast_vibrator = gr.Checkbox(label="Charactor Nipples on Vibrator?", value=False)
-    mast_require_solo = gr.Checkbox(label="Emphasis on 1girl", value=True)
-    mast_more_nsfw = gr.Checkbox(label="More NSFW", value=False)
-    mast_types = gr.Radio(choices=["Fingering", "tables"], value="Fingering", label="Masturbation Types (Work with Solo Only)")
+  # with gr.Tab("Masturbation_Generator"):
+  #   gr.Markdown("standingやsmall breasts などの項目は キャラクタープロンプト、または服装プロンプトに代入")
+  #   mast_chname = gr.Textbox(label="Charactor Prompt Name")
+  #   mast_chprom = gr.Textbox(label="Charactor Prompe")
+  #   mast_cloth  = gr.Textbox(label="Charactor Clothes")
+  #   mast_draw_at = gr.Textbox(label="Position Prompt")
+  #   mast_type = gr.Radio(choices=["Solo", "yuri"], label="Masturbation Type", value="Solo")
+  #   mast_facetype = gr.Radio(choices=["blush", "orgasm", "露出えっち"], label="Face Types", value="blush")
+  #   mast_onbed = gr.Checkbox(label="Charactor Sitting on bed?", value=False)
+  #   mast_isnude = gr.Checkbox(label="Charactor is nude?", value=False )
+  #   mast_vibrator = gr.Checkbox(label="Charactor Nipples on Vibrator?", value=False)
+  #   mast_require_solo = gr.Checkbox(label="Emphasis on 1girl", value=True)
+  #   mast_more_nsfw = gr.Checkbox(label="More NSFW", value=False)
+  #   mast_types = gr.Radio(choices=["Fingering", "tables"], value="Fingering", label="Masturbation Types (Work with Solo Only)")
         
-    mast_inputs =[mast_chname,
-                  mast_chprom,
-                  mast_cloth,
-                  mast_draw_at,
-                  mast_type,
-                  mast_facetype,
-                  mast_onbed,
-                  mast_isnude,
-                  mast_vibrator,
-                  mast_require_solo,
-                  mast_more_nsfw,
-                  mast_types]
-    mast_outputs = gr.Markdown("")  
-    mast_btns = gr.Button("Convert")
+  #   mast_inputs =[mast_chname,
+  #                 mast_chprom,
+  #                 mast_cloth,
+  #                 mast_draw_at,
+  #                 mast_type,
+  #                 mast_facetype,
+  #                 mast_onbed,
+  #                 mast_isnude,
+  #                 mast_vibrator,
+  #                 mast_require_solo,
+  #                 mast_more_nsfw,
+  #                 mast_types]
+  #   mast_outputs = gr.Markdown("")  
+  #   mast_btns = gr.Button("Convert")
   
-  mast_btns.click(fn=mastgen.Masturbation_gen,
-                  inputs= mast_inputs,
-                  outputs=mast_outputs)
+  # mast_btns.click(fn=mastgen.Masturbation_gen,
+  #                 inputs= mast_inputs,
+  #                 outputs=mast_outputs)
   
   with gr.Tab("Tentacle Clothes Generator"):
     tc_chn = gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
@@ -258,6 +258,11 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt],
     gr.Markdown("<br>")
     with gr.Blocks():
       tg_example = gr.Textbox(label="Example Prompt")
+      with gr.Accordion("Example Image", open=False):
+        tg_img = gr.Image()
+        with gr.Row():
+          gr.Markdown("Seed")
+          tg_seed = gr.Markdown("-1")
       gr.Markdown("<br>")
       tg_output = gr.Textbox(label="Prompt")
       tg_out_neg = gr.Textbox(label="Negative")
@@ -267,8 +272,51 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt],
       
     tg_preview.click(fn=tg.example_view, inputs=tg_type, 
                     outputs=[tg_lora, tg_name, tg_prompt,
-                            tg_location, tg_face, tg_example])
+                            tg_location, tg_face, tg_example, tg_img, tg_seed])
     tg_btn.click(fn=tg.template_gen,
                 inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_add],
                 outputs=[tg_output, tg_out_neg])
+  
+  with gr.Tab("Data Opener"):
+    with gr.Column(visible=False):
+      do_return_mode = gr.Textbox(value="WebUI")
+      
+    gr.Markdown("More Visualize Stable-Diffusion (or CivitAI) Output Generation Data")
+    gr.Markdown("Supported Extension\n\
+                - ADetailer\n\
+                - (Upcoming) ControlNet\n\
+                - (Upcoming) Hires.fix")
+    with gr.Accordion("Generation Data", open=True):
+      do_indata = gr.Textbox(lines=2, placeholder="Paste Generation Data Here..")
+    
+    do_btn = gr.Button("Open")
+    
+    gr.Markdown("<br>")
+    with gr.Blocks():
+      with gr.Row():
+        do_cp = gr.Textbox(label="Checkpoints", placeholder="AnythingV3")
+        do_cs = gr.Slider(0, 20, label="Clip Skip", value=2)
+      gr.Markdown("<br>")
+      do_pr = gr.Textbox(label="Prompt", placeholder="Prompt is Here!")
+      do_neg = gr.Textbox(label="Negative", placeholder="EasyNegative?")
+      
+      with gr.Row():
+        do_sr = gr.Textbox(label="Sampling Method", placeholder="Euler a")
+        do_ss = gr.Slider(0, 125, label="Sampling Steps", value=24)
+      
+      with gr.Row():
+        do_w = gr.Slider(0, 2048, label="Width", vale=512)
+        do_h = gr.Slider(0, 2048, label="Height", value=768)
+        do_res = gr.Textbox(label="Resolution", placeholder="(512×768)")
+      
+      with gr.Row():
+        do_se = gr.Textbox(label="Seed", placeholder="-1")
+        do_cfg = gr.Slider(0, 15, step=0.5, label="CFG Scale", value=7)
+      
+      do_time = gr.Textbox(label="Creation Date: 0000-00-00")
+      
+    do_btn.click(fn=data.get_data,
+                 inputs=[do_indata, do_return_mode],
+                 outputs=[do_cp, do_pr, do_neg, do_res, do_se, do_cfg, do_cs, do_ss, do_sr, do_time, do_w, do_h])
+    
 itrmain.launch(inbrowser=True, server_port=25566)

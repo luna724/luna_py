@@ -1,0 +1,3 @@
+### Model Database Viewer
+- RVCにてトレーニングされたモデルの詳細を見るやつ
+- jsonを使用

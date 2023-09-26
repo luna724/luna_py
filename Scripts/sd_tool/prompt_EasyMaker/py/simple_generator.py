@@ -34,7 +34,7 @@ charactor_lora = { # [Loraモデル, キャラ名]
   "kohane": ["<lora:AzusawaKohane:1.0>", "kohane"],
   "ann": ["<lora:Anv2:1.0>", "shian"],
   "shefi": ["<lora:shefi2:1.0>", "shefi"],
-  "momoi": ["", "momoirnd"],
+  "momoi": ["<lora:momoi1:1.0>", "momoirnd"],
   "natsu": ["", "natsurnd"],
   "serina": ["", "serinarnd"],
   "neneka": ["", "nenekarnd"],
@@ -76,7 +76,7 @@ charactor_prompt = {
 # この下は趣旨プロンプト
 cat = 'cat ears, cat tail'
 ocean_back = 'open beach, ocean, sun, water, beach'
-
+orgasm_plus = '((orgasm, blush, full blush, sad, crying:1.2))'
 
 
 face_type_list = ["blush", "blush+", "orgasm", "smile"]
@@ -156,3 +156,60 @@ def final_process(p, logfile):
   return_prompt = nocp
   lw.w(logfile, nocp, "")
   return md_formatted_p, return_prompt
+
+import data_opener as data_analyzer
+def get_data(data, return_mode="WebUI" # or DICT
+            ):
+  if data == "" or data == None:
+    raise ValueError(f"Invalid Data: {data}")
+  
+  if return_mode == "DICT":
+    print("Starting Analyze Data..")
+    date = data_analyzer.opener(data)
+    print(f"Success! \nData: {date}")
+    return date
+  
+  else:
+    print("Starting Analyzing Data.. (WebUI Return Mode)")
+    date = data_analyzer.opener(data)
+    print("Success! \nStarting Open Data..")
+    
+    if 1 == 1:
+        out = date
+        cp = out["Checkpoint"]
+        prompt = out["Prompt"]
+        neg = out["Negative"]
+        res = out["resolution"]
+        seed = out["Seed"]
+        cfg = out["CFG Scale"]
+        cs = out["Clip Skip"]
+        ss = out["Sampling Step"]
+        sr = out["Sampling Sampler"]
+        created = out["Created Date"]
+        w = out["width"]
+        h = out["height"]
+        
+        if out["ADetailer"]:
+          ad = out["ADetailer Info"]
+          ad_show = out["ADetailer"]
+          ad_model = ad["Model"]
+          ad_prompt = ad["Prompt"]
+          ad_neg = ad["Negative"]
+          ad_conf = ad["Confidence"]
+          ad_mask = ad["Mask Blur"]
+          ad_denoise = ad["Denoising Strength"]
+          ad_ver = ad["version"]
+        else:
+          print("ADetailerは検出されませんでした")
+          ad_show = False
+          ad_model, ad_prompt, ad_neg, ad_conf, ad_mask, ad_denoise, ad_ver = "" 
+          
+    #else:
+      #raise ValueError("date の帰り値が > 2 です。")
+    
+    print(f"Success! \nDict Data: {date}")
+    return cp, prompt, neg, res, seed, cfg, cs, ss, sr, created, w, h, ad_model, ad_prompt, ad_neg, ad_conf, ad_mask, ad_denoise, ad_ver
+  
+        
+  
+  

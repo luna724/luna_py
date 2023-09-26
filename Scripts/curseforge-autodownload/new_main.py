@@ -19,21 +19,38 @@ def url_split(data, legacy_split=False):
     if legacy_split:
       if content.startswith("https://legacy.curseforge.com/minecraft/mc-mods/"):
         cf.append(content)
-    if content.startswith("https://www.curseforge.com/minecraft/mc-mods/"):
-      cf.append(content)
-    elif content.startswith("https://modrinth.com/"):
+      else:
+        print(f"{content} has Skipped.. (legacy check)")
+    else:
+      if content.startswith("https://www.curseforge.com/minecraft/mc-mods/"):
+        cf.append(content)
+      else:
+        print(f"{content} has Skipped.. (curseforge)")
+    if content.startswith("https://modrinth.com/"):
       mr.append(content)
-  
-  if legacy_split:
-    return cf, mr
+    else:
+      print(f"{content} has Skipped.. (modrinth)")
   
   return cf, mr
 
-def get_vti(loader):
-  available_loader = ["Forge", "Fabric", "NeoForge"]
-  if not loader in available_loader:
-    raise ValueError("ローダーバージョンが不明です。")
+available_modloader = ["Forge", "Fabric", "NeoForge", "Quilt", "Any"]
 
+def get_vti(loader):
+  if not loader in available_modloader:
+    raise ValueError("ローダーバージョンが不明です。")
+  if loader == "Forge":
+    return "1"
+  elif loader == "Fabric":
+    return "4"
+  elif loader == "NeoForge":
+    return "6"
+  elif loader == "Quilt":
+    return "5"
+  elif loader == "Any":
+    return "NotSelected"
+  else:
+    raise ValueError("gVTI の値が正しくありません。\ntarget_loaderの入力タイプを修正してください")
+  
     
 def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com", stable_mode=True,
         output_path="./out", use_legacy_url=False, use_multi_mode=False,
@@ -50,6 +67,7 @@ def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com
       pre_data = f.readlines()
     
     # URLではない場合の前処理
+    
     search = []
     data = []
     for content in pre_data:
@@ -88,18 +106,19 @@ def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com
         data.append(content)
   
   # OneTabがつけるごみを消す
-  resized_data = []
-  for check in data:
-    check = check.replace(check[check.find(" "):], "")
-    check.strip()
-    resized_data.append(check)
+  resized_data = data
+  # for check in data:
+  #   tmp = check
+  #   check = check.replace(check[check.find(" | "):], "")
+  #   check.strip()
+  #   resized_data.append(check)
+  #   print(f"Data Resized.. {tmp} -> {check}")
   
-  data = resized_data
   # 分ける
   if use_legacy_url:
-    curseforge, modrinth = url_split(data, True)
+    curseforge, modrinth = url_split(resized_data, True)
   else:
-    curseforge, modrinth = url_split(data)
+    curseforge, modrinth = url_split(resized_data, False)
   
   # gVTIの取得
   gVTI = get_vti(target_loader)
@@ -123,7 +142,10 @@ def main(data_filepath, mcver, modname_search=False, search_mode="curseforge.com
         curseforge_preurl.append(content)
         print(content)
       else:
-        content += f"/files?gameVersionTypeId={gVTI}&version={mcver}"
+        if gVTI == "NotSelected":
+          content += f"/files?version={mcver}"
+        else:
+          content += f"/files?gameVersionTypeId={gVTI}&version={mcver}"
         curseforge_preurl.append(content)
       time.sleep(0.01)
       

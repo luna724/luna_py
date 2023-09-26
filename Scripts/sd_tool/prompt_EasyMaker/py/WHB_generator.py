@@ -14,7 +14,7 @@ def WHB_Generator(ch_n, ch_p, ch_wp, template_id="1", face_type="blush", use_ade
     print("Using Template \"着衣h\"")
     
   elif template_id =="2" or template_id == "服なんていらない☆":
-    prompt = "<lora:whb:1>, nsfw, whb, nude, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), blush, full body, pussy, pussy juice, nipple, female focus, (キャラクタープロンプト), looking at viewer, nude, bare breasts, 14 years old, baby face:0.7, 2dimensional-charactor, trembling, straddling the whb, 1girl|CUTOFF, (服装プロンプト)"
+    prompt = "<lora:whb:1>, nsfw, whb, nude, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), blush, full body, pussy, pussy juice, nipple, female focus, (キャラクタープロンプト), looking at viewer, nude, bare breasts, 14 years old, baby face:0.7, 2dimensional-charactor, trembling, straddling the whb, 1girl"
 
     print("Using Template \"服なんていらない☆\"")
   

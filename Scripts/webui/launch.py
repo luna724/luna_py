@@ -147,7 +147,7 @@ with gr.Blocks() as main_interface:
         adc_split_output = gr.Textbox(label="Split Output Directory")
         adc_split_output_browse = gr.Button("Browse", size="sm", scale=1)
         adc_split_output_browse.click(luna.browse_folder, outputs=adc_split_output, show_progress="hidden")
-        adc_split_skip = gr.Slider(0, 1000, label="Random Split Choice Skip Chance (1 = 0.1%)", value=500)
+        adc_split_skip = gr.Slider(0, 1000, label="Random Split Choice Skip Chance (1 = 0.1%)", value=500, step=1)
     
     adc_input = [adc_target_dir, adc_td_min_silent, adc_splitsec, adc_split_output, adc_split_skip]
     adc_btn.click(fn=luna.launch_audio_duration_calculator,

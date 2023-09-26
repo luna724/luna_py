@@ -65,19 +65,18 @@ with gr.Blocks() as iface:
                   - Modrinthでは広告ブロッカーは利用できません。\n
                   - Modrinth, Legacy Curseforge では安定モードは利用できません。\n
                   - Curseforgeでは前提MODの自動ダウンロードは利用できません。(Legacy Curseforge の場合可能)\n
-                  - CurseforgeではSeleniumを使用したダウンロードは利用できません。(Legacy Curseforge の場合可能)\n
                   - マルチプロセスモードは実験段階です。''')
     ja_sm = gr.Checkbox(label="ダウンロードにMOD名を使用する", value=True)
-    ja_indata = gr.Textbox(label="ダウンロードするMODの名前 または URL", max_lines=50, placeholder="MODの名前を使用する場合は、MOD名を使用するを有効化してください", lines=10)
+    ja_indata = gr.Textbox(label="ダウンロードするMODの名前 または URL", max_lines=150, placeholder="MODの名前を使用する場合は、MOD名を使用するを有効化してください", lines=3)
     gr.Markdown("<br>")
     with gr.Row():
       ja_mcv = gr.Dropdown(label="Minecraftバージョン", choices=dl_mcver, value="1.12.2")
-      ja_tl = gr.Dropdown(label="ModLoader", choices=["Forge", "Fabric", "NeoForge"], value="Forge")
+      ja_tl = gr.Dropdown(label="ModLoader", choices=new_main.available_modloader, value="Forge")
     ja_se = gr.Radio(choices=["modrinth.com", "curseforge.com"], label="MOD名の検索に使用するサイト", value="curseforge.com")    
     with gr.Row():
       jasm = gr.Checkbox(label="安定モード (有効化した場合、時間がかかる)", value=False, visible=False)
       jamulti_count = gr.Slider(1, 5, value=1, label="マルチプロセス実行数 (1で無効化) (Experimental)", step=1)
-      jalegacy = gr.Checkbox(label="Legacy Curseforgeサイトを使う", value=True)
+      jalegacy = gr.Checkbox(label="Legacy Curseforgeサイトを使う", value=False)
     with gr.Row():
       jamultimode = gr.Checkbox(label="マルチプロセスモード (Experimental)", value=False, visible=False)
       adblock_path = gr.Textbox(label="広告ブロッカー拡張機能manifestパス", value="E:/System/ichika/AppData/Local/Google/Chrome/User Data/Default/Extensions/cjpalhdlnbpafiamejdnhcphjbkeiagm")

@@ -1,5 +1,5 @@
 # Syntax
-# "view_target": ["Title", "Trigger Word", "LoRA Model Name", "Template", "sample_image_path_list", "image generation data"]
+# "view_target": ["Title", "Trigger Word", "LoRA Model Name", "Template", "sample_image_path_list", "image generation data", "CivitAI URL"]
 dataset = {
   "incoming hug": ["Incoming hug/kiss", ["incoming hug", "incoming kiss"], "?", "None", r"https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/3c2b90b5-82da-44b3-6844-979bc83f8600/width=760/287365.jpeg", r"""incoming hug, 1girl, solo, grey background, medium breasts, dress, Negative prompt: (worst quality, low quality:1.3), (depth of field, blurry:1.2), (greyscale, monochrome:1.1), 3D face, nose, cropped, lowres, text, jpeg artifacts, signature, watermark, username, blurry, artist name, trademark, watermark, title, multiple view, Reference sheet, EasyNegative, head out of frame, nsfw, Steps: 25, ENSD: 31337, Size: 512x576, Seed: 3969544621, Model: AbyssOrangeMix2_nsfw, Sampler: Euler a, CFG scale: 7, Clip skip: 2, Model hash: 0873291ac5, Hires resize: 760x920, AddNet Enabled: True, AddNet Model 1: incominghug(a140f2a4b73f), Hires upscaler: lollypop, AddNet Module 1: LoRA, AddNet Weight A 1: 1, AddNet Weight B 1: 1, Denoising strength: 0.35""", "https://civitai.com/models/21388/incoming-hugkiss"], 
   "incoming kiss": ["Incoming kiss",

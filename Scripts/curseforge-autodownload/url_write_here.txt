@@ -1,29 +1,27 @@
 https://www.curseforge.com/minecraft/mc-mods/better-biome-blend | Better Biome Blend - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/better-fps-render-distance | Better Fps - Render Distance[Forge] - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/chunky-pregenerator-forge | Chunky (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/cull-particles | Cull Particles - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/drawerfps | DrawerFPS - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/dynamic-view | Dynamic View[Forge] - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/entity-culling | Entity Culling - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/entity-collision-fps-fix | Entity Collision FPS Fix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/fastsuite | FastSuite - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/ferritecore | FerriteCore (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/forgetmechunk | ForgetMeChunk - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/betterfps | BetterFps - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/clumps | Clumps - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/fastfurnace | FastFurnace - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/fastworkbench | FastWorkbench - Minecraft Mods - CurseForge
 https://www.curseforge.com/minecraft/mc-mods/get-it-together-drops | Get It Together, Drops! - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/hydrogen-reforged | HeIium - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/krypton-reforged | Krypton Reforged - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/ksyxis | Ksyxis - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/lazy-dfu-forge | Lazy DataFixerUpper(LazyDFU) [FORGE] - Minecraft Mods - CurseForge
 https://www.curseforge.com/minecraft/mc-mods/let-me-despawn | Let Me Despawn - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/lightspeedmod | Lightspeed - Launch optimizations - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/log-begone | Log Begone - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/magnesium-extras | Magnesium/Rubidium Extras - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/modernfix | ModernFix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/observable | Observable - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/out-of-sight | Out Of Sight - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/overworld-two-forge | Overworld Two (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/saturn | Saturn - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/smooth-boot-forge | Smooth Boot (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/spawner-fix | Spawner Bug Fix - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/starlight-forge | Starlight (Forge) - Minecraft Mods - CurseForge
-https://www.curseforge.com/minecraft/mc-mods/radon | Radon - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/nothirium | Nothirium - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/particle-culling | Particle Culling - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/performant | Performant - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/surge | Surge - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/vanillafix | VanillaFix - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/jei | Just Enough Items (JEI) - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer | Just Enough Resources (JER) - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/pams-harvestcraft | Pam's HarvestCraft - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/mystical-agriculture | Mystical Agriculture - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/patchouli | Patchouli - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/neat | Neat - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/datafixerslayer | DataFixerSlayer (improves RAM usage) - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/storage-drawers | Storage Drawers - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/chameleon | Chameleon - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/torchmaster | Torchmaster - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/crafting-tweaks | Crafting Tweaks - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/cucumber | Cucumber Library - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/mystical-agradditions | Mystical Agradditions - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/mystical-customization | Mystical Customization - Minecraft Mods - CurseForge
+https://www.curseforge.com/minecraft/mc-mods/itemphysic-lite | ItemPhysic Lite - Minecraft Mods - CurseForge

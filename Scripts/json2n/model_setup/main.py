@@ -12,6 +12,10 @@ Download_<MODEL_NAME><IS_NSFW> = False #@param {"type":boolean}
 3.
 if Download_<MODEL_NAME><IS_NSFW>:
   !cp -r <dir>/<TYPE>/<FILE_NAME>.<EXTENSION> <dir2>/<TYPE>/<FILE_NAME>.<EXTENSION>
+
+4.
+# "view_target": ["Title", "Trigger Word", "LoRA Model Name", "Template", "sample_image_path_list", "image generation data", "CivitAI URL"]
+
 """
 # ゴミ処理 + 定義
 import os

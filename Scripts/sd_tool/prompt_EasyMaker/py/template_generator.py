@@ -54,12 +54,14 @@ def template_gen(template_type, ch_n, face,
 
 def template_get(template_type):
   template_dict = jsoncfg.read("./dataset/template.json")
+  print(f"Returned dict: {template_dict}")
   
   if template_type in template_dict.keys():
     date = template_dict[template_type][1]
     
   else:
     raise ValueError(f"Template: {template_type}\nUnknown Template ID")
+  print(f"obtained_data: {date}")
   
   LORA, NAME, PROMPT, LOCATION, FACE = date[0], date[1], date[2], date[3], date[4]
   ex_prompt = template_dict[template_type][0]["Prompt"]
@@ -75,11 +77,15 @@ def template_get(template_type):
     "%FACE%", FACE
   )
   
-  return LORA, NAME, PROMPT, LOCATION, FACE, ex_prompt
+  IMAGE = template_dict[template_type][2]
+  SEED = template_dict[template_type][3]
+  print(f" File dir: {IMAGE}")
+  
+  return LORA, NAME, PROMPT, LOCATION, FACE, ex_prompt, IMAGE, SEED
 
 def example_view(template_type):
-  l, n, p, l, f, exp = template_get(template_type)
-  return l, n, p, l, f, exp
+  l, n, p, l, f, exp, image, seed = template_get(template_type)
+  return l, n, p, l, f, exp, image, seed
 
 
 file_path = "./dataset/template.json"

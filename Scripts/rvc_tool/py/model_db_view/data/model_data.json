@@ -1,0 +1,4 @@
+{
+  "Example_Syntax": ["Model_Name Config_name (From /rvc_tool/py/model_db_view/data/model_config/)"],
+  "phase1_ichika2-1.pth": ["phase1_ichika2-1"]
+}
