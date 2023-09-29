@@ -7,7 +7,7 @@ if __name__ == "__main__":
     
     try:
         x = int(x)
-    except ValueError:
+    except Exception:
         print("Light Levelの値は整数にしてください。")
         time.sleep(3)
         subprocess.run("run.bat")
@@ -28,7 +28,7 @@ def Function_mode(light_level):
   x = light_level
   try:
     x = int(x)
-  except ValueError:
+  except Exception:
       print("Light Levelの値は整数にしてください。")
       time.sleep(3)
       subprocess.run("run.bat")

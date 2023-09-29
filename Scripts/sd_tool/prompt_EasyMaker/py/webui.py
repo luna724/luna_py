@@ -1,6 +1,7 @@
 import gradio as gr
 # import WHB_generator as whbgen
 # import Masturbation_generator as mastgen
+import importlib
 import tentacle_clothes as tcgen
 import log_writer as log_writer
 import simple_generator as data
@@ -9,8 +10,23 @@ import base_generator as bg
 import lora_info_viewer as liv
 import multiple_generating as mg
 import template_generator as tg
+import checkpoint_info_viewer as civ
+
+def reload_module():
+  importlib.reload(tcgen)
+  importlib.reload(log_writer)
+  importlib.reload(data)
+  importlib.reload(te)
+  importlib.reload(bg)
+  importlib.reload(liv)
+  importlib.reload(mg)
+  importlib.reload(tg)
+  importlib.reload(civ)
+  print("Module Reload Successfully Completed!")
 
 with gr.Blocks() as itrmain:
+  rld_ui_btn = gr.Button("Reload jsondata",size="sm")
+  rld_ui_btn.click(fn=reload_module)
   gr.Markdown("Colab: https://colab.research.google.com/drive/1NJJrxjKK3YzfiElHrmS2AmzXv65Y38TR#scrollTo=TmcYoEe8dFK9")
   # with gr.Tab("WHB_Generator"):
   #   whbgen_chname = gr.Textbox(label="Charactor Prompt Name")
@@ -182,23 +198,57 @@ with gr.Blocks() as itrmain:
         bg_log_del.click(fn=log_writer.delete,
                            inputs=bg_file
                            )
-  with gr.Tab("Lora Info Viewer"):
-    with gr.Row():
-      liv_sbox = gr.Textbox(label="Filtering", placeholder="search..")
-      liv_search = gr.Button("View Available")
-    liv_result = gr.Markdown("Match Search Result")
-    
-    liv_btn = gr.Button("View")
-    
-    liv_rmd = gr.Markdown("")
-    liv_rhtml = gr.HTML("")
-    liv_type = gr.Checkbox(value=True, visible=False)
-    liv_btn.click(fn=liv.main,
-                  inputs=liv_sbox,
-                  outputs=[liv_rmd, liv_rhtml])
-    liv_search.click(fn=liv.search_filtering,
-                       inputs=[liv_sbox, liv_type],
-                       outputs=liv_result)
+  with gr.Tab("Model Info Viewer"):
+    with gr.Tab("Lora Info Viewer"):
+      with gr.Row():
+        liv_sbox = gr.Textbox(label="Filtering", placeholder="search..")
+        liv_search = gr.Button("View Available")
+      liv_result = gr.Markdown("Match Search Result")
+      
+      liv_btn = gr.Button("View")
+      
+      liv_rmd = gr.Markdown("")
+      liv_rhtml = gr.HTML("")
+      liv_type = gr.Checkbox(value=True, visible=False)
+      liv_btn.click(fn=liv.main,
+                    inputs=liv_sbox,
+                    outputs=[liv_rmd, liv_rhtml])
+      liv_search.click(fn=liv.search_filtering,
+                        inputs=[liv_sbox, liv_type],
+                        outputs=liv_result)
+    with gr.Tab("Checkpoint Info Viewer"):
+      with gr.Row():
+        civ_sbox = gr.Textbox(label="Filtering", placeholder="search..")
+        civ_search = gr.Button("View Filtering Result")
+      civ_result = gr.Markdown("\\-")
+      
+      civ_btn = gr.Button("View Information")
+      
+      with gr.Blocks():
+        civ_rmd_up = gr.Markdown("")
+        
+        with gr.Row():
+          civ_rmd_simply = gr.Markdown("")
+          civ_simply_img = gr.Image()
+          
+        with gr.Row():
+          civ_rmd_cute = gr.Markdown("")
+          civ_cute_img = gr.Image()
+        
+        with gr.Row():
+          civ_rmd_rnd = gr.Markdown("")
+          civ_rnd_img = gr.Image()
+          
+        civ_rmd_down = gr.Markdown("")
+        
+      civ_btn.click(fn=civ.view,inputs=[civ_sbox],
+                    outputs=[civ_rmd_up,civ_rmd_simply,
+                              civ_simply_img, civ_rmd_cute,
+                              civ_cute_img, civ_rmd_rnd, civ_rnd_img,
+                              civ_rmd_down])
+      civ_search.click(fn=civ.search,
+                       inputs=[civ_sbox],
+                       outputs=[civ_result])
   
   with gr.Tab("Multiple Generating"):
     ext_mode = gr.Radio(label="Extension Mode", choices=["Latent Couple", "MultiDiffusion"])
@@ -305,7 +355,7 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt],
         do_ss = gr.Slider(0, 125, label="Sampling Steps", value=24)
       
       with gr.Row():
-        do_w = gr.Slider(0, 2048, label="Width", vale=512)
+        do_w = gr.Slider(0, 2048, label="Width", value=512)
         do_h = gr.Slider(0, 2048, label="Height", value=768)
         do_res = gr.Textbox(label="Resolution", placeholder="(512×768)")
       

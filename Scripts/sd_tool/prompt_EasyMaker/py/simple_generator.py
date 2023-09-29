@@ -202,7 +202,7 @@ def get_data(data, return_mode="WebUI" # or DICT
         else:
           print("ADetailerは検出されませんでした")
           ad_show = False
-          ad_model, ad_prompt, ad_neg, ad_conf, ad_mask, ad_denoise, ad_ver = "" 
+          ad_model, ad_prompt, ad_neg, ad_conf, ad_mask, ad_denoise, ad_ver = "", "", "", "", "", "", ""
           
     #else:
       #raise ValueError("date の帰り値が > 2 です。")
