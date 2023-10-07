@@ -55,7 +55,7 @@ def launch(mcver, cd=1):
                 else:
                     print(f"{url}\nThis URL was excluded because it is not a Minecraft MOD")
             # pre処理後の処理
-            pre = f"{url}files?version={mcver}"
+            pre = f"{url}files?gameVersionTypeId=1&version={mcver}"
             print(f"Open URL Set: {pre}")
             openwith_def.append(pre)
                 # URLを変化させ、保存
