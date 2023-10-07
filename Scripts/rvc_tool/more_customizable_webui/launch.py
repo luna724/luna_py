@@ -35,7 +35,7 @@ def prepare_enviroment():
     sys.argv, reinstall_torch = rvc.extract_arg(sys.argv, "--reinstall-torch")
     ngrok = False
 
-    if reinstall_torch or not rvc.is_installed("torch") or not is_installed("torchaudio"):
+    if reinstall_torch or not rvc.is_installed("torch") or not rvc.is_installed("torchaudio"):
         rvc.run(
             f'"{python}" -m {torch_command}',
             "Installing torch and torchaudio",

@@ -254,78 +254,75 @@ with gr.Blocks() as itrmain:
     ext_mode = gr.Radio(label="Extension Mode", choices=["Latent Couple", "MultiDiffusion"])
     
     with gr.Blocks():
-      with gr.Accordion("Latent Couple"):
+      with gr.Blocks():
         with gr.Blocks():
-          with gr.Blocks():
-            gr.Markdown("Overall Prompt Date")
-            lmg_ov_location = gr.Textbox(label="Location Prompt")
-            lmg_ov_quality_prompt = gr.Checkbox(label="Quality Prompt", value=True)
-          
-          with gr.Blocks():
-            gr.Markdown("Charactor 1 Prompt Date")
-            lmg_c1_chn =  gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
-            lmg_c1_cloth = gr.Textbox(label="Charactor Clothing")
-            lmg_c1_add = gr.Textbox(label="Additional Prompt")
-          
-          with gr.Blocks():
-            gr.Markdown("Charactor 2 Prompt Date")
-            lmg_c2_chn = gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
-            lmg_c2_cloth = gr.Textbox(label="Charactor Clothing")
-            lmg_c2_add = gr.Textbox(label="Additional Prompt")
-          
-          lmg_btn = gr.Button("Generate")
-          lmg_out = gr.Textbox(label="Prompt", placeholder="Outputs Here..")
-          
-          lmg_btn.click(fn=mg.latent_couple,
-                        inputs=[lmg_c1_chn,
+          gr.Markdown("Overall Prompt Data")
+          lmg_ov_location = gr.Textbox(label="Location Prompt")
+          lmg_ov_quality_prompt = gr.Checkbox(label="Quality Prompt", value=True)
+        
+        with gr.Blocks():
+          gr.Markdown("Charactor 1 Prompt Data")
+          lmg_c1_chn =  gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
+          lmg_c1_cloth = gr.Textbox(label="Charactor Clothing")
+          lmg_c1_add = gr.Textbox(label="Additional Prompt")
+        
+        with gr.Blocks():
+          gr.Markdown("Charactor 2 Prompt Data")
+          lmg_c2_chn = gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
+          lmg_c2_cloth = gr.Textbox(label="Charactor Clothing")
+          lmg_c2_add = gr.Textbox(label="Additional Prompt")
+        
+        lmg_btn = gr.Button("Generate")
+        lmg_out = gr.Textbox(label="Prompt", placeholder="Outputs Here..")
+        
+        lmg_btn.click(fn=mg.launch,
+                      inputs=[lmg_c1_chn,
 lmg_c1_cloth, lmg_c1_add, lmg_c2_chn, lmg_c2_cloth,
-lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt],
-                        outputs=lmg_out)
-      
-      with gr.Column(visible=False) as multidiffusion:
-        hello = "Hello"
+lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
+                      outputs=lmg_out)
     
   with gr.Tab("Many Type Generator"):
-    gr.Markdown("Type from \"/dataset/template.json\"")
-    
-    with gr.Blocks():
-      tg_type = gr.Dropdown(choices=tg.key_list, label="Target Template", value="Example")
-      tg_preview = gr.Button("Preview This Template")
-    
-    gr.Markdown("<br>")
-    with gr.Blocks():
-      tg_charactor = gr.Radio(choices=data.available_name, label="Charactor Name (Template)", value="original")
-      with gr.Row():
-        tg_lora = gr.Textbox(label="Charactor LoRA NAME")
-        tg_name = gr.Textbox(label="Charactor Prompt Name")
-      with gr.Row():
-        tg_prompt = gr.Textbox(label="Charactor Prompt")
-        tg_location = gr.Textbox(label="Draw Location (Location)")
-      with gr.Row():
-        tg_face = gr.Textbox(label="Charactor Face Prompt")
-        tg_add = gr.Textbox(label="Charactor Additional Prompt")
-    
-    gr.Markdown("<br>")
-    with gr.Blocks():
-      tg_example = gr.Textbox(label="Example Prompt")
-      with gr.Accordion("Example Image", open=False):
-        tg_img = gr.Image()
+    with gr.Tab("Single Mode"):
+      gr.Markdown("Type from \"/dataset/template.json\"")
+      
+      with gr.Blocks():
+        tg_type = gr.Dropdown(choices=tg.key_list, label="Target Template", value="Example")
+        tg_preview = gr.Button("Preview This Template")
+      
+      gr.Markdown("<br>")
+      with gr.Blocks():
+        tg_charactor = gr.Radio(choices=data.available_name, label="Charactor Name (Template)", value="original")
         with gr.Row():
-          gr.Markdown("Seed")
-          tg_seed = gr.Markdown("-1")
-      gr.Markdown("<br>")
-      tg_output = gr.Textbox(label="Prompt")
-      tg_out_neg = gr.Textbox(label="Negative")
+          tg_lora = gr.Textbox(label="Charactor LoRA NAME")
+          tg_name = gr.Textbox(label="Charactor Prompt Name")
+        with gr.Row():
+          tg_prompt = gr.Textbox(label="Charactor Prompt")
+          tg_location = gr.Textbox(label="Draw Location (Location)")
+        with gr.Row():
+          tg_face = gr.Textbox(label="Charactor Face Prompt")
+          tg_add = gr.Textbox(label="Charactor Additional Prompt")
       
       gr.Markdown("<br>")
-      tg_btn = gr.Button("Generate")
-      
-    tg_preview.click(fn=tg.example_view, inputs=tg_type, 
-                    outputs=[tg_lora, tg_name, tg_prompt,
-                            tg_location, tg_face, tg_example, tg_img, tg_seed])
-    tg_btn.click(fn=tg.template_gen,
-                inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_add],
-                outputs=[tg_output, tg_out_neg])
+      with gr.Blocks():
+        tg_example = gr.Textbox(label="Example Prompt")
+        with gr.Accordion("Example Image", open=False):
+          tg_img = gr.Image()
+          with gr.Row():
+            gr.Markdown("Seed")
+            tg_seed = gr.Markdown("-1")
+        gr.Markdown("<br>")
+        tg_output = gr.Textbox(label="Prompt")
+        tg_out_neg = gr.Textbox(label="Negative")
+        
+        gr.Markdown("<br>")
+        tg_btn = gr.Button("Generate")
+        
+      tg_preview.click(fn=tg.example_view, inputs=tg_type, 
+                      outputs=[tg_lora, tg_name, tg_prompt,
+                              tg_location, tg_face, tg_example, tg_img, tg_seed])
+      tg_btn.click(fn=tg.template_gen,
+                  inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_add],
+                  outputs=[tg_output, tg_out_neg])
   
   with gr.Tab("Data Opener"):
     with gr.Column(visible=False):
@@ -368,5 +365,16 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt],
     do_btn.click(fn=data.get_data,
                  inputs=[do_indata, do_return_mode],
                  outputs=[do_cp, do_pr, do_neg, do_res, do_se, do_cfg, do_cs, do_ss, do_sr, do_time, do_w, do_h])
-    
+  with gr.Tab("Dataset"):
+    with gr.Tab("Basic Generation Data"):
+      gr.Textbox(label="Negative Prompt",
+                value=data.basic_negative)
+      gr.Textbox(
+        label="ADetailer Prompt",
+        value = data.basic_adetailer_p
+      )
+      gr.Textbox(
+        label="ADetailer Negative",
+        value= data.basic_adetailer_neg
+      )
 itrmain.launch(inbrowser=True, server_port=25566)

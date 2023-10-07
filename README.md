@@ -16,6 +16,7 @@
 | Light Changer | v1.0 | QoL |
 | SD Tool | v1.0 | QoL |
 | RVC Tool | v1.0 | QoL |
+| RVC webUI | v0 | QoL |
 | json To Something | v1.1 | Converter |
 | lunapy GradioUI | v1.0pre5 | QoL |
 
@@ -37,31 +38,25 @@ FFmpeg, SoX, Google Tesseract, ChromeDriver, cWebp
   - More Customizable WebUI
     - ddPn08氏による UI に追加してLRやその他いろいろと設定を行うことが可能なUI
     - まだゴミみたいな性能
-    - 実装予定やらなんやらは Issue #7 を参照
+    - 実装予定やらなんやらは Issue #5 を参照
+    - RVC WebUI に移動
 
-- Curseforge Autodownload v2.6
-  - CurseforgeにてModLoaderの指定をサポート (Forge, Fabric, NeoForge, Quilt)
-  - WebUIを見やすく
-  - 安定モードをデフォルトでオンに
-
-- json to Something (Scripts/json2n/*) v1.1
-  - model_setup v1.1
-    - Colabで使用しているテンプレートコードをjsonデータを使用して作成する
-    - Lora / LyCORIS / Checkpoint に対応
-    - SD Tool - Lora Info Viewer に対応
-    - lunapy (LGS) に依存するように変更 (コードが短く)
+- RVC webUI v0
+  - 実装アイテムやらなんやら [Issue #5](https://github.com/luna724/luna_py/issues/5)
 
 - SD Tool (Scripts/sd_tool/*) v1.0
-  - prompt_EasyMaker β2.4
-    - Stable-Diffusionのプロンプトの生成を補助する
-    - 簡易的なプロンプトしか生成できなかったり性癖の塊みたいになっている
-    - 生成したプロンプトの保存 (.txt) をサポート
-    - WebUIのみサポート
-  
-  - directory_unzipper (NOT RELEASED)
-    - gdriveからダウンロードした際のディレクトリ構造からもっと見やすい構造に変換する
-    - [変換形式](lunamemo/sd_tool.directory_unzipper.beforafter_view.md)
-    - 現在はとても使える代物ではない
+  - prompt_EasyMaker β2.5
+    - Multiple Generation (Multidiffusion)のサポート
+    - プロンプトデータセットの追加
+    - Data Openerにてプロンプトに改行が含まれている場合正常に動作しない問題を修正
+    - Template Generator (Two shot Mode) を追加
+  - first_setup (NOT RELEASED)
+    - WebUIが /content/stable-diffusion-webui/ にある場合にのみ初期情報を設定するもの
+    - Negative, ADetailer Prompt, ADetailer Negative, Hires.fix にのみ対応予定
+
+- json2n/model_setup v1.2
+  - VAEのサポート
+  - Checkpoint Information Viewer のサポート
 
 -----------
 

@@ -42,10 +42,11 @@ def opener(text):
   resolution = f"{width}x{height}"
   
   # Prompt, Neg
-  pattern_neg = r"Negative prompt: (.+)"
+  pattern_neg = r"\nNegative prompt: (.+)"
+  pattern_p = r"(.*)\nNegative prompt: "
   
-  prompt = text.split("\n")[0]
-  negative = none_checker(re.findall(pattern_neg, text.split("\n")[1]))
+  prompt = none_checker(re.findall(pattern_p, text))
+  negative = none_checker(re.findall(pattern_neg, text))
   
   # SDCP
   print("WARN: Checkpoint Model Check is Only ONE Models Detectable")

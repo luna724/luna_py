@@ -3,7 +3,8 @@ available_name = ["original", "ichika", "luna",
                   "midori", "momoi", "shiroko", "klee",
                   "barbara", "saki", "shiho", "honami",
                   "minori", "haruka", "airi", "shizuku",
-                  "kohane", "ann", "shefi", "natsu", "serina", "neneka", "nahida", "aisha landar"
+                  "kohane", "ann", "shefi", "natsu", "serina", "neneka", "nahida", "aisha landar",
+                  "nozomi", "karyl"
                   ]
 
 
@@ -16,8 +17,8 @@ charactor_lora = { # [Loraモデル, キャラ名]
   "luna": ["<lora:ichika3:0.4>", "ichika"],
   "emu": ["<lora:OtoriEmu:1.0>", "wdhemu"],
   "nene": ["<lora:NotKyo:1.0>", "nene"],
-  "kanade": ["<lora:YoisakiKanade:1.0>", "yoka"],
-  "mizuki": ["<lora:AkiyamaMizuki:1.0>", "mizuki"],
+  "kanade": ["<lora:kanade:0.982>", "yoka"],
+  "mizuki": ["<lora:AkiyamaMizukiV1:0.895>", "mizuki"],
   "hoshino": ["<lora:hoshino1:1.0>", "hoshinornd"],
   "midori": ["<lora:midori1:1.0>", "midorirnd"],
   "shiroko": ["<lora:shiroko1:1.0>", "shirokornd"],
@@ -39,7 +40,9 @@ charactor_lora = { # [Loraモデル, キャラ名]
   "serina": ["", "serinarnd"],
   "neneka": ["", "nenekarnd"],
   "nahida": ["<lora:nahida1:1.0>", "nahidarnd"],
-  "aisha landar": ["", "aisha"]
+  "aisha landar": ["", "aisha"],
+  "nozomi": ["<lora:sakurai_nozomi_prcn:1.0>", "nozomi"],
+  "karyl": ["","karyl"]
 }
 
 charactor_prompt = {
@@ -70,7 +73,9 @@ charactor_prompt = {
   "serina": "",
   "neneka": "pink hair, twintails, small breasts",
   "nahida": "lustrous skin, silver hair, side ponytail, long hair, green eyes, medium breasts, cape",
-  "aisha landar": "purple hair, purple eyes"
+  "aisha landar": "purple hair, purple eyes",
+  "nozomi": "nozomi_routine",
+  "karyl": "two-tone hair, low twintails, white veil, hairband, ((green eyes, fang, cat tail, black hair, cat ears)), karyldd"
 }
 
 # この下は趣旨プロンプト
@@ -78,6 +83,15 @@ cat = 'cat ears, cat tail'
 ocean_back = 'open beach, ocean, sun, water, beach'
 orgasm_plus = '((orgasm, blush, full blush, sad, crying:1.2))'
 
+# 基礎データセット
+basic_negative = 'EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, penis)))'
+basic_adetailer_p = '(best quality)++, (masterpiece)++, (kawaii:1.1), cute, baby face:0.6, Consistent and proportionate facial features, High-Quality facial textures'
+basic_adetailer_neg = '(bad anatomy:1.4), (distorted features:1.1), (realistic:1.1), (low quality, worst quality:1.1), lips, unclear face, Distorted facial features, Jagged lines in faces'
+
+
+prompt_format = {
+  "blush+": "blush, shy, looking at away"
+}
 
 face_type_list = ["blush", "blush+", "orgasm", "smile"]
 def facetype(type):
@@ -149,14 +163,6 @@ class jsonconfig():
       return date
 jsoncfg = jsonconfig()
 
-import log_writer as lw
-def final_process(p, logfile):
-  nocp = delete_duplicate_comma(p)
-  md_formatted_p = nocp.replace("<", "\\<").replace(">", "\\>")
-  return_prompt = nocp
-  lw.w(logfile, nocp, "")
-  return md_formatted_p, return_prompt
-
 import data_opener as data_analyzer
 def get_data(data, return_mode="WebUI" # or DICT
             ):
@@ -212,4 +218,27 @@ def get_data(data, return_mode="WebUI" # or DICT
   
         
   
-  
+# プロンプトセットに基づき変換
+def prompt_formatter(prompt):
+  if not prompt.count("%") > 0:
+    print("Not Found Formatting.\nSkipping Convert")
+    return prompt
+  else:
+    # 変換!
+    for k, d in prompt_format:
+      prompt = prompt.replace(f"%{k}%", d)
+      
+    # Example 
+    # %blush+%,
+    # ->
+    # blush, shy, looking at away,
+    
+
+import log_writer as lw
+def final_process(p, logfile):
+  nocp = delete_duplicate_comma(p)
+  nocp = prompt_formatter(nocp)
+  md_formatted_p = nocp.replace("<", "\\<").replace(">", "\\>")
+  return_prompt = nocp
+  lw.w(logfile, nocp, "")
+  return md_formatted_p, return_prompt

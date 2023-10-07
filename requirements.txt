@@ -20,3 +20,6 @@ mutagen
 selenium==3.14.1
 tqdm
 openai
+scenedetect
+cv2
+opencv
