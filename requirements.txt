@@ -4,7 +4,6 @@ requests
 pyautogui
 jupyter
 ffmpeg-python
-pywin32
 pyaudio
 pydub
 pytesseract
@@ -21,5 +20,4 @@ selenium==3.14.1
 tqdm
 openai
 scenedetect
-cv2
 opencv
