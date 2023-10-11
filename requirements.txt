@@ -21,3 +21,4 @@ tqdm
 openai
 scenedetect
 opencv
+soundfile

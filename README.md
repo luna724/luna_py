@@ -16,7 +16,7 @@
 | Light Changer | v1.0 | QoL |
 | SD Tool | v1.0 | QoL |
 | RVC Tool | v1.0 | QoL |
-| RVC WebUI | v0 | QoL |
+| RVC WebUI | v0.1 | QoL |
 | json To Something | v1.1 | Converter |
 | lunapy GradioUI | v1.0pre5 | QoL |
 
@@ -38,14 +38,9 @@
 
 ## Changelogs (v1.1.0pre12)
 
-- RVC Tool v1.0
-  - More Customizable WebUI
-    - root/rvc_webui に移動
-    - それに伴い名前を RVC Tool/More Customizable WebUI -> RVC WebUI
-
-- RVC WebUI v0
-  - 実装アイテムやらなんやら [Issue #5](https://github.com/luna724/luna_py/issues/5)
-  - 
+- RVC WebUI v0.1
+  - ALL Changelogs [Issue #5](https://github.com/luna724/luna_py/issues/5)
+  - とりあえず Commit
 
 -----------
 
