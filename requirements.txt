@@ -22,3 +22,4 @@ openai
 scenedetect
 opencv
 soundfile
+aria2p

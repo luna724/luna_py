@@ -27,6 +27,7 @@
 - [`FFmpeg`](https://ffmpeg.org/)
 - [`SoX`](https://sox.sourceforge.net/)
 - [`ChromeDriver`](https://chromedriver.chromium.org)
+- [`Aria2`](https://github.com/aria2/aria2)
 - [`Google / Tessseract`](https://github.com/tesseract-ocr/tesseract)
 - [`ddPn08 / RVC-WebUI`](https://github.com/ddPn08/rvc-webui)
 
@@ -38,9 +39,8 @@
 
 ## Changelogs (v1.1.0pre12)
 
-- RVC WebUI v0.1
+- RVC WebUI v0.2
   - ALL Changelogs [Issue #5](https://github.com/luna724/luna_py/issues/5)
-  - とりあえず Commit
 
 -----------
 

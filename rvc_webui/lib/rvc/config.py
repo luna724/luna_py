@@ -7,12 +7,14 @@ class TrainConfigTrain(BaseModel):
     log_interval: int
     seed: int
     epochs: int
-    learning_rate: float
+    learning_rate_g: float
+    learning_rate_d: float
     betas: List[float]
     eps: float
     batch_size: int
     fp16_run: bool
-    lr_decay: float
+    lr_decay_g: float
+    lr_decay_d: float
     segment_size: int
     init_lr_ratio: int
     warmup_epochs: int

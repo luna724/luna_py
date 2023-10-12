@@ -1,36 +1,35 @@
-<h1 align="center">RVC-WebUI</h1>
 <div align="center">
 <p>
 
-[`liujing04/Retrieval-based-Voice-Conversion-WebUI`](https://github.com/liujing04/Retrieval-based-Voice-Conversion-WebUI) reconstruction project
+[`liujing04/Retrieval-based-Voice-Conversion-WebUI`](https://github.com/liujing04/Retrieval-based-Voice-Conversion-WebUI)
+[`ddPn08/rvc-webui`](https://github.com/ddPn08/rvc-webui)
+reconstruction project
 
 </p>
 </div>
-
----
-
-<div align="center">
-<p>
-
-[日本語](README-ja.md) | [English](README.md)
-
-</p>
-</div>
-
-<br >
 
 # Launch
 
 ## Windows
-Double click `webui-user.bat` to start the webui.
+Install aria2c and add to SystemPATH
 
-## Linux or Mac
-Run `webui.sh` to start the webui.
+Double click `webui-user.bat` to start the webui.
+(NOT Tested / Supported)
+
+## Mac (or Linux)
+Run `webui.sh` to start the webui. (Not supported)
+
+## Linux
+launch `launch.py` to start UI [Example](./luna/colab.ipynb)
 
 <br >
 
 ```
-Tested environment: Windows 10, Python 3.10.9, torch 2.0.0+cu118
+Tested environment: Google Colab (2023/10/12 ~ 2023/10/12) GPU: Tesla T4, Tesla V100
+
+and
+
+Windows 11, Python 3.10.9, CUDA: None, GPU: None
 ```
 
 <br >
@@ -50,5 +49,8 @@ Run the installer and select `C++ Build Tools` in the `Workloads` tab.
 <br >
 
 # Credits
+- [`ddPn08/rvc-webui`](https://github.com/ddPn08/rvc-webui)
 - [`liujing04/Retrieval-based-Voice-Conversion-WebUI`](https://github.com/liujing04/Retrieval-based-Voice-Conversion-WebUI)
 - [`teftef6220/Voice_Separation_and_Selection`](https://github.com/teftef6220/Voice_Separation_and_Selection)
+- [`NaJeongMo/Colaboratory-Notebook-for-Ultimate-Vocal-Remover`](https://github.com/NaJeongMo/Colaboratory-Notebook-for-Ultimate-Vocal-Remover)
+- [`Anjok07/ultimatevocalremovergui`](https://github.com/Anjok07/ultimatevocalremovergui)

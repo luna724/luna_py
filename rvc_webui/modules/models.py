@@ -30,7 +30,9 @@ EMBEDDINGS_LIST = {
         "local"
     ),
     "hubert": (
-        ""
+        "rinna_hubert_base_jp.pt",
+        "hubert-base-japanese",
+        "local"
     )
 }
 

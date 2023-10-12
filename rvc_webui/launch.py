@@ -132,8 +132,7 @@ def start():
     subprocess.run(
         [python, "webui.py", *sys.argv[1:]],
     )
-
-
+    
 if __name__ == "__main__":
     prepare_environment()
     start()

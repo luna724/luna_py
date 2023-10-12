@@ -1,6 +1,7 @@
 import os
 
 from modules import cmd_opts, ui
+from luna.lib.models.download import download_model
 
 # なんか知らんが湧いて出てくる ".DS_Store"　を無視する。
 # ここにこんなコードを置くべきかはわからないけど…
@@ -23,4 +24,5 @@ def webui():
 
 
 if __name__ == "__main__":
+    download_model()
     webui()

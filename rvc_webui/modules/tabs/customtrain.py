@@ -9,7 +9,7 @@ from typing import *
 
 # >_< 
 from modules.ui import Tab
-from modules.shared import ROOT_DIR, MODELS_DIR
+from modules.shared import ROOT_DIR, MODELS_DIR, device
 from modules import models, utils
 from lib.rvc.train import create_dataset_meta, glob_dataset, train_index, train_model
 from lib.rvc.preprocessing import extract_f0, extract_feature, split
@@ -35,7 +35,9 @@ class Customtrain(Tab):
           augment_from_pretrain,
           augment_type,
           learning_rate,
+          learning_rate_d,
           lr_decay,
+          lr_decay_d,
           lr_decay_function,
           embed_channel,
           embedding_out_layer,
@@ -130,6 +132,46 @@ class Customtrain(Tab):
         embedder_name=embedder
       )
       
+      if embedder_load_from == "local":
+        embedder_filepath = os.path.join(
+          MODELS_DIR, "embeddings", embedder_filepath
+        )
+      
+      extract_feature.run(
+        training_dir,
+        embedder_filepath,
+        embedder_load_from,
+        int(embed_channel),
+        int(embedding_out_layer),
+        gpu_ids,
+        None if len(gpu_ids) > 1 else device,
+      )
+
+      create_dataset_meta(training_dir, f0)
+      
+      yield "Training Model.."
+      
+      print(f"Customized Training: emb_name: {embedder}")
+      
+      # lrとかの設定
+      
+      
+      config = utils.load_config(
+        model_ver, training_dir, target_sr, embed_channel, fp16 
+      )
+      out_dir = os.path.join(MODELS_DIR, "checkpoints")
+      
+      if not augment_from_pretrain:
+        augment_path = None
+        speaker_info_path = None
+      
+      train_model(
+        gpu_ids,
+        config,
+        
+      )
+    
+    
     uicfg = update()
     
     with gr.Group():
@@ -171,12 +213,22 @@ class Customtrain(Tab):
         with gr.Accordion("Model Param",open=True):
           with gr.Row():
             learning_rate = gr.Number(
-              label="Learning Rate",
+              label="Generator Learning Rate",
+              placeholder="0.0001",
+              value=uicfg.lr
+            )
+            lr_d = gr.Number(
+              label="Discriminator Learning Rate",
               placeholder="0.0001",
               value=uicfg.lr
             )
             lr_decay = gr.Number(
-              label="LR Decay Rate",
+              label="Generator LR Decay Rate",
+              placeholder="0.999875",
+              value=uicfg.lr_decay
+            )
+            lr_decay_d = gr.Number(
+              label="Discriminator LR Decay Rate",
               placeholder="0.999875",
               value=uicfg.lr_decay
             )
@@ -380,7 +432,9 @@ class Customtrain(Tab):
           augment_from_pretrain,
           augment_type,
           learning_rate,
+          lr_d,
           lr_decay,
+          lr_decay_d,
           lr_decay_function,
           embed_channel,
           embedding_out_layer,

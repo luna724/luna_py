@@ -42,3 +42,11 @@ if not torch.cuda.is_available():
         device = "cpu"
 
 device = torch.device(device)
+
+def check_linux():
+    if os.name != "posix":
+        return False  
+    else:
+        return True
+
+is_linux = check_linux()

@@ -534,13 +534,13 @@ def training_runner(
 
     optim_g = torch.optim.AdamW(
         net_g.parameters(),
-        config.train.learning_rate,
+        config.train.learning_rate_g,
         betas=config.train.betas,
         eps=config.train.eps,
     )
     optim_d = torch.optim.AdamW(
         net_d.parameters(),
-        config.train.learning_rate,
+        config.train.learning_rate_d,
         betas=config.train.betas,
         eps=config.train.eps,
     )
@@ -663,10 +663,10 @@ def training_runner(
         net_d = DDP(net_d, device_ids=[rank])
 
     scheduler_g = torch.optim.lr_scheduler.ExponentialLR(
-        optim_g, gamma=config.train.lr_decay, last_epoch=epoch - 2
+        optim_g, gamma=config.train.lr_decay_g, last_epoch=epoch - 2
     )
     scheduler_d = torch.optim.lr_scheduler.ExponentialLR(
-        optim_d, gamma=config.train.lr_decay, last_epoch=epoch - 2
+        optim_d, gamma=config.train.lr_decay_d, last_epoch=epoch - 2
     )
 
     scaler = GradScaler(enabled=config.train.fp16_run)

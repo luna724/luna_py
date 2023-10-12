@@ -1,0 +1,23 @@
+{
+  "Example": {"MODEL": "model_name",
+              "URL": "url",
+              "PATH": "download_path (os.path.join)"},
+  "rmvpe": {"MODEL": "rmvpe.pt",
+            "URL": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/rmvpe.pt",
+            "PATH": ["models", "luna"]},
+  "f0G48k": {"MODEL": "f0G48k.pth",
+            "URL": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained/f0G48k.pth",
+            "PATH": ["models", "pretrained"]},
+  "f0D48k": {"MODEL": "f0D48k.pth",
+            "URL": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained/f0D48k.pth",
+            "PATH": ["models", "pretrained"]},
+  "f0G32k": {"MODEL": "f0G32k.pth",
+            "URL": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained/f0G32k.pth",
+            "PATH": ["models", "pretrained"]},
+  "f0D32k": {"MODEL": "f0D32k.pth",
+            "URL": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/pretrained/f0D32k.pth",
+            "PATH": ["models", "pretrained"]},
+  "HuBERT": {"MODEL": "hubert_base.pt",
+            "URL": "https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/hubert_base.pt",
+            "PATH": ["models", "embeddings"]}
+}

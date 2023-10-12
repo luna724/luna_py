@@ -18,3 +18,5 @@ Flask==2.3.2
 tensorboard
 tensorboardX
 requests
+
+aria2p
