@@ -1,0 +1,3 @@
+{ 
+  "Template Name": [{"Prompt": "プロンプト", "Negative": "ネガティブプロンプト (Optional)"}, ["プレビューにて%LORA%へ代入される値 (Optional)", "%CH_NAME%", "%CH_PROMPT%", "%LOCATION%", "%FACE%"], "プレビューサンプル画像相対パス (./py) (Optional)", "サンプル画像シード (Optional)"]
+}

@@ -11,7 +11,7 @@
 #
 
 import simple_generator as data
-from simple_generator import charactor_check, final_process 
+from simple_generator import charactor_check, final_process, get_loraweight
 from simple_generator import jsoncfg
 
 def template_gen(template_type, ch_n, face,
@@ -29,17 +29,40 @@ def template_gen(template_type, ch_n, face,
   else:
     raise ValueError(f"Template: {template_type}\nUnknown Template ID")
   
-  fprompt = p.replace(
-    "%LORA%", LORA
-  ).replace(
-    "%CH_NAME%", NAME
-  ).replace(
-    "%CH_PROMPT%", PROMPT
-  ).replace(
-    "%LOCATION%", location
-  ).replace(
-    "%FACE%", face
-  )
+  if "%LORA%" in p:
+    fprompt = p.replace(
+      "%LORA%", LORA
+    ).replace(
+      "%CH_NAME%", NAME
+    ).replace(
+      "%CH_PROMPT%", PROMPT
+    ).replace(
+      "%LOCATION%", location
+    ).replace(
+      "%FACE%", face
+    )
+  
+  
+  elif "%LORA:" in p:
+    fprompt = p.replace(
+      "%CH_NAME%", NAME
+    ).replace(
+      "%CH_PROMPT%", PROMPT
+    ).replace(
+      "%LOCATION%", location
+    ).replace(
+      "%FACE%", face
+    )
+    
+    lw, replacefrom = get_loraweight(fprompt)
+    
+    fprompt = fprompt.replace(
+      replacefrom, f"{LORA}$WEIGHT"
+    )
+    
+    fprompt = fprompt.replace(
+      ":1.0>$WEIGHT", ":{}>".format(lw)
+    )
   
   # Additional を追加
   fprompt += f", {additional}"
@@ -65,7 +88,7 @@ def template_get(template_type):
   
   LORA, NAME, PROMPT, LOCATION, FACE = date[0], date[1], date[2], date[3], date[4]
   ex_prompt = template_dict[template_type][0]["Prompt"]
-  ex_prompt = ex_prompt.replace(
+  _, ex_prompt = final_process(ex_prompt.replace(
     "%LORA%", LORA
   ).replace(
     "%CH_NAME%", NAME
@@ -75,7 +98,7 @@ def template_get(template_type):
     "%LOCATION%", LOCATION
   ).replace(
     "%FACE%", FACE
-  )
+  ), "./__pycache__/vdawhaochdwcuorhwaodaw.txt")
   
   IMAGE = template_dict[template_type][2]
   SEED = template_dict[template_type][3]

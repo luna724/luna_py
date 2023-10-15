@@ -1,82 +1,27 @@
-available_name = ["original", "ichika", "luna",
-                  "emu", "nene", "kanade", "mizuki", "hoshino", "laby",
-                  "midori", "momoi", "shiroko", "klee",
-                  "barbara", "saki", "shiho", "honami",
-                  "minori", "haruka", "airi", "shizuku",
-                  "kohane", "ann", "shefi", "natsu", "serina", "neneka", "nahida", "aisha landar",
-                  "nozomi", "karyl"
-                  ]
+import re
+import json
+class jsonconfig():
+  def read(self, filepath):
+    print("Reading jsondata..")
+    with open(filepath, 'r') as file:
+        date = json.load(file)
+    return date
 
+  def write(self, date, filepath): 
+      print("Writing config to jsondata..")
+      with open(filepath, 'w') as file:
+          json.dump(date, file, indent=4)  # indent=4でフォーマットを整形して書き込み
+      return date
+jsoncfg = jsonconfig()
+
+charactor_lora = jsoncfg.read("./database/charactor_lora.json")
+available_name = list(charactor_lora.keys())
+charactor_prompt = jsoncfg.read("./database/charactor_prompt.json")
+prompt_format = jsoncfg.read("./database/prompt_formatter.json")
 
 quality_data = '(best quality, masterpiece, detailed, incredibly fine illustration, kawaii)'
 badhand = 'badhandv5'
 years_prompt = '14 years old, baby face'
-
-charactor_lora = { # [Loraモデル, キャラ名]
-  "ichika": ["<lora:HoshinoIchika:1.0>", "ichika"],
-  "luna": ["<lora:ichika3:0.4>", "ichika"],
-  "emu": ["<lora:OtoriEmu:1.0>", "wdhemu"],
-  "nene": ["<lora:NotKyo:1.0>", "nene"],
-  "kanade": ["<lora:kanade:0.982>", "yoka"],
-  "mizuki": ["<lora:AkiyamaMizukiV1:0.895>", "mizuki"],
-  "hoshino": ["<lora:hoshino1:1.0>", "hoshinornd"],
-  "midori": ["<lora:midori1:1.0>", "midorirnd"],
-  "shiroko": ["<lora:shiroko1:1.0>", "shirokornd"],
-  "klee": ["<lora:klee1:1.0>", "kleernd"],
-  "barbara": ["<lora:barbara1:1.0>", "barbararnd"],
-  "laby": ["<lora:LabyElsword:1.0>", "laby"],
-  "saki": ["<lora:TenmaSaki:1.0>", "saki"],
-  "shiho": ["<lora:ShihoV3:1.0>", "hinoshiho"],
-  "honami": ["<lora:HonamiV2:1.0>", "mhonami"],
-  "minori": ["<lora:HanasatoMinori:1.0>", "minori"],
-  "haruka": ["<lora:KiritaniHaruka:1.0>", "kiriharu"],
-  "airi": ["<lora:MomoiAiri:1.0>", "momoai"],
-  "shizuku": ["<lora:Shizuku_H:1.0>", "shizuku"],
-  "kohane": ["<lora:AzusawaKohane:1.0>", "kohane"],
-  "ann": ["<lora:Anv2:1.0>", "shian"],
-  "shefi": ["<lora:shefi2:1.0>", "shefi"],
-  "momoi": ["<lora:momoi1:1.0>", "momoirnd"],
-  "natsu": ["", "natsurnd"],
-  "serina": ["", "serinarnd"],
-  "neneka": ["", "nenekarnd"],
-  "nahida": ["<lora:nahida1:1.0>", "nahidarnd"],
-  "aisha landar": ["", "aisha"],
-  "nozomi": ["<lora:sakurai_nozomi_prcn:1.0>", "nozomi"],
-  "karyl": ["","karyl"]
-}
-
-charactor_prompt = {
-  "luna": '(light blue hair), light purple hair, white hair, blue eyes, blush, hair between eyes, straight hair, small twintale, 12 years old, cat ears, blue light',
-  "ichika": "absorbing long hair, swept bangs, black hair, grey eyes",
-  "emu": "pink eyes, pink hair",
-  "nene": "long hair, 1girl, purple eyes, green hair, grey hair:0.6",
-  "kanade": "blue eyes, grey hair, blue hair, long hair, very long hair, hair between eyes",
-  "mizuki": "red hair ribbon, pink eyes, small breasts, light pink hair, side ponytail, wavy hair",
-  "hoshino": "light pink hair, very long hair, long hair, ahoge, orange and blue differently colored eyes",
-  "midori": "beige hair, green eyes, short hair, small breasts, side mini ponytail, cat ear green bandana",
-  "shiroko": "",
-  "klee": "",
-  "barbara": "beige hair, blue eyes, medium hair, large breasts, twintails",
-  "laby": "short hair, pink hair, hair between eyes, bare shoulders, pink eyes",
-  "saki": "blonde hair, pink hair, pink eyes, long hair, twintails",
-  "shiho": "green eyes, grey hair",
-  "honami": "short hair, blue eyes, brown hair, hair ornament, hairclip",
-  "minori": "brown hair, grey eyes, medium hair",
-  "haruka": "short hair, blue eyes, blue hair",
-  "airi": "pink hair, two side up, pink eyes, long hair, fang",
-  "shizuku": "long hair, blue hair, blue eyes, small breasts, mole, mole under mouth",
-  "kohane": "blonde hair, twintails, brown eyes, hair between eyes",
-  "ann": "long hair, black hair, blue hair, orange eyes, star (symbols), star hair ornament",
-  "shefi": "aqua hair, asymmetrical gloves, black gloves, brown gloves, fangs, sidelocks, single braid",
-  "momoi": "",
-  "natsu": "",
-  "serina": "",
-  "neneka": "pink hair, twintails, small breasts",
-  "nahida": "lustrous skin, silver hair, side ponytail, long hair, green eyes, medium breasts, cape",
-  "aisha landar": "purple hair, purple eyes",
-  "nozomi": "nozomi_routine",
-  "karyl": "two-tone hair, low twintails, white veil, hairband, ((green eyes, fang, cat tail, black hair, cat ears)), karyldd"
-}
 
 # この下は趣旨プロンプト
 cat = 'cat ears, cat tail'
@@ -89,9 +34,7 @@ basic_adetailer_p = '(best quality)++, (masterpiece)++, (kawaii:1.1), cute, baby
 basic_adetailer_neg = '(bad anatomy:1.4), (distorted features:1.1), (realistic:1.1), (low quality, worst quality:1.1), lips, unclear face, Distorted facial features, Jagged lines in faces'
 
 
-prompt_format = {
-  "blush+": "blush, shy, looking at away"
-}
+
 
 face_type_list = ["blush", "blush+", "orgasm", "smile"]
 def facetype(type):
@@ -148,20 +91,6 @@ def delete_duplicate_comma(p):
   
   return p
 
-import json
-class jsonconfig():
-  def read(self, filepath):
-    print("Reading jsondata..")
-    with open(filepath, 'r') as file:
-        date = json.load(file)
-    return date
-
-  def write(self, date, filepath): 
-      print("Writing config to jsondata..")
-      with open(filepath, 'w') as file:
-          json.dump(date, file, indent=4)  # indent=4でフォーマットを整形して書き込み
-      return date
-jsoncfg = jsonconfig()
 
 import data_opener as data_analyzer
 def get_data(data, return_mode="WebUI" # or DICT
@@ -219,21 +148,55 @@ def get_data(data, return_mode="WebUI" # or DICT
         
   
 # プロンプトセットに基づき変換
-def prompt_formatter(prompt):
-  if not prompt.count("%") > 0:
+def prompt_formatter(prompt: str):
+  # パターン数の取得関数
+  def get_pattern(target: str):
+    pattern = r"%([^%]+)%"
+    
+    matches = re.findall(pattern, target)
+    
+    print(len(matches), "Formatter Found.")
+    print("Formatting Target: ", matches)
+    
+    # フォーマットが利用可能かチェック
+    return_matches = []
+    
+    x = list(prompt_format.keys())
+    for y in matches:
+      if y.lower() in x:
+        return_matches.append(y.lower())
+      else:
+        print("Can't Detect Formatter Key.\nUnknown Keyword: ", y)
+    
+    return len(return_matches), return_matches
+  
+  pattern_count, _ = get_pattern(prompt)
+  
+  if pattern_count < 1:
     print("Not Found Formatting.\nSkipping Convert")
     return prompt
   else:
     # 変換!
-    for k, d in prompt_format:
+    for k, d in prompt_format.items():
       prompt = prompt.replace(f"%{k}%", d)
-      
+    
+    return prompt
     # Example 
     # %blush+%,
     # ->
     # blush, shy, looking at away,
     
 
+def get_loraweight(prompt: str):
+  if not "%LORA:" in prompt:
+    return prompt, "%LORA%"
+
+  pattern = r"%LORA:(\d+\.\d+)%"
+  
+  match = re.find(pattern, prompt)
+  
+  return float(match), f"%LORA:{match}%"
+  
 import log_writer as lw
 def final_process(p, logfile):
   nocp = delete_duplicate_comma(p)

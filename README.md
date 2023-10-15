@@ -39,8 +39,9 @@
 
 ## Changelogs (v1.1.0pre12)
 
-- RVC WebUI v0.2
-  - ALL Changelogs [Issue #5](https://github.com/luna724/luna_py/issues/5)
+- sd_tool/prompt_EasyMaker
+  - 辞書をjsonファイルに統合
+  - 安定性を上昇
 
 -----------
 
