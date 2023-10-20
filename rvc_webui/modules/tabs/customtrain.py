@@ -16,6 +16,7 @@ from lib.rvc.preprocessing import extract_f0, extract_feature, split
 
 # luna
 from luna.modules.set_config import update
+from luna.modules.def_config import set_config
 from luna.lib.train.lr_decay_object import available_function
 from luna.lib.train.variable_normalizer import normalize_input
 
@@ -154,7 +155,9 @@ class Customtrain(Tab):
       print(f"Customized Training: emb_name: {embedder}")
       
       # lrとかの設定
-      
+      set_config(
+        
+      )
       
       config = utils.load_config(
         model_ver, training_dir, target_sr, embed_channel, fp16 

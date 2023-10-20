@@ -2,6 +2,7 @@ import gradio as gr
 # import WHB_generator as whbgen
 # import Masturbation_generator as mastgen
 import importlib
+import subprocess
 import tentacle_clothes as tcgen
 import log_writer as log_writer
 import simple_generator as data
@@ -24,9 +25,17 @@ def reload_module():
   importlib.reload(civ)
   print("Module Reload Successfully Completed!")
 
+def reload_ui():
+  itrmain.close()
+  subprocess.Popen(["python", "webui.py"])
+  
 with gr.Blocks() as itrmain:
   rld_ui_btn = gr.Button("Reload jsondata",size="sm")
   rld_ui_btn.click(fn=reload_module)
+  
+  rldui_btn = gr.Button("Reload WebUI", size="sm")
+  rldui_btn.click(fn=reload_ui)
+  
   gr.Markdown("Colab: https://colab.research.google.com/drive/1NJJrxjKK3YzfiElHrmS2AmzXv65Y38TR#scrollTo=TmcYoEe8dFK9")
   # with gr.Tab("WHB_Generator"):
   #   whbgen_chname = gr.Textbox(label="Charactor Prompt Name")
@@ -282,47 +291,112 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
                       outputs=lmg_out)
     
   with gr.Tab("Many Type Generator"):
-    with gr.Tab("Single Mode"):
-      gr.Markdown("Type from \"/dataset/template.json\"")
-      
-      with gr.Blocks():
-        tg_type = gr.Dropdown(choices=tg.key_list, label="Target Template", value="Example")
-        tg_preview = gr.Button("Preview This Template")
-      
-      gr.Markdown("<br>")
-      with gr.Blocks():
-        tg_charactor = gr.Radio(choices=data.available_name, label="Charactor Name (Template)", value="original")
-        with gr.Row():
-          tg_lora = gr.Textbox(label="Charactor LoRA NAME")
-          tg_name = gr.Textbox(label="Charactor Prompt Name")
-        with gr.Row():
-          tg_prompt = gr.Textbox(label="Charactor Prompt")
-          tg_location = gr.Textbox(label="Draw Location (Location)")
-        with gr.Row():
-          tg_face = gr.Textbox(label="Charactor Face Prompt")
-          tg_add = gr.Textbox(label="Charactor Additional Prompt")
-      
-      gr.Markdown("<br>")
-      with gr.Blocks():
-        tg_example = gr.Textbox(label="Example Prompt")
-        with gr.Accordion("Example Image", open=False):
-          tg_img = gr.Image()
+    with gr.Tab("Template Setup Mode"):
+      with gr.Tab("Single Mode"):
+        gr.Markdown("Create New Template")
+        
+        with gr.Blocks():
+          tgs_type = gr.Textbox(label="Template Name", max_lines=1, placeholder="Template Name")
+        
+        gr.Markdown("<br>")
+        
+        with gr.Blocks():
+          gr.Markdown("Preview this Template (Optional)")
           with gr.Row():
-            gr.Markdown("Seed")
-            tg_seed = gr.Markdown("-1")
+            tgs_preview_lora = gr.Textbox(label="Character LoRA Name")
+            tgs_preview_name = gr.Textbox(label="Character Prompt Name")
+          with gr.Row():
+            tgs_preview_prom = gr.Textbox(label="Character Prompt")
+            tgs_preview_loca = gr.Textbox(label="Draw Location (Location)")
+          with gr.Row():
+            tgs_preview_face = gr.Textbox(label="Character Face")
+            tgs_preview_img = gr.Textbox(label="Example Image Path (from /py))", placeholder="./dataset/image/example.png", value="NO IMAGE")
+          with gr.Row():
+            tgs_preview_seed = gr.Number(label="Example Image Seed", placeholder="if Nothing, type \"-1\"")
+            tgs_preview_nega = gr.Textbox(label="Negative Prompt", placeholder="EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1)")
         gr.Markdown("<br>")
-        tg_output = gr.Textbox(label="Prompt")
-        tg_out_neg = gr.Textbox(label="Negative")
+        with gr.Blocks():
+          gr.Markdown("Template Base Prompt")
+          
+          gr.Markdown(
+            """Template Prompt all Keyword\n
+            \n
+            - %LORA% = Character LoRA Name is assigned Here\n
+            - %CH_NAME% = Character LoRA name is assigned here\n
+            - %CH_PROMPT% = Character Prompt is assigned Here\n
+            - %LOCATION% = Draw Location is assigned Here\n
+            - %FACE% = Character Face is assigned Here\n
+            \n
+            and all Prompt Formatter keyword\n
+            \n
+            <strong>All keyword is Optional</strong>"""
+            )
+          
+          tgs_base = gr.Textbox(label="Template Base Prompt (Requirement)")
+          tgs_force_update = gr.Checkbox(label="Force Update (Previous Date is Deleted.)", value=False)
+          tgs_save = gr.Button("Save")
+          
+          tgs_status = gr.Textbox(label="Status")
+          tgs_value = gr.Textbox(value="Single", visible=False)
+          tgs_save.click(fn=tg.save,
+                        inputs=[
+                          tgs_value,
+                          tgs_type,
+                          tgs_preview_lora,
+                          tgs_preview_name,
+                          tgs_preview_prom,
+                          tgs_preview_loca,
+                          tgs_preview_face,
+                          tgs_preview_img,
+                          tgs_preview_seed,
+                          tgs_preview_nega,
+                          tgs_base,
+                          tgs_force_update
+                          ],
+                        outputs=tgs_status)
+        
+    with gr.Tab("Generate Mode"):
+      with gr.Tab("Single Mode"):
+        gr.Markdown("Type from \"/dataset/template.json\"")
+        
+        with gr.Blocks():
+          tg_type = gr.Dropdown(choices=tg.key_list, label="Target Template", value="Example")
+          tg_preview = gr.Button("Preview This Template")
         
         gr.Markdown("<br>")
-        tg_btn = gr.Button("Generate")
+        with gr.Blocks():
+          tg_charactor = gr.Radio(choices=data.available_name, label="Charactor Name (Template)", value="original")
+          with gr.Row():
+            tg_lora = gr.Textbox(label="Charactor LoRA NAME")
+            tg_name = gr.Textbox(label="Charactor Prompt Name")
+          with gr.Row():
+            tg_prompt = gr.Textbox(label="Charactor Prompt")
+            tg_location = gr.Textbox(label="Draw Location (Location)")
+          with gr.Row():
+            tg_face = gr.Textbox(label="Charactor Face Prompt")
+            tg_add = gr.Textbox(label="Charactor Additional Prompt")
         
-      tg_preview.click(fn=tg.example_view, inputs=tg_type, 
-                      outputs=[tg_lora, tg_name, tg_prompt,
-                              tg_location, tg_face, tg_example, tg_img, tg_seed])
-      tg_btn.click(fn=tg.template_gen,
-                  inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_add],
-                  outputs=[tg_output, tg_out_neg])
+        gr.Markdown("<br>")
+        with gr.Blocks():
+          tg_example = gr.Textbox(label="Example Prompt")
+          with gr.Accordion("Example Image", open=False):
+            tg_img = gr.Image()
+            with gr.Row():
+              gr.Markdown("Seed")
+              tg_seed = gr.Markdown("-1")
+          gr.Markdown("<br>")
+          tg_output = gr.Textbox(label="Prompt")
+          tg_out_neg = gr.Textbox(label="Negative")
+          
+          gr.Markdown("<br>")
+          tg_btn = gr.Button("Generate")
+          
+        tg_preview.click(fn=tg.example_view, inputs=tg_type, 
+                        outputs=[tg_lora, tg_name, tg_prompt,
+                                tg_location, tg_face, tg_example, tg_img, tg_seed])
+        tg_btn.click(fn=tg.template_gen,
+                    inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_add],
+                    outputs=[tg_output, tg_out_neg])
   
   with gr.Tab("Data Opener"):
     with gr.Column(visible=False):

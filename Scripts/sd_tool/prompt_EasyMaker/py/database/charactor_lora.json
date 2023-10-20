@@ -3,7 +3,7 @@
   "luna": ["<lora:ichika3:0.4>", "ichika"],
   "emu": ["<lora:OtoriEmu:1.0>", "wdhemu"],
   "nene": ["<lora:NotKyo:1.0>", "nene"],
-  "kanade": ["<lora:kanade:1.0>", "yoka"],
+  "kanade": ["<lora:YoisakiKanade:1.0>", "yoka"],
   "mizuki": ["<lora:AkiyamaMizukiV1:1.0>", "mizuki"],
   "hoshino": ["<lora:hoshino1:1.0>", "hoshinornd"],
   "midori": ["<lora:midori1:1.0>", "midorirnd"],

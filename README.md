@@ -1,6 +1,8 @@
 # lunapy v1.1.0pre12
 
 -----------
+## Feature List
+
 | Feature Name | Latest Version | Type |
 |---|---|---|
 | Audio Duration Calculator | v1.0pre3 | QoL |
@@ -19,6 +21,7 @@
 | RVC WebUI | v0.1 | QoL |
 | json To Something | v1.1 | Converter |
 | lunapy GradioUI | v1.0pre5 | QoL |
+| Flask Docs EasyViewer | v0 | ? |
 
 -----------
 
@@ -37,11 +40,31 @@
 
 あとは old_setup.batを実行するだけ
 
+## WebUI
+
+lunapyでは Gradio を使用した 実行用ウェブインターフェースと
+Flask を利用した html でのうっすい説明(doc)の表示をサポートしています
+
+GradioUI は `launch_webui.sh` を
+Flask での Docstring の表示は `what_is_lunapy？.sh` を実行すると開くことができます。
+
+<details> <summary> <strong> Windowsなんだけど？ </strong> </summary> 
+Windows環境の場合 Git Bash を使用して Shell Script を実行することができます
+</details>
+
+<details><summary> その他のUI </summary>
+- Curseforge_Autodownload (`./Scripts/curseforge-autodownload/ui.bat`)
+- RVC WebUI (`./rvc_webui/webui-user.bat`)
+- sd_tool / Prompt EasyMaker (`./Scripts/sd_tool/prompt_EasyMaker/webui.bat`)
+</details>
+
 ## Changelogs (v1.1.0pre12)
 
 - sd_tool/prompt_EasyMaker
   - 辞書をjsonファイルに統合
   - 安定性を上昇
+  - テンプレートの作成をUIデサポート
+  - なんやかんや修正
 
 -----------
 
@@ -61,6 +84,3 @@ lunapy v1.1.0までに作るものたち
   - フィルタ設定の修正
   - ファイルのリネームの設定の見直し
   - Cwebpをちゃんとサポート
-
-### WebUIの実行
-  `launch_webui.bat`を実行

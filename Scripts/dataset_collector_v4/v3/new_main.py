@@ -92,21 +92,46 @@ def get_event_list(unit, target_id):
             "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_90_{:02d}_rip/voice_ev_shuffle_30_{:02d}_{:02d}_{:02d}.mp3",
             "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_91_{:02d}_rip/voice_ev_band_13_{:02d}_{:02d}_{:02d}.mp3",
             "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_94_{:02d}_rip/voice_ev_shuffle_31_{:02d}_{:02d}_{:02d}.mp3",
-            "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_101_{:02d}_rip/voice_ev_band_14_{:02d}_{:02d}_{:02d}.mp3"
+            "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_101_{:02d}_rip/voice_ev_band_14_{:02d}_{:02d}_{:02d}.mp3",
+            "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_106_{:02d}_rip/voice_ev_shuffle_36_{:02d}_{:02d}_{:02d}.mp3",
+            "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_108_{:02d}_rip/voice_ev_shuffle_38_{:02d}_{:02d}_{:02d}.mp3"
             ]
-    for base_url in url_dict:
-      while story_id <= 8: # 8以下なら続行
-        talking_id = 1 # リセット
-        while talking_id <= 140: # 140以下なら続行
-          url = base_url.format(story_id, story_id, talking_id, target_id)
-          # リストに追加
-          date_list.append(url)
-          
-          talking_id += 1
-          
-        story_id += 1
-      story_id = 1
-    
+  elif unit == "MORE MORE JUMP!":
+    url_dict = [
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_05_{:02d}_rip/voice_ev_idol_01_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_11_{:02d}_rip/voice_ev_idol_02_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_17_{:02d}_rip/voice_ev_idol_03_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_23_{:02d}_rip/voice_ev_idol_04_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_31_{:02d}_rip/voice_sc_ev_idol_05_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_36_{:02d}_rip/voice_ev_shuffle_12_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_43_{:02d}_rip/voice_ev_idol_06_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_48_{:02d}_rip/voice_ev_shuffle_16_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_52_{:02d}_rip/voice_ev_idol_07_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_57_{:02d}_rip/voice_ev_idol_08_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_67_{:02d}_rip/voice_ev_idol_09_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_73_{:02d}_rip/voice_ev_idol_10_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_78_{:02d}_rip/voice_ev_idol_11_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_80_{:02d}_rip/voice_ev_shuffle_26_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_85_{:02d}_rip/voice_ev_idol_12_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_92_{:02d}_rip/voice_ev_idol_13_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_94_{:02d}_rip/voice_ev_shuffle_31_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_98_{:02d}_rip/voice_ev_idol_13_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_102_{:02d}_rip/voice_ev_shuffle_34_{:02d}_{:02d}_{:02d}.mp3",
+      "https://storage.sekai.best/sekai-assets/sound/scenario/voice/event_108_{:02d}_rip/voice_ev_shuffle_38_{:02d}_{:02d}_{:02d}.mp3"
+    ]
+  for base_url in url_dict:
+    while story_id <= 8: # 8以下なら続行
+      talking_id = 1 # リセット
+      while talking_id <= 140: # 140以下なら続行
+        url = base_url.format(story_id, story_id, talking_id, target_id)
+        # リストに追加
+        date_list.append(url)
+        
+        talking_id += 1
+        
+      story_id += 1
+    story_id = 1
+  
     
   # 返す
   return date_list 

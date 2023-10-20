@@ -107,10 +107,51 @@ def template_get(template_type):
   return LORA, NAME, PROMPT, LOCATION, FACE, ex_prompt, IMAGE, SEED
 
 def example_view(template_type):
-  l, n, p, l, f, exp, image, seed = template_get(template_type)
-  return l, n, p, l, f, exp, image, seed
+  ll, n, p, l, f, exp, image, seed = template_get(template_type)
+  return ll, n, p, l, f, exp, image, seed
 
 
 file_path = "./dataset/template.json"
 data = jsoncfg.read(file_path)
 key_list = data.keys()
+
+
+def save(
+  mode: str,
+  name: str,
+  LORA: str,
+  NAME: str,
+  PROMPT: str,
+  LOCATION: str,
+  FACE: str,
+  IMAGE: str,
+  SEED: int,
+  Negative: str,
+  base_prompt: str,
+  force_update: bool
+):
+  if mode == "Single":
+    template_dict = jsoncfg.read("./dataset/template.json")
+    
+    # もし名前が既に存在するならエラー
+    if name in template_dict.keys():
+      if not force_update:
+        return "stderr: This name is already taken."
+    
+    if IMAGE == "NO IMAGE":
+      IMAGE_ = "./dataset/image/None.png"
+    
+    generative_dict = {
+      name: [{
+        "Prompt": base_prompt,
+        "Negative": Negative
+      }, [LORA, NAME, PROMPT, LOCATION, FACE], IMAGE_, SEED]
+    }
+    
+    print("Generated Data: ", generative_dict)
+    
+    template_dict.update(generative_dict)
+    
+    jsoncfg.write(template_dict, "./dataset/template.json")
+    
+    return "Success! Reloading the UI will add it to generation mode options"
