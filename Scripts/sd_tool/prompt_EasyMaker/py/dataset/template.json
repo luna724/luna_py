@@ -253,5 +253,20 @@
         ],
         "./dataset/image/None.png",
         "-1"
+    ],
+    "mmj_idol": [
+        {
+            "Prompt": "%quality_lite%, (skirt, layered skirt, piano design skirt, miniskirt, frill skirt, frills, frilled skirt:1.1), sleeveless, frill, hair ornament, frills, necktie, frilled_skirt, %CH_PROMPT%, white cloth, idol, black belt, yellow belt, clover, ornament, orange cloth, white skirt, white frilled skirt, slim, tightly fitting cloth, %FACE%, %LORA%, %CH_NAME%, cute, slim legs, slim arms, %LOCATION%, ",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), "
+        },
+        [
+            "<lora:HanasatoMinori:0.675>",
+            "minori",
+            "brown hair, grey eyes, medium hair",
+            "",
+            "smile, idol, cute, 1girl, solo"
+        ],
+        "./dataset/image/None.png",
+        "-1"
     ]
 }

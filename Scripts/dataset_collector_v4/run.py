@@ -33,6 +33,7 @@ def start(
   randget: bool = False,
   randcount: int = 100
   ):
+  print("Use URL Cache: True")
   os.makedirs(output_dir, exist_ok=True)
   target_character = target_characters.split(",")
   target_event = [""]
@@ -106,7 +107,7 @@ def start(
           x = 0
           filename = f"{filenames}.{x:04d}.mp3"
           # ダウンロード
-          cmd = f"aria2c --console-log-level=error -c -x {multi_download} -k 128K {url} -d {output_dir} -o {filename}"
+          cmd = f"aria2c --console-log-level=error -c -x {multi_download} {url} -d {output_dir} -o {filename}"
           subprocess.Popen(cmd)
           time.sleep(0.5)
           
@@ -146,7 +147,7 @@ def start(
       datedict["404_list"].extend(status_404)
       
       jsoncfg.write(datedict, "./404_list.json")
-      return "Process Done.  File Count: {}".format(len(file_extension_filter(os.listdir(output_dir), [".mp3"])))
+      return "Process Done."
       
 
 def create():
@@ -168,7 +169,7 @@ def create():
         use_cpu = gr.Slider(1, 100, step=1, value=50, label="Using CPU Percentage (v4)")
         with gr.Column():
           use_aria2 = gr.Checkbox(value=True, label="Use Aria2c (v4)")
-          download_count = gr.Slider(10, 75, step=1,label="Aria2c Download Session Count (-x)",value=12)
+          download_count = gr.Slider(1, 16, step=1,label="Aria2c Download Session Count (-x)",value=12)
       with gr.Row():
         randget = gr.Checkbox(label="Random Getting", value=False)
         randcount = gr.Slider(1, 5000, step=1, label="Random Getting Limit Count", value=1)

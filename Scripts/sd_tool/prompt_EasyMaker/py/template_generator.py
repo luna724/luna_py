@@ -145,7 +145,7 @@ def save(
       name: [{
         "Prompt": base_prompt,
         "Negative": Negative
-      }, [LORA, NAME, PROMPT, LOCATION, FACE], IMAGE_, SEED]
+      }, [LORA, NAME, PROMPT, LOCATION, FACE], IMAGE_, str(int(SEED))]
     }
     
     print("Generated Data: ", generative_dict)

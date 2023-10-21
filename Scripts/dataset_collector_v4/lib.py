@@ -52,7 +52,7 @@ def launch_multi(ev, ch, aria, unit, randget, info):
   return data
 
 if os.path.exists("./404_list.json"):
-  status_404_list = jsoncfg.read("./404_list.json")
+  status_404_list = jsoncfg.read("./404_list.json")["404_list"]
 else:
   status_404_list = []
   

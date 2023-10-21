@@ -1,6 +1,0 @@
-*/**
-
-!mute/**/*
-!.gitignore
-
-mute/**/*.pt
