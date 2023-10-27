@@ -12,6 +12,7 @@ import lora_info_viewer as liv
 import multiple_generating as mg
 import template_generator as tg
 import checkpoint_info_viewer as civ
+import template_multi as tmg
 
 def reload_module():
   importlib.reload(tcgen)
@@ -397,7 +398,78 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
         tg_btn.click(fn=tg.template_gen,
                     inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_add],
                     outputs=[tg_output, tg_out_neg])
-  
+      with gr.Tab("Double Mode"):
+        gr.Markdown("Type from \"/dataset/multi_template.json\"")
+        
+        with gr.Blocks():
+          tmg_type = gr.Dropdown(choices=tmg.key_list, label="Target Template", value="Example")
+          tmg_preview = gr.Button("Preview This Template")
+        gr.Markdown("<br>")
+        
+        with gr.Blocks():
+          with gr.Accordion("Character 1 (Upper / Left)", open=False):
+            tmg1_ch = gr.Radio(choices=data.available_name, label="Charactor Name (Template)", value="original")
+            with gr.Row():
+              tmg1_lora = gr.Textbox(label="Character LoRA Name")
+              tmg1_character = gr.Textbox(label="Character Prompt Name")
+            with gr.Row():
+              tmg1_prompt = gr.Textbox(label="Character Prompt")
+              tmg1_location = gr.Textbox(label="Draw Location")
+            with gr.Row():
+              tmg1_face = gr.Textbox(label="Character Face")
+              with gr.Column():
+                tmg1_add = gr.Textbox(label="Additional Prompt")
+                tmg1_add_head = gr.Checkbox(label="Additional Prompt to Header", value=False)
+          gr.Markdown("<br>")
+          with gr.Accordion("Character 2 (Down / Right)", open=True):
+            tmg2_ch = gr.Radio(choices=data.available_name, label="Character Name (Template)", value="original")
+            with gr.Row():
+              tmg2_lora = gr.Textbox(label="Character LoRA Name")
+              tmg2_character = gr.Textbox(label="Character Prompt Name")
+            with gr.Row():
+              tmg2_prompt = gr.Textbox(label="Character Prompt")
+              tmg2_location = gr.Textbox(label="Draw Location")
+            with gr.Row():
+              tmg2_face = gr.Textbox(label="Character Face")
+              with gr.Column():
+                tmg2_add = gr.Textbox(label="Additional Prompt")
+                tmg2_add_head = gr.Checkbox(label="Additional Prompt to Header", value=False)
+          #
+        gr.Markdown("<br>")
+        with gr.Blocks():
+          tmg_example = gr.Textbox(label="Preview Prompt")
+          with gr.Accordion("Preview Image", open=False):
+            tmg_img = gr.Image()
+            with gr.Row():
+              gr.Markdown("Seed: ")
+              tmg_seed = gr.Markdown("-1")
+          gr.Markdown("<br>")
+          tmg_output_prompt = gr.Textbox(label="Prompt")
+          tmg_output_negative = gr.Textbox(label="Negative Prompt")
+          
+          gr.Markdown("<br>")
+          tmg_generate = gr.Button("Generate")
+        
+        tmg_preview.click(
+          fn=tmg.preview,
+          inputs=[tmg_type],
+          outputs=[tmg1_lora, tmg1_character, tmg1_prompt,
+                  tmg1_location, tmg1_face,
+                  tmg2_lora, tmg2_character, tmg2_prompt,
+                  tmg2_location, tmg2_face,
+                  tmg_example, tmg_img, tmg_seed
+                  ]
+        )
+        tmg_generate.click(
+          fn=tmg.generate,
+          inputs=[tmg_type, tmg1_ch, tmg1_location,
+                  tmg1_face, tmg1_add, tmg1_add_head,
+                  
+                  tmg2_ch, tmg2_location,
+                  tmg2_face, tmg2_add, tmg2_add_head],
+          outputs=[tmg_output_prompt, tmg_output_negative]
+        )
+        
   with gr.Tab("Data Opener"):
     with gr.Column(visible=False):
       do_return_mode = gr.Textbox(value="WebUI")

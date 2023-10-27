@@ -268,5 +268,50 @@
         ],
         "./dataset/image/None.png",
         "-1"
+    ],
+    "naked ribbon": [
+        {
+            "Prompt": "nsfw, %quality_lite%, <lora:NakedRibbon:0.85>, naked ribbon, naked_ribbon, ribbon, %LORA%, %CH_NAME%, nude, %FACE%, %LOCATION%, topless, bow, absurdres, pussy, %CH_PROMPT%",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), lowres, poorly drawn, monochrome"
+        },
+        [
+            "",
+            "kyouka",
+            "halloween, light purple hair, twintails, long hair, 10 years old, yellow eyes",
+            "indoor, lying on bed, on bed",
+            "blush, looking at away, shy"
+        ],
+        "./dataset/image/None.png",
+        "0"
+    ],
+    "tentacle_fellatio_pov": [
+        {
+            "Prompt": "nsfw, ((suck tentacle, tentacle fellatio, fellatio:1.25)), <lora:chushou:1.195>, (tentacles), tentacles, pov, 1girl, solo, tentacle sex, tentacle insertion, touch tentacles, %FACE%, %LORA%, %CH_NAME%, %CH_PROMPT%, (best quality, masterpiece:1.25),",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1boy, public hair,"
+        },
+        [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "./dataset/image/None.png",
+        "0"
+    ],
+    "tentacle_fellatio_from_side": [
+        {
+            "Prompt": "nsfw, lying, ((suck tentacle, tentacle fellatio, fellatio:1.25)), <lora:chushou:1.195>, from side, side view, (tentacles insertion, tentacle sex:1.175), (tentacles), tentacles, tentacle sex, tentacle insertion, %FACE%, %LORA%, %CH_NAME%, %CH_PROMPT%, (best quality, masterpiece:1.25), from side, side view, 1girl",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1boy, public hair, multiple view, "
+        },
+        [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "./dataset/image/None.png",
+        "0"
     ]
 }

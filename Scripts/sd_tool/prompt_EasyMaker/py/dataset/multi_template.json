@@ -1,0 +1,9 @@
+{
+  "example": [{
+    "Prompt": "Prompt\nAND\nPrompt2 ",
+    "Negative": "Negative"},
+    { "Character1": ["%LORA%", "%CH_NAME%", "%CH_PROMPT%", "%LOCATION%", "%FACE%"],
+      "Character2": ["%LORA%", "%CH_NAME%", "%CH_PROMPT%", "%LOCATION%", "%FACE%"]},
+    "./dataset/image_multi/None.png",
+    "-1"]
+}

@@ -1,6 +1,6 @@
 """ 
 入力
-{"なんかしら英語4文字(小文字)": ["モデル名", "タイプ (Lora / Lycoris / sd.cp / vae )", "拡張子", "DL URL", "NSFW (0 / 1)",
+{"なんかしら英語4文字(小文字)": ["モデル名", "タイプ (Lora / Lycoris / sd.cp / vae / t_inv)", "拡張子", "DL URL", "NSFW (0 / 1)",
 "Site Name", "Trigger Word (list)", "Sample Image URL", "Image Generation Data", "CivitAI Site URL"}
 
 出力
@@ -26,7 +26,7 @@ x = 0
 wgets, params, if_strs, lora_infovwrs, li2 = [], [], [], [], []
 data_list = []
 dir = "/content/gdrive/MyDrive/SD_Model"
-dir2 = "/content/stable-diffusion-webui/models"
+dir2 = "/content/stable-diffusion-webui"
 
 # とりあえず受け取ろうではないか
 import LGS.misc.jsonconfig as jc
@@ -87,16 +87,19 @@ for x in data_list:
     continue
   if x["TYPE"] == "Lora":
     TYPE = "LoRA/"
-    TYPE_D2 = "Lora"
+    TYPE_D2 = "models/Lora"
   elif x["TYPE"] == "lycoris":
     TYPE = "LyCORIS/"
-    TYPE_D2 = "Lora"
+    TYPE_D2 = "models/Lora"
   elif x["TYPE"] == "sd.cp":
     TYPE = ""
-    TYPE_D2 = "Stable-diffusion" # Stable-diffusion/
+    TYPE_D2 = "models/Stable-diffusion" # Stable-diffusion/
   elif x["TYPE"] == "vae":
     TYPE = "VAE/"
-    TYPE_D2 = "Stable-diffusion"
+    TYPE_D2 = "models/Stable-diffusion"
+  elif x["TYPE"] == "t_inv":
+    TYPE = "Texture_Inversion/"
+    TYPE_D2 = "embeddings"
   else:
     print("不明なタイプです。\"TYPE\" \n(Lora / Lycoris / sd.cp / vae)を入力してください。")
     continue
