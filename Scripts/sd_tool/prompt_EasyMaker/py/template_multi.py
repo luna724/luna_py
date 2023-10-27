@@ -112,7 +112,7 @@ def generate(
   
   if template_type in template_dict.keys():
     p = template_dict[template_type][0]["Prompt"]
-    negative = template_dict[template_dict][0]["Negative"]
+    negative = template_dict[template_type][0]["Negative"]
   else:
     raise ValueError(f"Template: {template_type}\nUnknown Template ID")
   
@@ -207,3 +207,56 @@ def generate(
 
 
 key_list = jsoncfg.read("./dataset/multi_template.json").keys()
+
+def save(
+  template_name: str,
+  ch1_prompt: str,
+  ch2_prompt: str,
+  lora1: str,
+  name1: str,
+  prom1: str,
+  loca1: str,
+  face1: str,
+  lora2: str,
+  name2: str,
+  prom2: str,
+  loca2: str,
+  face2: str,
+  negative: str,
+  img_path: str,
+  seed: str,
+  force_update: bool
+):
+  template_dict = jsoncfg.read("./dataset/multi_template.json")
+  
+  if template_name in template_dict.keys():
+    if not force_update:
+      return "stderr: This name is already Taken."
+    
+  if img_path == "":
+    IMAGE = "./dataset/image/None.png"
+  else:
+    IMAGE = img_path
+    
+  prompt = f"{ch1_prompt}\nAND\n{ch2_prompt}"
+  
+  generative_dict = {
+    template_name: [{
+      "Prompt": prompt,
+      "Negative": negative
+    },
+    {
+      "Character1": [lora1, name1, prom1, loca1, face1],
+      "Character2": [lora2, name2, prom2, loca2, face2]
+    },
+    IMAGE,
+    seed]
+  }
+  
+  print("Generated Data: ", generative_dict)
+  
+  template_dict.update(generative_dict)
+  
+  jsoncfg.write(template_dict, "./dataset/multi_template.json")
+  
+  return "Success! Reload the UI will Apply change!"

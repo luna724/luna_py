@@ -1,9 +1,50 @@
 {
-  "example": [{
-    "Prompt": "Prompt\nAND\nPrompt2 ",
-    "Negative": "Negative"},
-    { "Character1": ["%LORA%", "%CH_NAME%", "%CH_PROMPT%", "%LOCATION%", "%FACE%"],
-      "Character2": ["%LORA%", "%CH_NAME%", "%CH_PROMPT%", "%LOCATION%", "%FACE%"]},
-    "./dataset/image_multi/None.png",
-    "-1"]
+    "example": [
+        {
+            "Prompt": "Prompt\nAND\nPrompt2 ",
+            "Negative": "Negative"
+        },
+        {
+            "Character1": [
+                "%LORA%",
+                "%CH_NAME%",
+                "%CH_PROMPT%",
+                "%LOCATION%",
+                "%FACE%"
+            ],
+            "Character2": [
+                "%LORA%",
+                "%CH_NAME%",
+                "%CH_PROMPT%",
+                "%LOCATION%",
+                "%FACE%"
+            ]
+        },
+        "./dataset/image_multi/None.png",
+        "-1"
+    ],
+    "test": [
+        {
+            "Prompt": "Prompt1\nAND\nPrompt2",
+            "Negative": "hello, this is negative"
+        },
+        {
+            "Character1": [
+                "lora1",
+                "name1",
+                "prompt1",
+                "loca1",
+                "face1"
+            ],
+            "Character2": [
+                "lora2",
+                "name2",
+                "prom2",
+                "loca2",
+                "face2"
+            ]
+        },
+        "./dataset/image/None.png",
+        "-1"
+    ]
 }

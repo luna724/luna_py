@@ -355,6 +355,67 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
                           tgs_force_update
                           ],
                         outputs=tgs_status)
+      with gr.Tab("Double Mode"):
+        gr.Markdown("Create New Template")
+        
+        with gr.Blocks():
+          tmgs_type = gr.Textbox(label="Template Name", max_lines=1, placeholder="Template Name")
+        gr.Markdown("<br>")
+        
+        with gr.Blocks():
+          gr.Markdown("Character 1 prompt")
+          tmgs_ch1_prompt = gr.Textbox(label="Character 1 Prompt", max_lines=1)
+          
+          with gr.Accordion("Character 1 Preview Data (Optional)", open=False):
+            with gr.Row():
+              tmgs_lora1 = gr.Textbox(label="Character LoRA")
+              tmgs_name1 = gr.Textbox(label="Character Prompt Name")
+            with gr.Row():
+              tmgs_prom1 = gr.Textbox(label="Character Prompt")
+              tmgs_loca1 = gr.Textbox(label="Location")
+            with gr.Row():
+              tmgs_face1 = gr.Textbox(label="Character Face")
+        gr.Markdown("<br>")
+        with gr.Blocks():
+          gr.Markdown("Character 2 prompt")
+          tmgs_ch2_prompt = gr.Textbox(label="Character 2 Prompt", max_lines=1)
+          
+          with gr.Accordion("Character 2 Preview Data (Optional)", open=False):
+            with gr.Row():
+              tmgs_lora2 = gr.Textbox(label="Character LoRA")
+              tmgs_name2 = gr.Textbox(label="Character Prompt Name")
+            with gr.Row():
+              tmgs_prom2 = gr.Textbox(label="Character Prompt")
+              tmgs_loca2 = gr.Textbox(label="Location")
+            with gr.Row():
+              tmgs_face2 = gr.Textbox(label="Character Face")
+        gr.Markdown("<br>")
+
+        with gr.Blocks():
+          gr.Markdown("Global Prompt")
+          gr.Markdown("All is Optional")
+          
+          tmgs_neg = gr.Textbox(label="Negative Prompt")
+          
+          with gr.Row():
+            tmgs_img = gr.Textbox(label="Preview Image path (from /py)")
+            tmgs_seed = gr.Textbox(label="Preview Image Seed")
+          
+        gr.Markdown("<br>")
+        
+        tmgs_force_update = gr.Checkbox(label="Force Update (Previous Data is Deleted.)", value=False)
+        tmgs_btn = gr.Button("Save")
+        
+        tmgs_status = gr.Textbox(label="Status")
+        
+        tmgs_btn.click(
+          fn=tmg.save,
+          inputs=[tmgs_type, tmgs_ch1_prompt, tmgs_ch2_prompt,
+                  tmgs_lora1, tmgs_name1, tmgs_prom1, tmgs_loca1, tmgs_face1,
+                  tmgs_lora2, tmgs_name2, tmgs_prom2, tmgs_loca2, tmgs_face2,
+                  tmgs_neg, tmgs_img, tmgs_seed, tmgs_force_update],
+          outputs=[tmgs_status]
+        )
         
     with gr.Tab("Generate Mode"):
       with gr.Tab("Single Mode"):
