@@ -23,3 +23,4 @@ scenedetect
 opencv
 soundfile
 aria2p
+--upgrade --force-reinstall chromedriver-binary-auto

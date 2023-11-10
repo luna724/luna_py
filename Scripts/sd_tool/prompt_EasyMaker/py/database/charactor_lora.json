@@ -42,7 +42,7 @@
   "flan_narugo": ["?", "flandre_scarlet_touhou"],
   "suwako_narugo": ["?", "moriya_suwako_touhou"],
   "kokoro_narugo": ["?", "hata_no_kokoro_touhou"],
-  "koishi_narugo": ["?", "komeiji_koishi_touhou"],
+  "koishi_narugo": ["<lora:komeiji_koishi_narugo:1.0>", "komeiji_koishi_touhou"],
   "reisa_narugo": ["?", "reisa_bluearchive"],
   "rumia_narugo": ["?", "rumia_touhou"],
   "cirno_narugo": ["<lora:cirno_touhou:1.0>,", "cirno_touhou"],

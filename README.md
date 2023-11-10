@@ -3,25 +3,8 @@
 -----------
 ## Feature List
 
-| Feature Name | Latest Version | Type |
-|---|---|---|
-| Audio Duration Calculator | v1.0pre3 | QoL |
-| Audio Augmentation | v1.0.2 | Data Augmentation |
-| Audio Properties Auto Setting | v1.1 | Macro |
-| CurseForge AutoDownload | v2.6 | Web Scraping |
-| Dataset Collector | v4.0pre3 | Web Scraping |
-| jpg To png Converter | v1.1.1 | Converter |
-| Luna's Global Script | {version} | Python Module |
-| Picture Collector | v1.2.4 | Web Scraping |
-| MP3 To wav Converter | v1.1.0 | Converter |
-| Music Collector | v1.0pre5 | Web Scraping |
-| Light Changer | v1.0 | QoL |
-| SD Tool | v1.0 | QoL |
-| RVC Tool | v1.0 | QoL |
-| RVC WebUI | v0.1 | QoL |
-| json To Something | v1.1 | Converter |
-| lunapy GradioUI | v1.0pre5 | QoL |
-| Flask Docs EasyViewer | v0 | ? |
+[This list is Not Supported. <br>Feature list is Moved to module_description.md](./docs/docs/module_description.md)
+
 
 -----------
 
@@ -32,7 +15,6 @@
 - [`ChromeDriver`](https://chromedriver.chromium.org)
 - [`Aria2`](https://github.com/aria2/aria2)
 - [`Google / Tessseract`](https://github.com/tesseract-ocr/tesseract)
-- [`ddPn08 / RVC-WebUI`](https://github.com/ddPn08/rvc-webui)
 
 ## 事前準備
 
@@ -60,27 +42,13 @@ Windows環境の場合 Git Bash を使用して Shell Script を実行するこ�
 
 ## Changelogs (v1.1.0pre12)
 
-- sd_tool/prompt_EasyMaker
-  - 辞書をjsonファイルに統合
-  - 安定性を上昇
-  - テンプレートの作成をUIデサポート
-  - なんやかんや修正
+### Music Collector v1.0pre3 -> v2pre1
 
------------
-
-lunapy v1.1.0までに作るものたち
-
-- Luna's Global Script
-  - 旧Import名Luna_GlobalScriptを完全廃止
-
-- Curseforge autodownload v2.1 -> v3
-  - ModrinthのMCVerチェック対応
-  - マルチプロセスモードの実装
-  - マルチプロセス数の設定
-  - Crash Reportの解析ツールの追加 (主に 前提MOD不足をキャッチ)
-  - API Link Cacheからの検索を行わない拘束取得のポート
-
-- Picture Collector v1.2.3 (-> v1.3)
-  - フィルタ設定の修正
-  - ファイルのリネームの設定の見直し
-  - Cwebpをちゃんとサポート
+- luna_GlobalScript を廃止
+- pyautogui -> Selenium と自動化ツールを変更することによる大幅な安定性の向上
+- Virtual Singerの取得の有無の設定
+- ファイル名およびsingerの正しい取得をサポート
+- upcoming
+  - webuiの実装
+  - ユニットごとに取得するかどうかを決める
+  - Full versionをyoutubeから取得 

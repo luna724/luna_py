@@ -1,13 +1,15 @@
 import json
 
-def read(filepath, encode: str = "utf-8"):
-    print("Reading jsondata..")
+def read(filepath, encode: str = "utf-8", silent=False):
+    if not silent:
+        print("Reading jsondata..")
     with open(filepath, 'r', encoding=encode) as file:
         data = json.load(file)
     return data
 
-def write(data, filepath, encode: str = "utf-8"): 
-    print("Writing config to jsondata..")
+def write(data, filepath, encode: str = "utf-8", silent=False): 
+    if not silent:
+        print("Writing config to jsondata..")
     with open(filepath, 'w', encoding=encode) as file:
         json.dump(data, file, indent=4)  # indent=4でフォーマットを整形して書き込み
     return data

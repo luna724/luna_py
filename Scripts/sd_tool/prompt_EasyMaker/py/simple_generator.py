@@ -193,7 +193,7 @@ def get_loraweight(prompt: str):
 
   pattern = r"%LORA:(\d+\.\d+)%"
   
-  match = re.find(pattern, prompt)
+  match = re.findall(pattern, prompt)[0]
   
   return float(match), f"%LORA:{match}%"
   

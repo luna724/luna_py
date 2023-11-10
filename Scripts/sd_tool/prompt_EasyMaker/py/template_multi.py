@@ -120,7 +120,7 @@ def generate(
   p_2 = p.split("\nAND\n")[1]
   
   if "%LORA%" in p_1:
-    fprompt = p_1.replace(
+    p_1 = p_1.replace(
       "%LORA%", LORA1
     ).replace(
       "%CH_NAME%", NAME1
@@ -133,7 +133,7 @@ def generate(
     )
   
   elif "%LORA:" in p_1:
-    fprompt = p_1.replace(
+    p_1 = p_1.replace(
       "%CH_NAME%", NAME1
     ).replace(
       "%CH_PROMPT%", PROMPT1
@@ -153,7 +153,7 @@ def generate(
     )
     
   if "%LORA%" in p_2:
-    fprompt = p_2.replace(
+    p_2 = p_2.replace(
       "%LORA%", LORA2
     ).replace(
       "%CH_NAME%", NAME2
@@ -166,7 +166,7 @@ def generate(
     )
   
   elif "%LORA:" in p_2:
-    fprompt = p_2.replace(
+    p_2 = p_2.replace(
       "%CH_NAME%", NAME2
     ).replace(
       "%CH_PROMPT%", PROMPT2

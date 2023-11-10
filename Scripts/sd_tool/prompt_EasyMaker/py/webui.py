@@ -2,6 +2,7 @@ import gradio as gr
 # import WHB_generator as whbgen
 # import Masturbation_generator as mastgen
 import importlib
+import os
 import subprocess
 import tentacle_clothes as tcgen
 import log_writer as log_writer
@@ -27,8 +28,8 @@ def reload_module():
   print("Module Reload Successfully Completed!")
 
 def reload_ui():
-  itrmain.close()
   subprocess.Popen(["python", "webui.py"])
+  os._exit(0)
   
 with gr.Blocks() as itrmain:
   rld_ui_btn = gr.Button("Reload jsondata",size="sm")
@@ -584,4 +585,4 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
         label="ADetailer Negative",
         value= data.basic_adetailer_neg
       )
-itrmain.launch(inbrowser=True, server_port=25566)
+itrmain.launch(inbrowser=False, server_port=25566)

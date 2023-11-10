@@ -1,497 +1,480 @@
+def help_message():
+  message = f"""Help is nothing here."""
+  
+  return message
+
+import gradio as gr
+import random
 import os
-import pyautogui as pygui
-import subprocess
-import time
 import requests
-import pygetwindow as gw
-import pyperclip as pyclip
-import luna_GlobalScript.autogui.convertRGBToHex as convert
-import webbrowser
-import mv_filtering as mvf
-import luna_GlobalScript.autogui.clicker as click
-import luna_GlobalScript.project_sekai.unit_charactor_analyser.id.any_roma2idxname as lunaidanalyse
-import luna_GlobalScript.misc.compact_input as compact
-import luna_GlobalScript.misc.output_folder as out_gen
-from luna_GlobalScript.misc.global_math import cursor_relative_position as relative
-import win32gui
-from luna_GlobalScript.misc.global_math import cursor_exchanger as cur
-from luna_GlobalScript.misc.debug_tool import dprint as dp
+import socket
+import eyed3
+import re
+import time
+import argparse
+import sys
+import shutil
+from datetime import datetime
+from pydub import AudioSegment
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException
+from tqdm import tqdm
+from bs4 import BeautifulSoup
+import LGS.misc.jsonconfig as jsoncfg
+import LGS.misc.nomore_oserror as los
 
-isWhite, end = False, False
-debug = True
-a = 0
-mx, my = 1440, 900 # デフォルトのx, y の値
-def lowfile_remover(directory):
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if os.path.isfile(filepath) and filename.lower().endswith(".txt"):
-            if os.path.getsize(filepath) < 1:  # ファイルサイズが1bytes未満の場合
-                os.remove(filepath)
-                print(f"Deleted: {filename} Because under 1bytes")
-def ez_click(x, y):
-    click.click(x, y, mx, my, False)
+# pjlib
+sys.path.append("..\\..\\./module") # luna_py/modules
+import pjlib.pjlib as pjlibs
+
+pjlib = pjlibs.project_sekai_lib()
+
+
+class main_class():
+  def get_driver(self, srvc_arg):
+    config = jsoncfg.read("./config/driver_config.json", silent=True)
+    chromebinary = config["Chrome Binary Location"]
+    driverpath = config["ChromeDriver Location (if added SystemPATH, can ignored)"]
     
-def dprint(str):
-    if debug == True:
-        dp(str)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = chromebinary
+    driver = webdriver.Chrome(options=chrome_options)
+    return driver
 
-# 入力処理
-members = str(input("取得したいキャラクターまたはユニット (未入力で全員)\n (e.g: ichika) or (e.g: Leo/need): "))
-dprint(f"User Selected: members = \"{members}\"")
-filter_mv = str(input("MVタイプのフィルタを行いますか? (0 or 1): "))
-dprint(f"User Selected: filter_mv = \"{filter_mv}\"")
-ExperimentalMode = input("実験的モード (非推奨) (True / False / ?): ")
-dprint(f"User Selected: ExperimentalMode = \"{ExperimentalMode}\"")
-chrome_path = str(input("Chromeのパスを入力してください (未入力でデフォルトパス): "))
-dprint(f"User Selected: chrome_path = \"{chrome_path}\"")
+main = main_class()
 
-# 実験モードのプリントアウト
-if ExperimentalMode == "?":
-    dprint("ExperimentalMode = \"?\"  - Return")
-    print("""
-    実験的モードとは                             \n
-現在開発中の、画面操作機能を使用したモードです。    \n
-例外処理やif文処理等が不完全なため、実験的モードとしての\n
-実装をしている。                                  \n
-""")
-    ExperimentalMode = input("実験的モード (非推奨) (True / False): ")    
-# 前処理
-if not members == "": # 入力があったらチェック
-    dprint("Starting Member ID Analysing..")
-    name, id = lunaidanalyse.returnmode_02d(members, True)
-else: # 未入力なら実行
-    print("Successfully Getting Charactor Data\nName:Any ID:range(1,27)")
-    print("\n\n警告: キャラクターフィルタなしでの実行はベータ版です")
-    NoCharactorFilter = True
+class Share():
+  dev = False
+  
+  # # # # #
+  available_module = ["v2", "v1"]
+  available_unit = ["*","leo/need", "more more jump!", "nightcode at 25ji", "wonderlands×showtime", "vivid bad squad", "leo2", "25", "mmj", "vvbs", "dasyo"]
+  webui = False
+  webui_share = False
+  datedict = {
+    "MODULE": "",
+    "UNIT": "",
+    "ANOTHER": False,
+    "VIRTUAL_SINGER": False,
+    "V1": False,
+    "NOLOOP": False,
+    "OUTPUT": "",
+    "LIMIT": 429,
+    "Maximum_WAIT": 60,
+    "EXT": "MP3" # or FLAC
+  }
+shared = Share()
 
-if chrome_path == "": # 未入力だったらデフォルト
-    chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
-    dprint(f"Updated chrome_path = \"{chrome_path}\"")
-elif debug == True: # デバッグ用
-    if chrome_path =="":
-        chrome_path = "C:/Program Files/Google/Chrome/Application/chrome.exe"
+def status_check(response, if404="pass", ifsomething="stderr"):
+  if if404 == "pass":
+    if404 = True
+  else:
+    if404 = False
+  if ifsomething == "stderr":
+    ifsomething = False
+  else:
+    ifsomething = True
+  
+  code = response.status_code
+  if code == 200:
+    return True
+  elif code == 404 and if404:
+    return False
+  elif code == 404 and not if404:
+    raise ValueError(f"Response Status: 404 \n({response})")
+  elif code != 200 and code != 404 and ifsomething:
+    return False
+  else:
+    raise ValueError(f"Response Status: {code} \n({response})")
+
+def find_free_port():
+  # ポート0を指定することで空いているポート番号を取得できる
+  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+    s.bind(('localhost', 0))
+    return s.getsockname()[1]
+def dprint(str_, *kwarg):
+  if shared.dev:
+    for x in kwarg:
+      str_ += x
+    print(str_)
+def done():
+  raise ValueError("Done.")
+
+def launch():
+  url_dict = {}
+  data = shared.datedict
+  MODULE = data["MODULE"]
+  UNIT = data["UNIT"]
+  VS = data["VIRTUAL_SINGER"]
+  LOOP = not data["NOLOOP"]
+  OUTPUT = data["OUTPUT"]
+  LIMIT = data["LIMIT"]
+  FILESOURCE = data["EXT"]
+  
+  os.makedirs("./cache", exist_ok=True)
+  
+  if OUTPUT == "":
+    OUTPUT = "./out"
+  
+  if OUTPUT == los.filename_resizer(OUTPUT, replaceTo="-"):
+    os.makedirs(OUTPUT, exist_ok=True)
+  else:
+    if shared.webui:
+      return "Failed. Reason: filename checking are failed. (if not contain Can't add to Windows filename char, please report to github issues)"
     else:
-        chrome_path = "E:/Application/Google/Chrome/Application/chrome.exe"
-    dprint(f"Automatic Selected Debugging ChromePath")
-
-if compact.tfgen_boolean(filter_mv): # MVフィルタオンの場合
-    dprint("MVFilter = True")
-    mv3d, mv2d, mv_original, mv_static = mvf.main()
-    NoMVFilter = False
-else:
-    dprint("MVFilter = False")
-    NoMVFilter = True
-
-
-# フィルタは存在するか
-if not NoMVFilter and NoCharactorFilter:
-    filtering = False
-else:
-    filtering = True
-dprint(f"Any Filtering {str(filtering)}")
+      raise ValueError("\n\nstderr: Failed. \nReason: filename checking are failed. (if not contain Can't add to Windows filename char, please report to github issues)")
+      
+  if LOOP:
+    os.remove("./already_obtained.json")
     
-# アウトプットフォルダ
-out_gen.output(False)
-output_folder = "./outputs"
-dprint("Successfully Created ./outputs")
-
-# WebBrowserのセットアップ
-webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-dprint("Webbrowser Registing Success")
-
-# メイン処理
-url = "https://sekai.best/music"  # 開くURLを指定
-webbrowser.get("chrome").open(url)  # Chromeを起動して指定したURLを開く
-dprint("Trying Open URL")
-# Chromeの取得
-chrome_window = pygui.getWindowsWithTitle("Google Chrome")[0]  # ウィンドウのタイトルで特定のウィンドウを取得
-dprint("Trying get Chrome Window")
-# フォーカス + フルスクリーン
-window = gw.getWindowsWithTitle("Google Chrome")[0]
-
-# ウィンドウをフォーカスする
-window.activate()
-
-# ウィンドウをフルスクリーン化する
-window.maximize()
-time.sleep(10)
-dprint("Trying Chrome Fullscreen and Focused")
-
-# フィルタ処理
-if filtering == True: # もしフィルタがあるなら
-    print("フィルタが実験的モードで実行されました。")
-    time.sleep(3)
-    # フィルタ画面を開く
-    click.click(1350, 220, mx, my, False)  # 1350, 220を各解像度に対応させ、クリック
-    time.sleep(1.5) 
-    if not NoCharactorFilter == True: # キャラフィルタがある場合
-        if id == "80": # 480, 365  # IDでのフィルタ
-            click.click(480, 365, mx, my, False)
-        elif id == "81": # 800, 325
-            click.click(800, 325, mx, my, False)
-        elif id == "83": # 512, 325
-            click.click(512, 325, mx, my, False)
-        elif id == "84": # 1110, 325
-            click.click(1110, 325, mx, my, False)
-        elif id == "82": # 980, 290
-            click.click(980, 290, mx, my, False)
-        elif id == "01": # 475, 460
-            click.click(475, 475, mx, my, False)
-        elif id == "02": # 655, 460
-            ez_click(655, 460)
-        elif id == "03": # 830, 460
-            ez_click(830, 460)
-        elif id == "04": # 1020, 460
-            ez_click(1020, 460)
-        elif id == "05": # 1220, 460
-            ez_click(1220, 460)
-        elif id == "06": # 475, 500
-            ez_click(475, 500)
-        elif id == "07": # 630, 500
-            ez_click(630, 500)
-        elif id == "08": # 820, 500
-            ez_click(820, 500)
-        elif id == "09": # 1010, 500
-            ez_click(1010, 500)
-        elif id == "10": # 1200, 500
-            ez_click(1200, 500)
-        elif id == "11": # 470, 540
-            ez_click(470, 540)
-        elif id == "12": # 650, 540
-            ez_click(650, 540)
-        elif id == "13": # 810, 540
-            ez_click(810, 540)
-        elif id == "14": # 970, 540
-            ez_click(970, 540)
-        elif id == "15": # 1130, 540
-            ez_click(1130, 540)
-        elif id == "16": # 1300, 540
-            ez_click(1300, 540)
-        elif id == "17": # 465, 580            
-            ez_click(465, 580)
-        elif id == "18": # 650, 585
-            ez_click(650, 585)
-        elif id == "19": # 855, 585
-            ez_click(855, 585)
-        elif id == "20": # 1030, 580
-            ez_click(1030, 580)
-        elif id == "21": # 1200, 580
-            ez_click(1200, 580)
-        elif id == "22": # 465, 626
-            ez_click(465, 625)
-        elif id == "23": # 655 625
-            ez_click(655, 625)
-        elif id == "24": # 830, 625
-            ez_click(830, 625)
-        elif id == "25": # 950, 625
-            ez_click(950, 625)
-        elif id == "26": # 1050, 625
-            ez_click(1050, 625)
-        elif id == "85": # 580, 290
-            ez_click(580, 290)
-        else:
-            NoCharactorFilter = True
-    if not NoMVFilter == True:
-        if mv3d == True: # Pos 415, 415
-            click.click(415, 415, mx, my, False)
-        elif mv2d == True: # Pos 490, 415
-            click.click(490, 415, mx, my, False)
-        elif mv_static == True: # Pos 675, 415
-            click.click(675, 415, mx, my, False)
-        elif mv_original == True: # Pos 572, 415
-            click.click(572, 415, mx, my, False)
-        else:
-            NoMVFilter = True
+  cache_num = "0"
+  if os.path.exists("./already_obtained.json"):
+    cache_num_raw = jsoncfg.read("./already_obtained.json", silent=True)
+    cache_num = cache_num_raw["-"]
     
-    click.click(1350, 220, mx, my, False)
-    time.sleep(12)
-    print("Starting Download..")
-else: # ないなら
-    print("""Starting Download..""")
-    
-# 本当のメイン処理
-# 333, 270が #121212じゃないなら
-click.click(333, 270, mx, my, True) # 333, 270 Move
-if not convert.c_hex("#121212"):
-    ez_click(350, 224) # 350, 224
-    time.sleep(0.5)
+  cache_num = int(cache_num)
 
-if ExperimentalMode == "True": # 実験的モード
-    print("実験的モードでの実行が開始されました。")
-    time.sleep(10)
-    # そこにUIがあるなら 
-    click.click(1273, 333, mx, my, True)
-    if convert.c_hex("#1E1E1E"):
-        pygui.rightClick() # 1273, 333
-        relative(-10, "y", True)
-        time.sleep(0.2)
-        pygui.click()
-    elif convert.c_hex("#121212"):
-        print("これ以上ミュージックページUIが見つかりませんでした。")
-        exit()
-    else:
-        print("例外エラー\nカラーコードが一致しません")
-        exit()
-
-    # 二段目 -10px
-    click.click(1273, 475, mx, my, True)
-    if convert.c_hex("#1E1E1E"):
-        pygui.rightClick() # 1273, 475
-        relative(-10, "y", True)
-        time.sleep(0.2)
-        pygui.click()
-    elif convert.c_hex("#121212"):
-        print("これ以上ミュージックページUIが見つかりませんでした。")
-        skip = True
-    else:
-        print("例外エラー\nカラーコードが一致しません")
-        exit()
+  if MODULE == "v2": 
+    if UNIT == "*": # 全取得モード
+      if cache_num == "0":
+        disable_limit = True
+      else:
+        disable_limit = False
+      
+      for session in tqdm(range(1, LIMIT), desc="Session"):
+        print("Starting Session: ", session, "..", end=" ")
+        if session <= cache_num and not disable_limit:
+          print("Skipped\nReason: session <= cache_num")
+          continue
         
-    # 三段目
-    if not skip == True:
-        click.click(1273, 610, mx, my, True)
-        if convert.c_hex("#1E1E1E"):
-            pygui.rightClick() # 1273, 610
-            relative(-10, "y", True)
-            time.sleep(0.2)
-            pygui.click()
-        elif convert.c_hex("#121212"):
-            print("これ以上ミュージックページUIが見つかりませんでした。")
-            skip = True
+        URL = f"https://sekai.best/music/{session}"
+        response = requests.get(URL)
+        if not response.status_code == 200:
+          if response.status_code == 404:
+            print("Skipped\nReason: status = 404 Not Found")
+          else:
+            print("Failed.\nUnknown Error Occurpted status_code == ",response.status_code)
         else:
-            print("例外エラー\nカラーコードが一致しません")
-            exit()
-
-    # 四段目
-    if not skip == True:
-        click.click(1273, 750, mx, my, True)
-        if convert.c_hex("#1E1E1E"):
-            pygui.rightClick() # 1273, 750
-            relative(-10, "y", True)
-            time.sleep(0.2)
-            pygui.click()
-        elif convert.c_hex("#121212"):
-            print("これ以上ミュージックページUIが見つかりませんでした。")
-            skip = True
-        else:
-            print("例外エラー\nカラーコードが一致しません")
-            exit()
-    exit("実験的モードでの実行が正常に終了しました")
-
-else: # 通常モード
-    dprint("Starting Download with Normal Mode..")
-    # 824, 252 が白になるまでTABを押す
-    while isWhite: # 白ならおわり
-        click.click(824, 252, mx, my, True)
-        if convert.c_hex("#FFFFFF"):
-            isWhite = True
-            break
-        else: # 白検出までTAB
-            pygui.press("tab")
-        time.sleep(0.5)
-    pygui.hotkey("ctrl", "enter") # 新たなタブで開く
-    click.click(1399, 872, mx, my, True) # 1399, 872をホバー
-    
-    while end:
-        if a == 10: # 10回実行ごとに10秒待機
-            a = 0
-            time.sleep(10)
-        else:
-            a += 1
-        pygui.press("tab")
-        time.sleep(0.1) # TAB押して 0.1秒待機
-        pygui.hotkey("ctrl", "enter")
-        time.sleep(0.3) # 新しいタブ開いて0.3秒待機
-        
-        # C44C76なら停止
-        if convert.c_hex("#C44C76"): # 1399, 872
-            end = True
-            break
-        else: # ちがうなら0.5秒待って繰り返し
-            time.sleep(0.5)
-    
-    click.click(840, 75, mx, my, True) # 840, 75
-    pygui.rightClick() #" 右クリック"
-    time.sleep(0.5)
-    click.click(855, 412, mx, my, True)
-    if convert.c_hex("#01397F"): # 855, 412
-        # 700, 540
-        time.sleep(5) # 右側のタブをすべてOneTabに送る
-        ez_click(700, 540)
-    time.sleep(10)
-    
-    ez_click(28, 16) # OneTabに移動
-    a = False
-    
-    # ロードし、ダウンロードする処理
-    while a == True:
-        subprocess.run("del url_write_here.txt", shell=True)
-        subprocess.run("type nul > ./url_write_here.txt", shell=True)
-        print("メモ帳に、OneTabにて、開いたページのURLをすべてまとめてペーストして下さい。\nメモ帳を消して続行")
-        subprocess.run("notepad.exe url_write_here.txt", shell=True)
-        time.sleep(0.5)
-        lowfile_remover("./")
-        if os.path.exists("./url_write_here.txt"):
-            a = True
-            break
-        else:
-            a = False
-    
-    time.sleep(5)
-    a = 0
-    url_based = "https://sekai.best/music/"
-    can_load = []
-    # ファイルから読み込み
-    with open('url_write_here.txt', 'r') as file:
-        urls = file.readlines()
-    
-    # 読み込んだ内容を処理
-    for check in urls:
-        check = check.replace(check[check.find(" "):], "")
-        check.strip()
-        if check.startswith(url_based):
-            print(f"Loading Success: {check}")
-            can_load.append(check)
-        else:
-            print(f"Failed: {check}\nText type does not start with {url_based}")
-    
-    print("Chrome(フルスクリーン)にフォーカスを充ててください")
-    time.sleep(5)
-    # 開いて、いろいろと
-    hwnd = win32gui.FindWindow(None, "chrome.exe")
-    if hwnd != 0: # Chromeをアクティブ化
-        win32gui.SetForegroundWindow(hwnd)
-    
-    # 開いて色々するメイン処理
-    e = 1
-    ok = False
-    
-    # Start line forked From curseforge-autodownload/main.py
-    
-    for url in can_load:
-        # アドレスバーをクリックして選択する
-        x = cur(600, 1280, "x")
-        y = cur(50, 800, "y")
-        pygui.click(x=x, y=y)  # def 1280, 800  click = 600, 50
-        time.sleep(0.5)
-        
-        # すでにあるURLをクリーンアップ
-        pygui.hotkey('ctrl', 'a')
-        pygui.hotkey('ctrl', 'backspace')
-        # URLを入力する
-        print(f"Trying Open {url}")
-        pyclip.copy(url)  # URLをクリップボードにコピー
-        pygui.hotkey("ctrl", "v")  # クリップボードの内容を貼り付け
-        pygui.press('enter')
-        time.sleep(7)
-        
-        #time.sleep(10) # ロード待機
-        
-    # End line forked From curseforge-autodownload/main.py
-
-        # まずはそのままダウンロード
-        # TAB を 8回
-        while e < 9:
-            pygui.hotkey("shift","tab")
-            time.sleep(0.1)
-            e += 1
-        e = 1
-        time.sleep(1)
-        # 一致するなら # 452, 459
-        click.click(452, 459, mx, my, True)
-        while ok:
-            if convert.c_hex("#FFFFFF"):
-                pygui.press("enter") # 一致したら終わり
-                ok = True
-                break
-            else: # コメントのせいでずれたなら
-                pygui.hotkey("shift","tab")
-                time.sleep(0.15) # 一致するまで
-                ok = False
-        ok = False # リセット
-        time.sleep(3) # 多分これだけ待てばされるはず
-        click.click(636, 261, mx, my, False) # 一人目のセレクト位置に移動
-        time.sleep(1.3)
-        if convert.c_hex("#298A7B"):
-            t = "#298A7B"
-        else:
-            print(f"エラー: HEX不一致\n636, 261のHexが #298A7Bと一致しませんでした。\n{url}の処理はスキップされました。")
+          # MODE: Selenium
+          
+          # ポート番号の取得
+          for _ in range(0, 10):
+            port = find_free_port()
+            service_args = [f'--port={port}']
+          
+          driver = main.get_driver(service_args)
+          driver.get(URL)
+          
+          wait = WebDriverWait(driver, data["Maximum_WAIT"])
+          time.sleep(2.42)
+          
+          # タイトルを取得
+          try:
+            song_title_element = wait.until(EC.presence_of_element_located((By.XPATH, "//h6[@class='MuiTypography-root MuiTypography-h6 css-1u18iur']")))
+            song_title_element = wait.until(EC.presence_of_element_located((By.XPATH, "//h6[@class='MuiTypography-root MuiTypography-h6 css-1u18iur']")))
+          except Exception as error:
+            driver.quit()
+            print(f"Error Catched on driver.get(): ERROR\n{error}")
             continue
-        #298A7B # 636 261 # 653 213
-        # 開始位置に移動
-        click.click(636, 261, mx, my, True)
-        
-        # 同じカラーはどこかなーw
-        while ok:
-            # ok が Falseなら
-            while not convert.c_hex("#1F2726"):
-                relative(1, "x", True) # tと現在の位置のコードが一致しないなら
-                if convert.c_hex("#121212"): # 41 to 105
-                    ok = True
-                    break # もしフィールドオーバーしていたら
-                time.sleep(0.05)
-            if convert.c_hex(t):
-                temp_x, temp_y = pygui.position() # 一致したら
-                ez_click(452, 459) # ダウンロード
-                # 待機
-                time.sleep(3)
-                pygui.moveTo(temp_x, temp_y + 64) # 重複実行停止処理
-            elif ok == True:# 633, 5282段目にまだ何かあるなら
-                pygui.moveTo(633, 528)
-                if convert.c_hex("#1F2726"):
-                    pygui.moveTo(620,528) # 620, 528
-                    ok = False
-            else: 
-                print("エラー: 不明な理由でwhileループが終了しました\n (line 381)")
-                ok = True
-                break
-            time.sleep(0.01)
-        
-        # 全部押し終えたら(多分)
-        # 3回 SHIFT+TAB -> 右 を押してflacモード
-        pygui.hotkey("shift", "tab")
-        time.sleep(0.1)
-        pygui.hotkey("shift", "tab")
-        time.sleep(0.1)
-        pygui.hotkey("shift", "tab")
-        time.sleep(0.1)
-        pygui.press("right")
+          
+          song_title = song_title_element.text
+          dprint(f"\nObtained Song Title: {song_title}")
+          
+          # とりあえず、バチャシンDL
+          #if VS:
+          #  download_element = wait.until(EC.element_to_be_clickable((By.XPATH, f"//svg[@class='MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv']"))).click()
+          #else:  # え？ しないの？
+          #  download_element = wait.until(EC.element_to_be_clickable((By.XPATH, f"//svg[@class='MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv']")))
+          # 作曲者の設定
+          # /html/body/div[1]/div/div[3]/div[2]/div[5]/div[7]/p
+          artist_element = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[3]/div[2]/div[5]/div[7]/p")))
+          artist_element = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div/div[3]/div[2]/div[5]/div[7]/p")))
+          
+          artist = artist_element.text
+          dprint(f"Obtained Artist: {artist}")
+          
+          # 合計ボーカルタイプを取得
+          # エレメント解析、特定クラスの数を vocal_count に代入
+          vocal_root_element = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[3]/div[2]/div[3]/div/div[2]')))
+          html = vocal_root_element.get_attribute('outerHTML')
+          dprint(f"HTML: {html}")
+          jsoncfg.write_text(filepath="./cache/vocal_root_element_html.lunacache", data=f"HTML: \n{html}")
+          
+          soup = BeautifulSoup(html, "html.parser")
+          vocal_element = soup.find_all("input", class_="PrivateSwitchBase-input css-1m9pwf3", attrs={"name": "vocal-type"})
+          dprint(f"Vocal_element: {vocal_element}")
+          
+          vocal_count = len(vocal_element)
+          dprint(f"vocal_count: {vocal_count}")
+          
+          for x in tqdm(range(0, vocal_count),desc="Vocal Downloading.."):
+            dprint(f"Vocal Session: {x}")
+            # ボーカル数に応じて処理を行う
+            time.sleep(1.5)
+            
+            # MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-spacing-xs-1 MuiGrid-grid-xs-12 MuiGrid-grid-md-9 css-18ou6kw
+            # ボーカル摘出ラインまでHTMLを絞り込む
+            #vocal_extract_element = wait.until(EC.presence_of_element_located((
+            #  By.XPATH, 
+            #  '/')))
+            soup = BeautifulSoup(html, "html.parser")
+            soup_stableopen_div = soup.find("div", class_="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-spacing-xs-1 MuiGrid-grid-xs-12 MuiGrid-grid-md-9 css-18ou6kw")
+            soup_stableopen = soup_stableopen_div.find("div", class_="MuiFormControl-root css-13sljp9")
+            vocal_selection_root = soup_stableopen.find("div", class_="MuiFormGroup-root MuiFormGroup-row css-p58oka")
+            
+            # ボーカル種類別エレメントをひとつづつ処理
+            target_list = vocal_selection_root.find_all("label", class_="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-kswqkt")
+            target = target_list[x]
+            dprint(f"Target: {target} (in {target_list})")
+            jsoncfg.write_text(filepath="./cache/vocal_selection_root_target_html", data=f"HTML: \n{target}")
+            
+            # singer ID の取得 + ファイル名処理
+            soup_stableopen = target.find(
+              "div", class_="MuiGrid-root MuiGrid-container css-cgxzmc"
+            )
+            singers = soup_stableopen.find_all(
+              "div", class_="MuiGrid-root MuiGrid-item css-1wxaqej"
+            )
+            dprint(f"got singers: {len(singers)}")
+            
+            singer_list = []
+            for singer in singers:
+              img_element = singer.find("img")
+              if not img_element == None:
+                ch_id_raw = img_element.get("alt")
+                dprint(f"ch_id_raw: {ch_id_raw}")
+              
+                pattern = r"character (\d+)"
+                ch_id = re.findall(pattern, ch_id_raw)[0]
+                dprint(f"ch_id: {ch_id}")
+              else:
+                ch_id = 27
+              # キャラクター名を取得
+              singer_list.append(
+                pjlib.character_id_to_name[int(ch_id)]
+              )
+              dprint(f"appended {pjlib.character_id_to_name[int(ch_id)]}")
+            
+            if not len(singer_list) == 0:
+              if not x == 1: # sekai ver じゃないなら
+                song_title_resized = song_title.split(" | ")[0]
+                filename = f"{song_title_resized} ft. "
+                for name in singer_list:
+                  filename += f"{name}、"
+                
+                filename = filename.strip("、")
+              else: # sekai ver
+                filename = f"{song_title_resized} Gamesize"
+              
+              dprint(f"filename: {filename}")
+              
+              # 情報をもとに URL を作成
+              base_url1 = "https://storage.sekai.best/sekai-assets/music/long/{:04d}_{:02d}_rip/{:04d}_{:02d}.mp3"
+              base_url2 = "https://storage.sekai.best/sekai-assets/music/long/{}_{:04d}_{:02d}_rip/{}_{:04d}_{:02d}.mp3"
+
+              song_id = session
+              vocal_id = x +1 
+              lvocal_id = vocal_id
+              mode = ""
+              # mode の取得
+              if vocal_id == 0:
+                mode = "vs"
+              elif vocal_id == 1:
+                mode = "se"
+              else:
+                mode = "an"
+                vocal_id -= 2
+              
+              url1 = base_url1.format(
+                song_id, lvocal_id, song_id, lvocal_id
+              )
+              
+              url2 = base_url2.format(
+                mode, song_id, vocal_id, mode, song_id, vocal_id
+              )
+              
+              if not VS and mode == "vs":
+                dprint("Skipped download. bc this is Virtual Singer")
+                pass
+              url_dict[f"{filename}"] = (url1, url2, artist)
+              print("done")
+              jsoncfg.write(url_dict, "./cache/cache_url_dict.json",silent=True)
+          driver.quit()
+          
+      
+      # ダウンロード処理
+      print("all session is successfully completed")
+      dprint("Done!")
+      jsoncfg.write(url_dict, "./cache/previous_session.json")
+      for filename, urls in tqdm(url_dict.items(), desc="Downloading.."):
+        print(f"Downloading file {filename}... ", end="")
+        dprint(f"Starting Download: \nfilename: {filename}\nURL: {urls[:1]}")
+        filename = los.filename_resizer(filename, replaceTo="_")
+        legacy_url = urls[0]
+        url = urls[1]
+        artist_ = urls[2]
+        new_ = True
         time.sleep(0.5)
+        response_legacy = requests.get(legacy_url)
+        response_new = requests.get(url)
+        time.sleep(1.25)
         
-        # 一人目へ
-        click.click(636, 261, mx, my, False) # 一人目のセレクト位置に移動
-        # ちょっと待って検出
-        time.sleep(1.3)
-        if convert.c_hex("#298A7B"):
-            t = "#298A7B" # 一致したら
-            # ダウンロード
-            temp_x, temp_y = pygui.position() # 一致したら
-            ez_click(452, 459) # ダウンロード
+        if status_check(response_legacy):
+          new_ = False
+          content = response.content
+          dprint("Response Data: Legacy")
+          dprint(f"content Data: -> {filename}")
+          legacy_ = True
+        if status_check(response_new):
+          legacy_ = False
+          content = response.content
+          dprint("Response Data: New")
+          dprint(f"content Data: -> {filename}")
+          new_ = True
         
+        if not filename.endswith(".mp3") and FILESOURCE == "MP3":
+          filename += ".mp3"
+        elif not filename.endswith(".flac") and FILESOURCE == "FLAC":
+          filename += ".flac"
         
-        while ok:
-            # ok が Falseなら
-            while not convert.c_hex("#1F2726"):
-                relative(1, "x", True) # tと現在の位置のコードが一致しないなら
-                if convert.c_hex("#121212"): # 41 to 105
-                    ok = True
-                    break # もしフィールドオーバーしていたら
-                time.sleep(0.05)
-            if convert.c_hex(t):
-                temp_x, temp_y = pygui.position() # 一致したら
-                ez_click(452, 459) # ダウンロード
-                # 待機
-                time.sleep(3)
-                pygui.moveTo(temp_x, temp_y + 64) # 重複実行停止処理
-            elif ok == True:# 633, 5282段目にまだ何かあるなら
-                pygui.moveTo(633, 214)
-                if convert.c_hex("#1F2726"):
-                    pygui.moveTo(620,214) # 620, 528
-                    ok = False
-            else: 
-                print("エラー: 不明な理由でwhileループが終了しました\n (line 381)")
-                ok = True
-                break
-            time.sleep(0.01)
+        with open(os.path.join(os.getcwd(), "cache", filename), "wb") as f:
+          f.write(content)
         
+        # 作曲者の設定
+        audiofile = eyed3.load(os.path.join(os.getcwd(), "cache", filename))
         
+        audiofile.tag.artist = artist_
+        audiofile.tag.save()
+        
+        # 最初の8.5秒を消す
+        audio = AudioSegment.from_file(os.path.join(os.getcwd(), "cache", filename))
+        cut_audio = audio[:8500]
+        cut_audio.export(os.path.join(os.getcwd(), OUTPUT, filename), format=FILESOURCE.lower())
+      
+      os.makedirs("logs", exist_ok=True)
+      shutil.move(os.path.join(os.getcwd(), "cache", "previous_session.json"), os.path.join(os.getcwd(), "logs", f"session-TIME{datetime.now().strftime('%Y%m%d-')}{random.randrange(1, 2100000000)}.json"))
+      shutil.rmtree("./cache")
+
+class WebUI():
+  def stable(self):
+    return
+  
+  def dev(self):
+    with gr.Blocks() as iface:
+      gr.Markdown("UIMODE: DEBUG (WebUI.dev)")
+      
+      mode = gr.Radio(
+        label="Module Mode",
+        choices=["Selenium (v2)", "Silent (v1)", "pyautogui (v1)"],
+        value="Selenium (v2)"
+      )
+    
+    return iface
+webui_instance = WebUI()
+
+def itrmain(
+  mode, #Module Mode ["Selenium (v2)", "Silent (v1)", "pyautogui (v1)"]
+  
+):
+  return
+
+
+def arg_parser():
+  parser = argparse.ArgumentParser(description="parser")
+  
+  parser.add_argument('--webui', action='store_true')
+  parser.add_argument('--unit')
+  parser.add_argument('--another_vocal', action='store_true')
+  parser.add_argument('--module')
+  parser.add_argument('--virtual_singer', action='store_true')
+  parser.add_argument('--mode')
+  parser.add_argument('--noloop', action='store_true') # 取得済みの曲を再取得しない
+  parser.add_argument('--v1', action='store_true')
+  parser.add_argument('--info_arg', action='store_true')
+  parser.add_argument('--output')
+  parser.add_argument('--share_webui', action='store_true')
+  parser.add_argument('--dev', action='store_true')
+
+  args = parser.parse_args()
+  
+  #dev
+  if args.dev:
+    shared.dev = args.dev
+  else:
+    shared.dev = False
+  
+  # フォーマット
+  if not args.webui and not args.info_arg:
+    datedict = shared.datedict
+    if args.unit:
+      unit = args.unit
+      if unit.lower() in shared.available_unit:
+        datedict["UNIT"] = unit
+    if args.another_vocal:
+      another = args.another_vocal
+      datedict["ANOTHER"] = another
+      print("WARN: \"--another_vocal\" is Disabled.")
+    if args.module:
+      module = args.module
+      if module.lower() in shared.available_module:
+        datedict["MODULE"] = module
+    if args.virtual_singer:
+      vsinger = args.virtual_singer
+      datedict["VIRTUAL_SINGER"] = vsinger
+    if args.mode:
+      print("notify: \"--mode\" argument is no longer supported.\nplease Use \"--module\" instead.")
+      mode = args.mode
+      if mode.lower() in ["v1", "v2"]:
+        # datedict["MODE"] = mode
+        if args.module == None:
+          datedict["MODULE"] = mode
+    if args.noloop:
+      noloop = args.noloop
+      datedict["NOLOOP"] = noloop
+    if args.output:
+      output = args.output
+    else:
+      output = "./out"
+    datedict["OUTPUT"] = output
+    
+    shared.datedict = datedict
+    
+  elif args.info_arg:
+    if args.webui:
+      print("WARN: \"--info_arg\" detected.\n\"--webui\" are Terminated.")
+    print(help_message())
+    exit()
+  
+  elif args.webui:
+    if args.share_webui:
+      print("launching webui with \"--share_webui\"..")
+      shared.webui = True
+      shared.webui_share = True
+    else:
+      print("launching webui..")
+      shared.webui = True
+      shared.webui_share = False
+  
+  print("argparse done.")
+
+def launch_webui():
+  if shared.webui:
+    iface = webui_instance.stable()
+    if shared.dev:
+      iface = webui_instance.dev()
+    
+    iface.launch(
+      share=shared.webui_share,
+      port=25567
+    )
+  else:
+    print("webui are not hooked")
+    launch()
+
+if __name__ == "__main__":
+  arg_parser()
+  launch_webui()
+  

@@ -211,7 +211,7 @@
     ],
     "tentacle_sex (standing)": [
         {
-            "Prompt": "nsfw, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, cowboy shot, sad, (orgasm), blush, wink, %LORA%:0.657, %CH_NAME%, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), %CH_PROMPT%,",
+            "Prompt": "nsfw, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, cowboy shot, sad, (orgasm), blush, wink, %LORA:0.657%, %CH_NAME%, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), %CH_PROMPT%,",
             "Negative": "EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1 boy,"
         },
         [
