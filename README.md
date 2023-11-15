@@ -41,6 +41,12 @@ Windows環境の場合 Git Bash を使用して Shell Script を実行するこ�
 </details>
 
 ## Changelogs (v1.1.0pre12)
+- SD - PromptEasyMaker (v1.0.29)
+  - Rename / Upcoming Version!
+  - Add All Database / Dataset into to .gitignore
+  - Template Generator is Support Multiple Generation (can up to 2, that's multiple..?)
+  - LoRA Database Setup Support in WebUI
+  - Many tiny tweaks
 
 ### Music Collector v1.0pre3 -> v2pre1
 

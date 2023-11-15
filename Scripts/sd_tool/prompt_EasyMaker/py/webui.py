@@ -7,6 +7,7 @@ import subprocess
 import tentacle_clothes as tcgen
 import log_writer as log_writer
 import simple_generator as data
+import lib as data_new
 import tentacles_all as te
 import base_generator as bg
 import lora_info_viewer as liv
@@ -14,6 +15,8 @@ import multiple_generating as mg
 import template_generator as tg
 import checkpoint_info_viewer as civ
 import template_multi as tmg
+import database_setup as dbs
+from lib import preprocessing
 
 def reload_module():
   importlib.reload(tcgen)
@@ -101,7 +104,7 @@ with gr.Blocks() as itrmain:
   #                 outputs=mast_outputs)
   
   with gr.Tab("Tentacle Clothes Generator"):
-    tc_chn = gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
+    tc_chn = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Character Name", value="original")
     tc_drawat = gr.Textbox(label="Location Prompt")
     tc_chwp = gr.Textbox(label="Charactor Clothing Prompt (NOT Recomendded)")
     with gr.Accordion("Original Option", open=False):
@@ -138,7 +141,7 @@ with gr.Blocks() as itrmain:
   
   with gr.Tab("Tentacles Generator"):
     
-    te_name = gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
+    te_name = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Charactor Name", value="original")
     te_locate = gr.Textbox(label="Draw Location")
     te_clothing = gr.Textbox(label="Charactor Clothes")
   
@@ -176,7 +179,7 @@ with gr.Blocks() as itrmain:
                            )
   
   with gr.Tab("Charactor Base Prompt Generator"):
-    bg_name = gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
+    bg_name = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Charactor Name", value="original")
     bg_locate = gr.Textbox(label="Draw Location")
     bg_cloth = gr.Textbox(label="Charactor Clothes")
     bg_face = gr.Textbox(label="Face Prompt")
@@ -273,13 +276,13 @@ with gr.Blocks() as itrmain:
         
         with gr.Blocks():
           gr.Markdown("Charactor 1 Prompt Data")
-          lmg_c1_chn =  gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
+          lmg_c1_chn =  gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Charactor Name", value="original")
           lmg_c1_cloth = gr.Textbox(label="Charactor Clothing")
           lmg_c1_add = gr.Textbox(label="Additional Prompt")
         
         with gr.Blocks():
           gr.Markdown("Charactor 2 Prompt Data")
-          lmg_c2_chn = gr.Radio(choices=data.available_name, label="Charactor Name", value="original")
+          lmg_c2_chn = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Charactor Name", value="original")
           lmg_c2_cloth = gr.Textbox(label="Charactor Clothing")
           lmg_c2_add = gr.Textbox(label="Additional Prompt")
         
@@ -428,7 +431,7 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
         
         gr.Markdown("<br>")
         with gr.Blocks():
-          tg_charactor = gr.Radio(choices=data.available_name, label="Charactor Name (Template)", value="original")
+          tg_charactor = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Charactor Name (Template)", value="original")
           with gr.Row():
             tg_lora = gr.Textbox(label="Charactor LoRA NAME")
             tg_name = gr.Textbox(label="Charactor Prompt Name")
@@ -470,7 +473,7 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
         
         with gr.Blocks():
           with gr.Accordion("Character 1 (Upper / Left)", open=False):
-            tmg1_ch = gr.Radio(choices=data.available_name, label="Charactor Name (Template)", value="original")
+            tmg1_ch = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Charactor Name (Template)", value="original")
             with gr.Row():
               tmg1_lora = gr.Textbox(label="Character LoRA Name")
               tmg1_character = gr.Textbox(label="Character Prompt Name")
@@ -484,7 +487,7 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
                 tmg1_add_head = gr.Checkbox(label="Additional Prompt to Header", value=False)
           gr.Markdown("<br>")
           with gr.Accordion("Character 2 (Down / Right)", open=True):
-            tmg2_ch = gr.Radio(choices=data.available_name, label="Character Name (Template)", value="original")
+            tmg2_ch = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Character Name (Template)", value="original")
             with gr.Row():
               tmg2_lora = gr.Textbox(label="Character LoRA Name")
               tmg2_character = gr.Textbox(label="Character Prompt Name")
@@ -585,4 +588,39 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
         label="ADetailer Negative",
         value= data.basic_adetailer_neg
       )
-itrmain.launch(inbrowser=False, server_port=25566)
+  with gr.Tab("Database Setup"):
+    with gr.Tab("LoRA Data"):
+      with gr.Blocks():
+        db_lora_name = gr.Textbox(label="WebUI Name", placeholder="", max_lines=1)
+      gr.Markdown("<br>")
+      with gr.Blocks():
+        with gr.Column():
+          db_lora_trigger_lora = gr.Textbox(label="LoRA Trigger (set lora weight to 1.0 (for LoRA weight controller))", placeholder="(e.g. <lora:luna_original007:1.0>)")
+          db_lora_trigger_word = gr.Textbox(label="LoRA Trigger Word", placeholder="(e.g. luna07)")
+          db_lora_optional_word = gr.Textbox(label="LoRA Optional Word", placeholder="(e.g. (light blue hair), light purple hair, white hair, multicolored hair, blue eyes, blush, hair between eyes, straight hair, small twintale, 14 years old, cat ears, blue light)")
+      gr.Markdown("<br>")
+      with gr.Blocks():
+        with gr.Column():
+          db_lora_status = gr.Textbox(label="Status")
+          db_lora_force_update = gr.Checkbox(label="Force Update (Previous data is delete.)")
+        gr.Markdown("<br>")
+        db_lora_generate = gr.Button("Save")
+        db_lora_load = gr.Button("Load")
+        
+        db_lora_generate.click(
+          fn=dbs.lora_data.save,
+          inputs=[
+            db_lora_name, db_lora_trigger_lora, db_lora_trigger_word,
+            db_lora_optional_word, db_lora_force_update],
+          outputs=[db_lora_status]
+        )
+        db_lora_load.click(
+          fn=dbs.lora_data.load,
+          inputs=[db_lora_name],
+          outputs=[
+            db_lora_name, db_lora_trigger_lora, db_lora_trigger_word,
+            db_lora_optional_word, db_lora_status]
+        )
+if __name__ == "__main__":
+  preprocessing()
+  itrmain.launch(inbrowser=False, server_port=25566)
