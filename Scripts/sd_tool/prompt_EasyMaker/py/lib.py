@@ -1,5 +1,9 @@
 import re
 import json
+import data_opener as data_analyzer
+import log_writer as lw
+import shutil
+import os
 class jsonconfig():
   def read(self, filepath):
     print("Reading jsondata..")
@@ -99,7 +103,7 @@ def delete_duplicate_comma(p):
   return p
 
 
-import data_opener as data_analyzer
+
 def get_data(data, return_mode="WebUI" # or DICT
             ):
   if data == "" or data == None:
@@ -207,7 +211,6 @@ def get_loraweight(prompt: str):
   return float(match), f"%LORA:{match}%"
 
 
-import log_writer as lw
 def final_process(p, logfile):
   nocp = delete_duplicate_comma(p)
   nocp = prompt_formatter(nocp)
@@ -216,8 +219,8 @@ def final_process(p, logfile):
   lw.w(logfile, nocp, "")
   return md_formatted_p, return_prompt
 
-import os
 def preprocessing():
+  os.makedirs("./dataset/image", exist_ok=True)
   RAW = {}
   
   def processor(filepath):
@@ -235,4 +238,5 @@ def preprocessing():
   for x in target_filepath:
     processor(x)
   
-  
+  if os.path.exists("./None.png"):
+    shutil.move("./None.png", "./dataset/image/None.png")

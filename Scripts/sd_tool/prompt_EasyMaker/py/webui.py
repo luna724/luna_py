@@ -315,10 +315,33 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
             tgs_preview_loca = gr.Textbox(label="Draw Location (Location)")
           with gr.Row():
             tgs_preview_face = gr.Textbox(label="Character Face")
-            tgs_preview_img = gr.Textbox(label="Example Image Path (from /py))", placeholder="./dataset/image/example.png", value="NO IMAGE")
-          with gr.Row():
-            tgs_preview_seed = gr.Number(label="Example Image Seed", placeholder="if Nothing, type \"-1\"")
             tgs_preview_nega = gr.Textbox(label="Negative Prompt", placeholder="EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1)")
+          with gr.Row():
+            tgs_preview_upper = gr.Textbox(label="header additional prompt")
+            tgs_preview_low = gr.Textbox(label="lower additional prompt")
+          with gr.Row():
+            tgs_preview_cfg = gr.Slider(1.0, 12.0, step=0.5, value=7.0, label="CFG Scale")
+            tgs_preview_sdcp = gr.Textbox(label="SD Checkpoint", value="FuwaFuwaMix V1.5")
+          with gr.Row():
+            tgs_preview_res = gr.Textbox(label="Resolution", value="512x512", placeholder="{width}x{height}")
+          with gr.Row():
+            tgs_preview_sampler = gr.Textbox(label="Sampling Method", value="DPM++ SDE Karras", placeholder="Euler a")
+            tgs_preview_hires_method = gr.Textbox(label="Hires.fix Method", value="", placeholder="Latent")
+          with gr.Column():
+            tgs_preview_img = gr.Image(type="pil", source="upload")
+            tgs_preview_seed = gr.Number(label="Example Image Seed", placeholder="if Nothing, type \"-1\"")
+            
+          with gr.Accordion("ControlNet Options", open=False):
+            with gr.Column():
+              tgs_cn_image = gr.Image(source="upload", type="pil")
+              tgs_cn_img2img = gr.Checkbox(label="is img2img", value=False)
+            with gr.Row():
+              tgs_cn_method = gr.Textbox(label="ControlNet Method", placeholder="e.g. OpenPose")
+              tgs_cn_weight = gr.Slider(label="ControlNet Weight", minimum=-1.0, maximum=2.0, step=0.05, value=0.5)
+              tgs_cn_mode = gr.Textbox(label="ControlNet Conrtol Mode", placeholder="e.g. balanced")
+          
+          
+              
         gr.Markdown("<br>")
         with gr.Blocks():
           gr.Markdown("Template Base Prompt")
@@ -356,6 +379,18 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
                           tgs_preview_seed,
                           tgs_preview_nega,
                           tgs_base,
+                          tgs_preview_low,
+                          tgs_preview_upper,
+                          tgs_cn_image,
+                          tgs_cn_method,
+                          tgs_cn_weight,
+                          tgs_cn_mode,
+                          tgs_cn_img2img,
+                          tgs_preview_cfg,
+                          tgs_preview_sdcp,
+                          tgs_preview_res,
+                          tgs_preview_sampler,
+                          tgs_preview_hires_method,
                           tgs_force_update
                           ],
                         outputs=tgs_status)
@@ -427,29 +462,51 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
         
         with gr.Blocks():
           tg_type = gr.Dropdown(choices=tg.key_list, label="Target Template", value="Example")
-          tg_preview = gr.Button("Preview This Template")
-        
+          with gr.Column():
+            tg_preview = gr.Button("Preview This Template")
+            tg_method_ver = gr.Textbox(label="config Method Version", value="unknown")
+            
         gr.Markdown("<br>")
         with gr.Blocks():
           tg_charactor = gr.Radio(choices=data_new.webui_tweaks("CHARACTER"), label="Charactor Name (Template)", value="original")
           with gr.Row():
-            tg_lora = gr.Textbox(label="Charactor LoRA NAME")
-            tg_name = gr.Textbox(label="Charactor Prompt Name")
+            tg_lora = gr.Textbox(label="Character LoRA NAME")
+            tg_name = gr.Textbox(label="Character Prompt Name")
           with gr.Row():
-            tg_prompt = gr.Textbox(label="Charactor Prompt")
+            tg_prompt = gr.Textbox(label="Character Prompt")
             tg_location = gr.Textbox(label="Draw Location (Location)")
           with gr.Row():
-            tg_face = gr.Textbox(label="Charactor Face Prompt")
-            tg_add = gr.Textbox(label="Charactor Additional Prompt")
+            tg_face = gr.Textbox(label="Character Face Prompt")
+          with gr.Row():
+            tg_head = gr.Textbox(label="Character header Additional Prompt")
+            tg_low = gr.Textbox(label="Character lower Additional Prompt")
         
         gr.Markdown("<br>")
         with gr.Blocks():
+          with gr.Accordion("ControlNet", open=False):
+            tg_cnimg = gr.Image()
+            with gr.Row():
+              tg_cnweight = gr.Slider(-1.0, 2.0, step=0.1, label="ControlNet Weight")
+              tg_cnmode = gr.Textbox(label="ControlNet Control mode")
+            with gr.Row():
+              tg_cnmethod = gr.Textbox(label="ControlNet Method")
+              tg_cnisimg2img = gr.Checkbox(label="is img2img")
+            
           tg_example = gr.Textbox(label="Example Prompt")
           with gr.Accordion("Example Image", open=False):
             tg_img = gr.Image()
             with gr.Row():
               gr.Markdown("Seed")
               tg_seed = gr.Markdown("-1")
+          
+          with gr.Row():
+            tg_cfg = gr.Textbox(label="CFG Scale")
+            tg_sdcp = gr.Textbox(label="SD Checkpoint")
+            tg_sampler = gr.Textbox(label="Sampling Method")
+          with gr.Row():
+            tg_hiresmethod = gr.Textbox(label="Hires.fix Resolution")
+            tg_res = gr.Textbox(label="Resolution")
+          
           gr.Markdown("<br>")
           tg_output = gr.Textbox(label="Prompt")
           tg_out_neg = gr.Textbox(label="Negative")
@@ -457,11 +514,14 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
           gr.Markdown("<br>")
           tg_btn = gr.Button("Generate")
           
-        tg_preview.click(fn=tg.example_view, inputs=tg_type, 
+        tg_preview.click(fn=tg.template_get, inputs=tg_type, 
                         outputs=[tg_lora, tg_name, tg_prompt,
-                                tg_location, tg_face, tg_example, tg_img, tg_seed])
+                                tg_location, tg_face, tg_example, tg_img, tg_seed,
+                                tg_method_ver, tg_cnimg, tg_cnweight, tg_cnmode,
+                                tg_cnisimg2img, tg_cnmethod, tg_sdcp, tg_res,
+                                tg_sampler, tg_hiresmethod])
         tg_btn.click(fn=tg.template_gen,
-                    inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_add],
+                    inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_low, tg_head],
                     outputs=[tg_output, tg_out_neg])
       with gr.Tab("Double Mode"):
         gr.Markdown("Type from \"/dataset/multi_template.json\"")

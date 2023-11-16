@@ -41,17 +41,16 @@ Windows環境の場合 Git Bash を使用して Shell Script を実行するこ�
 </details>
 
 ## Changelogs (v1.1.0pre12)
-- SD - PromptEasyMaker (v1.0.29)
-  - Rename / Upcoming Version!
+- SD - PromptEasyMaker (v1.1)
+  - Rename (SD_Tool/PromptEasyMaker -> SD - PromptEasyMaker)
   - Add All Database / Dataset into to .gitignore
   - Template Generator is Support Multiple Generation (can up to 2, that's multiple..?)
   - LoRA Database Setup Support in WebUI
-  - Many tiny tweaks
+  - Template Generator (Many Type Generator) can include ControlNet Options / Image
+  - Template Generator (Many Type Generator) is can include Resolution / Checkpoint / CFG Scale / Sampler / Hires.fix Method (all optional) (Experimental: Single mode only module)
 
 ### Music Collector v1.0pre3 -> v2pre1
 
-- luna_GlobalScript を廃止
-- pyautogui -> Selenium と自動化ツールを変更することによる大幅な安定性の向上
 - Virtual Singerの取得の有無の設定
 - ファイル名およびsingerの正しい取得をサポート
 - upcoming

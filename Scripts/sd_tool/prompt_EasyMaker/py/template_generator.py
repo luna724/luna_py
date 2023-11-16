@@ -8,19 +8,33 @@
 # Replace Target
 # %LORA%, %CH_NAME%, %CH_PROMPT%, %LOCATION%,
 # %FACE%
-#
 
 import simple_generator as data
 from simple_generator import charactor_check, final_process, get_loraweight
-from simple_generator import jsoncfg
+from simple_generator import jsoncfg, ROOT_DIR
+from PIL import Image
+import os
+
+class EasyDatabase():
+  v2 = "Disabled. because V2 method"
+  noneimg = os.path.join(ROOT_DIR, "dataset", "image", "None.png")
+  current_method = "v2"
+warn = EasyDatabase()
+
+
 
 def template_gen(template_type, ch_n, face,
-                location, additional):
+                location, additional, 
+                header_additional: str, #v2 method
+                
+                ):
+  method = "v1"
   # データの読み取り
   template_dict = jsoncfg.read("./dataset/template.json")
 
   # キャラクター情報の取得
   NAME, PROMPT, LORA, _ = charactor_check(ch_n)
+  
   
   # テンプレ情報の取得 
   if template_type in template_dict.keys():
@@ -78,38 +92,92 @@ def template_gen(template_type, ch_n, face,
 def template_get(template_type):
   template_dict = jsoncfg.read("./dataset/template.json")
   print(f"Returned dict: {template_dict}")
-  
-  if template_type in template_dict.keys():
-    date = template_dict[template_type][1]
-    
-  else:
+  if not template_type in template_dict.keys():
     raise ValueError(f"Template: {template_type}\nUnknown Template ID")
-  print(f"obtained_data: {date}")
+  date = template_dict[template_type]
+  method = date[0]
   
-  LORA, NAME, PROMPT, LOCATION, FACE = date[0], date[1], date[2], date[3], date[4]
-  ex_prompt = template_dict[template_type][0]["Prompt"]
-  _, ex_prompt = final_process(ex_prompt.replace(
-    "%LORA%", LORA
-  ).replace(
-    "%CH_NAME%", NAME
-  ).replace(
-    "%CH_PROMPT%", PROMPT
-  ).replace(
-    "%LOCATION%", LOCATION
-  ).replace(
-    "%FACE%", FACE
-  ), "./__pycache__/vdawhaochdwcuorhwaodaw.txt")
+  if method == "v1" or len(date) == 4:
+    if template_type in template_dict.keys():
+      date = template_dict[template_type][1]
+      
+    else:
+      raise ValueError(f"Template: {template_type}\nUnknown Template ID")
+    print(f"obtained_data: {date}")
+    
+    LORA, NAME, PROMPT, LOCATION, FACE = date[0], date[1], date[2], date[3], date[4]
+    ex_prompt = template_dict[template_type][0]["Prompt"]
+    _, ex_prompt = final_process(ex_prompt.replace(
+      "%LORA%", LORA
+    ).replace(
+      "%CH_NAME%", NAME
+    ).replace(
+      "%CH_PROMPT%", PROMPT
+    ).replace(
+      "%LOCATION%", LOCATION
+    ).replace(
+      "%FACE%", FACE
+    ), "./__pycache__/vdawhaochdwcuorhwaodaw.txt")
+    
+    IMAGE = template_dict[template_type][2]
+    SEED = template_dict[template_type][3]
+    print(f" File dir: {IMAGE}")
+    
+    return LORA, NAME, PROMPT, LOCATION, FACE, ex_prompt, IMAGE, SEED, warn.v2, warn.noneimg, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2
+  elif method == "v2":
+    if not template_type in template_dict.keys():
+      raise ValueError(f"Template: {template_type}\nUnknown Template ID")
+    date = template_dict[template_type]
+    print(f"Obtained data: {date}")
+    example_date = date[2]
+    cndate = date[5]
+    
+    date_method = date[0]
+    template_prompt = date[1]["Prompt"]
+    negative = date[1]["Negative"]
+    example_lora = example_date[0]
+    example_name = example_date[1]
+    example_ch_prompt = example_date[2]
+    example_location = example_date[3]
+    example_face = example_date[4]
+    example_lower_add = example_date[5]
+    example_upper_add = example_date[6]
+    example_image = date[3]
+    example_seed = date[4]
+    cn_image = cndate[0]
+    cn_method = cndate[1]
+    example_cn_weight = cndate[2]
+    example_cn_mode = cndate[3]
+    example_img2img = cndate[4]
+    example_cfg = date[6]
+    example_sdcp = date[7]
+    res = date[8]
+    sampler = date[9]
+    example_hires_method = date[10]
+    
+    _, resized_prompt = final_process(template_prompt.replace(
+      "%LORA%", example_lora
+    ).replace(
+      "%CH_NAME%", example_name
+    ).replace(
+      "%CH_PROMPT%", example_ch_prompt
+    ).replace(
+      "%LOCATION%", example_location
+    ).replace(
+      "%FACE%", example_face
+    ), "./__pycache__/vdawhaochdwcuorhwaodaw.txt")
+    
+    if not example_lower_add == "":
+      resized_prompt += f", {example_lower_add}"
+    if not example_upper_add == "":
+      resized_prompt = f"{example_upper_add}, {resized_prompt}"
+    
+    if not os.path.exists(example_image):
+      example_image = os.path.join(ROOT_DIR, "dataset", "image", "None.png")
+    
+    return example_lora, example_name, example_ch_prompt, example_location, example_face, resized_prompt, example_image, example_seed, date_method, cn_image, example_cn_weight, example_cn_mode, example_img2img, cn_method, example_cfg, example_sdcp, res, sampler, example_hires_method
   
-  IMAGE = template_dict[template_type][2]
-  SEED = template_dict[template_type][3]
-  print(f" File dir: {IMAGE}")
   
-  return LORA, NAME, PROMPT, LOCATION, FACE, ex_prompt, IMAGE, SEED
-
-def example_view(template_type):
-  ll, n, p, l, f, exp, image, seed = template_get(template_type)
-  return ll, n, p, l, f, exp, image, seed
-
 
 file_path = "./dataset/template.json"
 data = jsoncfg.read(file_path)
@@ -117,20 +185,33 @@ key_list = data.keys()
 
 
 def save(
-  mode: str,
+  method: str,
   name: str,
   LORA: str,
   NAME: str,
   PROMPT: str,
   LOCATION: str,
   FACE: str,
-  IMAGE: str,
+  IMAGE,
   SEED: int,
   Negative: str,
   base_prompt: str,
+  LOWER_ADD: str,
+  UPPER_ADD: str,
+  cn_image, # image can upload!
+  cn_method: str, # method e.g. [IP2P, OpenPose, Lineart]
+  cn_weight: float, # weight -1.0 ~ 2.0? 
+  cn_mode: str, # cn mode not method e.g. [my prompt is more important, balanced]
+  cn_img2img: bool, # is image for img2img?
+  cfg_scale: float, # CFG Scale: 7.0 +0.5 ~ 
+  sd_model: str, # SD Model name (checkpoint)
+  res: str, # recommended resolution {int}x{int} (str)
+  sampler: str, #Sampling Method: e.g. [euler a, DPM++ SDE Karras]
+  hireS_method: str, # Hires.fix Method name
   force_update: bool
 ):
-  if mode == "Single":
+  if "Single" == "Single":
+    method = warn.current_method
     template_dict = jsoncfg.read("./dataset/template.json")
     
     # もし名前が既に存在するならエラー
@@ -140,12 +221,37 @@ def save(
     
     if IMAGE == "NO IMAGE":
       IMAGE_ = "./dataset/image/None.png"
+    elif IMAGE == None:
+      IMAGE_ = "./dataset/image/None.png"
+    else:
+      # 存在するならファイル名を設定して保存、IMAGE_ に入力
+      IMAGE.save(
+        os.path.join(ROOT_DIR, "dataset", "image", f"{name}_{SEED}.png"), "PNG"
+      )
+      IMAGE_ = os.path.join(ROOT_DIR, "dataset", "image", f"{name}_{SEED}.png")
     
+    if cn_image == None:
+      CN_IMAGE_ = "./dataset/image/Nong.png"
+    else:
+      cn_image.save(
+        os.path.join(ROOT_DIR, "dataset", "image", f"{name}_controlnet.png"), "PNG"
+      )
+      CN_IMAGE_ = os.path.join(ROOT_DIR, "dataset", "image", f"{name}_controlnet.png")
+      
+      
     generative_dict = {
-      name: [{
-        "Prompt": base_prompt,
+      name: [
+        method,
+        {"Prompt": base_prompt,
         "Negative": Negative
-      }, [LORA, NAME, PROMPT, LOCATION, FACE], IMAGE_, str(int(SEED))]
+      }, [LORA, NAME, PROMPT, LOCATION, FACE, LOWER_ADD, UPPER_ADD], 
+        IMAGE_, str((SEED)),
+        [CN_IMAGE_, cn_method, cn_weight, cn_mode, cn_img2img],
+        cfg_scale,
+        sd_model,
+        res,
+        sampler,
+        hireS_method]
     }
     
     print("Generated Data: ", generative_dict)
@@ -155,3 +261,30 @@ def save(
     jsoncfg.write(template_dict, "./dataset/template.json")
     
     return "Success! Reloading the UI will add it to generation mode options"
+
+def update_template(
+  target: str,
+  detection_mode: str = "len", # len = use len() for database version check
+  # method = use database key: method for database version check
+  updateAll: bool = False
+):
+  if updateAll:
+    target_template = list(key_list)
+  else:
+    target_template = [target]
+  
+  for f in target_template:
+    if not f in key_list:
+      print(f"Target Template Not found. (Template: {f})")
+      continue
+    flen = len(f)
+    correct_len = 11
+    # Nesting
+    # f[1] = len(2)
+    # f[2] = len(5)
+    # f[3], [4] = len(1)
+    # f[5] = len(5)
+    # f[6] ~ [10] = len(1) 
+
+#if __name__ == "__main__":
+  

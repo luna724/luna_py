@@ -1,5 +1,6 @@
 import re
 import json
+import os
 class jsonconfig():
   def read(self, filepath):
     print("Reading jsondata..")
@@ -13,6 +14,8 @@ class jsonconfig():
           json.dump(date, file, indent=4)  # indent=4でフォーマットを整形して書き込み
       return date
 jsoncfg = jsonconfig()
+
+ROOT_DIR = os.getcwd()
 
 charactor_lora = jsoncfg.read("./database/charactor_lora.json")
 available_name = list(charactor_lora.keys())
