@@ -28,67 +28,145 @@ def template_gen(template_type, ch_n, face,
                 header_additional: str, #v2 method
                 
                 ):
-  method = "v1"
+  def prompt_setup(
+    LORA,
+    NAME,
+    PROMPT,
+    base_prompt,
+  ):
+    p = base_prompt
+    if "%LORA%" in p:
+      fprompt = p.replace(
+        "%LORA%", LORA
+      ).replace(
+        "%CH_NAME%", NAME
+      ).replace(
+        "%CH_PROMPT%", PROMPT
+      ).replace(
+        "%LOCATION%", location
+      ).replace(
+        "%FACE%", face
+      )
+    
+    
+    elif "%LORA:" in p:
+      fprompt = p.replace(
+        "%CH_NAME%", NAME
+      ).replace(
+        "%CH_PROMPT%", PROMPT
+      ).replace(
+        "%LOCATION%", location
+      ).replace(
+        "%FACE%", face
+      )
+      
+      lw, replacefrom = get_loraweight(fprompt)
+      
+      fprompt = fprompt.replace(
+        replacefrom, f"{LORA}$WEIGHT"
+      ) 
+      
+      fprompt = fprompt.replace(
+        ":1.0>$WEIGHT", ":{}>".format(lw)
+      )
+    
+    # Additional を追加
+    if not additional == "" or not additional == None:
+      print("Lower throwed! ")
+      additional.strip(",")
+      fprompt += f", {additional}"
+    if not header_additional == "" or not header_additional == None:
+      print("Header throwed! ")
+      header_additional.strip(",")
+      fprompt = f"{header_additional}, {fprompt}"
+    
+    # , の重複を消す
+    # formatted_prompt = data.delete_duplicate_comma(fprompt)
+    
+    logfile = "./template_generator.py-log.txt"
+    new_prompt, return_prompt = final_process(fprompt, logfile)
+    
+    return return_prompt
   # データの読み取り
   template_dict = jsoncfg.read("./dataset/template.json")
 
   # キャラクター情報の取得
   NAME, PROMPT, LORA, _ = charactor_check(ch_n)
-  
-  
-  # テンプレ情報の取得 
   if template_type in template_dict.keys():
-    p = template_dict[template_type][0]["Prompt"]
-    ng = template_dict[template_type][0]["Negative"]
+    target = template_dict[template_type]
   else:
     raise ValueError(f"Template: {template_type}\nUnknown Template ID")
-  
-  if "%LORA%" in p:
-    fprompt = p.replace(
-      "%LORA%", LORA
-    ).replace(
-      "%CH_NAME%", NAME
-    ).replace(
-      "%CH_PROMPT%", PROMPT
-    ).replace(
-      "%LOCATION%", location
-    ).replace(
-      "%FACE%", face
-    )
-  
-  
-  elif "%LORA:" in p:
-    fprompt = p.replace(
-      "%CH_NAME%", NAME
-    ).replace(
-      "%CH_PROMPT%", PROMPT
-    ).replace(
-      "%LOCATION%", location
-    ).replace(
-      "%FACE%", face
-    )
+      
+      
+  # v1 Method
+  if len(target) == 4 or target[0] == "v1":
+    # テンプレ情報の取得 
+    if template_type in template_dict.keys():
+      p = template_dict[template_type][0]["Prompt"]
+      ng = template_dict[template_type][0]["Negative"]
+    else:
+      raise ValueError(f"Template: {template_type}\nUnknown Template ID")
     
-    lw, replacefrom = get_loraweight(fprompt)
+    if "%LORA%" in p:
+      fprompt = p.replace(
+        "%LORA%", LORA
+      ).replace(
+        "%CH_NAME%", NAME
+      ).replace(
+        "%CH_PROMPT%", PROMPT
+      ).replace(
+        "%LOCATION%", location
+      ).replace(
+        "%FACE%", face
+      )
     
-    fprompt = fprompt.replace(
-      replacefrom, f"{LORA}$WEIGHT"
-    )
     
-    fprompt = fprompt.replace(
-      ":1.0>$WEIGHT", ":{}>".format(lw)
-    )
-  
-  # Additional を追加
-  fprompt += f", {additional}"
-  
-  # , の重複を消す
-  # formatted_prompt = data.delete_duplicate_comma(fprompt)
-  
-  logfile = "./template_generator.py-log.txt"
-  new_prompt, return_prompt = final_process(fprompt, logfile)
-  
-  return return_prompt, ng
-
+    elif "%LORA:" in p:
+      fprompt = p.replace(
+        "%CH_NAME%", NAME
+      ).replace(
+        "%CH_PROMPT%", PROMPT
+      ).replace(
+        "%LOCATION%", location
+      ).replace(
+        "%FACE%", face
+      )
+      
+      lw, replacefrom = get_loraweight(fprompt)
+      
+      fprompt = fprompt.replace(
+        replacefrom, f"{LORA}$WEIGHT"
+      )
+      
+      fprompt = fprompt.replace(
+        ":1.0>$WEIGHT", ":{}>".format(lw)
+      )
+    
+    # Additional を追加
+    if not additional == "" or not additional == None:
+      print("Lower throwed! ")
+      additional.strip(",")
+      fprompt += f", {additional}"
+    if not header_additional == "" or not header_additional == None:
+      print("Header throwed! ")
+      header_additional.strip(",")
+      fprompt = f"{header_additional}, {fprompt}"
+    
+    # , の重複を消す
+    # formatted_prompt = data.delete_duplicate_comma(fprompt)
+    
+    logfile = "./template_generator.py-log.txt"
+    new_prompt, return_prompt = final_process(fprompt, logfile)
+    
+    return return_prompt.strip(", "), ng
+  elif target[0] == "v2":
+    print("using v2 Method..")
+    # v2 Method
+    base = target[1]["Prompt"]
+    negative = target[1]["Negative"]
+    
+    return prompt_setup(LORA, NAME, PROMPT, base).strip(", "), negative
+    
 def template_get(template_type):
   template_dict = jsoncfg.read("./dataset/template.json")
   print(f"Returned dict: {template_dict}")
@@ -173,9 +251,10 @@ def template_get(template_type):
       resized_prompt = f"{example_upper_add}, {resized_prompt}"
     
     if not os.path.exists(example_image):
+      print(f"Image not found. Except FileNotFoundError.")
       example_image = os.path.join(ROOT_DIR, "dataset", "image", "None.png")
     
-    return example_lora, example_name, example_ch_prompt, example_location, example_face, resized_prompt, example_image, example_seed, date_method, cn_image, example_cn_weight, example_cn_mode, example_img2img, cn_method, example_cfg, example_sdcp, res, sampler, example_hires_method
+    return example_lora, example_name, example_ch_prompt, example_location, example_face, resized_prompt, example_image, example_seed, date_method, cn_image, example_cn_weight, example_cn_mode, example_img2img, cn_method, example_cfg, example_sdcp, res, sampler, example_hires_method, example_upper_add, example_lower_add
   
   
 

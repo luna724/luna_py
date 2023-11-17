@@ -518,8 +518,8 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
                         outputs=[tg_lora, tg_name, tg_prompt,
                                 tg_location, tg_face, tg_example, tg_img, tg_seed,
                                 tg_method_ver, tg_cnimg, tg_cnweight, tg_cnmode,
-                                tg_cnisimg2img, tg_cnmethod, tg_sdcp, tg_res,
-                                tg_sampler, tg_hiresmethod])
+                                tg_cnisimg2img, tg_cnmethod, tg_cfg, tg_sdcp, tg_res,
+                                tg_sampler, tg_hiresmethod, tg_head, tg_low])
         tg_btn.click(fn=tg.template_gen,
                     inputs=[tg_type, tg_charactor, tg_face, tg_location, tg_low, tg_head],
                     outputs=[tg_output, tg_out_neg])

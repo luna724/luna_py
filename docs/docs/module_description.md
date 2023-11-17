@@ -12,7 +12,7 @@
 | [Picture Collector] | v1.2.4 | × | × | × | [MIT](/LICENSE) |
 | [MP3 To wav Converter] | v1.1.0 | ✅ | × | ✅ | [MIT](/LICENSE) |
 | [Music Collector] | v2pre1 | × | × | ✅ | [MIT](/LICENSE) |
-| [SD - Prompt EasyMaker](/Scripts/sd_tool/prompt_EasyMaker/docs/info.md) | - | ✅ | ✅ | ✅ | [MIT](/LICENSE) |
+| [SD - Prompt EasyMaker](/Scripts/sd_tool/prompt_EasyMaker/docs/info.md) | v1.1.1 | ✅ | ✅ | ✅ | [MIT](/LICENSE) |
 | [SD Tool / Directory Unzipper] | - | × | × | ✅ | [MIT](/LICENSE) |
 | [json To Something / Model Setup] | - | × | × | ✅ | [MIT](/LICENSE) |
 | [lunapy GradioUI] | v1.0pre3 | × | ✅ | ✅ | [MIT](/LICENSE) |
