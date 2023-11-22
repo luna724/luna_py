@@ -326,7 +326,7 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
             tgs_preview_res = gr.Textbox(label="Resolution", value="512x512", placeholder="{width}x{height}")
           with gr.Row():
             tgs_preview_sampler = gr.Textbox(label="Sampling Method", value="DPM++ SDE Karras", placeholder="Euler a")
-            tgs_preview_hires_method = gr.Textbox(label="Hires.fix Method", value="", placeholder="Latent")
+            tgs_preview_hires_method = gr.Textbox(label="Hires.fix Method", value="", placeholder="R-ESRGAN 4x+ anime6b")
           with gr.Column():
             tgs_preview_img = gr.Image(type="pil", source="upload")
             tgs_preview_seed = gr.Number(label="Example Image Seed", placeholder="if Nothing, type \"-1\"")
@@ -504,7 +504,7 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
             tg_sdcp = gr.Textbox(label="SD Checkpoint")
             tg_sampler = gr.Textbox(label="Sampling Method")
           with gr.Row():
-            tg_hiresmethod = gr.Textbox(label="Hires.fix Resolution")
+            tg_hiresmethod = gr.Textbox(label="Hires.fix Method")
             tg_res = gr.Textbox(label="Resolution")
           
           gr.Markdown("<br>")

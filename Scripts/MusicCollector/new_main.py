@@ -34,7 +34,7 @@ pjlib = pjlibs.project_sekai_lib()
 
 
 class main_class():
-  def get_driver(self, srvc_arg):
+  def get_driver(self):
     config = jsoncfg.read("./config/driver_config.json", silent=True)
     chromebinary = config["Chrome Binary Location"]
     driverpath = config["ChromeDriver Location (if added SystemPATH, can ignored)"]
@@ -55,6 +55,7 @@ class Share():
   webui = False
   webui_share = False
   datedict = {
+    "MODE": "",
     "MODULE": "",
     "UNIT": "",
     "ANOTHER": False,
@@ -165,7 +166,7 @@ def launch():
             port = find_free_port()
             service_args = [f'--port={port}']
           
-          driver = main.get_driver(service_args)
+          driver = main.get_driver()
           driver.get(URL)
           
           wait = WebDriverWait(driver, data["Maximum_WAIT"])
@@ -427,10 +428,9 @@ def arg_parser():
     if args.mode:
       print("notify: \"--mode\" argument is no longer supported.\nplease Use \"--module\" instead.")
       mode = args.mode
-      if mode.lower() in ["v1", "v2"]:
+      if mode.lower() in ["instant", "legacy"]:
         # datedict["MODE"] = mode
-        if args.module == None:
-          datedict["MODULE"] = mode
+        datedict["MODE"] = mode
     if args.noloop:
       noloop = args.noloop
       datedict["NOLOOP"] = noloop

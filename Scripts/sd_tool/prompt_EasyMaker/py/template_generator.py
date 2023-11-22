@@ -201,7 +201,7 @@ def template_get(template_type):
     SEED = template_dict[template_type][3]
     print(f" File dir: {IMAGE}")
     
-    return LORA, NAME, PROMPT, LOCATION, FACE, ex_prompt, IMAGE, SEED, warn.v2, warn.noneimg, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2
+    return LORA, NAME, PROMPT, LOCATION, FACE, ex_prompt, IMAGE, SEED, warn.v2, warn.noneimg, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2, warn.v2
   elif method == "v2":
     if not template_type in template_dict.keys():
       raise ValueError(f"Template: {template_type}\nUnknown Template ID")
@@ -310,7 +310,7 @@ def save(
       IMAGE_ = os.path.join(ROOT_DIR, "dataset", "image", f"{name}_{SEED}.png")
     
     if cn_image == None:
-      CN_IMAGE_ = "./dataset/image/Nong.png"
+      CN_IMAGE_ = "./dataset/image/None.png"
     else:
       cn_image.save(
         os.path.join(ROOT_DIR, "dataset", "image", f"{name}_controlnet.png"), "PNG"

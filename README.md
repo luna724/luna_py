@@ -24,8 +24,7 @@
 
 ## WebUI
 
-lunapyでは Gradio を使用した 実行用ウェブインターフェースと
-Flask を利用した html でのうっすい説明(doc)の表示をサポートしています
+lunapyでは Gradio を使用した 実行用ウェブインターフェース<details><summary>leak</summary>とFlask を利用した html でのうっすい説明(jp / (upcoming en))</details>の表示をサポートしています
 
 GradioUI は `launch_webui.sh` を
 Flask での Docstring の表示は `what_is_lunapy？.sh` を実行すると開くことができます。
@@ -41,11 +40,15 @@ Windows環境の場合 Git Bash を使用して Shell Script を実行するこ�
 
 ## Changelogs
 
-### SD - PromptEasyMaker v1.1.1
+### SD - PromptEasyMaker v1.1.2
 
-- V2 Methodにて CFG Scale,  Header Additional, Lower Additionalが動作していない問題を修正
-- webuiの誤字を修正
-- V1 Methodのデータを生成モードにて使用できない問題を修正 ([#6](https://github.com/luna724/luna_py/issues/6))
-- comma duplicate deleter を修正
-- ControlNet画像にて何も設定されていない場合にエラーが発生する問題を修正
-- LoRA Database Setup セーブ時にキー名が "loraname" になる問題を修正
+- ControlNet Image を入力せずにWebUIから保存した場合 "None.png"ではなく "Nong.png" が入力され、FileNotFoundError がスローされる問題を解決
+- V1 Method と V2.1 Method にて出力数が異なる問題を修正
+- 正直どうでもいいものを多少修正
+
+
+### MusicCollector v2pre2
+
+
+
+
