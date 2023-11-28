@@ -192,7 +192,7 @@ def template_get(template_type):
     ).replace(
       "%CH_PROMPT%", PROMPT
     ).replace(
-      "%LOCATION%", LOCATION
+      "%LOCATION%", LOCATIO
     ).replace(
       "%FACE%", FACE
     ), "./__pycache__/vdawhaochdwcuorhwaodaw.txt")

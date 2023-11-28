@@ -14,8 +14,6 @@ pjsekai 収録曲の カバー / 原曲(Gamesize)を [Sekai Viewer / DNARoma](ht
 フィルタによるが、セッションごとに最大 912 までしか送らないので、サーバー負荷は小さい
 しかし、取得に Selenium / ChromeDriver を使用しているため、クライアント負荷は大きく、かかる時間も長い (MP非対応)
 
-非公式で一切許可を取っていないため、何度も実行することは非推奨
-
 ### 引数リスト / 説明
 | arg | options | description |
 | --- | --- | --- |

@@ -14,12 +14,11 @@ def write(data, filepath, encode: str = "utf-8", silent=False):
         json.dump(data, file, indent=4)  # indent=4でフォーマットを整形して書き込み
     return data
 
-def read_text(filename, strip_mode=True):
+def read_text(filename: str, 
+                strip_mode: DeprecationWarning("") = None):
     with open(filename, 'r', encoding='utf-8') as file:
-        for line in file:
-            if strip_mode:
-                line = line.strip()
-    return line
+        data = file.read()
+    return data
 
 def write_text(data, filepath="./out.txt", overwrite=True, encode:str = "utf-8"):
     if overwrite:

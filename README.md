@@ -40,13 +40,6 @@ Windows環境の場合 Git Bash を使用して Shell Script を実行するこ�
 
 ## Changelogs
 
-### SD - PromptEasyMaker v1.1.2
-
-- ControlNet Image を入力せずにWebUIから保存した場合 "None.png"ではなく "Nong.png" が入力され、FileNotFoundError がスローされる問題を解決
-- V1 Method と V2.1 Method にて出力数が異なる問題を修正
-- 正直どうでもいいものを多少修正
-
-
 ### MusicCollector v2pre2
 
 
