@@ -1,0 +1,22 @@
+{
+  "user_setting": {
+    "Override Language Setting: don't detect language from System default Language": "",
+    "override_lang": true,
+    "target_langPath": "en_us.json"
+    
+
+  },
+
+
+
+
+
+
+
+
+  "lang_path": {
+    "ja_jp": "ja_jp.json",
+    "en_us": "en_us.json",
+    "created": ["te_st.json"]
+  }
+}

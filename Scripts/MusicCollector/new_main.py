@@ -213,6 +213,13 @@ def launch():
           
           for x in tqdm(range(0, vocal_count),desc="Vocal Downloading.."):
             dprint(f"Vocal Session: {x}")
+            # もし取得済みならスキップ (./cache/cache_url_dict.json)
+            if os.path.exists("./cache/cache_url_dict.json"):
+              cache_data = jsoncfg.read("./cache/cache_url_dict.json", silent=True)
+              
+              if x in cache_data.keys():
+                
+            
             # ボーカル数に応じて処理を行う
             time.sleep(1.5)
             
@@ -300,7 +307,7 @@ def launch():
               if not VS and mode == "vs":
                 dprint("Skipped download. bc this is Virtual Singer")
                 pass
-              url_dict[f"{filename}"] = (url1, url2, artist)
+              url_dict[x] = (filename, url1, url2, artist)
               print("done")
               jsoncfg.write(url_dict, "./cache/cache_url_dict.json",silent=True)
           driver.quit()

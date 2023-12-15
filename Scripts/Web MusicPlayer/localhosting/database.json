@@ -1,0 +1,6 @@
+{
+  "table": "<tr><td> %NAME% </td><td><audio controls loop><source src=\"%FILE%\" type=\"audio/mpeg\">Your browser does not support the audio element.</audio></td></tr>\n",
+  "html_lower": "\n</tbody></table>",
+  "html_header": "<!DOCTYPE html>\n<meta content=\"text/html;charset=utf-8\" http-equiv=\"Content-Type\">\n<meta content=\"utf-8\" http-equiv=\"encoding\">\n<table border=\"1\"><thead><tr><th colspan=\"2\">smart_music_player</th></tr></thead><tbody>\n",
+  "": ""
+}

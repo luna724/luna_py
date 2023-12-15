@@ -3,6 +3,8 @@ import sys
 sys.path.append("..\\")
 from lib import normalizer
 
+from lib.shared import *
+
 def ui_launch():
   with gr.Blocks() as iface:
     gr.Markdown("lunapy/Audio_tool")
@@ -26,5 +28,7 @@ def ui_launch():
         inputs=[norm_in, norm_convall, norm_output_format],
         outputs=[norm_status]
       )
+    
+    with gr.Tab("Properties Auto Setter"):
       
   return iface

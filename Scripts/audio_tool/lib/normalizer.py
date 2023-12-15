@@ -1,5 +1,6 @@
 import os
 import librosa
+import numpy as np
 import soundfile as sf
 from tqdm import tqdm
 from LGS.misc.nomore_oserror import file_extension_filter
@@ -27,8 +28,10 @@ def webui(target, convert_all, output_format):
       path = os.path.join(target, file)
 
       if os.path.exists(path):
-        audio, sr = librosa.load(path, sr=44100)
-        norm_audio = librosa.util.normalize(audio)
+        audio, sr = librosa.load(path, sr=44100, mono=False)
+        norm_audio = np.column_stack([
+        librosa.util.normalize(channel) for channel in audio.T
+    ])
         
         os.makedirs(os.path.join(target, "lunapy_outputs"), exist_ok=True)
         filename = f"normalized_{file}{out_format}"
@@ -43,8 +46,9 @@ def webui(target, convert_all, output_format):
     
     yield f"Processing.."
     
-    audio, sr = librosa.load(target, sr=44100)
+    audio, sr = librosa.load(target, sr=44100, mono=True)
     norm_audio = librosa.util.normalize(audio)
+
     target_dir = target.replace(
       os.path.basename(target), ""
     )
