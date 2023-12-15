@@ -5,7 +5,7 @@ from typing import *
 from py import lib as v1_lib
 from modules.shared import ROOT_DIR
 
-def get_template(variant="update"):
+def get_template(variant:Literal(["update","manual","full"])="update"):
   if variant == "manual":
     return list(
       v1_lib.jsoncfg.read(
