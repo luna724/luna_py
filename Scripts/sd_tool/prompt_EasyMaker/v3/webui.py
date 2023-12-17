@@ -35,7 +35,8 @@ with gr.Blocks() as main_iface:
           #   ename = gr.Textbox(label="Character Name", placeholder="luna")
           # with FormRow():
           #   eprompt = gr.Textbox(label="Character Prompt", placeholder="melody hair, multicolored hair")
-          #   eAprompt = gr.Textbox(label="Character Prompt Extender", placeholder="aqua eyes")
+          #   eAprompt = gr.Textbox(la
+          # bel="Character Prompt Extender", placeholder="aqua eyes")
           # with FormRow():
           #   elocation = gr.Textbox(label="Draw Location", placeholder="indoor, bookshelf, library")
           #   eface = gr.Textbox(label="Character Face", placeholder="facing at bookshelf, unemotional")
@@ -43,8 +44,15 @@ with gr.Blocks() as main_iface:
           #   eheader = gr.Textbox(label="Prompt Header", placeholder="(masterpiece, best quality:1.005), 1girl, solo")
           #   elower = gr.Textbox(label="Prompt Lower", placeholder="<lora:detail_tweaker:-0.15>, <lora:masusu_breastsandnipples:0.45>")
           # Moved to -> Template Previewer
+            location = gr.Textbox(label="Draw Location")
+            face = gr.Textbox(label="Character Face")
+          with FormRow():
+            header = gr.Textbox(label="Prompt Header")
+            lower = gr.Textbox(label="Prompt Lower")
           
-
+          with gr.Accordion(label="Advanced Options", open=True):
+            with FormRow():
+              lora_weight = gr.Slider(minimum=-2.0,maximum=2.0,step=0.0001, label="Lora Weight", value=1.0)
   
 
 
