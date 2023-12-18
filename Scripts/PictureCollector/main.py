@@ -2,8 +2,8 @@ import os
 import time
 import requests
 import subprocess
-import luna_GlobalScript.misc.output_folder as lout
-import luna_GlobalScript.project_sekai.unit_charactor_analyser.id.any_roma2idxname as roma2idxname
+import LGS.misc.output_folder as lout
+import LGS.project_sekai.unit_charactor_analyser.id.any_roma2idxname as roma2idxname
 # 定義づけ、ユーザー入力
 members = input("画像を取得したいキャラクターの名前を入力(例: ichika)\nALLにも対応: ")
 #trainingonly = int(input("特訓状況を入力(0 = 両方 1 = 特訓前のみ, 2 = 特訓後のみ): "))
