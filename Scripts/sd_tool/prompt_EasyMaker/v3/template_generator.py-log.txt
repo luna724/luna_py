@@ -1,0 +1,16 @@
+
+date: 2023-12-21 09:41:28.981942
+Prompt $(nsfw:0.75), (masterpiece, best quality), 1girl, solo, hugging own legs, bare foot, sitting, outdoor, ocean, open beach, sunny, day, light blue sky, smile, looking at viewer, facing at viewer, cute, pink hair, low twintails, long hair, pink eyes, <lora:hatsunemiku1:0.7>, sakuramiku, sitting, <lora:detail_tweaks:-0.15>, black miniskirt
+ADetailer Prompt $
+
+date: 2023-12-21 10:41:47.122548
+Prompt $(nsfw:0.75), (masterpiece, best quality), 1girl, solo, hugging own legs, bare foot, sitting, outdoor, ocean, open beach, sunny, day, light blue sky, smile, looking at viewer, facing at viewer, cute, pink eyes, pink hair, <lora:OtoriEmu:0.7>, wdhemu, sitting, <lora:detail_tweaks:-0.15>
+ADetailer Prompt $
+
+date: 2023-12-21 11:31:55.264001
+Prompt $(nsfw:0.75), (masterpiece, best quality), 1girl, solo, sitting on object, outdoor, ocean, open beach, sunny, day, light blue sky, smile, looking at viewer, facing at viewer, cute, pink eyes, pink hair, <lora:OtoriEmu:0.7>, wdhemu, <lora:detail_tweaks:-0.15>
+ADetailer Prompt $
+
+date: 2023-12-21 11:32:26.475759
+Prompt $, 1girl, (nsfw:0.15), knees together feet apart, facing viewer, hands on own knees, from above, bare foot, sitting on floor, against wall, <lora:OtoriEmu:0.675>, wdhemu, pink eyes, pink hair, (masterpiece, best quality:1.2),, 
+ADetailer Prompt $

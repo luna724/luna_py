@@ -43,10 +43,23 @@ def calc_near_bucket(bucket_dict: dict, image_data_dict: dict, adv_calc: bool):
   
   return image_bucket_info
 
+def bucket_size_checker(bucket_list: list, minimum_pixels: int):
+  delete_list = []
+  for x in bucket_list:
+    if x[0] * x[1] < minimum_pixels:
+      delete_list.append(x)
+  for x in delete_list:
+    print(f"Deleted Bucket: {x}\nbucket pixels < minimum_pixels")
+    bucket_list.remove(x)
+  
+  return bucket_list
+    
 def main(calc_target_dir: str, # Target Directory
           bucket_size: list, # All Bucket Size (Syntax: [(w, h), (w, h)...])
           dont_use_simply_calculate: bool # Simply Calculate = Use 「w×h」 and use the closest result
           ):
+  bucket_size = bucket_size_checker(bucket_size, 262114)
+  
   print("WARNING: only Supported \"1:1 Pictures\"")
   dont_use_simply_calculate = False
   img_dict = {}
@@ -89,7 +102,7 @@ def main(calc_target_dir: str, # Target Directory
 
 if __name__ == "__main__":
   targetDirectory = "Folder not selected"
-  while targetDirectory == "Folder not selected":
+  while targetDirectory == "Folder not selected" or targetDirectory == "":
     targetDirectory = browse_folder()
   
   main(
