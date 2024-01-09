@@ -1,1 +1,0 @@
-xcopy "./cache/sc/*" %windir%/System32/ /f /y

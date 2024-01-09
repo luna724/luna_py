@@ -14,3 +14,91 @@ ADetailer Prompt $
 date: 2023-12-21 11:32:26.475759
 Prompt $, 1girl, (nsfw:0.15), knees together feet apart, facing viewer, hands on own knees, from above, bare foot, sitting on floor, against wall, <lora:OtoriEmu:0.675>, wdhemu, pink eyes, pink hair, (masterpiece, best quality:1.2),, 
 ADetailer Prompt $
+
+date: 2023-12-26 11:24:46.366837
+Prompt $, crossed arms, indoor, pink hair, two side up, pink eyes, long hair, fang, <lora:MomoiAiri:0.7>, momoai, 
+ADetailer Prompt $
+
+date: 2023-12-26 11:33:04.165766
+Prompt $(smile:0.75), skirt, miniskirt, facing at viewer, cat ears, twintails, cute, (masterpiece, best quality:1.2), crossed arms, indoor, pink hair, two side up, pink eyes, long hair, fang, <lora:MomoiAiri:0.7>, momoai, <lora:Detail_tweaker_lora:-0.1> , <lora:masusu_breast:0.525>
+ADetailer Prompt $
+
+date: 2023-12-26 12:39:30.665749
+Prompt $day, light gray sky, black coat, white shirt, frilled grey skirt, (smile:0.9), slim thigh, white long tights, freezing pond, snowed, outdoor, winter, snow, snowing, facing at viewer, cat ears, twintails, cute, (masterpiece, best quality:1.2), crossed arms, indoor, blonde hair, pink hair, pink eyes, long hair, twintails, <lora:TenmaSaki:0.7>, saki, <lora:masusu_breast:0.525>
+ADetailer Prompt $
+
+date: 2023-12-26 13:33:44.161778
+Prompt $day, light gray sky, black coat, white shirt, frilled grey skirt, smile:0.9, nude:1.4, pussy, slim thigh, white long tights, hot pond, legs in hot pond, steam, snowed, outdoor, winter, snow, snowing, facing at viewer, cat ears, twintails, cute, (masterpiece, best quality:1.2), crossed arms, indoor, blue eyes, grey hair, blue hair, long hair, very long hair, hair between eyes, <lora:YoisakiKanade:0.7>, yoka, <lora:masusu_breast:0.525>, small breasts
+ADetailer Prompt $
+
+date: 2023-12-26 13:46:44.741332
+Prompt $day, light gray sky, black coat, white shirt, frilled grey skirt, smile:0.9, nude:1.4, pussy, slim thigh, white long tights, hot pond, legs in hot pond, steam, snowed, outdoor, winter, snow, snowing, facing at viewer, cat ears, twintails, cute, (masterpiece, best quality:1.2), crossed arms, indoor, blonde hair, twintails, brown eyes, hair between eyes, <lora:AzusawaKohane:0.7>, kohane, <lora:masusu_breast:0.525>, small breasts
+ADetailer Prompt $
+
+date: 2023-12-26 14:11:08.399761
+Prompt $(masterpiece, best quality:1.2), nsfw, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:hakurei_reimu:1.0>:0.657, hakurei reimu, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), black hair, red eyes,, <lora:masusu_breast:0.65>, small breasts
+ADetailer Prompt $
+
+date: 2023-12-29 06:36:34.466058
+Prompt $nsfw, pretty, tentacles, sex, shibari, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:HoshinoIchika:1.0>:0.657, ichika, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), absorbing long hair, swept bangs, black hair, grey eyes,, 
+ADetailer Prompt $
+
+date: 2023-12-29 07:14:43.756304
+Prompt $reipu, empty eyes, orgasm, open mouth, nsfw, <lora:tentacle_clothes:0.95>, (tentacle clothes:1.375), (tentacles), trembling, close one eye, open mouth, ((orgasm)), nipples, small nipples, cowboy shot, sad, (orgasm), blush, blush, wink, <lora:HoshinoIchika:0.75>, ichika, ocean. open beach, (masterpiece, best quality:1.2), 1girl, solo, absorbing long hair, swept bangs, black hair, grey eyes, <lora:chushou111:0.25>, <lora:masusu_breast:0.5>, (tentacle cum in pussy, tentacle cum on thights:0.875), pussy juice, transpert pussy juice, bikini, bare breasts, miniskirt, frill, frilled miniskirt,
+ADetailer Prompt $
+
+date: 2023-12-29 07:49:48.921365
+Prompt $reipu, empty eyes, orgasm, open mouth, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:NotKyo:1.0>:0.657, nene, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), long hair, 1girl, purple eyes, green hair, grey hair:0.6,, (tentacle cum in pussy, tentacle cum on thights:0.875), pussy juice, transpert pussy juice, bikini, bare breasts, miniskirt, frill, frilled miniskirt,
+ADetailer Prompt $
+
+date: 2023-12-29 07:49:54.641624
+Prompt $reipu, empty eyes, orgasm, open mouth, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:NotKyo:1.0>:0.657, nene, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), long hair, 1girl, purple eyes, green hair, grey hair:0.6,, 
+ADetailer Prompt $
+
+date: 2023-12-29 08:06:11.269552
+Prompt $reipu, empty eyes, crying, orgasm, open mouth, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:ShihoV3:1.0>:0.657, hinoshiho, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), green eyes, grey hair,, full body, tentacle cum in pussy
+ADetailer Prompt $
+
+date: 2023-12-29 08:21:11.305248
+Prompt $reipu, empty eyes, crying, orgasm, open mouth, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:hatsune_miku_project_sekai_v1:1.0>:0.657, nigomiku, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), heterochromia, aqua eyes, pink eyes, grey hair, long hair, twintails,, full body, tentacle cum in pussy
+ADetailer Prompt $
+
+date: 2023-12-29 08:28:58.213630
+Prompt $reipu, empty eyes, crying, orgasm, open mouth, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:OtoriEmu:1.0>:0.657, wdhemu, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), pink eyes, pink hair,, full body, tentacle cum in pussy
+ADetailer Prompt $
+
+date: 2023-12-29 08:38:28.866739
+Prompt $reipu, empty eyes, crying, orgasm, open mouth, nsfw, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, cowboy shot, sad, (orgasm), blush, wink, <lora:NotKyo:0.657>, nene, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), long hair, 1girl, purple eyes, green hair, grey hair:0.6,, full body, tentacle cum in pussy
+ADetailer Prompt $
+
+date: 2023-12-29 09:09:49.697529
+Prompt $nsfw, crying, orgasm, reipu, tentacle sex, nsfw, tentacle cum in pussy, crying, reipu, empty eyes, empty eyes, orgasm, almost died, orgasm, reipu, very orgasm, open mouth, almost died, open eyes, trembling, tentacle insertion, nsfw, nsfw, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, cowboy shot, sad, (orgasm), blush, wink, <lora:NotKyo:0.657>, nene, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), long hair, 1girl, purple eyes, green hair, grey hair:0.6,, 
+ADetailer Prompt $
+
+date: 2023-12-29 09:10:25.394982
+Prompt $nsfw, crying, orgasm, reipu, tentacle sex, nsfw, tentacle cum in pussy, crying, reipu, empty eyes, empty eyes, orgasm, almost died, orgasm, reipu, very orgasm, open mouth, almost died, open eyes, trembling, tentacle insertion, nsfw, nsfw, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, cowboy shot, sad, (orgasm), blush, wink, <lora:NotKyo:0.657>, nene, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), long hair, 1girl, purple eyes, green hair, grey hair:0.6,, <lora:masusu_breast:0.55>
+ADetailer Prompt $
+
+date: 2023-12-29 09:14:09.524644
+Prompt $nsfw, crying, orgasm, reipu, tentacle sex, nsfw, tentacle cum in pussy, crying, reipu, empty eyes, empty eyes, orgasm, almost died, orgasm, reipu, very orgasm, open mouth, almost died, open eyes, trembling, tentacle insertion, nsfw, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:NotKyo:1.0>:0.657, nene, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), long hair, 1girl, purple eyes, green hair, grey hair:0.6,, <lora:masusu_breast:0.55>
+ADetailer Prompt $
+
+date: 2023-12-29 10:37:12.718012
+Prompt $nsfw, crying, orgasm, reipu, tentacle sex, nsfw, tentacle cum in pussy, crying, reipu, empty eyes, empty eyes, orgasm, almost died, orgasm, reipu, very orgasm, open mouth, almost died, open eyes, trembling, tentacle insertion, nsfw, nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, <lora:nozomi:1.0>:0.657, nozomi, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), nozomi_routine,, <lora:masusu_breast:0.55>
+ADetailer Prompt $
+
+date: 2024-01-02 22:30:07.008286
+Prompt $Disabled. because V2 method, nsfw, (masterpiece, best quality:1.2), 1girl, solo, cute, kawaii, (11 years old, baby face:0.97), rori, (cat ears, cat tails, cat cosplay), <lora:TenmaSaki:1.0>, saki, blonde hair, pink hair, pink eyes, long hair, twintails, kneeling, cat cosplay, ((1girl, solo)), shy, smile, slim, indoor, necklace, <lora:masusu_breast:0.65>,, Disabled. because V2 method
+ADetailer Prompt $
+
+date: 2024-01-02 22:31:00.995079
+Prompt $, nsfw, (masterpiece, best quality:1.2), 1girl, solo, cute, kawaii, (11 years old, baby face:0.97), rori, (cat ears, cat tails, cat cosplay), <lora:TenmaSaki:1.0>, saki, blonde hair, pink hair, pink eyes, long hair, twintails, kneeling, cat cosplay, ((1girl, solo)), shy, smile, slim, indoor, necklace, <lora:masusu_breast:0.65>,, winter clothes, black layered miniskirt 
+ADetailer Prompt $
+
+date: 2024-01-02 22:38:10.489076
+Prompt $, from above, fetal position, bare legs, lying, bare foot, blonde hair, pink hair, pink eyes, long hair, twintails, <lora:TenmaSaki:0.7>, saki, 
+ADetailer Prompt $
+
+date: 2024-01-08 15:31:27.513569
+Prompt $, 1girl, (nsfw:0.15), knees together feet apart, facing viewer, hands on own knees, from above, <lora:OtoriEmu:0.675>, wdhemu, pink eyes, pink hair, (masterpiece, best quality:1.2),, 
+ADetailer Prompt $

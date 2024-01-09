@@ -1,3 +1,11 @@
+# for loraUpdater batch beta
+import sys
+
+sys.path.append(".")
+sys.path.append("..\\")
+sys.path.append("..\\./py")
+###################
+
 import gradio as gr
 import os
 import re
@@ -7,12 +15,11 @@ from py import lib as v1_lib
 from modules.lib import *
 from modules.shared import ROOT_DIR
 
-def get_lora_list(variant:Literal["update", "manual"] ="update",parse:bool=False,name:str=""):
-  if variant == "manual":
-    lora_raw = v1_lib.jsoncfg.read(
+def get_lora_list(variant="update",parse:bool=False,name:str=""):
+  lora_raw = v1_lib.jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
     )
-    
+  if variant == "manual":
     rtl = list(lora_raw.keys())
     
     if parse:
@@ -27,11 +34,20 @@ def get_lora_list(variant:Literal["update", "manual"] ="update",parse:bool=False
     return gr.Dropdown.update(choices= list(v1_lib.jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
     ).keys()))
-  return None
+  elif variant == "only_lora":
+    rtl = []
+    for x in get_lora_list("manual"):
+      # キーのリストを順に解析
+      rtl.append(
+        (lora_raw[x][1]["lora"], x)
+      )
+    return rtl
 
 def control_lora_weight(lora_string: str, weight: float = 1.0):
   # 変換
-  new_lora_string = re.sub(r"<lora:.*:(.+)>", weight, lora_string, count=1)
+  weight = re.sub(r"<lora:.*:(.+)>", str(weight), lora_string, count=1)
+  loraname = re.findall(r"<lora:(.*):.+>", lora_string)[0]
+  new_lora_string = f"<lora:{loraname}:{weight}>"
   print(f"[lora Weight controller]: {lora_string} -> {new_lora_string}")
   
   return new_lora_string
@@ -43,8 +59,7 @@ def prompt_character_resizer(prompt:str, weight:float, key:str):
   prompt.replace(
     "%LORA%", lora).replace(
     "%CH_NAME%", name).replace(
-    "%CH_PROMPT%", ch_prompt + extend).replace(
-    )
+    "%CH_PROMPT%", ch_prompt + extend)
   
   if "%LORA:" in prompt:
     # v1 / v2 Lora Weight Controller System
@@ -66,6 +81,9 @@ def prompt_character_resizer(prompt:str, weight:float, key:str):
       ("$NAME", name),
       ("$PROMPT", ch_prompt + extend)
     ])
+  
+  print(f"prompt: {prompt}")
+  return prompt
 
 def lora_saver(
   json_key_name: str,
@@ -108,9 +126,18 @@ def lora_updater(overwrite):
   # 結合
   for key, p in v1_lora_dict_prompt.items():
     if key in v1_lora_dict.keys():
-      prv_list = v1_lora_dict[key]
-      new_list = prv_list.append(p)
-      v1_lora_dict[key] = new_list
+      prv_list = v1_lora_dict[key] # > ["lora", "name"]
+      print(f"prv_list: {prv_list}")
+      prv_list.append(p) # > ["lora", "name"] + "prompt"
+      print(f"new_list: {prv_list}")
+      v1_lora_dict[key] = prv_list
+      print(v1_lora_dict)
+    else:
+      print(f"Not found key: {key}!")
+  # {"key": [lora, name]}
+  # {"key": "prompt"}
+  # ->
+  # {"key": [lora, name, prompt]}
   
   new_lora_dict = v1_lib.jsoncfg.read(
     os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
@@ -130,9 +157,17 @@ def lora_updater(overwrite):
           "extend": ""
         }
       ]
-      del v1_lora_dict[prv_key] 
+      #del v1_lora_dict[prv_key] 
   
   # Skipped list
   print(f"Skipped List: {skip_list}")
   
+  v1_lib.jsoncfg.write(new_lora_dict, os.path.join(
+    ROOT_DIR, "database", "v3", "lora_list.json"
+  ))
+  
   return "done."
+if __name__ == "__main__":
+  lora_updater(
+    overwrite=False
+  )

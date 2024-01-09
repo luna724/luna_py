@@ -129,7 +129,7 @@ with gr.Blocks() as itrmain:
       tc_file = gr.Textbox(label="Log File", value="tentacle_clothes.py-log.txt", visible=False)
       apas_log = gr.Markdown("")
       
-      with gr.Row().style(equal_height=True):
+      with gr.Row():#.style(equal_height=True):
         apas_log_btn = gr.Button("Refresh")
         apas_log_del = gr.Button("Reset Log")
         apas_log_btn.click(fn=log_writer.r,
@@ -168,7 +168,7 @@ with gr.Blocks() as itrmain:
       te_file = gr.Textbox(label="Log File", value="tentacles_all.py-log.txt", visible=False)
       te_log = gr.Markdown("")
       
-      with gr.Row().style(equal_height=True):
+      with gr.Row():#.style(equal_height=True):
         te_log_btn = gr.Button("Refresh")
         te_log_del = gr.Button("Reset Log")
         te_log_btn.click(fn=log_writer.r,
@@ -203,7 +203,7 @@ with gr.Blocks() as itrmain:
       bg_file = gr.Textbox(label="Log File", value="base_generator.py-log.txt", visible=False)
       bg_log = gr.Markdown("")
       
-      with gr.Row().style(equal_height=True):
+      with gr.Row():#.style(equal_height=True):
         bg_log_btn = gr.Button("Refresh")
         bg_log_del = gr.Button("Reset Log")
         bg_log_btn.click(fn=log_writer.r,
@@ -328,12 +328,12 @@ lmg_c2_add, lmg_ov_location, lmg_ov_quality_prompt, ext_mode],
             tgs_preview_sampler = gr.Textbox(label="Sampling Method", value="DPM++ SDE Karras", placeholder="Euler a")
             tgs_preview_hires_method = gr.Textbox(label="Hires.fix Method", value="", placeholder="R-ESRGAN 4x+ anime6b")
           with gr.Column():
-            tgs_preview_img = gr.Image(type="pil", source="upload")
-            tgs_preview_seed = gr.Number(label="Example Image Seed", placeholder="if Nothing, type \"-1\"")
+            tgs_preview_img = gr.Image(type="pil")
+            tgs_preview_seed = gr.Number(label="Example Image Seed")
             
           with gr.Accordion("ControlNet Options", open=False):
             with gr.Column():
-              tgs_cn_image = gr.Image(source="upload", type="pil")
+              tgs_cn_image = gr.Image(type="pil")
               tgs_cn_img2img = gr.Checkbox(label="is img2img", value=False)
             with gr.Row():
               tgs_cn_method = gr.Textbox(label="ControlNet Method", placeholder="e.g. OpenPose")
