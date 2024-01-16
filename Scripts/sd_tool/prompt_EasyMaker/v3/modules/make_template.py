@@ -47,7 +47,7 @@ BASIC_raw = { # . = Use Database Default Value
 
 BASIC = BASIC_raw["key"]
 
-from py.lib import jsoncfg
+import LGS.misc.jsonconfig as jsoncfg
 from modules.shared import ROOT_DIR, currently_version, currently_template_versionID
 import modules.shared as shared
 from PIL import Image

@@ -2,8 +2,8 @@ import gradio as gr
 import os
 from typing import *
 
-from py import lib as v1_lib
-from py.lib import delete_duplicate_comma
+from LGS.misc.jsonconfig import jsoncfg
+from modules.v1_component import delete_duplicate_comma
 from modules.lib import multiple_replace
 import modules.shared as shared
 from modules.shared import ROOT_DIR, noneimg
@@ -13,12 +13,12 @@ from modules.generate_util import get_lora_list as get_lora_list_manual
 def get_template(variant="update", target_dn="NONE"): # target_dn = Target DisplayName
   if variant == "manual":
     return list(
-      v1_lib.jsoncfg.read(
+      jsoncfg.read(
         os.path.join(ROOT_DIR, "database", "v3", "template_list.json")
       ).keys()
     )
   elif variant == "full":
-    return v1_lib.jsoncfg.read(
+    return jsoncfg.read(
       os.path.join(
         ROOT_DIR, "database", "v3", "template_list.json"
       )
@@ -27,7 +27,7 @@ def get_template(variant="update", target_dn="NONE"): # target_dn = Target Displ
   elif variant == "update":
     return gr.Dropdown.update(
       choices=list(
-      v1_lib.jsoncfg.read(
+      jsoncfg.read(
         os.path.join(ROOT_DIR, "database", "v3", "template_list.json")).keys()))
 
   elif variant == "webui":

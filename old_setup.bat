@@ -11,8 +11,6 @@ rem Install Requirements.txt
 :pip_ins
 call ./.venv/Scripts/activate
 pip install -r requirements.txt
-pip install sox
-pip install librosa
 
 rem Update pip
 python -m pip install --upgrade pip

@@ -3,6 +3,11 @@
 <details><br />+ Feature Addition <br />* Modify 
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
+## v3β-6 ~ Goodbye v1 Method and code
+\* support ended for v1 feature / templates
+\- Delete v1 / v2 Method support code
+\- Moved v1 script to Archive
+
 ## v3β-5
 \+ Prompt Template Delete in WebUI
 \+ Prompt Template Example View in WebUI

@@ -1,22 +1,16 @@
-# for loraUpdater batch beta
-import sys
-
-sys.path.append(".")
-sys.path.append("..\\")
-sys.path.append("..\\./py")
-###################
-
 import gradio as gr
 import os
 import re
 from typing import *
 
-from py import lib as v1_lib
+import LGS.misc.jsonconfig as jsoncfg
+
+import modules.v1_component as v1
 from modules.lib import *
 from modules.shared import ROOT_DIR
 
 def get_lora_list(variant="update",parse:bool=False,name:str=""):
-  lora_raw = v1_lib.jsoncfg.read(
+  lora_raw = jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
     )
   if variant == "manual":
@@ -31,7 +25,7 @@ def get_lora_list(variant="update",parse:bool=False,name:str=""):
     
     return rtl
   elif variant == "update":
-    return gr.Dropdown.update(choices= list(v1_lib.jsoncfg.read(
+    return gr.Dropdown.update(choices= list(jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
     ).keys()))
   elif variant == "only_lora":
@@ -65,7 +59,7 @@ def prompt_character_resizer(prompt:str, weight:float, key:str):
     # v1 / v2 Lora Weight Controller System
     # Lora weight を 1.0 に設定
     lora = control_lora_weight(lora, 1.0)
-    lw, replacefrom = v1_lib.get_loraweight(prompt)
+    lw, replacefrom = v1.get_loraweight(prompt)
     prompt = prompt.replace(
       replacefrom, f"{lora}$WEIGHT"
     )
@@ -102,7 +96,7 @@ def lora_saver(
     }]
   }
   
-  prv_lora_db = v1_lib.jsoncfg.read(
+  prv_lora_db = jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
     )
   
@@ -111,16 +105,16 @@ def lora_saver(
   
   prv_lora_db.update(lora_db)
   
-  v1_lib.jsoncfg.write(
+  jsoncfg.write(
     os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
   )
   return "Done."
 
 def lora_updater(overwrite):
-  v1_lora_dict = v1_lib.jsoncfg.read(
+  v1_lora_dict = jsoncfg.read(
     os.path.join(ROOT_DIR, "database", "charactor_lora.json")
   )
-  v1_lora_dict_prompt = v1_lib.jsoncfg.read(
+  v1_lora_dict_prompt = jsoncfg.read(
     os.path.join(ROOT_DIR, "database", "charactor_prompt.json")
   )
   # 結合
@@ -139,7 +133,7 @@ def lora_updater(overwrite):
   # ->
   # {"key": [lora, name, prompt]}
   
-  new_lora_dict = v1_lib.jsoncfg.read(
+  new_lora_dict = jsoncfg.read(
     os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
   )
   skip_list = []
@@ -162,7 +156,7 @@ def lora_updater(overwrite):
   # Skipped list
   print(f"Skipped List: {skip_list}")
   
-  v1_lib.jsoncfg.write(new_lora_dict, os.path.join(
+  jsoncfg.write(new_lora_dict, os.path.join(
     ROOT_DIR, "database", "v3", "lora_list.json"
   ))
   

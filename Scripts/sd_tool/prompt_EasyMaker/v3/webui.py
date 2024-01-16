@@ -1,10 +1,5 @@
 import gradio as gr
 import os
-import sys
-
-sys.path.append(".")
-sys.path.append("..\\")
-sys.path.append("..\\./py")
 
 from a1111_ui_util import *
 #from py import template_generator, lib
