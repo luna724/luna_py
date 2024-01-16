@@ -9,17 +9,21 @@ BASIC_raw = { # . = Use Database Default Value
       "AD_Negative": "."
     },
     "ControlNet": {
+      "isEnabled": False,
       "Mode": "OpenPose",
       "Weight": "0.75",
       "Image": "/path/to/image"
     },
     "Hires": {
+      "isEnabled": False,
       "Upscale": -1,
       "Sampler": "None",
       "Denoising": -1,
       "Steps": -1
     },
     "Example": {
+      "isEnabled": False,
+      "Character": "None",
       "Lora": "None",
       "Name": "None",
       "Prompt": "None",
@@ -29,6 +33,7 @@ BASIC_raw = { # . = Use Database Default Value
       "Header": "None",
       "Lower": "None",
       "Image": "/path/to/image",
+      "isEnableCSN": False,
       "CustomNegative": ""
     },
     "Resolution": "None",
@@ -43,7 +48,7 @@ BASIC_raw = { # . = Use Database Default Value
 BASIC = BASIC_raw["key"]
 
 from py.lib import jsoncfg
-from modules.shared import ROOT_DIR, currently_version
+from modules.shared import ROOT_DIR, currently_version, currently_template_versionID
 import modules.shared as shared
 from PIL import Image
 from typing import Iterable
@@ -146,6 +151,7 @@ def save(
         cn_ImagePath, "PNG")
     
     controlnet = {
+      "isEnabled": cn_enabled,
       "Mode": check(cn_mode),
       "Weight": check(cn_weight),
       "Image": check(cn_ImagePath)
@@ -153,6 +159,7 @@ def save(
     
   else:
     controlnet = {
+      "isEnabled": cn_enabled,
       "Mode": check(None),
       "Weight": check(None),
       "Image": check(None)
@@ -160,6 +167,7 @@ def save(
   
   if hires_enabled:
     hires_fix = {
+      "isEnabled": hires_enabled,
       "Upscale": float(vcheck(h_upscl, [(1.0, 4.0)])),
       "Sampler": check(h_sampler),
       "Denoising": float(vcheck(h_denoise, [(0, 1)])),
@@ -186,6 +194,8 @@ def save(
         ex_ImagePath, "PNG")
     
     example = {
+      "isEnabled": ex_enabled,
+      "Character": check(ex_character_name),
       "Lora": check(ex_lora),
       "Name": check(ex_name),
       "Prompt": check(ex_prompt),
@@ -210,6 +220,7 @@ def save(
   
   template_data = {
     "Method": currently_version,
+    "Method_Release": currently_template_versionID,
     "Key": displayName.strip().lower().replace(" ", "_"),
     "Values": {
       "Prompt": prompt,
