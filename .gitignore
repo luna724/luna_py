@@ -16,3 +16,5 @@ luna.py.ipynb
 QuickLaunch.bat
 main_script.py
 *.js
+*.old_lunafile
+old_lunadir/
