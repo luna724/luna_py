@@ -1,6 +1,8 @@
 from typing import *
 import re
+import os
 
+from modules.shared import ROOT_DIR
 
 def multiple_replace(str: str, replace_key: list =[("src", "rpl")]):
   for x in replace_key:
@@ -21,3 +23,34 @@ def re4prompt(pattern: str | Pattern[str], text: str):
       rtl.append(r[0])
   
   return rtl
+
+
+def mkdir(path:list, tree:bool=False, root:str=ROOT_DIR):
+  """
+
+  Args:
+      path (list): os.path.join's path
+      tree (bool, optional): tree mkdir. Defaults to False.
+      root (str, optional): root dir. Defaults to ROOT_DIR.
+
+  Returns:
+      str: Resized path
+  """
+  raw_path = list
+  
+  path = root
+  for x in raw_path:
+    path = os.path.join(path, x)
+    if tree:
+      if not os.path.exists(path):
+        os.makedirs(path, exist_ok=True)
+      if not os.path.isdir(path):
+        os.makedirs(path, exist_ok=True)
+  
+  try:
+    os.makedirs(path, exist_ok=True)
+  except FileNotFoundError as e:
+    print(f"Catched: FileNotFoundError: {e}\n Retrying with tree=True")
+    return mkdir(raw_path, True, root=root)
+
+  return path

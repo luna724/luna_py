@@ -18,7 +18,7 @@ def delete_selected(template_key):
   # backup
   backup_dict = template[template_key]
   # 保存して消す
-  write(backup_dict, os.path.join(ROOT_DIR, "logs", "template_backups", "prompt", f"{datetime.now().strftime('%Y%m%d%H%M%S')}_backupdata_key-{template_key}.json")
+  write(backup_dict, os.path.join(ROOT_DIR, "logs", "template_backups", "prompt", f"{datetime.now().strftime('%Y%m%d%H%M%S')}_backupdata_key-{template_key}.json"))
   del template[template_key]
   return "OK."
 

@@ -2,7 +2,7 @@ import gradio as gr
 import os
 from typing import *
 
-from LGS.misc.jsonconfig import jsoncfg
+import LGS.misc.jsonconfig as jsoncfg
 from modules.v1_component import delete_duplicate_comma
 from modules.lib import multiple_replace
 import modules.shared as shared
