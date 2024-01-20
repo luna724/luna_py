@@ -11,6 +11,14 @@ from modules.generate_util import prompt_character_resizer
 from modules.generate_util import get_lora_list as get_lora_list_manual
 
 def get_template(variant="update", target_dn="NONE"): # target_dn = Target DisplayName
+  """
+  variant: ["update", "manual", "full"]
+  
+  update: for webUI return gr.Dropdown.update(): dict
+  manual: return template keys list: list
+  full:   return template full dict: dict
+  """
+  
   if variant == "manual":
     return list(
       jsoncfg.read(
@@ -32,25 +40,14 @@ def get_template(variant="update", target_dn="NONE"): # target_dn = Target Displ
 
   elif variant == "webui":
     template = get_template("full")
-    try:
-      rtl = []
-      
-      for key, x in template.items():
-        rtl.append(x["displayName"])
-    except IndexError as e:
-      print(f"Catched V2 or V1 Dict: {key}")
-      rtl.append(key)
-      print(f"IndexError: {e}")
-      pass
-    except KeyError as e:
-      print(f"Catched V2 or V1 Dict: {key}")
-      rtl.append(key)
-      print(f"KeyError: {e}")
-      pass
-      
+    rtl = []
+    
+    for key, x in template.items():
+      rtl.append(x["displayName"])
+    
     return rtl
     
-def get_template_value(name: str):
+def get_template_value(name: str, rtl_resized_name:bool=False):
   def get_key_by_dn(data, target_value):
     for key, value in data.items():
       if not isinstance(value, dict):
@@ -61,11 +58,17 @@ def get_template_value(name: str):
   # 読み込み
   try:
     value = get_template("full")[name]
+    if rtl_resized_name and value:
+      return name
   except KeyError as e:
     print(f"Exchange displayName: {name} ->", end="")
     tmp = get_key_by_dn(get_template("full"), name)
     value = get_template("full")[tmp]
     print(f" {tmp}")
+    
+    if rtl_resized_name:
+      return tmp
+    
     pass
     #print(f"KeyError: {e}")
     #return "KeyError occurred. (try refresh the template list)", "Unknown"
@@ -108,6 +111,11 @@ def generate(
   overall_weight: float,
   modes="ui"
 ):
+  # lora = none?
+  if lora == "" or None:
+    print("Catch: lora == None")
+    return "err", "err", "err", "err", "stderr: are you chose correct LoRA Character Template?"
+  
   # template を取得 
   data, template_ver = get_template_value(template_type)
   
@@ -239,8 +247,9 @@ def example_view(template_name):
       ex_image_show_state = False
     
     if character_data in get_lora_list_manual("manual"):
+      print("Found character_data in get_lora_list-manual")
       character_data, lora, name, prompt, extend = get_lora_list_manual("manual", True, character_data)
-  
+
   # Builtins
     resolution = check(data["Resolution"])
     sampler = check(data["Sampler"])

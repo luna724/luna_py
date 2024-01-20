@@ -1,13 +1,13 @@
 import json
 
-def read(filepath, encode: str = "utf-8", silent=False):
+def read(filepath, encode: str = "utf-8", silent=True):
     if not silent:
         print("Reading jsondata..")
     with open(filepath, 'r', encoding=encode) as file:
         data = json.load(file)
     return data
 
-def write(data, filepath, encode: str = "utf-8", silent=False): 
+def write(data, filepath, encode: str = "utf-8", silent=True): 
     if not silent:
         print("Writing config to jsondata..")
     with open(filepath, 'w', encoding=encode) as file:

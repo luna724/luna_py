@@ -1,30 +1,28 @@
-# 雑処理
+import os
+import preprocessing
 import argparse
-import subprocess
 
+from webui import start
+from modules.shared import ROOT_DIR
+import modules.shared as shared
 
+from modules.test.webui import iface
 
+def arg_parse():
+  parse = argparse.ArgumentParser("parser")
+  parse.add_argument("--test_mode", action='store_true')
 
-def launch():
-  def v1():
-    subprocess.run("python ..\\./py/webui.py")
-  def v3():
-    subprocess.run("v3β.bat")
-  
-  parser = argparse.ArgumentParser()
-  parser.add_argument("--version")
-  args = parser.parse_args()
-  if args.version:
-    v = args.version
-  else:
-    v = "v3"
-  verdict = {
-  "v1": v1,
-  "v3": v3
-}
-  verdict[v]()
-  
-  return
+  return parse.parse_args()
 
 if __name__ == "__main__":
-  launch()
+  shared.args = arg_parse()
+  
+  if not os.path.exists(os.path.join(
+    ROOT_DIR, "lscript_alreadyprp.ltx")):
+    preprocessing.run()
+    
+  if shared.args.test_mode:
+    iface.queue(64)
+    print(iface.launch(server_port=9999))
+    
+  print(start())

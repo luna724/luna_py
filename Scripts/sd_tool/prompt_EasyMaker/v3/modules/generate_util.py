@@ -24,6 +24,10 @@ def get_lora_list(variant="update",parse:bool=False,name:str=""):
       return name, data["lora"], data["name"], data["prompt"], data["extend"]
     
     return rtl
+  
+  elif variant == "full":
+    return lora_raw
+    
   elif variant == "update":
     return gr.Dropdown.update(choices= list(jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
@@ -87,6 +91,9 @@ def lora_saver(
   lora_prompt_extended: str = "cute",
   overwrite: bool = False
 ):
+  """
+  LoRA v3 を WebUI の入力を受け取り保存する
+  """
   lora_db = {
     json_key_name: ["v3", {
       "lora": lora_id,
@@ -96,21 +103,28 @@ def lora_saver(
     }]
   }
   
-  prv_lora_db = jsoncfg.read(
-      os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
-    )
+  prv_lora_db = get_lora_list("full")
   
-  if json_key_name in prv_lora_db and overwrite:
-    return f"stderr: this name is already taken."
+  if json_key_name in list(prv_lora_db.keys()) and overwrite:
+    print("[Save]: displayName duplication found.")
+    print("[Save]: printing previous data (overwrite = True) printing previous data..")
+    print(f"\"{json_key_name}\": ", prv_lora_db.pop(json_key_name))
+    
+  if json_key_name in list(prv_lora_db.keys()) and not overwrite:
+    print("[Save]: catch Exception")
+    return f"stderr: this name is already taken." # Using in Lora Loader Don't change this!
   
   prv_lora_db.update(lora_db)
   
-  jsoncfg.write(
+  jsoncfg.write(prv_lora_db, 
     os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
   )
-  return "Done."
+  return "OK."
 
 def lora_updater(overwrite):
+  """
+  v2 Lora Template を v3 にアップデートする
+  """
   v1_lora_dict = jsoncfg.read(
     os.path.join(ROOT_DIR, "database", "charactor_lora.json")
   )

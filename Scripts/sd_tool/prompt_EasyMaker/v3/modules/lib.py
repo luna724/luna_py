@@ -1,4 +1,5 @@
 from typing import *
+from tkinter import Tk, filedialog
 import re
 import os
 
@@ -36,7 +37,7 @@ def mkdir(path:list, tree:bool=False, root:str=ROOT_DIR):
   Returns:
       str: Resized path
   """
-  raw_path = list
+  raw_path = path
   
   path = root
   for x in raw_path:
@@ -54,3 +55,17 @@ def mkdir(path:list, tree:bool=False, root:str=ROOT_DIR):
     return mkdir(raw_path, True, root=root)
 
   return path
+
+def browse_file():
+  root = Tk()
+  root.attributes("-topmost", True)
+  root.withdraw()
+  
+  filenames = filedialog.askopenfilenames()
+  if len(filenames) > 0:
+      root.destroy()
+      return str(filenames)
+  else:
+      filename = "Files not seleceted"
+      root.destroy()
+      return str(filename)

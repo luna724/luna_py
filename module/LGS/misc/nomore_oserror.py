@@ -16,26 +16,12 @@ def file_extension_filter(file_list, allowed_extensions):
     return filtered_files
 
 
-def nest_listfile(path, isloop=False, relative=""):
-    def append(item, lists):
-        print("Debug: File Appended! ({})".format(item))
-        lists.append(item)
-        return lists
-    # 初期化
-    filelist = []
-    
-    # path内のアイテムでいろいろする
-    for item in os.listdir(path):
-        item_path = os.path.join(path, item)
-        if os.path.isfile(item_path):
-            if isloop:
-                filelist = (f"./{relative}/{item}", filelist)
-            else:
-                filelist = (item, filelist)
-        # フォルダなら
-        elif os.path.isdir(item_path):
-            # もう一度実行して追加する
-            for x in nest_listfile(item_path, True, item): 
-                filelist = append(x, filelist)
-    
-    return filelist
+def get_nested_files(root_dir, endswith):
+    file_list = []
+    for root, dirs, files in os.walk(root_dir):
+        for file in files:
+            if file.endswith(endswith):
+                file_path = os.path.join(root, file)
+                relative_path = os.path.relpath(file_path, root_dir)
+                file_list.append((file_path, relative_path))
+    return file_list

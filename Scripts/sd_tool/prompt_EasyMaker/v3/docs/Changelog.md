@@ -3,6 +3,19 @@
 <details><br />+ Feature Addition <br />* Modify 
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
+## v3β-7 ~ this is very capable WebUI?
+\+ Restore Deleted Prompt Template (ONLY deleted by WebUI)
+\+ Multiple Delete / Restore Prompt Template 
+\+ Define Lora Template in WebUI
+\+ Delete Lora Template in WebUI
+\+ Multiple Delete Lora Template
+\+ Template Generate are now Save all output Prompt
+\+ Load Lora Template and input to Define tabs
+\* Fix Prompt Template's Example System are not shown on Generate Tab [(#7)](https://github.com/luna724/luna_py/issues/7)
+\* Catch "don't use character lora" Error [(#7)](https://github.com/luna724/luna_py/issues/7)
+\* Database tab values can now be changed
+\* [launch.py]'s new argument
+
 ## v3β-6 ~ Goodbye v1 Method and code
 \* support ended for v1 feature / templates
 \- Delete v1 / v2 Method support code

@@ -1,2 +1,4 @@
 *.json
+!*.jsraw
+!database_ui.json
 !.gitignore

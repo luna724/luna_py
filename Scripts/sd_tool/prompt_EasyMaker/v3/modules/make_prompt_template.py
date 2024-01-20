@@ -1,6 +1,7 @@
 BASIC_raw = { # . = Use Database Default Value
   "key": {
     "Method": "v3",
+    "Method_Release": 2,
     "Key": "$KEY",
     "Values": {
       "Prompt": "1girl",
@@ -72,10 +73,17 @@ def get_index_list(target_list: list = [["index0", "index1"], ["hello", ", ", "w
   return rtl
 
 def check(text):
-  if text == None or text == "" or str(text).strip() == "":
+  if text == None or text == "" or str(text).strip() == "" or text == None:
     return "None"
   else:
     return text
+  
+def enablecheck(dicts: dict):
+  for key, value in dicts.items():
+    if key == "isEnabled" or key == "Image":
+      continue
+    if key == "None" or key == None:
+      return
 
 def range_checker(value: int | float, accept_range=[(1.0, 4.0)], resize_if_over: bool = True):
   #ranges = [(1, 5), (10, 15), (20, 25)]
@@ -138,78 +146,68 @@ def save(
   database_path: str, # DISCONTINUED
   overwrite: bool # Overwrite
 ):
-  if cn_enabled:
-    cn_ImagePath = "/path/to/image"
-    if cn_image:
-      cn_ImagePath = os.path.join(
-        ROOT_DIR, "database", "v3", "image", f"{filename_resizer(displayName, replaceTo='_')}.png"
-      )
-      if os.path.exists(cn_ImagePath):
-        print(f"WARN: Image is already exists. ({cn_ImagePath})\nBackup and replace..")
-        os.rename(cn_ImagePath, f"{cn_ImagePath}.old.png")
-      cn_image.save(
-        cn_ImagePath, "PNG")
-    
-    controlnet = {
-      "isEnabled": cn_enabled,
-      "Mode": check(cn_mode),
-      "Weight": check(cn_weight),
-      "Image": check(cn_ImagePath)
-    }
-    
-  else:
-    controlnet = {
-      "isEnabled": cn_enabled,
-      "Mode": check(None),
-      "Weight": check(None),
-      "Image": check(None)
-    }
+  # debug
+  for x, y in locals().items():
+    print(f"[dev]: [{x}] = {y}")
   
-  if hires_enabled:
-    hires_fix = {
-      "isEnabled": hires_enabled,
-      "Upscale": float(vcheck(h_upscl, [(1.0, 4.0)])),
-      "Sampler": check(h_sampler),
-      "Denoising": float(vcheck(h_denoise, [(0, 1)])),
-      "Steps": int(vcheck(h_steps, [(1, 150)]))
-    }
+
+  cn_ImagePath = "/path/to/image"
+  if cn_image:
+    cn_ImagePath = os.path.join(
+      ROOT_DIR, "database", "v3", "image", f"{filename_resizer(displayName, replaceTo='_')}.png"
+    )
+    if os.path.exists(cn_ImagePath):
+      print(f"WARN: Image is already exists. ({cn_ImagePath})\nBackup and replace..")
+      os.rename(cn_ImagePath, f"{cn_ImagePath}.old.png")
+    cn_image.save(
+      cn_ImagePath, "PNG")
   else:
-    hires_fix = BASIC["Hires"]
+    cn_ImagePath = shared.noneimg
+    
+  controlnet = {
+    "isEnabled": cn_enabled,
+    "Mode": check(cn_mode),
+    "Weight": check(cn_weight),
+    "Image": check(cn_ImagePath)
+  }
+    
+
+  hires_fix = {
+    "isEnabled": hires_enabled,
+    "Upscale": float(vcheck(h_upscl, [(1.0, 4.0)])),
+    "Sampler": check(h_sampler),
+    "Denoising": float(vcheck(h_denoise, [(0, 1)])),
+    "Steps": int(vcheck(h_steps, [(1, 150)]))
+  }
+  csn = custom_negative
   
-  if ex_enabled:
-    if ex_useCustomNegative:
-      csn = custom_negative
-    else:
-      csn = ""
-    
-    ex_ImagePath = "/path/to/image"
-    if ex_image:
-      ex_ImagePath = os.path.join(
-        ROOT_DIR, "database", "v3", "image", f"{filename_resizer(displayName, replaceTo='_')}.png"
-      )
-      if os.path.exists(ex_ImagePath):
-        print(f"WARN: Image is already exists. ({ex_ImagePath})\nBackup and replace..")
-        os.rename(ex_ImagePath, f"{ex_ImagePath}.old.png")
-      ex_image.save(
-        ex_ImagePath, "PNG")
-    
-    example = {
-      "isEnabled": ex_enabled,
-      "Character": check(ex_character_name),
-      "Lora": check(ex_lora),
-      "Name": check(ex_name),
-      "Prompt": check(ex_prompt),
-      "isExtend": ex_isExtend,
-      "Face": check(ex_face),
-      "Location": check(ex_location),
-      "Header": check(ex_header),
-      "Lower": check(ex_lower),
-      "Image": ex_ImagePath,
-      "CustomNegative": csn
-    }
-    
+  ex_ImagePath = "/path/to/image"
+  if ex_image:
+    ex_ImagePath = os.path.join(
+      ROOT_DIR, "database", "v3", "image", f"{filename_resizer(displayName, replaceTo='_')}.png"
+    )
+    if os.path.exists(ex_ImagePath):
+      print(f"WARN: Image is already exists. ({ex_ImagePath})\nBackup and replace..")
+      os.rename(ex_ImagePath, f"{ex_ImagePath}.old.png")
+    ex_image.save(
+      ex_ImagePath, "PNG")
   else:
-    example = BASIC["Example"]
+    ex_ImagePath = shared.noneimg
+  
+  example = {
+    "isEnabled": ex_enabled,
+    "Character": check(ex_character_name),
+    "Lora": check(ex_lora),
+    "Name": check(ex_name),
+    "Prompt": check(ex_prompt),
+    "isExtend": ex_isExtend,
+    "Face": check(ex_face),
+    "Location": check(ex_location),
+    "Header": check(ex_header),
+    "Lower": check(ex_lower),
+    "Image": ex_ImagePath,
+    "CustomNegative": csn
+  }
   
   if negative.strip() == "" or ".":
     negative = shared.negative
@@ -236,10 +234,6 @@ def save(
     "Clip": vcheck(clip_skip, [(1, 12)]),
     "displayName": displayName,
     "DatabasePath": BASIC["DatabasePath"]
-  }
-  
-  tmp = {
-    displayName.strip().lower().replace(" ", "_"): template_data
   }
   
   prv_data: dict = jsoncfg.read(
