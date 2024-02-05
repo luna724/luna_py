@@ -1,3 +1,4 @@
 *.txt
+!LICENSE.txt
 *.ltx
 *.lunafile

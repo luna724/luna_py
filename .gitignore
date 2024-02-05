@@ -5,9 +5,6 @@ __pycache__/
 white_noise/
 .venv/
 .vscode/
-out/
-outputs/
-outputs2/
 .cache/
 lunamemo/
 out.txt
@@ -15,6 +12,5 @@ Scripts/json2n/model_setup/in/json.json
 luna.py.ipynb
 QuickLaunch.bat
 main_script.py
-*.js
 *.old_lunafile
 old_lunadir/

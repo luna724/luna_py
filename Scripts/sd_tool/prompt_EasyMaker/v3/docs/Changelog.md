@@ -3,6 +3,38 @@
 <details><br />+ Feature Addition <br />* Modify 
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
+## v3β-9 ~ more readable and easy debugging webui
+ UPCOMING <br />
+
+maybe this update will be last update of v3 pre-release
+---
+
+\+ support prompt keyword
+\+ share template (with json)
+\* use gr.Tabs() and "for loop" in build webui
+\* and more..
+
+## v3β-8 ~ a1111's style / character loras
+\+ Prompt Template's Image path is turn to relpath from realpath (Experiment in Example Image)
+\+ Restore Lora Template in WebUI (ONLY deleted by WebUI)
+\+ Multiple restore Lora Template
+\+ use javascript (copied from A1111/sd-webui)
+\+ use CSS (copied from A1111/sd-webui)
+\+ Prompt Template are now support Regional Prompter with multiple LoRA Template (maximum 2)
+\+ Prompt Template can store lora weight for LoRA Character Template link
+\+ Fix can't save duplicate image on Define / Prompt Template
+\* change CustomNegative in Prompt Template WebUI Name (CustomNegative -> Memo)
+\* Prompt Template Example system v3.0.3
+\* Lora Character Database v4
+\* append self key to Lora Charcater Database's value (v4) 
+\* Character Exchanger can parsed multi character's LoRA (Experimental function / can toggle)
+\* Character Exchanger's `Exchange Target` are now have a function
+\* Character Exchanger - auto clipboard
+\* Character Exchanger - Prompt Template Define Helper
+\* script are accept argument from anywhere (launch.py or webui.py for launch ui)
+\* new argument  "--local", "--loopui", "--ui_port \<port\>", "--open_browse", "--dev_restart", "--share", "--ui_ip"
+\- Test mode webui
+
 ## v3β-7 ~ this is very capable WebUI?
 \+ Restore Deleted Prompt Template (ONLY deleted by WebUI)
 \+ Multiple Delete / Restore Prompt Template 

@@ -63,7 +63,7 @@ def format_backup_filename(formatted_to_filename=False, target_text="", gr_updat
       time = re.findall(r"(\d+)_backupdata_key-", x)[0]
       title = re.findall(r"_backupdata_key-(.*).json", x)[0]
     except IndexError:
-      print(f"Failed Analyze File: {x}")
+      print(f"[Restore]: Failed Analyze File: {x}")
       continue
     
     parsed_datetime = datetime.strptime(time, '%Y%m%d%H%M%S')
@@ -84,7 +84,7 @@ def format_backup_filename(formatted_to_filename=False, target_text="", gr_updat
   parsed_datetime = datetime.strptime(time, '%Y/%m/%d %H:%M:%S')
   title = re.findall("'s Data - (.*)", target_text)[0]
   formatted_time = parsed_datetime.strftime('%Y%m%d%H%M%S')
-  print(f"time: {time}\ntitle: {title}\n formatted_time: {formatted_time}")
+  print(f"[Restore]: time: {time}\ntitle: {title}\n formatted_time: {formatted_time}")
   
   return f"{formatted_time}_backupdata_key-{title}.json"
 
@@ -93,8 +93,8 @@ def restore_selected(target_template, delete_after_restored, advanced_mode, over
       advanced_mode : Beta Argument
   """
   
-  print(f"target_template: {target_template}")
-  print(f'Path: {os.path.join(ROOT_DIR, "logs", "template_backups", "prompt", format_backup_filename(True, target_template))}')
+  print(f"[Restore]: target_template: {target_template}")
+  print(f'[Restore]: Path: {os.path.join(ROOT_DIR, "logs", "template_backups", "prompt", format_backup_filename(True, target_template))}')
   
   if not restore_from_filepath:
     filepath = os.path.join(ROOT_DIR, "logs", "template_backups", "prompt", 
@@ -116,7 +116,7 @@ def restore_selected(target_template, delete_after_restored, advanced_mode, over
     
   version = data["Method"]
   releaseid = data["Method_Release"]
-  print(f"version data found. {version} - {releaseid}")
+  print(f"[Restore]: version data found. {version} - {releaseid}")
   
   # 情報の取得
   time = re.findall(r"(.*)'s Data -", target_template)[0]
@@ -133,7 +133,7 @@ def restore_selected(target_template, delete_after_restored, advanced_mode, over
   
   if only_delete:
     delete_after_restored = True
-    print("Catch only delete=True! printing backup data\n", f'"{data["Key"]}": {data}')
+    print("[Restore]: Catch only delete=True! printing backup data\n", f'"{data["Key"]}": {data}')
   else:
       json_write(
     template, os.path.join(ROOT_DIR, "database", "v3", "template_list.json")

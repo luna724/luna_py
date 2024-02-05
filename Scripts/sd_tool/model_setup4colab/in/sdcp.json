@@ -238,5 +238,37 @@
             10.0,
             10.0
         ]
+    },
+    "KomorebiMix v1": {
+        "Site Name": "Kokkoro / \u30b3\u30c3\u30b3\u30ed",
+        "URL": "https://civitai.com/models/24317/kokkoro",
+        "VAE": "Recommended VAE",
+        "Offical Sample": "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/308e9ddb-f7a9-4ad6-60ca-6dd290c9e700/width=2048/328115.jpeg",
+        "Sample Image1": "./loradata/image_sdcp/sample1/.png",
+        "Sample Image2": "./loradata/image_sdcp/sample2/.png",
+        "Sample Image3": "./loradata/image_sdcp/sample3/.png",
+        "Compability": "Unknown",
+        "MODEL_TYPE": [
+            10.0,
+            10.0,
+            10.0,
+            10.0
+        ]
+    },
+    "KomorebiMix v12": {
+        "Site Name": "",
+        "URL": "",
+        "VAE": "Recommended VAE",
+        "Offical Sample": "",
+        "Sample Image1": "./loradata/image_sdcp/sample1/.png",
+        "Sample Image2": "./loradata/image_sdcp/sample2/.png",
+        "Sample Image3": "./loradata/image_sdcp/sample3/.png",
+        "Compability": "Unknown",
+        "MODEL_TYPE": [
+            10.0,
+            10.0,
+            10.0,
+            10.0
+        ]
     }
 }

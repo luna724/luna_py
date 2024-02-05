@@ -1,14 +1,16 @@
 import gradio as gr
 import os
 from typing import *
-
 import LGS.misc.jsonconfig as jsoncfg
+
+import modules.shared as shared
 from modules.v1_component import delete_duplicate_comma
 from modules.lib import multiple_replace
-import modules.shared as shared
 from modules.shared import ROOT_DIR, noneimg
 from modules.generate_util import prompt_character_resizer
 from modules.generate_util import get_lora_list as get_lora_list_manual
+from modules.lib import keycheck, get_index, get_keys_from_dict, get_keys_from_list
+from modules.regional_prompter import visualize
 
 def get_template(variant="update", target_dn="NONE"): # target_dn = Target DisplayName
   """
@@ -109,6 +111,12 @@ def generate(
   use_face_for_adetailer: bool,
   activate_negative: bool,
   overall_weight: float,
+  lora2: str,
+  lora_weight2: float,
+  location2: str,
+  face2: str,
+  header2: str,
+  lower2: str,
   modes="ui"
 ):
   # lora = none?
@@ -188,22 +196,11 @@ def example_view(template_name):
         return -2
     else:
       return None
-      
-  def keycheck(dicts, target, rtl_if_fail=""):
-    if not isinstance(target, str):
-      return ""
-    try:
-      rtl = dicts[target]
-    except KeyError:
-      rtl = rtl_if_fail
-      
-      print(f"Traceback:\nKeyError: {target} in dict \n{dict}")
-    return rtl
+    
   data, version = get_template_value(template_name)
   
   if not version in shared.data.generate_py.acceptable_version or keycheck(data, "Method_Release", 0) <= 1:
     raise ValueError("v3 UI's Example View System is only supported v3.0.2 and above Template System")
-  
 
   # ControlNet
   if keycheck(data, "Method_Release", 0) >= 2:
@@ -242,7 +239,7 @@ def example_view(template_name):
     
     ex_image = check(data["Example"]["Image"])
     ex_image_show_state = True
-    if not os.path.exists(ex_image):
+    if not os.path.exists(ex_image) or ex_image == noneimg:
       ex_image = noneimg
       ex_image_show_state = False
     
@@ -257,4 +254,54 @@ def example_view(template_name):
     
     method_ver = f'{keycheck(data, "Method_Release", 0)}'
   
-  return character_data, lora, name, prompt, isextend, face, location, header, lower, csn, gr.Dropdown.update(visible=ex_image_show_state), ex_image, resolution, clip, sampler, gr.Dropdown.update(visible=hires_show_state), hires_sampler, hires_steps, hires_denoise, hires_upscale, gr.Dropdown.update(visible=cn_show_state), cn_mode, cn_weight, cn_image, method_ver
+    # 3.0.3 or above  /  Regional Prompter
+    rp = keycheck(data, "Regional_Prompter", {"isEnabled": False})
+    rp_show_state = keycheck(rp, "isEnabled", False)
+    
+    rp_rp_mode, rp_mode, rp_base, rp_common_raw, rp_lora_stop_step_raw, rp_resolution_raw, rp_split_mode, rp_split_ratio, rp_base_ratio = get_keys_from_dict(
+      rp, [
+        "rp_mode", "mode", "base", "common", "lora_stop_step", "resolution",
+        "split_mode", "split_ratio", "base_ratio"
+      ]
+    )
+    rp_common, rp_common_negative = get_keys_from_list(rp_common_raw, if_fail_value=False)
+    rp_lora_stop_step, rp_lora_hires_stop_step = get_keys_from_list(rp_lora_stop_step_raw, if_fail_value=False)
+    rp_width, rp_height = get_keys_from_list(rp_resolution_raw, if_fail_value=512)
+    
+    if rp_show_state:
+      rp_image, rp_template = visualize(
+        rp_mode, rp_split_ratio, rp_width, rp_height, rp_common, rp_base, rp_base_ratio, rtl_template=True
+      )
+    else:
+      rp_image = shared.noneimg
+      rp_template = ""
+    
+    # 3.0.3 or above  /  Lora Weight
+    ex = data["Example"]
+    ex_lora_weight = get_keys_from_dict(
+      ex, [
+        "Weight"
+      ], 1.0
+    )
+    
+    # 3.0.3 or above  /  Secondary Prompt (Regional Prompter) 
+    rpsp = keycheck(rp, "Secondary_Prompt", {"gFaL_from_Main": False})
+    get_face_and_location_from_main = keycheck(rpsp, "gFaL_from_Main", False)
+    second_prompt_root = False
+    
+    rpsp.pop("gFaL_from_Main")
+    rpsp_prompt, rpsp_character, rpsp_weight, rpsp_lora, rpsp_name, rpsp_ch_prompt, rpsp_face, rpsp_location, rpsp_header, rpsp_lower = get_keys_from_dict(
+      rpsp, list(rpsp.keys()), ""
+    )
+    
+    if not rpsp_prompt == "":
+      second_prompt_root = True
+    
+    if get_face_and_location_from_main:
+      rpsp_face, rpsp_location = get_keys_from_dict(
+        ex, [
+          "Face", "Location"
+        ], ""
+      )
+  
+  return character_data, lora, ex_lora_weight, name, prompt, isextend, face, location, header, lower, csn, gr.Dropdown.update(visible=ex_image_show_state), ex_image, resolution, clip, sampler, gr.Dropdown.update(visible=hires_show_state), hires_sampler, hires_steps, hires_denoise, hires_upscale, gr.Dropdown.update(visible=cn_show_state), cn_mode, cn_weight, cn_image, gr.Dropdown.update(visible=rp_show_state), rp_mode, rp_base, rp_common, rp_common_negative, rp_lora_stop_step, rp_lora_hires_stop_step, rp_width, rp_height, rp_split_mode, rp_split_ratio, rp_base_ratio, rp_image, rp_template, gr.Dropdown.update(visible=second_prompt_root), rpsp_character, rpsp_weight, rpsp_lora, rpsp_name, rpsp_ch_prompt, rpsp_face, rpsp_location, rpsp_header, rpsp_lower, method_ver, gr.Dropdown.update(visible=second_prompt_root)

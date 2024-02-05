@@ -1,7 +1,8 @@
 > Template System Changelog
 
-## v3.0.3 - UPCOMING (ReleaseID: 2)
-Support MultiDiffusion ( / Latent Couple) <br />
+## v3.0.3 (ReleaseID: 3)
+Support Regional Prompter ( / Latent Couple) with maximum 2 LoRA<br />
+can save Lora weight for Template LoRA System <br />
 
 ## v3.0.2 (ReleaseID: 2)
 ControlNet / Hires.fix / Example) are auto toggle(if all value are blank, doesn't show on tab) for show status on Generate / Template Tab 

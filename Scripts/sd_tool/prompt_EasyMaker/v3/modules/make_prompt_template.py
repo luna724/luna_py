@@ -37,6 +37,31 @@ BASIC_raw = { # . = Use Database Default Value
       "isEnableCSN": False,
       "CustomNegative": ""
     },
+    "Regional_Prompter": {
+    "isEnabled": False,
+    "rp_mode": "Matrix",
+    "Secondary_Prompt": {
+      "prompt": "",
+      "characters": "",
+      "weight": 1.0,
+      "lora": "",
+      "name": "",
+      "ch_prompt": "",
+      "face": "",
+      "location": "",
+      "header": "",
+      "lower": "",
+      "gFaL_from_Main": False
+    },
+    "mode": "Attention",
+    "base": False,
+    "common": [False, False],
+    "lora_stop_step": [0, 0],
+    "resolution": [0, 0],
+    "split_mode": "Rows",
+    "split_ratio": "1:1",
+    "base_ratio": 0.2
+    },
     "Resolution": "None",
     "Sampler": "None",
     "Clip": 2,
@@ -49,10 +74,13 @@ BASIC_raw = { # . = Use Database Default Value
 BASIC = BASIC_raw["key"]
 
 import LGS.misc.jsonconfig as jsoncfg
+from modules import regional_prompter as rp
+from modules.delete_prompt_template import delete_selected
 from modules.shared import ROOT_DIR, currently_version, currently_template_versionID
 import modules.shared as shared
 from PIL import Image
-from typing import Iterable
+from typing import Literal
+from re import Pattern
 from LGS.misc.nomore_oserror import filename_resizer
 import os
 
@@ -132,6 +160,7 @@ def save(
   ex_enabled: bool, # Example Option is enabled? (Optional)
   ex_character_name: str, # Example Character Name (Optional)
   ex_lora: str, # Example Lora (Optional)
+  ex_lora_weight: float, # Example Lora's Weight
   ex_name: str, # Example Name (Optional)
   ex_prompt: str, # Example Prompt (Optional)
   ex_isExtend: bool, # is it have extend? (Optional)
@@ -144,11 +173,61 @@ def save(
   custom_negative: str, # CustomNegative (Optional)
   clip_skip: str, # Clip skip (Optional)
   database_path: str, # DISCONTINUED
-  overwrite: bool # Overwrite
+  overwrite: bool, # Overwrite
+  rp_enabled: bool, # Regional Prompter option is enabled?
+  rp_mode: Literal["Attention", "Latent"], # Generation Mode
+  rp_use_base: bool, # use base prompt
+  rp_use_common: bool, # use common prompt
+  rp_use_common_negative: bool, # use common negative prompt
+  rp_base_ratio: float, # base ratio
+  rp_lora_stop: int, # lora stop step
+  rp_lora_hires: int, # lora hires stop step
+  rp_split_mode: Literal["Rows", "Columns", "Random"], 
+  rp_split_ratio: str, # division ratio
+  rp_width: int, # width
+  rp_height: int, # height
+  rp_second_prompt: str, # secondary prompt
+  rp_ex_c: str, # secondary prompt's example - character template
+  rp_ex_l: str, # lora
+  rp_ex_lw: float, # lora weight
+  rp_ex_n: str, # name
+  rp_ex_h: str, #header
+  rp_ex_ep: str, # character prompt
+  rp_ex_f: str, # face
+  rp_ex_lc: str, # locatoin
+  rp_ex_lo: str, #lower
+  rp_ex_gFaL: bool, # get face and location from main
 ):
   # debug
   for x, y in locals().items():
     print(f"[dev]: [{x}] = {y}")
+  
+  rp_dict = {
+    "isEnabled": rp_enabled,
+    "rp_mode": "Matrix",
+    "Secondary_Prompt": {
+      "prompt": rp_second_prompt,
+      "characters": rp_ex_c,
+      "weight": rp_ex_lw,
+      "lora": rp_ex_l,
+      "name": rp_ex_n,
+      "ch_prompt": rp_ex_ep,
+      "face": rp_ex_f,
+      "location": rp_ex_lc,
+      "header": rp_ex_h,
+      "lower": rp_ex_lo,
+      "gFaL_from_Main": rp_ex_gFaL
+    },
+    "mode": rp_mode,
+    "base": rp_use_base,
+    "common": [rp_use_common, rp_use_common_negative],
+    "lora_stop_step": [rp_lora_stop, rp_lora_hires],
+    "resolution": [rp_width, rp_height],
+    "split_mode": rp_split_mode,
+    "split_ratio": rp_split_ratio,
+    "base_ratio": rp_base_ratio
+  }
+  
   
 
   cn_ImagePath = "/path/to/image"
@@ -158,6 +237,8 @@ def save(
     )
     if os.path.exists(cn_ImagePath):
       print(f"WARN: Image is already exists. ({cn_ImagePath})\nBackup and replace..")
+      if os.path.exists(cn_ImagePath + ".old.png"):
+        os.remove(cn_ImagePath + ".old.png")
       os.rename(cn_ImagePath, f"{cn_ImagePath}.old.png")
     cn_image.save(
       cn_ImagePath, "PNG")
@@ -187,7 +268,7 @@ def save(
       ROOT_DIR, "database", "v3", "image", f"{filename_resizer(displayName, replaceTo='_')}.png"
     )
     if os.path.exists(ex_ImagePath):
-      print(f"WARN: Image is already exists. ({ex_ImagePath})\nBackup and replace..")
+      print(f"[Save]: WARN: Image is already exists. ({ex_ImagePath})\nBackup and replace..")
       os.rename(ex_ImagePath, f"{ex_ImagePath}.old.png")
     ex_image.save(
       ex_ImagePath, "PNG")
@@ -197,6 +278,7 @@ def save(
   example = {
     "isEnabled": ex_enabled,
     "Character": check(ex_character_name),
+    "Weight": float(ex_lora_weight),
     "Lora": check(ex_lora),
     "Name": check(ex_name),
     "Prompt": check(ex_prompt),
@@ -219,7 +301,7 @@ def save(
   template_data = {
     "Method": currently_version,
     "Method_Release": currently_template_versionID,
-    "Key": displayName.strip().lower().replace(" ", "_"),
+    "Key": displayName,
     "Values": {
       "Prompt": prompt,
       "Negative": negative,
@@ -229,6 +311,7 @@ def save(
     "ControlNet": controlnet,
     "Hires": hires_fix,
     "Example": example,
+    "Regional_Prompter": rp_dict,
     "Resolution": check(resolution),
     "Sampler": check(sampler),
     "Clip": vcheck(clip_skip, [(1, 12)]),
@@ -240,11 +323,12 @@ def save(
     os.path.join(ROOT_DIR, "database", "v3" ,"template_list.json")
   )
   
-  if not overwrite and displayName.strip().lower().replace(" ", "_") in prv_data.keys():
+  if not overwrite and displayName in prv_data.keys():
     return "Error: this name is already taken."
-  elif displayName.strip().lower().replace(" ", "_") in prv_data.keys():
-    print(f"WARN: previous {displayName.strip().lower().replace(' ', '_')}'s Key data is deleted.")
-  prv_data[displayName.strip().lower().replace(" ", "_")] = template_data
+  elif displayName in prv_data.keys():
+    print(f"[Save]: WARN: previous {displayName}'s Key data is deleted.")
+    _, _ = delete_selected(displayName, True)
+  prv_data[displayName] = template_data
   
   jsoncfg.write(
     prv_data,

@@ -32,12 +32,13 @@ def get_lora_list(variant="update",parse:bool=False,name:str=""):
     return gr.Dropdown.update(choices= list(jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
     ).keys()))
+    
   elif variant == "only_lora":
     rtl = []
     for x in get_lora_list("manual"):
       # キーのリストを順に解析
       rtl.append(
-        (lora_raw[x][1]["lora"], x)
+        (lora_raw[x][1]["lora"], x, lora_raw[x][1]["name"])
       )
     return rtl
 
@@ -50,7 +51,7 @@ def control_lora_weight(lora_string: str, weight: float = 1.0):
   
   return new_lora_string
 
-def prompt_character_resizer(prompt:str, weight:float, key:str):
+def prompt_character_resizer(prompt:str, weight:float, key:str, return_replace_util:bool=False):
   key, lora, name, ch_prompt, extend = get_lora_list("manual",parse=True,name=key)
   lora = control_lora_weight(lora, weight)
   
@@ -81,6 +82,10 @@ def prompt_character_resizer(prompt:str, weight:float, key:str):
     ])
   
   print(f"prompt: {prompt}")
+  
+  if return_replace_util:
+    return lora, name, ch_prompt + extend
+  
   return prompt
 
 def lora_saver(
@@ -89,17 +94,18 @@ def lora_saver(
   lora_name: str = "example",
   lora_prompt: str = "long hair, aqua hair",
   lora_prompt_extended: str = "cute",
-  overwrite: bool = False
+  overwrite: bool = False, fake_save:bool=False
 ):
   """
   LoRA v3 を WebUI の入力を受け取り保存する
   """
   lora_db = {
-    json_key_name: ["v3", {
+    json_key_name: ["v4", {
       "lora": lora_id,
       "name": lora_name,
       "prompt": lora_prompt,
-      "extend": lora_prompt_extended
+      "extend": lora_prompt_extended,
+      "key": json_key_name
     }]
   }
   
@@ -116,14 +122,15 @@ def lora_saver(
   
   prv_lora_db.update(lora_db)
   
-  jsoncfg.write(prv_lora_db, 
-    os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
-  )
+  if not fake_save:
+    jsoncfg.write(prv_lora_db, 
+      os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
+    )
   return "OK."
 
 def lora_updater(overwrite):
   """
-  v2 Lora Template を v3 にアップデートする
+  v1 / v2 Lora Template を v3 にアップデートする
   """
   v1_lora_dict = jsoncfg.read(
     os.path.join(ROOT_DIR, "database", "charactor_lora.json")

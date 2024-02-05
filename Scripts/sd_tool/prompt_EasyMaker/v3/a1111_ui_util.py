@@ -92,7 +92,7 @@ class DropdownEditable(FormComponent, gr.Dropdown):
 class InputAccordion(gr.Checkbox):
     """A gr.Accordion that can be used as an input - returns True if open, False if closed.
 
-    Actually just a hidden checkbox, but creates an accordion that follows and is followed by the state of the checkbox.
+    Actaully just a hidden checkbox, but creates an accordion that follows and is followed by the state of the checkbox.
     """
 
     global_index = 0
@@ -110,7 +110,6 @@ class InputAccordion(gr.Checkbox):
         }
         super().__init__(value, **kwargs_checkbox)
 
-        # inputs=[self] から inputs=[self.accordion] に変更
         self.change(fn=None, _js='function(checked){ inputAccordionChecked("' + self.accordion_id + '", checked); }', inputs=[self])
 
         kwargs_accordion = {
@@ -120,7 +119,6 @@ class InputAccordion(gr.Checkbox):
             "elem_classes": ['input-accordion'],
             "open": value,
         }
-        # self.accordion の初期化を追加
         self.accordion = gr.Accordion(**kwargs_accordion)
 
     def extra(self):
@@ -148,3 +146,4 @@ class InputAccordion(gr.Checkbox):
 
     def get_block_name(self):
         return "checkbox"
+

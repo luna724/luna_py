@@ -11,4 +11,5 @@ gradio==3.41.2
 eyed3
 mutagen
 tqdm
-soundfile 
+soundfile
+pyperclip
