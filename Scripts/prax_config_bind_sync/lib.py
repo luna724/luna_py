@@ -20,7 +20,7 @@ def get_binds(basic_data_dict):
     else:
       binds4module.append(0)
   
-  print(binds4module)
+  #print(binds4module)
   return binds4module
 
 def get_module_index_from_name(name, target_config):
@@ -95,6 +95,37 @@ def reset_keybind(prv_config, db_config, replace, strict=True):
 #   return prv_config
 
 def reset_selected(prv_config, db_config, convert_target):
+  def parse_file_data(cfg_data):
+
+    nameitem = []
+    for x in cfg_data["modules"]:
+      nameitem.append(x["name"])
+  
+    return nameitem
+  
+  namelist = parse_file_data(db_config)
+  
+  for index, target in enumerate(convert_target):
+    if len(db_config["modules"]) <= index or len(prv_config["modules"]) <= index:
+      print(f"Index {index} out of range. Skipping reset for this index.")
+      correctly_index = get_module_index_from_name(db_config["modules"][index]["name"], prv_config)
+      if correctly_index == None:
+        continue
+      else:
+        pass
+    
+    if not target in namelist:
+      continue
+    
+    # インデックスを取得して db_config の値を取得
+    i = get_module_index_from_name(target, db_config)
+    ic = get_module_index_from_name(target, prv_config)
+    
+    if i == None:
+      continue
+    
+    prv_config["modules"][ic] = db_config["modules"][i]
+        
   return prv_config
 
 ##### UI

@@ -56,6 +56,7 @@ def main_function(target_cfg_path, your_cfg_path, replace_keybind_if_none, repla
   
     print('config load command are copied to clipboard!')
     backup_copy = pyperclip.paste()
+    print('previous copied item: ', backup_copy)
     pyperclip.copy(cmd)
     
   else:
@@ -63,4 +64,5 @@ def main_function(target_cfg_path, your_cfg_path, replace_keybind_if_none, repla
   return "Done."
 
 if __name__ == "__main__":
-  print(ui().queue(64).launch())
+  def start(): print("Ctrl+C to Terminate"); ui().queue(64).launch(); return "Process Stopped."
+  print(start())

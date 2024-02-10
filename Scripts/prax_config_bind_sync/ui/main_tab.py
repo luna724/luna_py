@@ -1,6 +1,7 @@
 import gradio as gr
 import os
 from tkinter import Tk, filedialog
+from LGS.misc.jsonconfig import read
 
 from translation import lang
 from pcbs import main_function
@@ -10,17 +11,12 @@ def build():
   downloads = os.path.join(os.path.expanduser("~"), "Downloads")
   prax_path = os.path.join(os.path.expanduser("~"), "AppData/Local/Packages/Microsoft.MinecraftUWP_8wekyb3d8bbwe/RoamingState", "Prax/config")
   
-  def get_visuals():
-    return [
-      ""
-    ]
-  
   def browse_file():
     root = Tk()
     root.attributes("-topmost", True)
     root.withdraw()
     
-    filenames = filedialog.askopenfilename()
+    filenames = filedialog.askopenfilename(defaultextension="json")
     if len(filenames) > 0:
         root.destroy()
         return str(filenames)
@@ -30,8 +26,28 @@ def build():
         return str(filename)
     return
   
+  
   def parse_file_data(cfg_path):
-    return ["this"]
+    cfg_path = cfg_path
+    print("cfg_path: ", cfg_path)
+    
+    if not os.path.exists(cfg_path):
+      return gr.Dropdown.update(choices=[l[13]],value=l[13])
+    elif os.path.isdir(cfg_path):
+      return gr.Dropdown.update(choices=[l[13]],value=l[13])
+    elif not os.path.splitext(os.path.basename(cfg_path))[1] == ".json":
+      return gr.Dropdown.update(choices=[l[13]],value=l[13])
+    
+    cfg = read(cfg_path)
+    
+    try:
+      nameitem = []
+      for x in cfg["modules"]:
+        nameitem.append(x["name"])
+    except KeyError or IndexError:
+      return gr.Dropdown.update(choices=[l[15]],value=l[15])
+    
+    return gr.Dropdown.update(choices=nameitem)
   
   with gr.Blocks() as i:
     with gr.Column():
@@ -64,17 +80,20 @@ def build():
           easy_load = gr.Checkbox(label=l[7], value=True)
       
       with gr.Tab(label=l[8]):
-        convert_targets = gr.Dropdown(choices=parse_file_data(target_cfg_path), every=2, value=get_visuals(), label=l[10])
+        convert_targets = gr.Dropdown(choices=[l[14]], value=None, label=l[10], multiselect=True)
+        target_cfg_path.change(fn=parse_file_data, inputs=[target_cfg_path], outputs=[convert_targets])
         convert_visuals = gr.Checkbox(label=l[11], value=True)
 
     status = gr.Textbox(label="Status", interactive=False)
     infer = gr.Button(l[12])
     infer.click(
       fn=main_function,
-      inputs=[target_cfg_path, target_db_path, replace_bind, gr.Checkbox(value=False), easy_load,
+      inputs=[target_cfg_path, target_db_path, replace_bind, gr.Checkbox(value=False,visible=False), easy_load,
               strict, convert_visuals, convert_targets, convert_bind],
       outputs=[status]
     )
+    
+    
   
   
   return (l[9], i, 1)
