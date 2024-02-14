@@ -21,6 +21,7 @@ License        - License for this feature
 | [json To Something / Model Setup] | - | × | × | ✅ | × | [MIT](/LICENSE) |
 | [jpg To png Converter] | v1.1.1 | ✅ | ✅ | ✅ | × | [MIT](/LICENSE) |
 | [MP3 To wav Converter] | v1.1.0 | ✅ | × | ✅ | × | [MIT](/LICENSE) |
+| [Prax Config Switch helper](/docs/module_desc/prax_config_switch_helper.md) | v1.0 | ✅ | ✅ | × | × | [MIT](/LICENSE) |
 | [SD - Prompt EasyMaker](/docs/module_desc/sd_prompt_easymaker.md) | v3β-7 | ✅ | ✅ | ✅ | ✅ | [AGPL 3.0](/Scripts/sd_tool/prompt_EasyMaker/LICENSE) / [MIT](/LICENSE) |
 | [SD - Dataset Utils](./module_desc/dataset_utils.md) | β-build04 | ✅ | × | ✅ | × | [MIT](/LICENSE) |
 | [SD Tool / Directory Unzipper] | - | × | × | ✅ | × | [MIT](/LICENSE) |

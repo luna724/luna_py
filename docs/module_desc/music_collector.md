@@ -1,10 +1,10 @@
-## Music Collector
+## DISCONTINUED: Music Collector
 
-`Docs: UPCOMING | Music Collector: v2pre2`
+`Docs: None | Music Collector: v2pre2`
 
-`Latest Version: v1.0.3`
+`Latest Version: v2pre2`
 `Latest Preview Version: v2pre2`
-`Support Ending Version: Not Scheduled`
+`Support Ending Version: v2pre2`
 
 
 ## - Feature

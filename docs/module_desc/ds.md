@@ -1,10 +1,10 @@
-## Dataset Collector
+## DISCONTINUED: Dataset Collector
 
-`Docs: UPCOMING | Dataset Collector: v4.0pre3`
+`Docs: None | Dataset Collector: v4.0pre3`
 
-`Latest Version: v3.1`
+`Latest Version: v4.0pre4`
 `Latest Preview Version: v4.0pre4`
-`Support Ending Version: v4.0`
+`Support Ending Version: v4.0pre4`
 
 
 ## - Feature
