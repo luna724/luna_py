@@ -1,0 +1,15 @@
+{
+  "/webui.py": {
+    "ui_title": "lunapy - SD/PEM",
+    "": ""
+  },
+
+  "/ui/database.py": {
+    "negative": "Negative Prompt",
+    "ad_positive": "ADetailer Positive",
+    "ad_negative": "ADetailer Negative",
+    "accordion1": "Modify values",
+    "acc1_btn": "Modify",
+    "tab_title": "Database"
+  }
+}

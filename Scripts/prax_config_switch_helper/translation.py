@@ -1,6 +1,15 @@
 lang_en = {
   "main_tab.py": [
-    "Target Config path", "Browse File"
+    "Target Config path", "Browse File",
+    "Database Config path", "Browse File",
+    "Replace bind (if Database config bind is not set)",
+    "Stable Mode", "Convert binds", "Easy load mode",
+    "select modules to take to target config",
+    "config updater", "target modules for take over",
+    "Auto select all Visuals tab's module",
+    "Convert", "Can't find target Config",
+    "File isn't Selected", "Target config isn't Prax Config or Not Supported config version. (Tested Prax Config version: 1.0.4 ~ 1.0.6)",
+    ""
   ]
 }
 
@@ -18,14 +27,19 @@ lang_ja = {
   ]
 }
 
+import locale
 import os
 def check_lang():
   if os.name != "nt":
     return lang_en
   
   else:
-    # 言語✅
-    return lang_ja
+    language, _ = locale.getdefaultlocale()
+    
+    if language == "en_US":
+      return lang_en
+    elif language == "ja_JP":
+      return lang_ja
 
 
 

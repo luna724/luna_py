@@ -4,15 +4,9 @@
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
 ## v3β-9 ~ more readable and easy debugging webui
- UPCOMING <br />
-
-maybe this update will be last update of v3 pre-release
----
-
-\+ support prompt keyword
 \+ share template (with json)
-\* use gr.Tabs() and "for loop" in build webui
-\* and more..
+\* change webui build method
+\- removed some javascripts
 
 ## v3β-8 ~ a1111's style / character loras
 \+ Prompt Template's Image path is turn to relpath from realpath (Experiment in Example Image)

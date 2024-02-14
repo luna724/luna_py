@@ -3,7 +3,10 @@
 
 ### from root_dir relpath
 
-*.js
-*.css
-./javascript/*
-./a1111_ui_util.py
+/style.css
+/a1111_ui_util.py
+/script.js
+/javascript/inputAccordion.js
+/javascript/LICENSE.txt
+/javascript/reload_js.py (Modified by luna_)
+

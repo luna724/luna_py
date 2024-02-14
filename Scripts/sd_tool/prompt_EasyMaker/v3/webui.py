@@ -3,6 +3,8 @@ import os
 import mimetypes
 import sys
 import subprocess
+import importlib.util
+import logging
 
 ## code by. AUTOMATIC1111 / Stable-Diffusion-WebUI
 from a1111_ui_util import *
@@ -24,12 +26,67 @@ import modules.regional_prompter as rp
 from modules.misc import modify_database, get_js, parse_parsed_arg
 from modules.lib import browse_file
 from javascript.reload_js import reload_js
+from modules.lib_javascript import *
 
 ## LGS
 import LGS.misc.nomore_oserror as los
 import LGS.misc.jsonconfig as jsoncfg
 
-def create_ui():
+# some variable
+ui_path = os.path.join(shared.ROOT_DIR, "modules", "ui")
+rootID_list = ["generate", "manage_template", "MT/define",
+              "MT/delete", "MT/restore", "manage_config"]
+load_js = {
+  # "key": javascript_function
+  "overall": javascript_overall
+}
+
+# logger
+logging.basicConfig(filename="./script_log/latest.log", encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(filename="./script_log/latest_warn.log", encoding='utf-8', level=logging.WARN)
+
+
+# UIモジュールのパス
+ui_module_path = "./modules/ui"
+
+# UIモジュール内のすべてのPythonファイルを取得
+ui_module_files = [file for file in os.listdir(ui_module_path) if file.endswith(".py")]
+
+# タブを格納するリスト
+tabs = []
+
+# 各UIモジュールの処理
+for file_name in ui_module_files:
+    # モジュール名を取得
+    module_name = os.path.splitext(file_name)[0]
+    # モジュールのパスを作成
+    module_path = os.path.join(ui_module_path, file_name)
+    # モジュールをインポート
+    spec = importlib.util.spec_from_file_location(module_name, module_path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    # build_ui() 関数を実行
+    ui_data = module.build_ui()
+    # gr.Tab に追加
+    title, block = ui_data
+    tabs.append(gr.Tab(label=title).add_child(block))
+
+# Tabsオブジェクトを生成
+tabs_object = gr.Tabs(tabs=tabs)
+
+# インターフェースを表示
+tabs_object.launch()
+
+
+
+
+
+
+
+
+# Old Method
+
+def old_create_ui():
   # JS
   js = get_js()
   with gr.Blocks(title="lunapy / SD - Prompt EasyMaker") as main_iface:
@@ -704,15 +761,20 @@ def launch_ui(isloopui:bool=False):
   if port:
     port = int(port)
   
-  ui = create_ui()
+  ui = old_create_ui()
+  if shared.args.new_ui:
+    ui = create_ui()
   
-  ui.queue(64)
-  ui.launch(
-    server_port=port,
-    inbrowser=shared.args.open_browser,
-    share=shared.args.share,
-    server_name=ip
-  )
+  ui.queue(64).launch()
+  return "DONE."
+  
+  # ui.queue(64)
+  # ui.launch(
+  #   server_port=port,
+  #   inbrowser=shared.args.open_browser,
+  #   share=shared.args.share,
+  #   server_name=ip
+  # )
 
 def start():
   print("Ctrl+C to Terminate")

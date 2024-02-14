@@ -1,6 +1,7 @@
 import LGS.misc.jsonconfig as jsoncfg
 import os
 import argparse
+from typing import Literal
 
 ROOT_DIR = os.getcwd()
 DB_PATH = os.path.join(ROOT_DIR, "database", "v3")
@@ -47,8 +48,40 @@ def arg_parse():
   parse.add_argument("--open_browser", action='store_true')
   parse.add_argument("--dev_restart", action='store_true')
   parse.add_argument("--share", action='store_true')
+  parse.add_argument("--new_ui", action='store_true')
   parse.add_argument("--ui_port")
   parse.add_argument("--ui_ip")
+  parse.add_argument("--ui_theme")
 
   return parse.parse_args()
+
 args = arg_parse()
+
+
+def language(target:str=None, mode:Literal["raw","list"]="list"):
+  """ return languages dict / list """
+  
+  ## Database
+  available_lang = ["en_US"]
+  lang = "en_US"
+  
+  lang_root = os.path.join(ROOT_DIR, "database", "v3", "lang")
+  
+  
+  ## language parse (from os)
+  if not os.name == "nt":
+    lang = "en_US"
+    print("Can't use language parse on your system. (only supported os.name == nt)")
+  else:
+    lang = "en_US"
+    
+  ## code
+  data:dict = jsoncfg.read(os.path.join(lang_root, f"{lang}.json"))
+  
+  if target is not None:
+    data = data[target]
+  
+  if mode == "list":
+    return list(data.values())
+  return data
+  

@@ -1,6 +1,6 @@
 //  Commented out columns are written by luna_.
 //
-// This license applies only to the javascripts in this folder(javascript/*.js) and a1111_ui_util.py.
+// This license applies only to the inputAccordion.js, a1111_ui_util.py, this LICENSE.txt, reload_js.py, script.js and style.css.
 //
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
