@@ -1,12 +1,27 @@
 # lunapy
 
+<details> <summary> Repository WARNING </summary>
+Do not use modules that were previously committed in this repositories and have now been removed.
+They have been deemed problematic for distribution.
+I will not be liable for any and all damages caused by their use by third parties.
+
+If you know of any existing ones that you deem problematic for distribution, please contact me.
+
+/
+
+このリポシトリで過去にコミットされていて、現在削除されているモジュールは使用しないでください。
+それらは配布するには問題があると判断したものです。
+それらを第三者が使用することによって生じた全ての損害に対して私は一切の責任を負いません。
+
+現存しているもので配布には問題があると判断されるものがある場合、連絡してください。
+
+Provide / Translated by. ChatGPT
+</details>
+
+
 -----------
-## Feature List
 
-[This list is Not Supported. <br>Feature list is Moved to module_description.md](/docs/module_description.md)
-
-
------------
+[## Feature List](/docs/module_description.md)
 
 ## 依存関係 / Dependencies
 
@@ -14,16 +29,17 @@
 - [`SoX`](https://sox.sourceforge.net/)
 - [`Aria2`](https://github.com/aria2/aria2)
 
-## 事前準備
+## スクリプトの実行方法 / How to launch lunapy's Script
 
-スクリプトによっては FFmpeg, SoX を要求するため、インストール+システム環境変数 "PATH" への追加
-
-あとは old_setup.batを実行
-
-## All WebUI Path
-coming soon
+1. launch `/old_setup.bat`
+2. goto `/Scripts`
+3. Select what you want to lauunch
+4. in the script folder, launch the batch file.
+5. more details in [module description](/docs/module_description.md)
 
 ## Changelogs
 [`lunapy's Changelogs (without Module / Scripts)`](/docs/Changelogs.md) <br />
 
-<details> <summary> 各モジュールごとの Changelog </summary></details>
+<details> <summary> 各モジュールごとの Changelog / changelogs per module </summary>
+in preparation
+</details>
