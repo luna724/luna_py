@@ -21,7 +21,7 @@ Provide / Translated by. ChatGPT
 
 -----------
 
-[## Feature List](/docs/module_description.md)
+<a href=/docs/module_description.md>Feature List </a>
 
 ## 依存関係 / Dependencies
 
