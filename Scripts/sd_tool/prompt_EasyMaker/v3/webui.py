@@ -4,7 +4,9 @@ import mimetypes
 import sys
 import subprocess
 import importlib.util
+import importlib
 import logging
+from typing import *
 
 ## code by. AUTOMATIC1111 / Stable-Diffusion-WebUI
 from a1111_ui_util import *
@@ -45,43 +47,149 @@ load_js = {
 logging.basicConfig(filename="./script_log/latest.log", encoding='utf-8', level=logging.DEBUG)
 logging.basicConfig(filename="./script_log/latest_warn.log", encoding='utf-8', level=logging.WARN)
 
-
-# UIモジュールのパス
-ui_module_path = "./modules/ui"
-
-# UIモジュール内のすべてのPythonファイルを取得
-ui_module_files = [file for file in os.listdir(ui_module_path) if file.endswith(".py")]
-
-# タブを格納するリスト
-tabs = []
-
-# 各UIモジュールの処理
-for file_name in ui_module_files:
-    # モジュール名を取得
-    module_name = os.path.splitext(file_name)[0]
-    # モジュールのパスを作成
-    module_path = os.path.join(ui_module_path, file_name)
-    # モジュールをインポート
-    spec = importlib.util.spec_from_file_location(module_name, module_path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    # build_ui() 関数を実行
-    ui_data = module.build_ui()
-    # gr.Tab に追加
-    title, block = ui_data
-    tabs.append(gr.Tab(label=title).add_child(block))
-
-# Tabsオブジェクトを生成
-tabs_object = gr.Tabs(tabs=tabs)
-
-# インターフェースを表示
-tabs_object.launch()
-
-
-
-
-
-
+# Tab Class
+class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
+  PATH = ui_path
+  
+  def __init__(self, path):
+    self.filepath = path
+    self.rootpath = UiTabs.PATH
+    pass
+  
+  def variable(self) -> Tuple[str]:
+    """ return tab_title"""
+    return ("Tab_Title")
+  
+  def index(self) -> int:
+    """ return ui's index """
+    return 0
+  
+  def ui(self, outlet: Callable):
+    """ make ui data 
+    don't return """
+    pass
+  
+  # def has_child(self):
+  #   return [rootID, child_rel_import_path, importlib's Path]
+  
+  def __call__(self):
+    if hasattr(self, "has_child"):
+      child_mode= True
+    else:
+      child_mode= False
+    
+    if not hasattr(self, "child"): # 子タブじゃないなら実行
+      child_dir = self.filepath[:-3]  #.py を取り除く子ディレクトリの検出
+      children = []
+      tabs = []
+      child_tabs = []
+      
+      if os.path.isdir(child_dir):
+        for file in [file for file in os.listdir(child_dir) if file.endswith(".py")]:
+          module_name = file[:-3]
+          
+          parent = os.path.relpath(
+            UiTabs.PATH, UiTabs.PATH
+          ).replace(
+            "/", "."
+          ).strip(".")
+          print("parent: ", parent)
+          
+          children.append(
+            importlib.import_module(
+              f"modules.ui.{parent}.{module_name}"
+            ) # インポートしていたものを children に追加
+          )
+          
+      children = sorted(children, key=lambda x: x.index())
+      
+      for child in children:
+        # 辞書として変数の値を取得
+        # このクラスのサブクラスを発見したら最初のものを追加
+        attrs = child.__dict__
+        tab = [x for x in attrs.values() if issubclass(x, UiTabs)]
+        if len(tab) != 0:
+          tabs.append(tab[0])
+        
+    if child_mode: # 子タブありモード
+      children = []
+      child_tab = []
+      rel_path = self.has_child()[1]
+      
+      if os.path.isdir(os.path.join(self.rootpath, rel_path)):
+        for file in [
+          file for file in os.listdir(os.path.join(
+            os.path.join(self.rootpath, rel_path)
+          )) if file.endswith(".py")
+        ]:
+          module_name = file[:-3]
+          print("Module name: "+ f"modules.ui.{self.has_child()[2]}{module_name}")
+          children.append(
+            importlib.import_module(
+              f"modules.ui.{self.has_child()[2]}{module_name}"
+            ) # おなじように処理し、インポート
+          )
+        children = sorted(children, key=lambda x: x.child_index())
+        
+        for child in children:
+          attrs = child.__dict__
+          tab = [x for x in attrs.values()
+                if issubclass(x, UiTabs)]
+          
+          if len(tab) != 0:
+            child_tab.append(tab[0])
+        
+    
+    # これに関してはわからんけど
+    # おそらく self.ui に取得したタブの要素を追加
+    def outlet():
+      with gr.Tabs():
+        for tab in tabs:
+          tab:UiTabs # for IDE
+          with gr.Tab(tab.variable()[0]): # タイトル
+            tab() # __call__ を再実行？
+            
+            # もし child があるなら
+            if child_mode:
+              with gr.Tabs():
+                for tab in child_tab:
+                  tab:UiTabs
+                  with gr.Tab(tab.variable()[0]):
+                    tab()
+    
+    return self.ui(outlet)
+  
+def get_ui() -> List[UiTabs]: # this code too inspirated by. ddPn08's rvc-webui
+  tabs = []
+  files = [file for file in os.listdir(UiTabs.PATH) if file.endswith(".py")]
+  
+  for file in files:
+    module_name = file[:-3]
+    module = importlib.import_module(f"modules.ui.{module_name}")
+    
+    attrs = module.__dict__
+    TabClass = [
+      x for x in attrs.values()
+      if type(x) == type and issubclass(x, UiTabs) and not x == UiTabs
+    ]
+    if len(TabClass) > 0:
+      tabs.append((file, TabClass[0]))
+  
+  tabs = sorted([TabClass(file) for file, TabClass in tabs], key=lambda x: x.index())
+  return tabs
+  
+def create_ui(): # this code too inspirated by. ddPn08's rvc-webui
+  block = gr.Blocks(title="lunapy / SD - PEM")
+  
+  with block:
+    with gr.Tabs():
+      tabs = get_ui()
+      for tab in tabs:
+        with gr.Tab(tab.variable()[0]):
+          tab()
+  
+  reload_js()
+  return block
 
 
 # Old Method

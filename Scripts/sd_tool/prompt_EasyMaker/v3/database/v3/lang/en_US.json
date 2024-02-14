@@ -11,5 +11,15 @@
     "accordion1": "Modify values",
     "acc1_btn": "Modify",
     "tab_title": "Database"
+  },
+  
+  "/ui/generate.py": {
+    "tab_title": "Generate"
+  },
+
+  "/ui/generate/template.py": {
+    "tab_title": "Template",
+    "template": "Target Template",
+    "": ""
   }
 }
