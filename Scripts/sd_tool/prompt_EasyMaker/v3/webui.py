@@ -54,6 +54,7 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
   def __init__(self, path):
     self.filepath = path
     self.rootpath = UiTabs.PATH
+    self.haschild = None
     pass
   
   def variable(self) -> Tuple[str]:
@@ -69,14 +70,86 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
     don't return """
     pass
   
+  def child(self, import_name=None, subclass=None):
+    """
+    args:
+    self,
+    child's all tab data str,
+    root's class class,
+    
+    Example:
+    
+    def child(self, import_name="modules.ui.generate.", subclass=Generate):
+      super().child(import_name, subclass)
+      root_data = UiTabs("generate")
+      
+      tabs = self.tabs
+      
+      def outlet():
+        with gr.Tabs():
+          with gr.Tab(root_data.variable()[0]):
+            root_data()
+            
+            for tab in tabs:
+              with gr.Tab(tab.variable()[0]):
+                tab()
+      
+      return self.ui(outlet)
+      
+    def __call__(self):
+      return self.child()
+    
+    """
+    if import_name == None:
+      return []
+    
+    children = []
+    tabs = []
+    
+    for file in [file for file in os.listdir(os.path.join(
+      ROOT_DIR, import_name.replace(".", "/")
+    )) if file.endswith(".py")]:
+      module_name = file[:-3]
+      
+      parent = os.path.relpath(
+            UiTabs.PATH, UiTabs.PATH
+          ).replace(
+            "/", "."
+          ).strip(".")
+      children.append(
+        importlib.import_module(
+          import_name+parent+"."+module_name
+        )
+      )
+    
+    children = sorted(children, key=lambda x: x.index())
+    for child in children:
+      
+      attrs = child.__dict__
+      tab = [x for x in attrs.values() if issubclass(x, subclass)]
+      if len(tab) != 0:
+        tabs.append(tab[0])
+    
+    self.tabs = tabs
+    
   # def has_child(self):
   #   return [rootID, child_rel_import_path, importlib's Path]
   
+  def parse_childs(self, name="."):
+    if os.path.isdir(os.path.join(
+      UiTabs.PATH, name[:-3]
+    )):
+      self.parsable = True
+      self.dirname = name[:-3]
+      
+    
+    pass
+  
   def __call__(self):
-    if hasattr(self, "has_child"):
-      child_mode= True
-    else:
-      child_mode= False
+    # if hasattr(self, "has_child"):
+    #   child_mode= True
+    # else:
+    #   child_mode= False
     
     if not hasattr(self, "child"): # 子タブじゃないなら実行
       child_dir = self.filepath[:-3]  #.py を取り除く子ディレクトリの検出
@@ -95,6 +168,7 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
           ).strip(".")
           print("parent: ", parent)
           
+          print("children: ", f"modules.ui.{parent}.{module_name}")
           children.append(
             importlib.import_module(
               f"modules.ui.{parent}.{module_name}"
@@ -111,34 +185,6 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
         if len(tab) != 0:
           tabs.append(tab[0])
         
-    if child_mode: # 子タブありモード
-      children = []
-      child_tab = []
-      rel_path = self.has_child()[1]
-      
-      if os.path.isdir(os.path.join(self.rootpath, rel_path)):
-        for file in [
-          file for file in os.listdir(os.path.join(
-            os.path.join(self.rootpath, rel_path)
-          )) if file.endswith(".py")
-        ]:
-          module_name = file[:-3]
-          print("Module name: "+ f"modules.ui.{self.has_child()[2]}{module_name}")
-          children.append(
-            importlib.import_module(
-              f"modules.ui.{self.has_child()[2]}{module_name}"
-            ) # おなじように処理し、インポート
-          )
-        children = sorted(children, key=lambda x: x.child_index())
-        
-        for child in children:
-          attrs = child.__dict__
-          tab = [x for x in attrs.values()
-                if issubclass(x, UiTabs)]
-          
-          if len(tab) != 0:
-            child_tab.append(tab[0])
-        
     
     # これに関してはわからんけど
     # おそらく self.ui に取得したタブの要素を追加
@@ -150,12 +196,12 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
             tab() # __call__ を再実行？
             
             # もし child があるなら
-            if child_mode:
-              with gr.Tabs():
-                for tab in child_tab:
-                  tab:UiTabs
-                  with gr.Tab(tab.variable()[0]):
-                    tab()
+            # if child_mode:
+            #   with gr.Tabs():
+            #     for tab in child_tab:
+            #       tab:UiTabs
+            #       with gr.Tab(tab.variable()[0]):
+            #         tab()
     
     return self.ui(outlet)
   
@@ -165,17 +211,20 @@ def get_ui() -> List[UiTabs]: # this code too inspirated by. ddPn08's rvc-webui
   
   for file in files:
     module_name = file[:-3]
+    # この辺で child を呼び出して結合して返す必要がある
     module = importlib.import_module(f"modules.ui.{module_name}")
     
-    attrs = module.__dict__
-    TabClass = [
+    attrs:dict = module.__dict__
+    TabClass:list = [
       x for x in attrs.values()
       if type(x) == type and issubclass(x, UiTabs) and not x == UiTabs
     ]
+    
     if len(TabClass) > 0:
       tabs.append((file, TabClass[0]))
-  
-  tabs = sorted([TabClass(file) for file, TabClass in tabs], key=lambda x: x.index())
+    
+  resized = [TabClass(file) for file, TabClass in tabs]
+  tabs:List[UiTabs] = sorted(resized, key=lambda x: x.index())
   return tabs
   
 def create_ui(): # this code too inspirated by. ddPn08's rvc-webui
@@ -187,7 +236,15 @@ def create_ui(): # this code too inspirated by. ddPn08's rvc-webui
       for tab in tabs:
         with gr.Tab(tab.variable()[0]):
           tab()
-  
+          
+          if tab.haschild:
+            childs= tab.child()
+            if childs == None:
+              continue
+            for child in childs:
+              with gr.Tab(child.variable()[0]):
+                child()
+    
   reload_js()
   return block
 
