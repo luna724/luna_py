@@ -108,9 +108,11 @@ def generate(
   header: str,
   lower: str,
   lora_weight: float,
-  use_face_for_adetailer: bool,
-  activate_negative: bool,
-  overall_weight: float,
+  use_adetailer_plus: bool,
+  apply_positive: bool,
+  apply_negative: bool,
+  positive_weight: float,
+  negative_weight: float,
   lora2: str,
   lora_weight2: float,
   location2: str,
@@ -119,11 +121,12 @@ def generate(
   lower2: str,
   modes="ui"
 ):
+  lang = shared.language("err_manager", "raw")
   # lora = none?
   if lora == "" or None:
     print("Catch: lora == None")
-    return "err", "err", "err", "err", "stderr: are you chose correct LoRA Character Template?"
-  
+    raise gr.Error(lang["err_cant_find_lora"])
+      
   # template を取得 
   data, template_ver = get_template_value(template_type)
   
@@ -148,14 +151,19 @@ def generate(
       ]
     )
     
-    if use_face_for_adetailer:
-      if overall_weight != 1.0:
-        face = f'({face.strip().strip(",")}:{overall_weight})'
-      face = ", " + face
-      ad_prompt = ad_prompt + face
-      if activate_negative:
-        face = f'({face.strip().strip(",")}:-1.25)'
-        ad_negative = ad_negative + ", " + face
+    if use_adetailer_plus:
+      if apply_positive:
+        ad_prompt = ad_prompt.strip(",")
+        if not positive_weight == 1.0:
+          ad_prompt += f', ({face.strip(",")}:{positive_weight})'
+        else:
+          ad_prompt += ", "+face
+      if apply_negative:
+        ad_negative = ad_negative.strip(",")
+        if not negative_weight == 1.0:
+          ad_negative += f', ({face.strip(",")}:{negative_weight})'
+        else:
+          ad_negative += ", "+face
     
     prompt = header.strip(",").strip() + prompt + lower.strip(",").strip()
     
@@ -163,14 +171,8 @@ def generate(
       return delete_duplicate_comma(prompt), negative, ad_prompt, ad_negative, data, template_ver
     return delete_duplicate_comma(prompt), negative, ad_prompt, ad_negative, "OK."
 
-  elif template_ver == "v2":
-    return
-
-  elif template_ver == "v1":
-    return
-  
   else:
-    raise ValueError("Unknown Template Version")
+    gr.Error(lang["err_unknown_template"])
 
 def example_view(template_name):
   def check(target, mode: Literal["str","num"]="str"):

@@ -26,7 +26,7 @@ import preprocessing
 import modules.shared as shared
 import modules.regional_prompter as rp
 from modules.misc import modify_database, get_js, parse_parsed_arg
-from modules.lib import browse_file
+from modules.lib import browse_file, show_state_from_checkbox
 from javascript.reload_js import reload_js
 from modules.lib_javascript import *
 
@@ -63,6 +63,27 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
   def index(self) -> int:
     """ return ui's index """
     return 0
+  
+  def get_ui(self) -> list:
+    tabs = []
+    files = [file for file in os.listdir(self.child_path) if file.endswith(".py")]
+
+    for file in files:
+      module_name = file[:-3]
+      module_path = os.path.relpath(
+        self.child_path, UiTabs.PATH 
+      ).replace("/", ".").strip(".")
+      module = importlib.import_module(f"modules.ui.{module_path}.{module_name}")
+      
+      attrs = module.__dict__
+      TabClass = [
+        x for x in attrs.values() if type(x) == type and issubclass(x, UiTabs) and not x == UiTabs
+      ]
+      if len(TabClass) > 0:
+        tabs.append((file, TabClass[0]))
+      
+    tabs = sorted([TabClass(file) for file, TabClass in tabs], key= lambda x: x.index())
+    return tabs
   
   def ui(self, outlet: Callable):
     """ make ui data 
@@ -230,10 +251,10 @@ def old_create_ui():
               
               status = gr.Textbox(label="Status", lines=1, interactive=False)
               br
-              generate = gr.Button("Generate")
+              generate = gr.Button("DISCONTINUED generate")
               ex_generate = gr.Button("Generate with Right Tab's Data")
               generate.click(
-                fn=template_generate,
+                fn=None,
                 inputs=[
                   template, lora, location, face, header, lower,
                   lora_weight, use_face_for_adetailer,

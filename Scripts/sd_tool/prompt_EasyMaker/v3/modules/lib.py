@@ -1,3 +1,4 @@
+import gradio as gr
 from typing import *
 from tkinter import Tk, filedialog
 import re
@@ -132,3 +133,6 @@ def get_keys_from_list(input_list: list=[], indexes_list=[0, 1], if_fail_value=N
   """IndexError を回避しながらリストから複数の値の取得を行い、tuple形式で返す"""
   return tuple(get_index(input_list, key, rtl_if_fail=if_fail_value) for key in indexes_list)
 
+
+def show_state_from_checkbox(status: bool):
+  return gr.update(visible=status)

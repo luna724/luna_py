@@ -49,6 +49,7 @@ def arg_parse():
   parse.add_argument("--dev_restart", action='store_true')
   parse.add_argument("--share", action='store_true')
   parse.add_argument("--new_ui", action='store_true')
+  parse.add_argument("--language")
   parse.add_argument("--ui_port")
   parse.add_argument("--ui_ip")
   parse.add_argument("--ui_theme")
@@ -58,24 +59,30 @@ def arg_parse():
 args = arg_parse()
 
 
-def language(target:str=None, mode:Literal["raw","list"]="list"):
+def language(target:str=None, mode:Literal["raw","list"]="list", skip_test=False):
   """ return languages dict / list """
-  
+  if args.language:
+    lang = args.language
+    skip_test = True
   ## Database
   available_lang = ["en_US"]
-  lang = "en_US"
   
   lang_root = os.path.join(ROOT_DIR, "database", "v3", "lang")
   
   
   ## language parse (from os)
-  if not os.name == "nt":
-    lang = "en_US"
-    print("Can't use language parse on your system. (only supported os.name == nt)")
-  else:
-    lang = "en_US"
-    
+  if not skip_test:
+    if not os.name == "nt":
+      lang = "en_US"
+      print("Can't use language parse on your system. (only supported os.name == nt)")
+    else:
+      lang = "en_US"
+      
   ## code
+  if not lang in available_lang:
+    print(lang+ " was not available. using en_US")
+    lang = "en_US"
+  
   data:dict = jsoncfg.read(os.path.join(lang_root, f"{lang}.json"))
   
   if target is not None:

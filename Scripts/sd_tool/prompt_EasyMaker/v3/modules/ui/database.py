@@ -9,7 +9,7 @@ class Database(UiTabs):
   l = language("/ui/database.py", "raw")
   
   def variable(self):
-    return (Database.l["tab_title"])
+    return [Database.l["tab_title"]]
   
   def index(self):
     return 1

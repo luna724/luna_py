@@ -4,7 +4,9 @@
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
 ## v3β-9 ~ more readable and easy debugging webui
+\+ add language system
 \+ share template (with json)
+\* use custom LoRA in Generate/Template 
 \* change webui build method
 \- removed some javascripts
 
