@@ -12,12 +12,6 @@ class Template(UiTabs):
     return (Template.l["tab_title"])
   
   def index(self):
-    return 2
-  
-  def child(self):
-    return ("generate.template", "generate")
-  
-  def child_index(self):
     return 1
   
   def ui(self, outlet):
