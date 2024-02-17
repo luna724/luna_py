@@ -46,7 +46,7 @@ def main_function(target_cfg_path, your_cfg_path, replace_keybind_if_none, repla
     cmd = ".config load "
     
     filename = os.path.basename(target_cfg_path) + "_" + randomname(12) +".json"
-    cmd += filename
+    cmd += filename[:-5]
     
     user_home = os.path.expanduser("~")
     prax_cfg_path = os.path.join(user_home, r'AppData\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\RoamingState\Prax\config')
