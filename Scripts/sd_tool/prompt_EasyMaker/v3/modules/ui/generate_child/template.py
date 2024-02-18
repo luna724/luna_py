@@ -88,10 +88,10 @@ class Template(UiTabs):
             negative = gr.Textbox(label=l["output_negative"], show_copy_button=True, lines=5, interactive=False)
             
             with FormRow():
-              adetailer_prompt = gr.Textbox(label=l["output_adetailer_prompt"], lines=3, show_copy_button=True, interacitve=False)
+              adetailer_prompt = gr.Textbox(label=l["output_adetailer_prompt"], lines=3, show_copy_button=True, interactive=False)
               adetailer_negative = gr.Textbox(label=l["output_adetialer_negative"], lines=3, show_copy_button=True, interactive=False)
               
-            status = gr.Textbox(label=l["Status"], interacitve=False)
+            status = gr.Textbox(label=l["Status"], interactive=False)
             
             generate = gr.Button(l["generate"])
             ex_generate = gr.Button(l["ex_generate"])

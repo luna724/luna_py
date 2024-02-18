@@ -72,7 +72,7 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
       module_name = file[:-3]
       module_path = os.path.relpath(
         self.child_path, UiTabs.PATH 
-      ).replace("/", ".").strip(".")
+      ).replace("/", ".").replace("\\", ".").strip(".")
       module = importlib.import_module(f"modules.ui.{module_path}.{module_name}")
       
       attrs = module.__dict__
@@ -550,32 +550,7 @@ def old_create_ui():
             dt_status = gr.Textbox(label="Status")
             with FormRow():
               dt_overwrite = gr.Checkbox(label="Overwrite previous template (if exists)", value=False)
-              dt_save = gr.Button("Save")
-            dt_save.click(
-              fn=make_prompt_template.save,
-              inputs=[
-                dt_displayname, dt_prompt, dt_negative, dt_ad_prompt,
-                dt_ad_negative, dt_enabled_controlnet, dt_cn_mode,
-                dt_cn_weight, dt_cn_image, dt_enabled_h, dt_h_upscl,
-                dt_h_sampler, dt_h_denoise, dt_h_steps, dt_resolution,
-                dt_sampler, dt_enabled_ex, dt_ex_characters_beta,
-                dt_ex_lora, dt_ex_lora_weight,
-                dt_ex_name, dt_ex_prompt, dt_ex_isExtend,
-                dt_ex_face, dt_ex_location, dt_ex_header, dt_ex_lower,
-                dt_ex_image, dt_enabled_csn, dt_ex_csn, dt_clip,
-                dt_db_path, dt_overwrite, dt_enabled_md,
-                dt_md_mode, dt_md_use_base, dt_md_use_common,
-                dt_md_use_common_neg, dt_md_base_radio,
-                dt_md_lora_stop, dt_md_lora_hires, dt_md_split_mode,
-                dt_md_split_text, dt_md_res_width, dt_md_res_height,
-                dt_md_second_prompt, dt_md_ex_characters,
-                dt_md_ex_lora,
-                dt_md_ex_lora_weight, dt_md_ex_name,
-                dt_md_ex_header, dt_md_ex_prompt,
-                dt_md_ex_face, dt_md_ex_location,
-                dt_md_ex_lower, dt_md_get_face_and_location_from_main
-                
-                ],outputs=[dt_status])
+              dt_save = gr.Button("[DISCONTINUED]: Save")
         
         with gr.Tab("Lora"):
           with gr.Blocks():

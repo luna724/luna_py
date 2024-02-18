@@ -169,10 +169,8 @@ def save(
   ex_header: str, # Example Header (Optional) 
   ex_lower: str, # Example Lower (Optional)
   ex_image, # PIL Image  Exampel Image path (Optional)
-  ex_useCustomNegative: bool, # use Custom Negative (Optional)
   custom_negative: str, # CustomNegative (Optional)
   clip_skip: str, # Clip skip (Optional)
-  database_path: str, # DISCONTINUED
   overwrite: bool, # Overwrite
   rp_enabled: bool, # Regional Prompter option is enabled?
   rp_mode: Literal["Attention", "Latent"], # Generation Mode
@@ -197,6 +195,8 @@ def save(
   rp_ex_lc: str, # locatoin
   rp_ex_lo: str, #lower
   rp_ex_gFaL: bool, # get face and location from main
+  share_load_target: str, # Sharing jsonfile path optional
+  share_delete_loaded: bool, # delete jsonfile after successfully loaded
 ):
   # debug
   for x, y in locals().items():
