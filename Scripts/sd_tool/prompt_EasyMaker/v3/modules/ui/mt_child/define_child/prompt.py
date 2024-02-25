@@ -5,15 +5,13 @@ import LGS.misc.jsonconfig as jsoncfg
 
 from modules.shared import ROOT_DIR, language
 from webui import js_manager, FormColumn, FormRow, show_state_from_checkbox
-from webui import UiTabs, get_lora_list, rp, browse_file, make_prompt_template
+from webui import UiTabs, get_lora_list, rp, browse_file, make_prompt_template, get_black_picture
 
 class Prompt(UiTabs):
   l = language("/ui/mt_child/define/prompt.py", "raw")
   
   def __init__(self, path):
     super().__init__(path)
-    
-    self.child_path = os.path.join(UiTabs.PATH, "generate_child")
   
   def variable(self):
     return [Prompt.l["tab_title"]]
@@ -54,7 +52,19 @@ class Prompt(UiTabs):
             with FormRow():
               cn_mode = gr.Textbox(label=l["control_mode"], value="OpenPose")
               cn_weight = gr.Slider(-1, 2.0, label=l["control_weight"], value=0.75, step=0.01)
-            cn_image = gr.Image(label=l["control_image"], type='pil', source="upload")
+            cn_image = gr.Image(label=l["control_image"], type='pil', source="upload", width=512, height=512)
+            
+            cn_start_draw = gr.Checkbox(label=l["start_draw"], value=False)
+            with gr.Accordion(label=l["start_draw"], open=True, visible=False) as draw_root:
+              cn_start_draw.change(
+                show_state_from_checkbox, cn_start_draw, draw_root
+              )
+              draw_image = gr.Image(
+                brush_color="#FFFFFF", width=512, height=512, source="canvas",
+                tool="color-sketch", type="pil", label="",
+                show_download_button=False, interactive=True, value=get_black_picture()
+              )
+              
             
             
         splitter

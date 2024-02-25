@@ -26,7 +26,7 @@ import preprocessing
 import modules.shared as shared
 import modules.regional_prompter as rp
 from modules.misc import modify_database, get_js, parse_parsed_arg
-from modules.lib import browse_file, show_state_from_checkbox
+from modules.lib import browse_file, show_state_from_checkbox, get_black_picture
 from javascript.reload_js import reload_js
 from modules.lib_javascript import *
 
@@ -97,7 +97,6 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
     child_dir = self.filepath[:-3]  #.py を取り除く子ディレクトリの検出
     children = []
     tabs = []
-    child_tabs = []
     
     if os.path.isdir(child_dir):
       for file in [file for file in os.listdir(child_dir) if file.endswith(".py")]:
@@ -829,7 +828,7 @@ def launch_ui(isloopui:bool=False):
   if shared.args.new_ui:
     ui = create_ui()
   
-  ui.queue(64).launch()
+  ui.queue(64).launch(server_name=ip)
   return "DONE."
   
   # ui.queue(64)

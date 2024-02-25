@@ -6,8 +6,11 @@ Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 ## v3β-9 ~ more readable and easy debugging webui
 \+ add language system
 \+ share template (with json)
+\+ Mask painting system for ControlNet Unit Image
 \* use custom LoRA in Generate/Template 
 \* change webui build method
+\* Removed some old UI's buttons
+\* Fix can't load example from prompt template 
 \- removed some javascripts
 
 ## v3β-8 ~ a1111's style / character loras

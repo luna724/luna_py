@@ -115,6 +115,7 @@
     "control_mode": "Control Mode",
     "control_weight": "ControlNet weight",
     "control_image": "ControlNet Image",
+    "start_draw": "Start Drawing",
     "activate_rp": "Activate Regional Prompter",
     "rp_root": "Regional Prompter opts",
     "secondary_prompt": "Secondary Prompt",
@@ -174,5 +175,16 @@
     "overwrite": "Overwrite previous template (if exists)",
     "delete_after_load": "[WIP]: Delete target file after loaded",
     "save": "Save"
+  },
+
+  "/ui/mt_child/define/lora.py": {
+    "tab_title": "Lora",
+    "display_name": "Display name",
+    "displayname_placeholder": "Template's display Name in webUI",
+    "lora": "LoRA ID",
+    "name": "Character's name",
+    "prompt": "Trigger / Assist Word",
+    "extend": "Extend (can toggled Assist word)",
+    "": ""
   }
 }
