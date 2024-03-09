@@ -1,6 +1,7 @@
 import gradio as gr
 from typing import *
 from tkinter import Tk, filedialog
+from PIL import Image, ImageColor
 import re
 import os
 
@@ -136,3 +137,87 @@ def get_keys_from_list(input_list: list=[], indexes_list=[0, 1], if_fail_value=N
 
 def show_state_from_checkbox(status: bool):
   return gr.update(visible=status)
+
+def resize_picture(image, w:int=None, h:int=None, color="#000000") -> Image:
+  """
+  image == Noneの場合 w, h, color の情報をもとに単色の指定した解像度のPIL画像を返す
+  
+  image == "something" の場合 imageから w, h を取得し その画像を PIL にして返す
+
+  また、 image を指定した場合でも w, h の指定は可能。
+  指定しなかった場合のみ画像から取得する
+  
+  Args:
+      image: filepath
+      w (_type_, optional): width. Defaults to None.
+      h (_type_, optional): height. Defaults to None.
+      color (str, optional): image color. Defaults to "black".
+  """
+  
+  if image == None:
+    if h == None and w == None:
+      print("[get_bg_picture]: not enough Image opts. using 512x512")
+      w, h = (512,512)
+    
+    elif h == None:
+      h = 512
+    elif w == None:
+      w = 512
+    res = (w, h)
+    
+    rgb = ImageColor.getrgb(color)
+    img = Image.new(
+      mode="RGB", size=res, color=rgb
+    )
+    
+  else:
+    image = Image.open(
+        image, "r"
+      )
+    if h == None or w == None:
+      w, h = image.size
+    
+    else:
+      image = image.resize(
+        (w, h)
+      )
+    img = image
+    
+  return img
+
+def get_background_picture(i, w=None, h=None, c="#000000"):
+  """
+  image == Noneの場合 w, h, color の情報をもとに単色の指定した解像度のPIL画像を返す
+  
+  image == "something" の場合 imageから w, h を取得し その画像を PIL にして返す
+
+  また、 image を指定した場合でも w, h の指定は可能。
+  指定しなかった場合のみ画像から取得する
+  
+  Args:
+      image: filepath
+      w (_type_, optional): width. Defaults to None.
+      h (_type_, optional): height. Defaults to None.
+      color (str, optional): image color. Defaults to "black".
+  """
+  if w == 0:
+    w = None
+  if h == 0:
+    h = None
+  if i == "":
+    i = None
+  
+  
+  img = resize_picture(i, w, h, c)
+  w, h = img.size
+  
+  # 解像度が 768x768 または同等のピクセル数を超える場合
+  # 0.75 をかけ指定値までアスペクト比を維持しながら変更する
+  if w * h > 589824:
+    while w*h>589824:
+      w /=1.5
+      h /=1.5
+  
+  return gr.Image.update(
+    value=img, height=h, width=w
+  )

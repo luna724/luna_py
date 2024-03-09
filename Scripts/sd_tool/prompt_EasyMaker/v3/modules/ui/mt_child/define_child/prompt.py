@@ -5,7 +5,7 @@ import LGS.misc.jsonconfig as jsoncfg
 
 from modules.shared import ROOT_DIR, language
 from webui import js_manager, FormColumn, FormRow, show_state_from_checkbox
-from webui import UiTabs, get_lora_list, rp, browse_file, make_prompt_template, get_black_picture
+from webui import UiTabs, get_lora_list, rp, browse_file, make_prompt_template, get_background_picture, resize_picture
 
 class Prompt(UiTabs):
   l = language("/ui/mt_child/define/prompt.py", "raw")
@@ -26,9 +26,13 @@ class Prompt(UiTabs):
     with gr.Blocks():
       display_name = gr.Textbox(label=l["displayname"], placeholder=l["displayname_placeholder"])
       with FormColumn():
-        prompt = gr.Textbox(label=l["prompt"], lines=4)
-        negative = gr.Textbox(label=l["negative"], placeholder=l["negative_placeholder"], lines=4)
-        
+        with gr.Row():
+          prompt = gr.Textbox(label=l["prompt"], lines=4)
+          negative = gr.Textbox(label=l["negative"], placeholder=l["negative_placeholder"], lines=4)
+        with gr.Accordion(l["prompt_keyword"]):
+          gr.Markdown(
+            jsoncfg.read_text(os.path.join(ROOT_DIR, "database", "v3", "kw_list_"+l["files"]))
+          )
         
         splitter
         with gr.Group():
@@ -60,12 +64,28 @@ class Prompt(UiTabs):
                 show_state_from_checkbox, cn_start_draw, draw_root
               )
               draw_image = gr.Image(
-                brush_color="#FFFFFF", width=512, height=512, source="canvas",
+                brush_color="#000000", mask_opacity=0.5, width=512, height=512, source="canvas",
                 tool="color-sketch", type="pil", label="",
-                show_download_button=False, interactive=True, value=get_black_picture()
+                show_download_button=False, interactive=True, value=resize_picture(None, 512, 512),
+                elem_classes="draw_bg", 
               )
-              
-            
+              gr.Markdown("---\nchange background image")
+              with gr.Column():
+                with gr.Row():
+                  files = gr.Textbox(label=l["draw_file"])
+                  dfb = gr.Button(l["dfb"])
+                dfb.click(browse_file, outputs=files)
+                with gr.Row():
+                  with gr.Row():
+                    draw_w = gr.Slider(0, 1024, step=1, label=l["dw"], value=0)
+                    draw_h = gr.Slider(0, 1024, step=1, label=l["dh"], value=0)
+                  draw_color = gr.ColorPicker()
+              draw_new = gr.Button(l["draw_new"])
+              draw_new.click(
+                get_background_picture, inputs=[
+                  files, draw_w, draw_h, draw_color
+                ], outputs=draw_image
+              )
             
         splitter
         with gr.Group():

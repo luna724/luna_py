@@ -174,3 +174,22 @@ function uiElementInSight(el) {
 
     return isOnScreen;
 }
+
+/* from below code are written by. luna */
+function setPILImageAsBackground(imageDataURL) {
+    // 画像の要素を作成
+    var imageElement = new Image();
+    imageElement.src = imageDataURL;
+
+    // 背景として追加する要素の取得
+    var drawBgElement = document.querySelector('.draw_bg');
+    
+    // 画像を背景として設定
+    drawBgElement.style.backgroundImage = `url(${imageDataURL})`;
+    drawBgElement.style.backgroundSize = 'cover'; // 画像を要素に合わせて調整
+}
+
+// Pythonからの呼び出しに対応するための関数
+function updateBackgroundImage(imageDataURL) {
+    setPILImageAsBackground(imageDataURL);
+}

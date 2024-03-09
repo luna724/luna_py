@@ -2,8 +2,8 @@ import gradio as gr
 import os
 
 from modules.shared import ROOT_DIR, language
-from webui import template_generate, example_view, get_template, get_lora_list, FormRow
-from webui import show_state_from_checkbox
+from webui import example_view, get_template, get_lora_list, FormRow
+from webui import show_state_from_checkbox, applicate_opts, applicate_lora, template_convert
 from webui import UiTabs
 
 class Template(UiTabs):
@@ -36,7 +36,7 @@ class Template(UiTabs):
               name = gr.Textbox(label=l["name"])
             with FormRow():
               character_prompt = gr.Textbox(label=l["character_prompt"])
-              load_extend = gr.Checkbox(label=l["hasextend"])
+              load_extend = gr.Checkbox(label=l["hasextend"], value=False)
             with FormRow():
               location = gr.Textbox(label=l["location"])
               face = gr.Textbox(label=l["face"])
@@ -44,6 +44,10 @@ class Template(UiTabs):
               header = gr.Textbox(label=l["header"])
               lower = gr.Textbox(label=l["lower"])
             
+            lora.change(
+              applicate_lora, lora,
+              outputs=[_lora, name, character_prompt]
+            )
             with gr.Accordion(label=l["adv_opts"], open=True) as adv_opts:
               lora_weight = gr.Slider(-2.0, 2.0, step=0.01, value=1.0, label=l["weight"])
               
@@ -71,19 +75,24 @@ class Template(UiTabs):
                   )
                   
             with gr.Accordion(label=l["secondary_prompt"], open=True, visible=False) as secondary_prompt_opts:
-              with gr.Row():
+              with gr.Column():
                 loras = gr.Dropdown(label=l["lora"], choices=get_lora_list("manual"))
                 lora_weights = gr.Slider(-2.0, 2.0, step=0.01, value=1.0, label=l["weight"])
                 
-              with FormRow():
-                locations = gr.Textbox(label=l["location"])
-                faces = gr.Textbox(label=l["face"])
-              
-              with FormRow():
-                headers = gr.Textbox(label=l["header"])
-                lowers = gr.Textbox(label=l["lower"])
-              
-            
+                with FormRow():
+                  sp_lora = gr.Textbox(label=l["lora_id"])
+                  sp_name = gr.Textbox(label=l["name"])
+                with FormRow():
+                  sp_ch_prompt = gr.Textbox(label=l["character_prompt"],)
+                  sp_extend = gr.Checkbox(False, label=l["hasextend"])                                  
+                with FormRow():
+                  locations = gr.Textbox(label=l["location"])
+                  faces = gr.Textbox(label=l["face"])
+                with FormRow():
+                  headers = gr.Textbox(label=l["header"])
+                  lowers = gr.Textbox(label=l["lower"])
+                sp_sync_main = gr.Checkbox(label=l["sync"], value=False)
+
             prompt = gr.Textbox(label=l["output_prompt"], show_copy_button=True, lines=5, interactive=False)
             negative = gr.Textbox(label=l["output_negative"], show_copy_button=True, lines=5, interactive=False)
             
@@ -97,13 +106,16 @@ class Template(UiTabs):
             ex_generate = gr.Button(l["ex_generate"])
             
             generate.click(
-              fn=template_generate,
+              fn=template_convert,
               inputs=[
-                template, lora, location, face, header, lower,
-                lora_weight, activate_adetailer_plus,
+                template, lora, _lora, name, character_prompt,
+                location, face, header, lower,
+                lora_weight, load_extend, activate_adetailer_plus,
                 apply_positive, apply_negative,
                 positive_apply_weight, negative_apply_weight,
-                loras, lora_weights, locations, faces, headers, lowers
+                loras, sp_lora, sp_name, sp_ch_prompt, 
+                locations, faces, headers, lowers, sp_sync_main,
+                lora_weights, sp_extend
               ],
               outputs=[
                 prompt, negative, adetailer_prompt, adetailer_negative, status
@@ -219,3 +231,11 @@ class Template(UiTabs):
                 es_lora, es_name, es_prompt, es_face, es_location,
                 es_header, es_lower, method_version, secondary_prompt_opts
               ])
+          template.change(
+            applicate_opts,
+            template,
+            outputs=[
+              secondary_prompt_opts,
+              lora_weight
+            ]
+          )

@@ -9,7 +9,7 @@ import modules.v1_component as v1
 from modules.lib import *
 from modules.shared import ROOT_DIR
 
-def get_lora_list(variant="update",parse:bool=False,name:str=""):
+def get_lora_list(variant:Literal["manual","full","update","only_lora"]="update",parse:bool=False,name:str=""):
   lora_raw = jsoncfg.read(
       os.path.join(ROOT_DIR, "database", "v3", "lora_list.json")
     )
@@ -51,10 +51,12 @@ def control_lora_weight(lora_string: str, weight: float = 1.0):
   
   return new_lora_string
 
-def prompt_character_resizer(prompt:str, weight:float, key:str, return_replace_util:bool=False):
+def prompt_character_resizer(prompt:str, weight:float, key:str, return_replace_util:bool=False, isextend:bool=True):
+  """DISCONTINUED Function
+  New Method -> generate.py:template_convert"""
   key, lora, name, ch_prompt, extend = get_lora_list("manual",parse=True,name=key)
-  lora = control_lora_weight(lora, weight)
   
+  lora = control_lora_weight(lora, weight)
   prompt.replace(
     "%LORA%", lora).replace(
     "%CH_NAME%", name).replace(
@@ -71,20 +73,22 @@ def prompt_character_resizer(prompt:str, weight:float, key:str, return_replace_u
     prompt = prompt.replace(
       ":1.0>$WEIGHT", f":{lw}>"
     )
-    
+  
+  if isextend:
+    ch_prompt += ", "+extend
   # v3 method
   prompt = multiple_replace(
     prompt,
     replace_key=[
       ("$LORA", lora),
       ("$NAME", name),
-      ("$PROMPT", ch_prompt + extend)
+      ("$PROMPT", ch_prompt)
     ])
   
   print(f"prompt: {prompt}")
   
   if return_replace_util:
-    return lora, name, ch_prompt + extend
+    return lora, name, ch_prompt
   
   return prompt
 

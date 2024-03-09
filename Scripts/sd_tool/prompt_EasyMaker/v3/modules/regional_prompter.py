@@ -226,7 +226,7 @@ def visualize(
 ):
   """make visually image by data. 
   
-  this function is merge from Regional_prompter repository's makeimgtmp (in regions.py)
+  this function was merged from Regional_prompter repository's makeimgtmp (in regions.py)
   """
   # :, ; をコンマに変換
   aratios = exchange(aratios)

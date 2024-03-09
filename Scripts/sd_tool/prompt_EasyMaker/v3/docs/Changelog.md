@@ -3,14 +3,22 @@
 <details><br />+ Feature Addition <br />* Modify 
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
+## v3β-10 <- WIP
+\* Support more ui for new webui build method
+\+ share template (with json)
+\+ Sketch painting system for ControlNet Unit Image
+
 ## v3β-9 ~ more readable and easy debugging webui
 \+ add language system
-\+ share template (with json)
-\+ Mask painting system for ControlNet Unit Image
-\* use custom LoRA in Generate/Template 
+\+ _2space, prompt keyword shuffle in tiny tweaks
+\+ can Generate with Regional prompter's secondary prompt
+\* Semi-realtime applicate in Generate/Template
+\* custom LoRA(not defined lora) available in generation/template
 \* change webui build method
-\* Removed some old UI's buttons
-\* Fix can't load example from prompt template 
+\* Removed some old UI buttons
+\* Extend prompt are now toggled! (Generate/Template)
+\* Fix can't load example from prompt template
+\* Fix missing commas in header and lower (Generate/Template)
 \- removed some javascripts
 
 ## v3β-8 ~ a1111's style / character loras

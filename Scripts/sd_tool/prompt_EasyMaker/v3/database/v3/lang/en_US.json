@@ -81,7 +81,8 @@
     "w": "Width",
     "h": "Height",
     "sample": "Sample",
-    "rp_template": "Template"
+    "rp_template": "Template",
+    "sync": "Sync Location, header and lower with first prompt opts"
   },
   
   "/ui/manage_template.py": {
@@ -103,7 +104,6 @@
     "displayname_placeholder": "Template's display Name in webUI",
     "prompt": "Prompt",
     "prompt_keyword": "[WIP]: Prompt Keyword list",
-    "kw_list": "en_US",
     "negative": "Negative Prompt",
     "negative_placeholder": "(if blank, obtain from database/negative)",
     "activate_adetailer":"Show ADetailer opts",
@@ -116,6 +116,11 @@
     "control_weight": "ControlNet weight",
     "control_image": "ControlNet Image",
     "start_draw": "Start Drawing",
+    "draw_file": "Target Filepath (if blank, will generate single color image)",
+    "dfb": "Browse",
+    "dw": "image Width (if file selected, won't needed)",
+    "dh": "image Height (if file selected, won't needed)", 
+    "draw_new": "Apply",
     "activate_rp": "Activate Regional Prompter",
     "rp_root": "Regional Prompter opts",
     "secondary_prompt": "Secondary Prompt",
@@ -174,7 +179,9 @@
     "status": "Status",
     "overwrite": "Overwrite previous template (if exists)",
     "delete_after_load": "[WIP]: Delete target file after loaded",
-    "save": "Save"
+    "save": "Save",
+    "kw_list": "Keyword list",
+    "files": "en_US.md"
   },
 
   "/ui/mt_child/define/lora.py": {
@@ -186,5 +193,27 @@
     "prompt": "Trigger / Assist Word",
     "extend": "Extend (can toggled Assist word)",
     "": ""
+  },
+
+  "/ui/some_tiny_tweaks.py": {
+    "tab_title": "Tiny Tweaks"
+  },
+
+  "/ui/stt_child/_2space.py": {
+    "tab_title": "_2space",
+    "target_prompt": "Target Prompt",
+    "output_prompt": "Output Prompt",
+    "auto_copy": "Auto copy",
+    "reverse": "Reverse mode",
+    "infer": "Run"
+  },
+
+  "/ui/stt_child/randkeyword.py": {
+    "tab_title": "randkeyword.py",
+    "target_prompt": "Target Prompt",
+    "output_prompt": "Output Prompt",
+    "auto_copy": "Auto copy",
+    "infer": "Run",
+    "keep_sorting": "[Experimental] [corrupted]: Keep(don't sort this) index"
   }
 }

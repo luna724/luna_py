@@ -7,9 +7,9 @@ import modules.shared as shared
 from modules.v1_component import delete_duplicate_comma
 from modules.lib import multiple_replace
 from modules.shared import ROOT_DIR, noneimg
-from modules.generate_util import prompt_character_resizer
+from modules.generate_util import prompt_character_resizer, control_lora_weight
 from modules.generate_util import get_lora_list as get_lora_list_manual
-from modules.lib import keycheck, get_index, get_keys_from_dict, get_keys_from_list
+from modules.lib import keycheck, get_index, get_keys_from_dict, get_keys_from_list, multiple_replace
 from modules.regional_prompter import visualize
 
 def get_template(variant="update", target_dn="NONE"): # target_dn = Target DisplayName
@@ -108,6 +108,7 @@ def generate(
   header: str,
   lower: str,
   lora_weight: float,
+  load_extend: bool,
   use_adetailer_plus: bool,
   apply_positive: bool,
   apply_negative: bool,
@@ -121,6 +122,8 @@ def generate(
   lower2: str,
   modes="ui"
 ):
+  """DISCONTINUED Function
+  New Method -> generate.py:template_convert"""
   lang = shared.language("err_manager", "raw")
   # lora = none?
   if lora == "" or None:
@@ -139,7 +142,7 @@ def generate(
     ad_negative = values["AD_Negative"]
     
     prompt = prompt_character_resizer(
-      prompt, lora_weight, lora
+      prompt, lora_weight, lora, isextend=load_extend
     )
     prompt = multiple_replace(
       prompt,
@@ -165,7 +168,24 @@ def generate(
         else:
           ad_negative += ", "+face
     
-    prompt = header.strip(",").strip() + prompt + lower.strip(",").strip()
+    if not header == "":
+      header += ", "
+    if not lower == "":
+      lower = ", "+lower
+      
+    prompt = header + prompt + lower.strip()
+    
+    if keycheck(data, "Method_Release", 0) > 2:
+      # v3 or above
+      rpsp = keycheck(data["Regional_Prompter"], "Secondary_Prompt", {"isEnabled": False, "gFaL_from_Main": False})
+      if data["Regional_Prompter"]["isEnabled"]:
+        sec_prompt = rpsp["prompt"]
+        sp =multiple_replace(
+          sec_prompt,
+          replace_key=[
+            ("$LOCATION", location)
+          ]
+        )
     
     if modes != "ui":
       return delete_duplicate_comma(prompt), negative, ad_prompt, ad_negative, data, template_ver
@@ -307,3 +327,185 @@ def example_view(template_name):
       )
   
   return character_data, lora, ex_lora_weight, name, prompt, isextend, face, location, header, lower, csn, ex_image, resolution, clip, sampler, gr.Dropdown.update(visible=hires_show_state), hires_sampler, hires_steps, hires_denoise, hires_upscale, gr.Dropdown.update(visible=cn_show_state), cn_mode, cn_weight, cn_image, gr.Dropdown.update(visible=rp_show_state), rp_mode, rp_base, rp_common, rp_common_negative, rp_lora_stop_step, rp_lora_hires_stop_step, rp_width, rp_height, rp_split_mode, rp_split_ratio, rp_base_ratio, rp_image, rp_template, gr.Dropdown.update(visible=second_prompt_root), rpsp_character, rpsp_weight, rpsp_lora, rpsp_name, rpsp_ch_prompt, rpsp_face, rpsp_location, rpsp_header, rpsp_lower, method_ver, gr.Dropdown.update(visible=second_prompt_root)
+
+def applicate_opts(template):
+  data, _ = get_template_value(template)
+  
+  if keycheck(data, "Method_Release", 0) >= 3:
+    # 3.0.3+ Only
+    lw = get_keys_from_dict(
+      data["Example"], [
+        "Weight"
+      ], 1.0
+    )
+    rp_active = keycheck(data["Regional_Prompter"], "isEnabled", False)
+  
+    return gr.update(visible=rp_active), lw
+
+def applicate_lora(lora_template):
+  _, lora, name, prompt, _ = get_lora_list_manual("manual",True,lora_template)
+  return lora, name, prompt
+
+def template_convert(
+  template:str,
+  lora_name:str,
+  lora_id:str,
+  ch_name:str,
+  ch_prompt:str,
+  location:str,
+  face:str,
+  header:str,
+  lower:str,
+  lora_weight:float,
+  has_extend:bool,
+  adetailer_plus:bool,
+  apply_positive:bool,
+  apply_negative:bool,
+  apply_weight_to_positive:bool,
+  apply_weight_to_negative:bool,
+  sp_lora_name:str,
+  sp_lora_id:str,
+  sp_ch_name:str,
+  sp_ch_prompt:str,
+  sp_location:str,
+  sp_face:str,
+  sp_header:str,
+  sp_lower:str,
+  sp_sync_some:bool,
+  sp_lora_weight:float,
+  sp_has_extend:bool,
+  convert_break_to_template:bool=False # beta Function. convert BREAK to Template value (e.g. BREAK -> ADDCOL)
+):
+  def r(x:str) -> str:
+    return x.strip().strip(",")
+  
+  hastwo = False
+  lang = shared.language("err_manager", "raw")
+  
+  # first prompt
+  #Error Handling
+  if lora_name == "" and lora_id == "":
+    print("Catched: lora_name == None and lora_id == None")
+    raise gr.Error(lang["err_cant_find_lora"])
+  
+  data, template_ver = get_template_value(template)
+  
+  # opts from lora_name
+  if lora_name != "" and lora_id == "":
+    _, lora, name, character_prompt, ch_extend = get_lora_list_manual(
+      "manual", True, lora_name
+    )
+  
+  # opts manually
+  elif lora_id != "":
+    lora = lora_id
+  
+  else:
+    lora = lora_id
+  
+ 
+  if lora == lora_id:
+    name = ch_name
+    character_prompt = ch_prompt
+    if not "ch_extend" in locals():
+      ch_extend = ""
+  
+
+  values = data["Values"]
+  
+  prompt = values["Prompt"]
+  negative = values["Negative"]
+  ad_prompt = values["AD_Prompt"]
+  ad_negative = values["AD_Negative"]
+  
+  lora = control_lora_weight(lora, lora_weight)
+  
+  lora, name, character_prompt, location, face = r(lora), r(name), r(character_prompt), r(location), r(face)
+  
+  if has_extend and isinstance(ch_extend, str):
+    character_prompt += ", "+r(ch_extend)
+  
+  prompt1 = multiple_replace(
+    prompt, [
+      ("$LORA", lora),("%LORA%", lora),("$NAME",name),("%CH_NAME%",name),
+      ("$PROMPT", character_prompt),("%CH_PROMPT%", character_prompt),
+      ("$LOCATION", location),("%LOCATION%", location),("$FACE", face),
+      (r"%FACE%", face)
+    ]
+  )
+  prompt1 = r(r(header)+", "+r(prompt1)+", "+r(lower))+",".strip()
+  
+  
+  if keycheck(data, "Regional_Prompter", {"isEnabled": False})["isEnabled"]:
+    # RP == on
+    rp = data["Regional_Prompter"]["Secondary_Prompt"]
+    prompt = rp["prompt"]
+    
+    if lora_name == "" and lora_id == "":
+      print("Catched: lora_name == None and lora_id == None (in sp)")
+      raise gr.Error(lang["err_cant_find_lora"])
+    
+    ch_extend = ""
+    if lora_name != "" and lora_id == "":
+      _, lora, name, character_prompt, ch_extend = get_lora_list_manual(
+        "manual", True, sp_lora_name
+      )
+    elif lora_id != "":
+      lora = sp_lora_id
+    else:
+      lora = sp_lora_id
+    
+    if lora == sp_lora_id:
+      name = sp_ch_name
+      character_prompt = sp_ch_prompt
+    
+    # sync face, header, lower and location with first
+    if sp_sync_some:
+      sp_face = face
+      sp_header = header
+      sp_lower = lower
+      sp_location = location
+    
+    lora = control_lora_weight(lora, sp_lora_weight)
+    lora, name, character_prompt, location, face = r(lora), r(name), r(character_prompt), r(sp_location), r(sp_face)
+    if sp_has_extend and isinstance(ch_extend, str):
+      character_prompt += ", "+r(ch_extend)
+    
+    prompt2 = multiple_replace(
+    prompt, [
+      ("$LORA", lora),("%LORA%", lora),("$NAME",name),("%CH_NAME%",name),
+      ("$PROMPT", character_prompt),("%CH_PROMPT%", character_prompt),
+      ("$LOCATION", location),("%LOCATION%", location),("$FACE", face),
+      (r"%FACE%", face)
+    ])
+    
+    prompt2 = r(r(sp_header)+", "+r(prompt2)+", "+r(sp_lower))+",".strip()
+    
+    hastwo = True
+
+  if hastwo and convert_break_to_template:
+    # sp がある場合に BREAK を Template に変換するかどうか
+    rp = data["Regional_Prompter"]
+    _, rp_mode, rp_base, rp_common, rp_stop, rp_res, rp_split, rp_ratio = get_keys_from_dict(
+      rp, [
+        "rp_mode", "mode", "base", "common", "lora_stop_step", "resolution",
+        "split_mode", "split_ratio", "base_ratio"
+      ]
+    )
+    
+    _, templates = visualize(
+      rp_mode, rp_split, rp_res[0], rp_res[1], rp_common[0], rp_base, rp_ratio, rtl_template=True
+    )
+    # templates の数と prompt の BREAK(改行) の数が一致するかどうか
+    if not (prompt1+"\n"+prompt2).count("\n") == templates.count("\n"):
+      print("WARN: didn't matched prompt's BREAK count and template count")
+      print("Skipped..")
+      pass
+    else:
+      # プロンプトの分け目の BREAK を検出する
+      if len(templates) == 1:
+        prompt = prompt1 + r(templates.strip("\n")) + "\n" + prompt2
+      else: # len(templates) >= 2:
+        p1 = len(prompt1.split("\n"))
+        p2 = len()
+  return prompt1+"\n"+prompt2, negative, ad_prompt, ad_negative, "OK."

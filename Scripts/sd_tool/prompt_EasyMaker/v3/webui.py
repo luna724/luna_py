@@ -13,7 +13,7 @@ from a1111_ui_util import *
 
 ## Prompt Template
 from modules.generate import get_template
-from modules.generate import generate as template_generate, example_view
+from modules.generate import generate as template_generate, example_view, applicate_opts, applicate_lora, template_convert
 from modules.generate_util import get_lora_list
 from modules.character_exchanger import character_exchanger
 from modules import make_prompt_template, delete_prompt_template
@@ -26,9 +26,10 @@ import preprocessing
 import modules.shared as shared
 import modules.regional_prompter as rp
 from modules.misc import modify_database, get_js, parse_parsed_arg
-from modules.lib import browse_file, show_state_from_checkbox, get_black_picture
+from modules.lib import browse_file, show_state_from_checkbox, get_background_picture, resize_picture
 from javascript.reload_js import reload_js
 from modules.lib_javascript import *
+from modules import some_tiny_tweaks
 
 ## LGS
 import LGS.misc.nomore_oserror as los
@@ -44,8 +45,7 @@ load_js = {
 }
 
 # logger
-logging.basicConfig(filename="./script_log/latest.log", encoding='utf-8', level=logging.DEBUG)
-logging.basicConfig(filename="./script_log/latest_warn.log", encoding='utf-8', level=logging.WARN)
+logging.basicConfig(filename="./script_log/latest.log", encoding='utf-8', level=logging.WARNING)
 
 # Tab Class
 class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
