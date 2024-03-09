@@ -22,3 +22,5 @@ class Lora(UiTabs):
   def ui(self, outlet):
     l = Lora.l
     
+    with gr.Blocks():
+      none = None

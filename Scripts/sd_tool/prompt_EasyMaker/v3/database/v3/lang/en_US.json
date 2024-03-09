@@ -215,5 +215,41 @@
     "auto_copy": "Auto copy",
     "infer": "Run",
     "keep_sorting": "[Experimental] [corrupted]: Keep(don't sort this) index"
+  },
+
+  "/ui/stt_child/anti_keyword.py": {
+    "tab_title": "Anti keyword",
+    "target_prompt": "Target Prompt",
+    "output_prompt": "Output Prompt",
+    "auto_copy": "Auto copy",
+    "infer": "Run",
+    "text": "Input field",
+    "text_placeholder": "use comma for split prompt",
+    "targets": "remove keyword list",
+    "sensitive_check": "Sensitive Check (Only remove 100% matches)"
+  },
+
+  "/ui/mt_child/sort.py": {
+    "tab_title": "Sort"
+  },
+
+  "/ui/mt_child/restore.py": {
+    "tab_title": "Restore"
+  },
+  
+  "/ui/mt_child/delete/lora.py": {
+    "tab_title": "LoRA"
+  },
+
+  "/ui/template/keybox": {
+    "tab_title": "Keybox"
+  },
+
+  "/ui/template/lora": {
+    "tab_title": "LoRA"
+  },
+
+  "/ui/template/prompt": {
+    "tab_title": "Prompt"
   }
 }

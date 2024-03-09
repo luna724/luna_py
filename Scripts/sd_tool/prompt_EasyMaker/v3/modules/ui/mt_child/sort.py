@@ -7,19 +7,19 @@ from modules.shared import ROOT_DIR, language
 from webui import js_manager
 from webui import UiTabs
 
-class Define(UiTabs):
-  l = language("/ui/mt_child/define.py", "raw")
+class Sort(UiTabs):
+  l = language("/ui/mt_child/sort.py", "raw")
   
   def __init__(self, path):
     super().__init__(path)
     
-    self.child_path = os.path.join(UiTabs.PATH, "mt_child/define_child")
+    self.child_path = os.path.join(UiTabs.PATH, "mt_child/sort_child")
   
   def variable(self):
-    return [Define.l["tab_title"]]
+    return [Sort.l["tab_title"]]
   
   def index(self):
-    return 1
+    return 4
       
   def ui(self, outlet):
     with gr.Blocks():

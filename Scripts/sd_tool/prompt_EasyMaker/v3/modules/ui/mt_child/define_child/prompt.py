@@ -199,7 +199,7 @@ class Prompt(UiTabs):
             with gr.Group():
               memo = gr.Textbox(label=l["memo"], placeholder="hello, world!")
             
-            image = gr.Image(label=l["image"], source="upload")
+            image = gr.Image(label=l["image"], source="upload", type="pil")
         
         splitter
         activate_builtins = gr.Checkbox(label=l["activate_builtins"], value=False)

@@ -44,6 +44,9 @@ def get_lora_list(variant:Literal["manual","full","update","only_lora"]="update"
 
 def control_lora_weight(lora_string: str, weight: float = 1.0):
   # 変換
+  if not isinstance(weight, float) and not isinstance(weight, int):
+    weight = get_index(weight, 0, 1.0)
+    
   weight = re.sub(r"<lora:.*:(.+)>", str(weight), lora_string, count=1)
   loraname = re.findall(r"<lora:(.*):.+>", lora_string)[0]
   new_lora_string = f"<lora:{loraname}:{weight}>"

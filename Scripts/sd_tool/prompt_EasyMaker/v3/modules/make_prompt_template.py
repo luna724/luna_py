@@ -263,6 +263,19 @@ def save(
   csn = custom_negative
   
   ex_ImagePath = "/path/to/image"
+  # import numpy as np
+  # def is_valid_image(image):
+  #   if not isinstance(image, np.ndarray):
+  #       return False  # NumPy 配列でない場合は保存不可とみなす
+  #   if image.ndim != 3:
+  #       return False  # 3次元でない場合は保存不可とみなす
+  #   if image.shape[2] not in (1, 3):
+  #       return False  # チャンネル数が1または3でない場合は保存不可とみなす
+  #   if not np.issubdtype(image.dtype, np.integer):
+  #       return False  # データ型が整数型でない場合は保存不可とみなす
+  #   return True
+  
+  # if is_valid_image(ex_image):
   if ex_image:
     ex_ImagePath = os.path.join(
       ROOT_DIR, "database", "v3", "image", f"{filename_resizer(displayName, replaceTo='_')}.png"
@@ -291,11 +304,11 @@ def save(
     "CustomNegative": csn
   }
   
-  if negative.strip() == "" or ".":
+  if negative.strip() == "":
     negative = shared.negative
-  if ad_prompt.strip() == "" or ".":
+  if ad_prompt.strip() == "":# or ".":
     ad_prompt = shared.ad_pos
-  if ad_negative.strip() == "" or ".":
+  if ad_negative.strip() == "":# or ".":
     ad_negative = shared.ad_neg
   
   template_data = {

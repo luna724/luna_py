@@ -496,8 +496,13 @@ def template_convert(
     _, templates = visualize(
       rp_mode, rp_split, rp_res[0], rp_res[1], rp_common[0], rp_base, rp_ratio, rtl_template=True
     )
+    
+    prompt1 = prompt1.strip("\n")
+    prompt2 = prompt2.strip("\n")
+    templates = templates.strip("\n")
+    
     # templates の数と prompt の BREAK(改行) の数が一致するかどうか
-    if not (prompt1+"\n"+prompt2).count("\n") == templates.count("\n"):
+    if not (prompt1+"\n"+prompt2).count("\n") == templates.count("\n")+1:
       print("WARN: didn't matched prompt's BREAK count and template count")
       print("Skipped..")
       pass
@@ -506,6 +511,21 @@ def template_convert(
       if len(templates) == 1:
         prompt = prompt1 + r(templates.strip("\n")) + "\n" + prompt2
       else: # len(templates) >= 2:
-        p1 = len(prompt1.split("\n"))
-        p2 = len()
-  return prompt1+"\n"+prompt2, negative, ad_prompt, ad_negative, "OK."
+        p1 = prompt1.count("\n") # 1
+        p2 = prompt2.count("\n") # 1
+        tp = templates.count("\n")+1 # 3
+        
+        # p1 から引いた数が p2 +1 の場合 p2 の一番最初の値の Template を代入
+        if tp-p1 == p2+1:
+          target = templates.split("\n")[tp-p1]
+          prompt = prompt1+ r(target.strip("\n")) +"\n"+prompt2
+        else:
+          prompt = prompt1+ "BREAK\n" +prompt2
+      
+  elif hastwo and not convert_break_to_template:
+    prompt = prompt1 + "BREAK\n" + prompt2
+  
+  else:
+    prompt = prompt1
+    
+  return delete_duplicate_comma(prompt), negative, ad_prompt, ad_negative, "OK."

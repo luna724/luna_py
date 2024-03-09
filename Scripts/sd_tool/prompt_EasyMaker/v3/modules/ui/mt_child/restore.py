@@ -7,19 +7,19 @@ from modules.shared import ROOT_DIR, language
 from webui import js_manager
 from webui import UiTabs
 
-class Define(UiTabs):
-  l = language("/ui/mt_child/define.py", "raw")
+class Restore(UiTabs):
+  l = language("/ui/mt_child/restore.py", "raw")
   
   def __init__(self, path):
     super().__init__(path)
     
-    self.child_path = os.path.join(UiTabs.PATH, "mt_child/define_child")
+    self.child_path = os.path.join(UiTabs.PATH, "mt_child/restore_child")
   
   def variable(self):
-    return [Define.l["tab_title"]]
+    return [Restore.l["tab_title"]]
   
   def index(self):
-    return 1
+    return 3
       
   def ui(self, outlet):
     with gr.Blocks():

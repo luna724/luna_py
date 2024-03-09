@@ -92,6 +92,10 @@ class Template(UiTabs):
                   headers = gr.Textbox(label=l["header"])
                   lowers = gr.Textbox(label=l["lower"])
                 sp_sync_main = gr.Checkbox(label=l["sync"], value=False)
+              loras.change(
+                applicate_lora, loras,
+                outputs=[sp_lora, sp_name, sp_ch_prompt]
+              )
 
             prompt = gr.Textbox(label=l["output_prompt"], show_copy_button=True, lines=5, interactive=False)
             negative = gr.Textbox(label=l["output_negative"], show_copy_button=True, lines=5, interactive=False)
