@@ -23,13 +23,13 @@ Provide / Translated by. ChatGPT
 
 <a href=/docs/module_description.md>Feature List </a>
 
-## 依存関係 / Dependencies
+## 依存関係
 
 - [`FFmpeg`](https://ffmpeg.org/)
 - [`SoX`](https://sox.sourceforge.net/)
 - [`Aria2`](https://github.com/aria2/aria2)
 
-## スクリプトの実行方法 / How to launch lunapy's Script
+## スクリプトの実行方法
 
 1. launch `/old_setup.bat`
 2. goto `/Scripts`
@@ -40,6 +40,6 @@ Provide / Translated by. ChatGPT
 ## Changelogs
 [`lunapy's Changelogs (without Module / Scripts)`](/docs/Changelogs.md) <br />
 
-<details> <summary> 各モジュールごとの Changelog / changelogs per module </summary>
+<details> <summary> 各モジュールごとの Changelog </summary>
 in preparation
 </details>
