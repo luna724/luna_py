@@ -36,10 +36,3 @@ Provide / Translated by. ChatGPT
 3. Select what you want to lauunch
 4. in the script folder, launch the batch file.
 5. more details in [module description](/docs/module_description.md)
-
-## Changelogs
-[`lunapy's Changelogs (without Module / Scripts)`](/docs/Changelogs.md) <br />
-
-<details> <summary> 各モジュールごとの Changelog </summary>
-in preparation
-</details>
