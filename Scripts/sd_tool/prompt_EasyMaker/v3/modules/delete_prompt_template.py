@@ -38,6 +38,7 @@ def delete_selected(template_key, backup):
   return "OK.", ""
 
 def delete_multi(template_keys, backup):
+  backup = not backup
   total = len(template_keys)
   fail = 0
   

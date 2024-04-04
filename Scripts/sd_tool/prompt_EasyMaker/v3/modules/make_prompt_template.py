@@ -76,11 +76,14 @@ BASIC = BASIC_raw["key"]
 import LGS.misc.jsonconfig as jsoncfg
 from modules import regional_prompter as rp
 from modules.delete_prompt_template import delete_selected
-from modules.shared import ROOT_DIR, currently_version, currently_template_versionID
+from modules.versions.prompt import template_style
+from modules.lib import error_handling_helper
+from modules.shared import ROOT_DIR, currently_version, currently_template_versionID, language
 import modules.shared as shared
 from PIL import Image
 from typing import Literal
 from re import Pattern
+import gradio as gr
 from LGS.misc.nomore_oserror import filename_resizer
 import os
 
@@ -198,6 +201,11 @@ def save(
   share_load_target: str, # Sharing jsonfile path optional
   share_delete_loaded: bool, # delete jsonfile after successfully loaded
 ):
+  """
+  DISCONTINUED FUNCTION
+  
+  alternate function -> .new_save()
+  """
   # debug
   for x, y in locals().items():
     print(f"[dev]: [{x}] = {y}")
@@ -349,3 +357,185 @@ def save(
   )
   
   return "Success!"
+
+
+def load(target, already_dname=None):
+  from modules.generate import get_template
+  lang = language("/modules/make_prompt_template.py", "raw")
+  if already_dname != "":
+    raise gr.Error(lang["name_exists"])
+  
+  d = get_template("full")[target]
+  # 朱徳取得取得
+  # v3.0.3+
+  if d["Method_Release"] >= 3:
+    display_name = d["Key"]
+    prompt = d["Values"]["Prompt"]
+    negative = d["Values"]["Negative"]
+    adetailer_prompt = d["Values"]["AD_Prompt"]
+    adetailer_negative = d["Values"]["AD_Negative"]
+    activate_controlnet = d["ControlNet"]["isEnabled"]
+    cn_mode = d["ControlNet"]["Mode"]
+    cn_weight = d["ControlNet"]["Weight"]
+    cn_image = d["ControlNet"]["Image"]
+    activate_hires = d["Hires"]["isEnabled"]
+    upscaled = d["Hires"]["Upscale"]
+    upscaler = d["Hires"]["Sampler"]
+    denoise = d["Hires"]["Denoising"]
+    hires_step = d["Hires"]["Steps"]
+    resolution = d["Resolution"]
+    sampler = d["Sampler"]
+    activate_example = d["Example"]["isEnabled"]
+    characters = d["Example"]["Character"]
+    lora = d["Example"]["Lora"]
+    lora_weight = d["Example"]["Weight"]
+    name = d["Example"]["Name"]
+    character_prompt = d["Example"]["Prompt"]
+    hasextend = d["Example"]["isExtend"]
+    face = d["Example"]["Face"]
+    location = d["Example"]["Location"]
+    header = d["Example"]["Header"]
+    lower = d["Example"]["Lower"]
+    image = d["Example"]["Image"]
+    clip = d["Clip"]
+    overwrite = True
+    activate_rp = d["Regional_Prompter"]["isEnabled"]
+    rp = d["Regional_Prompter"]
+    rp_mode = rp["rp_mode"]
+    use_base = rp["base"]
+    use_common = rp["common"][0]
+    use_ncommon = rp["common"][1]
+    base_ratio = rp["base_ratio"]
+    lora_stop = rp["lora_stop_step"][0]
+    lora_hires = rp["lora_stop_step"][1]
+    split_mode = rp["split_mode"]
+    split_text = rp["split_ratio"]
+    rp_width = rp["resolution"][0]
+    rp_height = rp["resolution"][1]
+    sp = rp["Secondary_Prompt"]
+    second_prompt = sp["prompt"]
+    sec_characters = sp["characters"]
+    sec_lora = sp["lora"]
+    sec_weight = sp["weight"]
+    sec_name = sp["name"]
+    sec_head = sp["header"]
+    sec_prompt = sp["ch_prompt"]
+    sec_face = sp["face"]
+    sec_location = sp["location"]
+    sec_lower = sp["lower"]
+    sync_with_main = sp["gFaL_from_Main"]
+    memo = ""
+      
+    # v3.0.3 ~ v3.0.4 ONLY
+    if 4 >= d["Method_Release"] >= 3:
+      memo = d["Example"]["CustomNegative"]
+    # v3.0.5+
+    if d["Method_Release"] >= 5:
+      memo = d["Example"]["Memo"]
+    
+    status = "Done."
+    return status, display_name, prompt, negative, adetailer_prompt,\
+                      adetailer_negative, activate_controlnet,\
+                      cn_mode, cn_weight, cn_image, activate_hires,\
+                      upscaled, upscaler, denoise, hires_step, resolution,\
+                      sampler, activate_example, characters, lora, lora_weight,\
+                      name, character_prompt, hasextend,\
+                      face, location, header, lower, image, memo,\
+                      clip, overwrite, activate_rp, rp_mode, use_base,\
+                      use_common, use_ncommon, base_ratio, lora_stop,\
+                      lora_hires, split_mode, split_text, rp_width,\
+                      rp_height, second_prompt, sec_characters,\
+                      sec_lora, sec_weight, sec_name, sec_head,\
+                      sec_prompt, sec_face, sec_location, sec_lower,\
+                      sync_with_main
+  else:
+    raise gr.Error(lang["too_low"])
+
+
+def new_save(
+  Key, Values0Prompt, Values0Negative, Values0AD_Prompt, Values0AD_Negative, 
+  ControlNet0isEnabled, ControlNet0Mode, ControlNet0Weight, 
+  ControlNet0Image, Hires0isEnabled, Hires0Upscale, Hires0Sampler, 
+  Hires0Denoising, Hires0Steps, Resolution, Sampler, 
+  Example0isEnabled, Example0Character, Example0Lora, 
+  Example0Weight, Example0Name, Example0Prompt, Example0isExtend,
+  Example0Face, Example0Location, Example0Header, Example0Lower, 
+  Example0Image, Example0Memo, Clip, overwrite, Regional_Prompter0isEnabled, 
+  RP0rp_mode, RP0mode, RP0common, RP0ncommon, RP0base_ratio, 
+  RP0lora_stop_step, RP0lora_hires_stop, RP0split_mode, RP0split_ratio,
+  RP0resolution, PASS0resh, RP0SP0prompt, RP0SP0characters, 
+  RP0SP0lora, RP0SP0weight, RP0SP0name, RP0SP0header, RP0SP0ch_prompt,
+  RP0SP0face, RP0SP0location, RP0SP0lower, RP0SP0sync, PASS0db_load, 
+  PASS0delete_after_load, CODE0enable_load,
+  PASS0ver_info="v3.0.6"
+):
+  def instance_check(base, instance) -> bool:
+    return isinstance(base, instance)      
+  
+  # バージョンに応じて初期辞書を取得
+  base_data = template_style.get_dict(PASS0ver_info)()
+  saves = base_data
+  
+  # 調整
+  RP0resolution = [
+    RP0resolution, PASS0resh
+  ]
+  
+  # 値
+  data_root_key_list = [
+    k for k in base_data.keys()
+  ] + ["RP"]
+  spec_word = ["RP", "SP"]
+  spec2real = {
+    "RP": "Regional_Prompter",
+    "SP": "Secondary_Prompt"
+  }
+  continue_words = ["PASS", "CODE"]
+  
+  # 動的に設定
+  for k, v in locals().items():
+    # 0 がついている場合ネストとみなす
+    if k.count("0") >= 1:
+      # ネスト元が存在するなら
+      if k.split("0")[0] in data_root_key_list:
+        # 存在する場合そこにネストするキーを取得
+        kv0 = k.split("0")[0]
+        if kv0 in spec_word:
+          # 短縮後場合、再変換
+          kv0 = spec2real[kv0]
+        
+        kv2 = k.split("0")[1]
+        kls = [k for k in base_data[kv0].keys()]
+        
+        # さらにネスト？
+        if kv2.split("0") >= 1:
+          kv3 = kv2.split("0")[0]
+          if kv3 in kls:
+            # 同じ動作
+            if kv3 in spec_word:
+              kv3 = spec2real[kv3]
+            
+            kv4 = kv2.split("0")[1]
+            kls = [k for k in base_data[kv0][kv3].keys()]
+            # 置き換え
+            saves[kv0][kv3][kv4] = v
+            
+        # しない場合
+        else:
+          saves[kv0][kv2] = v
+      else:
+        # 存在しない場合
+        # エラーハンドリング
+        if not k.split("0")[0] in continue_words:
+          raise ValueError(f"Exception. \nvariables save at {error_handling_helper(locals(), __name__)}")
+        else:
+          kv = k.split("0")[0]
+          if kv == "PASS":
+            continue
+          elif kv == "CODE":
+            if k == "CODE0enable_load":
+              if v:
+                # enable_load とその他のものを使用して処理を行う
+                h = "a"
+              else:
+                continue

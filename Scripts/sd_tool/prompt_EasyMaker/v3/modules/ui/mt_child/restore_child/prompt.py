@@ -5,7 +5,7 @@ import LGS.misc.jsonconfig as jsoncfg
 
 from modules.shared import ROOT_DIR, language
 from webui import DropdownMulti
-from webui import UiTabs, manage_lora_template
+from webui import UiTabs, delete_prompt_template
 
 class Lora(UiTabs):
   l = language("/ui/mt_child/restore.py", "raw")["children"]
@@ -14,7 +14,7 @@ class Lora(UiTabs):
     super().__init__(path)
   
   def index(self):
-    return 2
+    return 1
   
   def variable(self):
     return [Lora.l[f"title-{str(self.index())}"]]
@@ -25,11 +25,11 @@ class Lora(UiTabs):
     with gr.Blocks():
       with gr.Row():
         template = DropdownMulti(
-          label=l["target"], choices=manage_lora_template.format_backup_filename(gr_update=False)
+          label=l["target"], choices=delete_prompt_template.format_backup_filename(gr_update=False)
         )
         refresh = gr.Button(l["refresh"])
         refresh.click(
-          manage_lora_template.format_backup_filename, outputs=template
+          delete_prompt_template.format_backup_filename, outputs=template
         )
         
       with gr.Row():
@@ -45,8 +45,8 @@ class Lora(UiTabs):
       
       status = gr.Textbox(label=l["status"], interactive=False)
       btn = gr.Button(l["run"], variant="primary")
-      btn.click(manage_lora_template.multi_restore,
-                inputs=[template, deletion, overwrite, prevent_dupe,
+      btn.click(delete_prompt_template.restore_multi,
+                inputs=[template, deletion, advanced, overwrite, prevent_dupe,
                         only_delete],
                 outputs=[status, template])
       

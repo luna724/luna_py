@@ -4,42 +4,42 @@ from typing import List
 import LGS.misc.jsonconfig as jsoncfg
 
 from modules.shared import ROOT_DIR, language
-from webui import manage_keybox
+from webui import get_template, delete_prompt_template
 from webui import UiTabs
 
-class Keybox(UiTabs):
+class Prompt(UiTabs):
   l = language("/ui/delete", "raw")
   
   def __init__(self, path):
     super().__init__(path)
   
   def index(self):
-    return 3
+    return 1
 
   def variable(self):
-    return [Keybox.l[f"title-{str(self.index())}"]]
+    return [Prompt.l[f"title-{str(self.index())}"]]
       
   def ui(self, outlet):
-    l = Keybox.l
+    l = Prompt.l
     
     with gr.Blocks():
       with gr.Row():
         template = gr.Dropdown(
           multiselect=True,
           label=l["target_template"],
-          choices=manage_keybox.get_keybox("manual")
+          choices=get_template("manual")
           )
         refresh = gr.Button(l["refresh"])
         refresh.click(
-          manage_keybox.get_keybox, outputs=template
+          get_template, outputs=template
         )
       
       with gr.Row():
         permanent = gr.Checkbox(label=l["permanent"], value=False)
       
       status = gr.Textbox(label=l["status"], interactive=False)
-      btn = gr.Button("COMING SOON..", variant="primary")
+      btn = gr.Button(l["run"], variant="primary")
       btn.click(
-      None,
+      delete_prompt_template.delete_multi,
       [template, permanent], [status, template]
       )

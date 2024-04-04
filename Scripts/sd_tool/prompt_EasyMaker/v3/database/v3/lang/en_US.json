@@ -82,7 +82,12 @@
     "h": "Height",
     "sample": "Sample",
     "rp_template": "Template",
-    "sync": "Sync Location, header and lower with first prompt opts"
+    "sync": "Sync Location, header and lower with first prompt opts",
+    "extend_prompt": "↓ Extend Prompt ↓",
+    "clothes": "Cloth",
+    "accessory": "Accessory",
+    "variable_templates": "Template {}",
+    "other": "Other"
   },
   
   "/ui/manage_template.py": {
@@ -112,9 +117,13 @@
     "adetailer_negative": "ADetailer Negative prompt",
     "activate_controlnet": "Activate ControlNet",
     "controlnet_opts": "ControlNet opts",
-    "control_mode": "Control Mode",
+    "control_mode": "Control Type",
     "control_weight": "ControlNet weight",
     "control_image": "ControlNet Image",
+    "control_mode_balanced": "Control Mode",
+    "controlnet_model": "ControlNet Models",
+    "controlnet_preprocessor": "ControlNet Preprocessor",
+    "isImg2img": "is Img2img",
     "start_draw": "Start Drawing",
     "draw_file": "Target Filepath (if blank, will generate single color image)",
     "dfb": "Browse",
@@ -181,18 +190,28 @@
     "delete_after_load": "[WIP]: Delete target file after loaded",
     "save": "Save",
     "kw_list": "Keyword list",
-    "files": "en_US.md"
+    "files": "en_US.md",
+    "load_root": "Load from exist template",
+    "refresh" :"Refresh",
+    "load_target": "Load target Template",
+    "load": "Load"
   },
 
   "/ui/mt_child/define/lora.py": {
     "tab_title": "Lora",
     "display_name": "Display name",
-    "displayname_placeholder": "Template's display Name in webUI",
+    "dn_ph": "if blank, use character's name",
     "lora": "LoRA ID",
     "name": "Character's name",
     "prompt": "Trigger / Assist Word",
     "extend": "Extend (can toggled Assist word)",
-    "": ""
+    "overwrite": "Overwrite",
+    "status": "Status",
+    "save": "Save",
+    "load_root": "Load from exist template",
+    "target": "Load targets template",
+    "refresh": "Refresh",
+    "load": "Load"
   },
 
   "/ui/some_tiny_tweaks.py": {
@@ -230,11 +249,46 @@
   },
 
   "/ui/mt_child/sort.py": {
-    "tab_title": "Sort"
+    "tab_title": "Sort",
+    "children": {
+      "title-1": "Prompt",
+      "title-2": "LoRA",
+      "title-3": "Keybox",
+      "info": "Sorting with Flask. \nIf localhost:7859 is not accessible, it will not work.",
+      "refresh": "Refresh",
+      "start": "Start RPC",
+      "status": "Status",
+      "stop": "Stop"
+    },
+    "system": {
+      "title": "Sorting",
+      "save_fail": "<html><h3>Failed.</h3><p>Sorted drafts were saved. (Changes have not been applied to the template)</p><br /><p><a href=\"http://127.0.0.1:7860\">back to gradioUI (end the sort)</a></p><p>or <a href=/> back to sorting menu</a></p></html>",
+      "full_success": "<html><h3>Success.</h3><p>Go back to gradioUI and check it out!</p><br /><p><a href=\"http://127.0.0.1:7860\">back to gradioUI (end of sort)</a></p><p>or <a href=/> back to sorting menu</a></p></html>",
+      "start_success": "Successfully started.\n please go to localhost:7859 (link was copied.)",
+      "starting": "Starting Flask RPC...",
+      "all_fail": "<html><h3>Failed.</h3><br /><p><a href=\"http://127.0.0.1:7860\">back to gradioUI (end the sort)</a></p><p>or <a href=/> back to sorting menu</a></p></html>",
+      "at_least_one": "<html><h3>Failed.</h3><p>Please move at least one item</p><br /><p><a href=\"http://127.0.0.1:7860\">back to gradioUI (end the sort)</a></p><p>or <a href=/> back to sorting menu</a></p></html>",
+      "parse_error": "<html><h3>Failed.</h3><p>Parsing Error catched.</P><br /><p>Variables for Error handling</p><pre><code>{}</code></pre><br /><p><a href=\"http://127.0.0.1:7860\">back to gradioUI (end the sort)</a></p><p>or <a href=/> back to sorting menu</a></p></html>"
+    }
   },
 
   "/ui/mt_child/restore.py": {
-    "tab_title": "Restore"
+    "tab_title": "Restore",
+    "children": {
+      "title-1": "Prompt",
+      "title-2": "LoRA",
+      "title-3": "Keybox",
+      "target": "Restore target Template backup dates",
+      "refresh": "Refresh",
+      "advanced": "Advanced Mode",
+      "deletion": "Delete selected (after restore)",
+      "prevent_dupe": "Prevent name dupe",
+      "only_deletion": "[WARN] Only Deletion (don't restore)",
+      "overwrite": "Overwrite previous template (if name is duped)",
+      "status": "Status",
+      "run": "Restore"
+
+    }
   },
   
   "/ui/mt_child/delete/lora.py": {
@@ -251,5 +305,95 @@
 
   "/ui/title/prompt": {
     "tab_title": "Prompt"
+  },
+
+  "/ui/mt_child/define/keybox.py": {
+    "tab_title": "Keybox",
+    "display_name": "Display name",
+    "dn_ph": "if blank, use Keyword",
+    "keyword": "Keyword (Trigger word)",
+    "sequence": "Sequence (WORD == Keyword)",
+    "prompt": "Replace to",
+    "overwrite": "Overwrite",
+    "hide": "secret keyword (from script)",
+    "multiseq": "Multi sequence",
+    "multikey": "Multi keyword",
+    "multikey_opts": "Multiple Keywords",
+    "multikeys": "Keywords (Trigger words)",
+    "multikeys_ph": "$ for separate keywords",
+    "info": "Information for keyword list (Optional)",
+    "status": "Status",
+    "run": "Save",
+    "load_keyboxes": "Load from jsonfile",
+    "Load": "Load from shared",
+    "loads": "Load (json file / exist keybox)",
+    "browse": "Browse",
+    "refresh": "Refresh",
+    "load": "Load from exists",
+    "target": "Load from targets template",
+    "system": {
+      "empty_variable": "Required value are not specified.",
+      "unknown_sequence": "Unknown Sequence value (required: $WORD or %WORD%)",
+      "already_found": "this name is already taken.",
+      "success": "Success!"
+    }
+  },
+
+  "/modules/lib.py": {
+    "time_takens": {
+      "istype": "Class",
+      "start_timer": "Timer started.",
+      "wrap_text": "Wrap: Elapsed time: {}seconds",
+      "resize_estimated": "Elapsed Time: {}seconds."
+    }
+  },
+
+  "/ui/config.py": {
+    "tab_title": "[WIP] Config",
+    "visual": {
+      "tab_title": "Visuals",
+      "ui_theme": "UI Theme",
+      "apply_changes": "Apply changes",
+      "restart": "[WIP] Restart UI"
+    }
+  },
+
+  "/ui/generate/exchanger.py": {
+    "tab_title": "Character Exchanger",
+    "mode": "Exchange targets",
+    "to": "Exchange to (Character)",
+    "refresh": "Refresh lists",
+    "target": "Target prompt",
+    "output": "Resized prompt",
+    "status": "Status",
+    "strict": "Strict parse (multi character LoRA mode)",
+    "clip": "Auto copy",
+    "4template": "for Prompt template",
+    "run": "Exchange",
+    "cant_find": "can't find LoRA Template."
+  },
+
+  "/modules/make_prompt_template.py": {
+    "name_exists": "Display name is exists. please re-check and remove them.",
+    "too_low": "template version is too low. scripts can load v3.0.3 or above"
+  },
+
+  "/ui/stt_child/keyword_updater.py": {
+    "tab_title": "word Updater",
+    "target_prompt": "Target Prompt",
+    "output_prompt": "Output Prompt",
+    "auto_copy":"Auto copy",
+    "infer": "Run"
+  },
+
+  "/ui/delete": {
+    "title-1": "Prompt",
+    "title-2": "LoRA",
+    "title-3": "Keybox",
+    "target_template": "Target Template",
+    "refresh": "Refresh",
+    "permanent": "Permanent Deletion",
+    "status": "Status",
+    "run": "Delete"
   }
 }

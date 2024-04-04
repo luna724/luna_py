@@ -3,10 +3,22 @@
 <details><br />+ Feature Addition <br />* Modify 
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
-## v3β-10 <- WIP
-\* Support more ui for new webui build method
-\+ share template (with json)
-\+ Sketch painting system for ControlNet Unit Image
+## v3β-10 ~ Generation update [WIP]
+\+ Define/Template: new args in ControlNet / Builtins
+\+ Define/Template: turn to loadable
+\+ prompt keyword deletion in tiny tweaks
+\+ prompt keybox Definition / Deletion / Restore / Sorting
+\+ word Updater in tiny tweaks
+\+ Delete/Template and Delete/LoRA are now working with new ui
+\+ Define/Template: Selectable model in Hires upscaler, Sampling method, SD Model, ControlNet mode, ControlNet Model, ControlNet Preprocessor, ControlNet Control Mode, ADetailer Model! (some requires user definition)
+\+ Character Exchanger is now working with new UI!
+\+ Generate/Template: shown the selected character's extend prompt
+\+ Generate/Template: accept more argument (INCOMPLETE).
+\+ Sort is supported LoRA Template, Prompt Template, Keybox Template
+\+ Define/Template: save template version are now selectable! (v3.0.3 / v3.0.6)
+\* change webui build method (complete!)
+\* Generate/Template: allow you to reload Character templates
+\* v3.0.3 -> V3.0.6 Prompt Template
 
 ## v3β-9 ~ more readable and easy debugging webui
 \+ add language system
@@ -14,7 +26,7 @@ Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 \+ can Generate with Regional prompter's secondary prompt
 \* Semi-realtime applicate in Generate/Template
 \* custom LoRA(not defined lora) available in generation/template
-\* change webui build method
+\* change webui build method (incomplete)
 \* Removed some old UI buttons
 \* Extend prompt are now toggled! (Generate/Template)
 \* Fix can't load example from prompt template

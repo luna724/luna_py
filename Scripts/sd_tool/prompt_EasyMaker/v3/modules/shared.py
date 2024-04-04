@@ -5,6 +5,9 @@ from typing import Literal
 
 ROOT_DIR = os.getcwd()
 DB_PATH = os.path.join(ROOT_DIR, "database", "v3")
+all_passkeys = [
+  "#PASS"
+]
 
 # Database
 def database(key):
@@ -26,8 +29,8 @@ delete_cache = False
 
 
 # Template Prompt System
-currently_version = "v3"
-currently_template_versionID = 3 # 3.0.3
+currently_version = "v3.0.4"
+currently_template_versionID = 4 # 3.0.4
 noneimg = os.path.join(DB_PATH, "noneimg8cmwsvcifvfosi923jrvsvvnsfs.png")
 
 class script_data():

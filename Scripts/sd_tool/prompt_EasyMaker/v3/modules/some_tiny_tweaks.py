@@ -1,10 +1,11 @@
 import pyperclip
 import gradio as gr
 import random
+import re
 from typing import List
 
 from modules.v1_component import delete_duplicate_comma
-from modules.lib import re4prompt
+from modules.lib import re4prompt, multiple_replace
 
 def _2space(target, cp:bool, reverse:bool) -> str:
   v =[]
@@ -83,7 +84,6 @@ def randkeyword(target, cp:bool, except_sorting:str="") -> str:
   
   return item
 
-
 def add_targets(text:str, targets: list) -> dict:
   """ Anti keyword extend function"""
   if text.count(",") < 1:
@@ -119,3 +119,11 @@ def anti_keyword(prompt, target, copy, sensitive) -> str:
     prompt += x+", "
   
   return prompt.strip(", ")
+
+def keyword_updater(prompt, copy) -> str:
+  return re.sub(r'%LORA:([0-9]*\.?[0-9]+)%', "$LORA", multiple_replace(
+    prompt, [
+      ("%LORA%", "$LORA"), ("%CH_NAME%", "$NAME"), ("%CH_PROMPT%", "$PROMPT"),
+      ("%FACE%", "$FACE"), ("%LOCATION%", "$LOCATION")
+    ]
+  ))

@@ -36,17 +36,49 @@ class Template(UiTabs):
               name = gr.Textbox(label=l["name"])
             with FormRow():
               character_prompt = gr.Textbox(label=l["character_prompt"])
-              load_extend = gr.Checkbox(label=l["hasextend"], value=False)
-            with FormRow():
-              location = gr.Textbox(label=l["location"])
-              face = gr.Textbox(label=l["face"])
+              with gr.Row():
+                load_extend = gr.Checkbox(label="[Experiment]: "+l["hasextend"], value=False, scale=1)
+                extend_prompt = gr.Textbox(label=l["extend_prompt"], interactive=False, scale=10)
             with FormRow():
               header = gr.Textbox(label=l["header"])
               lower = gr.Textbox(label=l["lower"])
+            with gr.Row():
+              location = gr.Textbox(label=l["location"])
+              face = gr.Textbox(label=l["face"])
+              
+            # 3.0.5 or above feature
+            with gr.Accordion("[Beta] v3.0.5 Feature", visible=False) as v305_variable:
+              with gr.Row():
+                sec_face = gr.Textbox(label=l["face"]+" 2")
+                sec_location = gr.Textbox(label=l["location"]+" 2")
+              with gr.Row():
+                cloth = gr.Textbox(label=l["clothes"])
+                sec_cloth = gr.Textbox(label=l["clothes"]+ " 2")
+              with gr.Row():
+                accessory = gr.Textbox(label=l["accessory"])
+                other = gr.Textbox(label=l["other"])
+              
+              with gr.Accordion("[Beta] more variables", visible=False) as manual_variables:
+                with gr.Row():
+                  pv1 = gr.Textbox(label=l["variable_templates"].format("1"), interactive=False)
+                  pv2 = gr.Textbox(label=l["variable_templates"].format("2"), interactive=False)
+                with gr.Row():
+                  pv3 = gr.Textbox(label=l["variable_templates"].format("3"), interactive=False)
+                  pv4 = gr.Textbox(label=l["variable_templates"].format("4"), interactive=False)
+                with gr.Row():
+                  pv5 = gr.Textbox(label=l["variable_templates"].format("5"), interactive=False)
+                  pv6 = gr.Textbox(label=l["variable_templates"].format("6"), interactive=False)
+                with gr.Row():
+                  pv7 = gr.Textbox(label=l["variable_templates"].format("7"), interactive=False)
+                  pv8 = gr.Textbox(label=l["variable_templates"].format("8"), interactive=False)
+                with gr.Row():
+                  pv9 = gr.Textbox(label=l["variable_templates"].format("9"), interactive=False)
+                  pv0 = gr.Textbox(label=l["variable_templates"].format("10"), interactive=False)
+                  
             
             lora.change(
               applicate_lora, lora,
-              outputs=[_lora, name, character_prompt]
+              outputs=[_lora, name, character_prompt, extend_prompt]
             )
             with gr.Accordion(label=l["adv_opts"], open=True) as adv_opts:
               lora_weight = gr.Slider(-2.0, 2.0, step=0.01, value=1.0, label=l["weight"])
@@ -94,7 +126,7 @@ class Template(UiTabs):
                 sp_sync_main = gr.Checkbox(label=l["sync"], value=False)
               loras.change(
                 applicate_lora, loras,
-                outputs=[sp_lora, sp_name, sp_ch_prompt]
+                outputs=[sp_lora, sp_name, sp_ch_prompt, sp_extend]
               )
 
             prompt = gr.Textbox(label=l["output_prompt"], show_copy_button=True, lines=5, interactive=False)
@@ -119,7 +151,8 @@ class Template(UiTabs):
                 positive_apply_weight, negative_apply_weight,
                 loras, sp_lora, sp_name, sp_ch_prompt, 
                 locations, faces, headers, lowers, sp_sync_main,
-                lora_weights, sp_extend
+                lora_weights, sp_extend, sec_face, sec_location, cloth,
+                sec_cloth, accessory, other
               ],
               outputs=[
                 prompt, negative, adetailer_prompt, adetailer_negative, status
@@ -168,7 +201,35 @@ class Template(UiTabs):
                   with FormRow():
                     es_header = gr.Textbox(label=l["header"])
                     es_lower = gr.Textbox(label=l["lower"])
-            
+                
+                  with gr.Accordion("[Beta] v3.0.5 Feature", visible=False) as es_v305_variable:
+                    with gr.Row():
+                      es_sec_face = gr.Textbox(label=l["face"]+" 2")
+                      es_sec_location = gr.Textbox(label=l["location"]+" 2")
+                    with gr.Row():
+                      es_cloth = gr.Textbox(label=l["clothes"])
+                      es_sec_cloth = gr.Textbox(label=l["clothes"]+ " 2")
+                    with gr.Row():
+                      es_accessory = gr.Textbox(label=l["accessory"])
+                      es_other = gr.Textbox(label=l["other"])
+                    
+                    with gr.Accordion("[Beta] more variables", visible=False) as es_manual_variables:
+                      with gr.Row():
+                        es_pv1 = gr.Textbox(label=l["variable_templates"].format("1"), interactive=False)
+                        es_pv2 = gr.Textbox(label=l["variable_templates"].format("2"), interactive=False)
+                      with gr.Row():
+                        es_pv3 = gr.Textbox(label=l["variable_templates"].format("3"), interactive=False)
+                        es_pv4 = gr.Textbox(label=l["variable_templates"].format("4"), interactive=False)
+                      with gr.Row():
+                        es_pv5 = gr.Textbox(label=l["variable_templates"].format("5"), interactive=False)
+                        es_pv6 = gr.Textbox(label=l["variable_templates"].format("6"), interactive=False)
+                      with gr.Row():
+                        es_pv7 = gr.Textbox(label=l["variable_templates"].format("7"), interactive=False)
+                        es_pv8 = gr.Textbox(label=l["variable_templates"].format("8"), interactive=False)
+                      with gr.Row():
+                        es_v9 = gr.Textbox(label=l["variable_templates"].format("9"), interactive=False)
+                        es_pv0 = gr.Textbox(label=l["variable_templates"].format("10"), interactive=False)
+                      
             with gr.Blocks():
               with gr.Accordion(l["example_images"], visible=False) as image_root:
                 example_image = gr.Image(label="", interactive=False, elem_classes='image_resizer')
@@ -239,7 +300,9 @@ class Template(UiTabs):
             applicate_opts,
             template,
             outputs=[
-              secondary_prompt_opts,
-              lora_weight
+              secondary_prompt_opts, lora_weight,
+              lora_weights, v305_variable, manual_variables,
+              face, sec_face, location, sec_location, 
+              cloth, sec_cloth, accessory, other
             ]
           )

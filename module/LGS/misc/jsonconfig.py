@@ -15,7 +15,7 @@ def write(data, filepath, encode: str = "utf-8", silent=True):
     return data
 
 def read_text(filename: str, 
-                strip_mode: DeprecationWarning("") = None):
+                strip_mode = None):
     with open(filename, 'r', encoding='utf-8') as file:
         data = file.read()
     return data

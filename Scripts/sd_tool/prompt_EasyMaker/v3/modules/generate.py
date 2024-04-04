@@ -5,7 +5,7 @@ import LGS.misc.jsonconfig as jsoncfg
 
 import modules.shared as shared
 from modules.v1_component import delete_duplicate_comma
-from modules.lib import multiple_replace
+from modules.lib import multiple_replace, re4prompt, int2bool
 from modules.shared import ROOT_DIR, noneimg
 from modules.generate_util import prompt_character_resizer, control_lora_weight
 from modules.generate_util import get_lora_list as get_lora_list_manual
@@ -339,12 +339,43 @@ def applicate_opts(template):
       ], 1.0
     )
     rp_active = keycheck(data["Regional_Prompter"], "isEnabled", False)
-  
-    return gr.update(visible=rp_active), lw
-
+    sec_lora_weights = None
+    activate_v305 = False
+    activate_v306 = False
+    
+    if rp_active:
+      sec_lora_weights = keycheck(data["Regional_Prompter"]["Secondary_Prompt"], "weight", 1.0)
+    
+    if keycheck(data, "Method_Release", 0) >= 5:
+      # 3.0.5+
+      activate_v305 = True
+      # 選択されたテンプレにワードが存在しない場合、その項目を隠す
+      prompt = data["Values"]["Prompt"]
+      if rp_active:
+        prompt += ", "+data["Regional_Prompter"]["Secondary_prompt"]["prompt"]
+      
+      # re4prompt を使用し摘出
+      face1 = int2bool(len(re4prompt("($FACE)", prompt)))
+      face2 = int2bool(len(re4prompt("($FACE2)", prompt)))
+      location = int2bool(len(re4prompt("($LOCATION)", prompt)))
+      location2 = int2bool(len(re4prompt("($LOCATION2)", prompt)))
+      cloth = int2bool(len(re4prompt("($CLOTH)", prompt)))
+      cloth2 = int2bool(len(re4prompt("($CLOTH2)", prompt)))
+      access = int2bool(len(re4prompt("($ACCESSORY)", prompt)))
+      other = int2bool(len(re4prompt("($OTHER)", prompt)))
+      
+      def grp(b:bool) -> dict:
+        return gr.update(visible=b)
+      
+      # 3.0.5 return
+      return gr.update(visible=rp_active), lw, sec_lora_weights, grp(activate_v305), grp(False), grp(face1), grp(face2), grp(location), grp(location2), grp(cloth), grp(cloth2), grp(access), grp(other)
+    #v3.0.3 ~ 3.0.4 Return
+    return gr.update(visible=rp_active), lw, sec_lora_weights, gr.Accordion.update(visible=False), gr.update(visible=False), None, None, None, None, None, None, None, None
+  else:
+    raise gr.Error("Template version is too low. please update (at Define/Template)")
 def applicate_lora(lora_template):
-  _, lora, name, prompt, _ = get_lora_list_manual("manual",True,lora_template)
-  return lora, name, prompt
+  _, lora, name, prompt, extend = get_lora_list_manual("manual",True,lora_template)
+  return lora, name, prompt, extend
 
 def template_convert(
   template:str,
@@ -374,8 +405,15 @@ def template_convert(
   sp_sync_some:bool,
   sp_lora_weight:float,
   sp_has_extend:bool,
-  convert_break_to_template:bool=False # beta Function. convert BREAK to Template value (e.g. BREAK -> ADDCOL)
+  #convert_break_to_template:bool, # beta Function. convert BREAK to Template value (e.g. BREAK -> ADDCOL)
+  face2:str,
+  location2:str,
+  cloth:str,
+  cloth2:str,
+  accessory:str,
+  other:str
 ):
+  convert_break_to_template=False
   def r(x:str) -> str:
     return x.strip().strip(",")
   

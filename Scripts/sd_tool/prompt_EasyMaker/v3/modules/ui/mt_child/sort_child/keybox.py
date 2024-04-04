@@ -4,36 +4,35 @@ from typing import List
 import LGS.misc.jsonconfig as jsoncfg
 
 from modules.shared import ROOT_DIR, language
-from webui import js_manager, get_lora_list, start_sorting
+from webui import manage_keybox, start_sorting
 from webui import UiTabs
 
-class Lora(UiTabs):
+class Keybox(UiTabs):
   l = language("/ui/mt_child/sort.py", "raw")["children"]
   
   def __init__(self, path):
     super().__init__(path)
   
   def index(self):
-    return 2
+    return 3
   
   def variable(self):
-    return [Lora.l[f"title-{str(self.index())}"]]
+    return [Keybox.l[f"title-{str(self.index())}"]]
       
   def ui(self, outlet):
-    l = Lora.l
+    l = Keybox.l
     
     with gr.Blocks():
-      trigger = gr.Textbox(visible=False, value="lora_template")
-      gr.Markdown(l["info"])
+      trigger = gr.Textbox(visible=False, value="keybox_template")
+      gr.Markdown(l["info"].replace("localhost:7859", "localhost:7857"))
       
       with gr.Row():
         lists = gr.Dropdown(
           label=self.variable()[0]+" Templates",
-          choices=get_lora_list("manual"), interactive=True
-          
+          choices=manage_keybox.get_keybox("manual"), interactive=True
         )
         refresh1 = gr.Button(l["refresh"])
-        refresh1.click(fn=get_lora_list, outputs=lists)
+        refresh1.click(fn=manage_keybox.get_keybox, outputs=lists)
         
       gr.Markdown("<br />")
       start = gr.Button(l["start"], variant="primary")

@@ -1,0 +1,16 @@
+{
+  "__comment": "Visuals",
+  "ui_themes": "dark",
+
+  "__comment": "Internal",
+  "use_average_weights": false,
+
+  "__comment": "ControlNet UI Variables",
+  "controlnet_main_processor": ["OpenPose"],
+  "controlnet_control_modes": ["balanced", "My prompt is more important", "ControlNet is more important"],
+  "controlnet_models": {
+    "OPENPOSE": ["OpenPose-version"]},
+  "controlnet_preprocessors": {
+    "OPENPOSE": ["OpenPose-full"]},
+  "eac": ""
+}

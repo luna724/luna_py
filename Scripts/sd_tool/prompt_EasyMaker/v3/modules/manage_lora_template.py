@@ -9,36 +9,43 @@ import gradio as gr
 from datetime import datetime
 
 def load(
-  target, dn, l, n, p, e
+  target:str,
+  display:str,
+  lora:str,
+  name:str,
+  ch_prompt:str,
+  extend:str,
+  overwrite:bool
 ):
-  if not dn == "" or dn == None:
+  if not display == "":
     lora_dict = {
-      dn: [
+      display: [
         "v3",
         {
-          "lora": l,
-          "name": n,
-          "prompt": p,
-          "extend": e
+          "lora": lora,
+          "name": name,
+          "prompt": ch_prompt,
+          "extend": extend
         }
       ]
     }
-    print("[Load]: entered data found. printing entered data..")
-    print(lora_dict)
+    print("[Load]: entered data found. saving to drafts..")
+    jsoncfg.write(
+      lora_dict, os.path.join(
+        ROOT_DIR, "logs", "template_backups", "lora", f"{datetime.now().strftime('%Y%m%d%H%M%S')}_backupdata_key-{display}'s drafts.json"
+      )
+    )
   
   lora = get_lora_list("full")
   
-  if not lora_saver(target, "", "", "", "", False) == "stderr: this name is already taken.":
-    print("[Load]: catch Exception")
-    # target を削除する機構 (OK. が返ってくるため保存に成功している)
-    
-    return "stderr: can't found lora template data"
+  if not target in list(lora.keys()):
+    raise gr.Error("can't find lora template.")
   
   data = lora[target][1]
   ver = lora[target][0]
   print("[Load]: Template version: ", ver)
   
-  return "OK.", target, data["lora"], data["name"], data["prompt"], data["extend"]
+  return "Success!", target, data["lora"], data["name"], data["prompt"], data["extend"], True
 
 def save(dname, lora, name, prompt, extend, overwrite):
   if dname == "" or dname == None:
@@ -78,6 +85,7 @@ def delete(template, backup):
   return "OK.", ""
 
 def multi_delete(templates, backup):
+  backup = not backup
   total = len(templates)
   fail = 0
   

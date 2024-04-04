@@ -1,11 +1,18 @@
 import gradio as gr
 from typing import *
+from datetime import datetime
 from tkinter import Tk, filedialog
 from PIL import Image, ImageColor
+from LGS.misc.nomore_oserror import filename_resizer
+import LGS.misc.jsonconfig as jsoncfg
 import re
 import os
+import time
 
-from modules.shared import ROOT_DIR
+from modules.shared import ROOT_DIR, language, DB_PATH, noneimg
+
+prompt_special_words = ["(", ")", "[", "]", ""]
+
 
 def multiple_replace(str: str, replace_key: list =[("src", "rpl")]):
   """
@@ -221,3 +228,215 @@ def get_background_picture(i, w=None, h=None, c="#000000"):
   return gr.Image.update(
     value=img, height=h, width=w
   )
+  
+  
+class time_takens:
+  """
+  calculate taken time with time.time() 
+  
+  e.g.
+  time_takens = time_takens()
+  
+  1. time_takens.start() for start timer
+  2. time_takens.wrap(text:str="") for create wrap
+  3. time_takens.wait(time:float=3.0) (seconds) stop the timer for a specified time
+  In fact, it only subtracts that time from the end time, it doesn't stop.
+  4. time_takens.stop(time:float=3.0) .wait()'s alternate function
+  5. time_takens.get(mode:Literal="estimated_time", format:bool=False) returns the currently timer's time. if format, format with .wrap()
+  6. time_takens.finish(return_await:bool=False) finish timer. if return_await, returns waiting time (.await()'s total value)
+  7. time_takens.yield_mode() all function will be return texts 
+  
+  """
+  def __init__(self, yield_mode:bool=False):
+    self.langs = language("/modules/lib.py", "raw")["time_takens"]
+    self.yields = yield_mode
+    self.waited = 0.0
+    self.wraps = []
+  
+  
+  def start(self) -> (None | str):
+    """start timer"""
+    self.start_time = time.time()
+    if self.yields:
+      return self.langs["start_timer"]
+  
+  
+  def wrap(self, text:str="") -> (None | str):
+    """create wrap.
+    if you want to return text (w/o printout), use the .get()"""
+    now = time.time() - self.waited
+    estimated = now - self.start_time
+    
+    if text == "":
+      text = self.langs["wrap_text"]
+    else:
+      if text.count("{}") < 1:
+        text += "\nestimated time: {}"
+    
+    print(text.format(estimated))
+    self.wraps.append(estimated)
+    
+    if self.yields:
+      return text.format(estimated)
+  
+  
+  def wait(self, time:float=3.0) -> (None):
+    """stop the timer for specified time.
+    values must be seconds
+    """
+    self.waited += time
+    
+    
+  def stop(self, time:float=3.0) -> None:
+    """stop the timer for specified time.
+    values must be seconds.
+    
+    if self.wait() isn't Callable, it is not working
+    """
+    self.wait(time)
+  
+  
+  def get(self, mode:Literal["estimated_time", "wraps"]="estimated_time", format_text:bool=False, format_target:str="Currently estimated time: {}s") -> (float | str | List[float]):
+    """
+    mode args:
+    "estimated_time": return estimated_time. if format_text, format the format_target with estimated_time, and returns it. if not, returns estimated_time as is
+    "wraps": return currently warps (list)
+    
+    format_target must have {} at least one.
+    """
+    
+    if mode == "estimated_time":
+      now = time.time() - self.waited
+      estimated = now - self.start_time
+      
+      if format_text:
+        return format_target.format(estimated)
+      
+      return estimated
+    
+    elif mode == "wraps":
+      return self.wraps.sort()
+    
+    else:
+      raise ValueError("mode must be ['estimated_time' or 'wraps']. but {} were given.".format(mode))
+  
+  
+  def finish(self, round_down:int=5) -> str:
+    """
+    return_waits are discontinued. please remove it.
+    
+    finish the timer and returns time.
+    round_down are used for slice
+    """
+    now = time.time() - self.waited
+    estimated = now - self.start_time
+    
+    return str(estimated)[:round_down]
+  
+  
+  def resize_estimated(self, estimated:float=0.0):
+    return self.langs["resize_estimated"].format(estimated)
+  
+  
+  def __call__(self) -> str:
+    return "lunapy - SDPEM modules/lib.py:time_takens.__call__"
+
+
+class override_print:
+  """
+  override_print:.
+  Override print() function.
+
+  Usage:
+  0. initialize. variable = override_print()
+  1. execute variable.get_func(header:str)
+  """
+  
+  def __init__(self):
+    self.print = print
+  
+  def get_func(header:str, lower:str="", end:str="\n", print_after_build:bool=False, return_resized:bool=False) -> Callable:
+    """
+
+    Args:
+        header (str): text header
+        lower (str, optional): text lower. Defaults to "".
+        end (str, optional): print()'s end argument. Defaults to "\n".
+        print_after_build (bool, optional): run print() after build the text. Defaults to False.
+        return_resized (bool, optional): return resized text. Defaults to False.
+    """
+    h=str(header);l=str(lower);e=str(end)
+    
+    
+    if not print_after_build:
+      def override(*values:object, end=e, header=h, lower=l):
+        print(header, end="")
+        for x in values:
+          print(x, end="")
+        print(lower, end, end="")
+      
+    else:
+      def override(*values:object, end=e, header=h, lower=l):
+        text = header
+        for x in values:
+          text += str(x)
+        text += lower
+        
+        print(text, end=end)
+    
+    if return_resized:
+      def override(*values:object, end=e, header=h, lower=l):
+        text = header
+        for x in values:
+          text += str(x)
+        text += lower
+        
+        return text+end
+    
+    return override
+          
+      
+def is_exists(target:str, trigger:str=None):
+  """ text exist check. 
+  args: target=parse target
+  trigger=exist check target text"""
+  if trigger is None:
+    return False
+  
+  if trigger in target:
+    return True
+  else:
+    return False
+
+
+def error_handling_helper(locals:dict=None, filename:str=None) -> str:
+  """how to use:
+  raise ValueError(f"Exception. \nvariables save at {error_handling_helper(locals(), __name__)})
+  """
+  ctime = datetime.now().strftime("%Y%m%d%H%M%S")
+  fp = os.path.join(ROOT_DIR, "logs", f"{ctime}_{filename}.json")
+  jsoncfg.write(locals, fp)
+  return fp
+
+
+def int2bool(integer:int=0, trigger=[0, 1], else_block=False) -> bool:
+  if integer <= trigger[0]:
+    return False
+  elif integer >= trigger[1]:
+    return True
+  
+  else:
+    return else_block
+
+
+def save_img(path:str="relpath from shared.DB_PATH", image:Image.Image=None):
+  if os.path.exists(os.path.join(DB_PATH, path)):
+    print(f"Images already exist. ({path})")
+    backup = os.path.join(DB_PATH, path+".old.png")
+    if os.path.exists(backup):
+      os.remove(backup)
+    os.rename(os.path.join(DB_PATH, path), backup)
+  
+  image.save(
+    os.path.join(DB_PATH, path))
+  

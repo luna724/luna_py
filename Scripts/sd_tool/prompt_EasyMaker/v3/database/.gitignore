@@ -2,3 +2,4 @@
 !*.jsraw
 !database_ui.json
 !.gitignore
+!configs.json
