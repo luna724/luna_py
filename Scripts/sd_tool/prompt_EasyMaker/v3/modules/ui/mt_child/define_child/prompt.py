@@ -22,9 +22,17 @@ class Prompt(UiTabs):
     return 1
       
   def ui(self, outlet):
+    def select_ver(ver):
+      invisible = gr.update(visible=False)
+      visible = gr.update(visible=True)
+      if ver == "v3.0.3":
+        return visible, invisible
+      elif ver == "v3.0.6":
+        return invisible, visible
+      
     def get_ver_tabs(tabs:List[UiTabs], rtn_version:Literal["v3.0.3", "v3.0.6"]="v3.0.3") -> UiTabs:
       version_list = {
-        "v3.0.3": 1, "v3.0.6": 2 
+        "v3.0.3": 1, "v3.0.6": 306
       }
       
       trigger_i = version_list[rtn_version]
@@ -36,7 +44,7 @@ class Prompt(UiTabs):
     child_tabs = self.get_ui()
     
     selected_versions = gr.Dropdown(label="[β] Selected Version",choices=[
-      "v3.0.3"
+      "v3.0.3", "v3.0.6"
     ], value="v3.0.3", interactive=True)
     
     
@@ -46,4 +54,12 @@ class Prompt(UiTabs):
         with gr.Tab("v3.0.3"):
           get_ver_tabs(child_tabs, "v3.0.3")()
     
+    with gr.Column(visible=False) as v306_root:
+      with gr.Tabs():
+        with gr.Tab("v3.0.6"):
+          get_ver_tabs(child_tabs, "v3.0.6")()
     
+    
+    selected_versions.change(
+      select_ver, selected_versions, [v303_root, v306_root]
+    )

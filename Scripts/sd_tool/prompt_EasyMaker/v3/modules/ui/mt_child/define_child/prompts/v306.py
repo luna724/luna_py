@@ -8,17 +8,17 @@ from webui import js_manager, FormColumn, FormRow, show_state_from_checkbox, get
 from webui import UiTabs, get_lora_list, rp, browse_file, make_prompt_template, get_background_picture, resize_picture
 from modules.config.get import cfg as config
 
-class v303(UiTabs):
+class v306(UiTabs):
   l = language("/ui/mt_child/define/prompt.py", "raw")
   
   def __init__(self, path):
     super().__init__(path)
     
   def variable(self):
-    return [v303.l["tab_title"]]
+    return [v306.l["tab_title"]]
   
   def index(self):
-    return 1
+    return 306
       
   def ui(self, outlet):
     def update_controlnet_model_and_preprocessor(cnmodel):
@@ -29,7 +29,7 @@ class v303(UiTabs):
       
       return grp(models[cnmodel.upper()]), grp(pps[cnmodel.upper()])
       
-    l = v303.l
+    l = v306.l
     splitter = None
     
     with gr.Blocks():
@@ -65,7 +65,17 @@ class v303(UiTabs):
             with FormRow():
               cn_mode = gr.Dropdown(allow_custom_value=True, label=l["control_mode"], value=config.controlnet_main_processor[0], choices=config.controlnet_main_processor)
               cn_weight = gr.Slider(-1, 2.0, label=l["control_weight"], value=0.75, step=0.01)
-            
+            with gr.Row():
+                cn_cmode = gr.Radio(label=l["control_mode_balanced"], value=config.controlnet_control_modes[0], choices=config.controlnet_control_modes)
+                cn_img2img = gr.Checkbox(label=l["isImg2img"], value=False)
+            with gr.Row():
+              cn_model = gr.Dropdown(allow_custom_value=True, label=l["controlnet_model"], value=None, choices=[])
+              cn_preprocessor = gr.Dropdown(allow_custom_value=True, label=l["controlnet_preprocessor"], value=None, choices=[])
+                
+              cn_mode.change(
+                update_controlnet_model_and_preprocessor, cn_mode,
+                [cn_model, cn_preprocessor]
+              )
             cn_image = gr.Image(label=l["control_image"], type='pil', source="upload", width=512, height=512)
             
             # cn_start_draw = gr.Checkbox(label=l["start_draw"], value=False)
