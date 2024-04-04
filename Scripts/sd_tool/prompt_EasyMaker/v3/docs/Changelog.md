@@ -4,6 +4,8 @@
 Already Feature <br />- Delete Feature <br/>= NO Update Upcoming</details>
 
 ## v3β-10 ~ Generation update [WIP]
+
+
 \+ Define/Template: new args in ControlNet / Builtins
 \+ Define/Template: turn to loadable
 \+ prompt keyword deletion in tiny tweaks

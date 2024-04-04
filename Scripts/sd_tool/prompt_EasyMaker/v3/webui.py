@@ -49,7 +49,8 @@ load_js = {
 logging.basicConfig(filename="./script_log/latest.log", encoding='utf-8', level=logging.WARNING)
 
 # Tab Class
-class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
+class UiTabs: 
+  """ this code has inspirated by. ddpn08's rvc_webui """
   PATH = ui_path
   
   def __init__(self, path):
@@ -140,7 +141,7 @@ class UiTabs: # this code has inspirated by. ddpn08's rvc_webui
     
     return self.ui(outlet)
   
-def get_ui() -> List[UiTabs]: # this code too inspirated by. ddPn08's rvc-webui
+def get_ui() -> List[UiTabs]:
   tabs = []
   files = [file for file in os.listdir(UiTabs.PATH) if file.endswith(".py")]
   
@@ -159,7 +160,7 @@ def get_ui() -> List[UiTabs]: # this code too inspirated by. ddPn08's rvc-webui
   tabs = sorted([TabClass(file) for file, TabClass in tabs], key=lambda x: x.index())
   return tabs
   
-def create_ui(): # this code too inspirated by. ddPn08's rvc-webui
+def create_ui():
   block = gr.Blocks(title="lunapy / SD - PEM")
   
   with block:
