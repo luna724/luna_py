@@ -78,6 +78,7 @@ from modules import regional_prompter as rp
 from modules.delete_prompt_template import delete_selected
 from modules.versions.prompt import template_style
 from modules.lib import error_handling_helper
+from modules.config.get import cfg as config
 from modules.shared import ROOT_DIR, currently_version, currently_template_versionID, language
 import modules.shared as shared
 from PIL import Image
@@ -362,7 +363,7 @@ def save(
 def load(target, already_dname=None):
   from modules.generate import get_template
   lang = language("/modules/make_prompt_template.py", "raw")
-  if already_dname != "":
+  if already_dname != "" and not config.disable_display_name_exist_check:
     raise gr.Error(lang["name_exists"])
   
   d = get_template("full")[target]

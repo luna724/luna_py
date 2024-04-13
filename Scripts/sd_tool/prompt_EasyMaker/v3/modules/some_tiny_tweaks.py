@@ -5,7 +5,9 @@ import re
 from typing import List
 
 from modules.v1_component import delete_duplicate_comma
+from modules.config.get import cfg as config
 from modules.lib import re4prompt, multiple_replace
+from modules.generate import get_template
 
 def _2space(target, cp:bool, reverse:bool) -> str:
   v =[]
@@ -127,3 +129,50 @@ def keyword_updater(prompt, copy) -> str:
       ("%FACE%", "$FACE"), ("%LOCATION%", "$LOCATION")
     ]
   ))
+
+def randprompt(copy:bool, blacklist:List[str]=[], count:str=0, weights:float=1.0, weight_max:float=1.0, remove_duplicate:bool=True) -> str:
+  custom_weight_enable = weights != weight_max
+  
+  pass_word = ["<lora:", "$LORA", "$NAME", "$PROMPT", "$FACE", "$LOCATION", "$$HEADER", "$$LOWER", "$FACE2", "$LOCATION2", "$CLOTH", "$CLOTH2", "$ACCESSORY", "$VARIABLE", "%LORA%", "%CH_NAME%", "%CH_PROMPT%", "%FACE%", "%LOCATION%"] + ["$VARIABLE{}".format(x) for x in range(1, 11)]
+  spec_word = ["(", ")", "[", "]"]
+  
+  prompts = ""
+  word_list = []
+  for prompt in get_template("full").values():
+    if prompt["Key"] in blacklist:
+      continue
+    for x in prompt["Values"]["Prompt"].split(","):
+      word_list.append(x)
+  
+  if len(word_list) <= 0:
+    raise gr.Error("At least one template must be defined")
+  
+  for _ in range(count):
+    loop = True
+    while loop:
+      word = multiple_replace(random.choice(word_list),
+        [(sc, "") for sc in spec_word]
+      )
+      
+      if not word in "<lora:":
+        word = re.sub(
+          r"(:[0-9]+\.?[0-9]+)", "", word)
+
+      if word in pass_word or word in "<lora:":
+        continue
+      
+      if word in prompts.strip(", ") and remove_duplicate:
+        continue
+      
+      if custom_weight_enable:
+        weight = random.randrange(
+          weights*100, weight_max*100, step=1
+        ) / 100
+        
+        word = "("+word+":{})".format(weight)
+      
+      break
+    
+    prompts += word+", "
+    
+  return prompts.strip(", ")

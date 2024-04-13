@@ -6,7 +6,7 @@ import LGS.misc.jsonconfig as jsoncfg
 from modules.shared import ROOT_DIR, language
 from webui import js_manager, FormColumn, FormRow, show_state_from_checkbox, get_template
 from webui import UiTabs, get_lora_list, rp, browse_file, make_prompt_template, get_background_picture, resize_picture
-from modules.config.get import cfg as config
+from modules.config.get import cfg as config, vls as value
 
 class v306(UiTabs):
   l = language("/ui/mt_child/define/prompt.py", "raw")
@@ -45,69 +45,60 @@ class v306(UiTabs):
         
         splitter
         with gr.Group():
-          activate_adetailer = gr.Checkbox(label=l["activate_adetailer"], value=False)
+          activate_adetailer = gr.Checkbox(label=l["toggle_adetailer"], value=False)
           with gr.Accordion(label=l["adetailer_root"], visible=False) as adetailer_root:
             activate_adetailer.change(
               show_state_from_checkbox, activate_adetailer, adetailer_root
             )
-            with FormRow():
-              adetailer_prompt = gr.Textbox(label=l["adetailer_prompt"], lines=3)
-              adetailer_negative = gr.Textbox(label=l["adetailer_negative"], lines=3)
-          
+            with gr.Tabs():
+              with gr.Tab("1st"):
+                adetailer_model = gr.Dropdown(
+                  allow_custom_value=True, label=l["adetailer_models"],
+                  choices=config.adetailer_models, value=config.adetailer_models[0]
+                )
+                adetailer_prompt = gr.Textbox(label=l["adetailer_prompt"], lines=3)
+                adetailer_negative = gr.Textbox(label=l["adetailer_negative"], lines=3)
+              with gr.Tab("2nd"):
+                adetailer_model2 = gr.Dropdown(
+                  allow_custom_value=True, label=l["adetailer_models"],
+                  choices=config.adetailer_models, value=config.adetailer_models[0]
+                )
+                adetailer_prompt2 = gr.Textbox(label=l["adetailer_prompt"], lines=3)
+                adetailer_negative2 = gr.Textbox(label=l["adetailer_negative"], lines=3)
         
-        splitter
         with gr.Group():
-          activate_controlnet = gr.Checkbox(label=l["activate_controlnet"], value=False)
-          with gr.Accordion(label=l["controlnet_opts"], visible=False) as controlnet_root:
+          activate_controlnet = gr.Checkbox(label=l["activate_controlnet"], value=value.activate_controlnet)
+          with gr.Accordion(label=l["controlnet_opts"], visible=value.activate_controlnet) as controlnet_root:
             activate_controlnet.change(
               fn=show_state_from_checkbox, inputs=[activate_controlnet], outputs=[controlnet_root]
             )
-            with FormRow():
-              cn_mode = gr.Dropdown(allow_custom_value=True, label=l["control_mode"], value=config.controlnet_main_processor[0], choices=config.controlnet_main_processor)
-              cn_weight = gr.Slider(-1, 2.0, label=l["control_weight"], value=0.75, step=0.01)
-            with gr.Row():
-                cn_cmode = gr.Radio(label=l["control_mode_balanced"], value=config.controlnet_control_modes[0], choices=config.controlnet_control_modes)
-                cn_img2img = gr.Checkbox(label=l["isImg2img"], value=False)
-            with gr.Row():
-              cn_model = gr.Dropdown(allow_custom_value=True, label=l["controlnet_model"], value=None, choices=[])
-              cn_preprocessor = gr.Dropdown(allow_custom_value=True, label=l["controlnet_preprocessor"], value=None, choices=[])
-                
-              cn_mode.change(
-                update_controlnet_model_and_preprocessor, cn_mode,
-                [cn_model, cn_preprocessor]
-              )
-            cn_image = gr.Image(label=l["control_image"], type='pil', source="upload", width=512, height=512)
+            with gr.Tabs():
+              with gr.Tab("ControlNet Unit 0"):
+                with gr.Tab("Single Image"):
+                  cn_image = gr.Image(label=l["control_image"], type='pil', source="upload", width=512, height=512)
+                  
+                with gr.Row():
+                  low_vram_mode = gr.Checkbox(label=l["control_low_vram"], value=value.low_vram_mode)
+                  pixel_perfect = gr.Checkbox(label=l["pixel_perfect"], value=value.pixel_perfect)
+                  mask_upload = gr.Checkbox(label=l["mask_upload"], value=value.mask_upload)
+                  cn_img2img = gr.Checkbox(label=l["isImg2img"], value=value.cn_img2img, interactive=False)
+                with gr.Row():
+                  cn_type = gr.Dropdown(allow_custom_value=True, label=l["control_type"], value=value.cn_type, choices=config.controlnet_type)
+                  cn_weight = gr.Slider(-1, 2.0, label=l["control_weight"], value=0.75, step=0.01)
+                with gr.Row():
+                  cn_cmode = gr.Radio(label=l["control_mode_balanced"], value=config.controlnet_control_modes[0], choices=config.controlnet_control_modes)
+                  cn_resize = gr.Radio(label=l["controlnet_resize_mode"], value=config.controlnet_resize_mode[0], choices=config.controlnet_resize_mode)
+                  
+                with gr.Row():
+                  cn_model = gr.Dropdown(allow_custom_value=True, label=l["controlnet_model"], value=None, choices=[])
+                  cn_preprocessor = gr.Dropdown(allow_custom_value=True, label=l["controlnet_preprocessor"], value=None, choices=[])
+                    
+                  cn_type.change(
+                    update_controlnet_model_and_preprocessor, cn_type,
+                    [cn_model, cn_preprocessor]
+                  )
+                  
             
-            # cn_start_draw = gr.Checkbox(label=l["start_draw"], value=False)
-            # with gr.Accordion(label=l["start_draw"], open=True, visible=False) as draw_root:
-            #   cn_start_draw.change(
-            #     show_state_from_checkbox, cn_start_draw, draw_root
-            #   )
-            #   draw_image = gr.Image(
-            #     brush_color="#000000", mask_opacity=0.5, width=512, height=512, source="canvas",
-            #     tool="color-sketch", type="pil", label="",
-            #     show_download_button=False, interactive=True, value=resize_picture(None, 512, 512),
-            #     elem_classes="draw_bg", 
-            #   )
-            #   gr.Markdown("---\nchange background image")
-            #   with gr.Column():
-            #     with gr.Row():
-            #       files = gr.Textbox(label=l["draw_file"])
-            #       dfb = gr.Button(l["dfb"])
-            #     dfb.click(browse_file, outputs=files)
-            #     with gr.Row():
-            #       with gr.Row():
-            #         draw_w = gr.Slider(0, 1024, step=1, label=l["dw"], value=0)
-            #         draw_h = gr.Slider(0, 1024, step=1, label=l["dh"], value=0)
-            #       draw_color = gr.ColorPicker()
-            #   draw_new = gr.Button(l["draw_new"])
-            #   draw_new.click(
-            #     get_background_picture, inputs=[
-            #       files, draw_w, draw_h, draw_color
-            #     ], outputs=draw_image
-            #   )
-            
-        splitter
         with gr.Group():
           activate_rp = gr.Checkbox(label=l["activate_rp"], value=False)
           with gr.Accordion(label=l["rp_root"], open=True, visible=False) as rp_root:
@@ -251,7 +242,7 @@ class v306(UiTabs):
                   inputs=[
                     display_name, prompt, negative, adetailer_prompt,
                     adetailer_negative, activate_controlnet,
-                    cn_mode, cn_weight, cn_image, activate_hires,
+                    cn_type, cn_weight, cn_image, activate_hires,
                     upscaled, upscaler, denoise, hires_step, resolution,
                     sampler, activate_example, characters, lora, lora_weight,
                     name, character_prompt, hasextend,
@@ -286,7 +277,7 @@ class v306(UiTabs):
             outputs=[
                     status, display_name, prompt, negative, adetailer_prompt,
                     adetailer_negative, activate_controlnet,
-                    cn_mode, cn_weight, cn_image, activate_hires,
+                    cn_type, cn_weight, cn_image, activate_hires,
                     upscaled, upscaler, denoise, hires_step, resolution,
                     sampler, activate_example, characters, lora, lora_weight,
                     name, character_prompt, hasextend,

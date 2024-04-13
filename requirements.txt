@@ -8,8 +8,11 @@ librosa
 numpy
 sox
 gradio==3.41.2
+selenium==4.19.0
+urllib3==2.2.1
 eyed3
 mutagen
 tqdm
 soundfile
 pyperclip
+bs4

@@ -123,7 +123,7 @@
     "control_mode_balanced": "Control Mode",
     "controlnet_model": "ControlNet Models",
     "controlnet_preprocessor": "ControlNet Preprocessor",
-    "isImg2img": "is Img2img",
+    "isImg2img": "[WIP] is Img2img",
     "start_draw": "Start Drawing",
     "draw_file": "Target Filepath (if blank, will generate single color image)",
     "dfb": "Browse",
@@ -194,7 +194,14 @@
     "load_root": "Load from exist template",
     "refresh" :"Refresh",
     "load_target": "Load target Template",
-    "load": "Load"
+    "load": "Load",
+    "toggle_adetailer": "Activate ADetailer",
+    "adetailer_models": "ADetailer Model",
+    "control_type": "Control Type",
+    "control_low_vram": "Low VRAM",
+    "pixel_perfect": "Pixel Perfect",
+    "mask_upload": "Mask Upload",
+    "controlnet_resize_mode": "Resize Mode"
   },
 
   "/ui/mt_child/define/lora.py": {
@@ -355,6 +362,11 @@
       "ui_theme": "UI Theme",
       "apply_changes": "Apply changes",
       "restart": "[WIP] Restart UI"
+    },
+    "internal": {
+      "tab_title": "Internal",
+      "use_average_weights": "use Average weights in character exchanger",
+      "disable_display_name_exist_check": "Disable display name exists check in define child tabs in Load"
     }
   },
 
@@ -395,5 +407,18 @@
     "permanent": "Permanent Deletion",
     "status": "Status",
     "run": "Delete"
+  },
+
+  "/ui/stt_child/randprompt.py": {
+    "tab_title": "random Prompt maker",
+    "output_prompt": "Output Prompt",
+    "auto_copy":"Auto copy",
+    "infer": "Generate",
+    "blacklist_root": "[Experimental]: Blacklist",
+    "blacklist": "blacklist (ignore this templates)",
+    "range": "Prompt keyword count",
+    "weight_range": "Weight range min (if boths same, this feature will disabled.)",
+    "weight_range_max": "Weight range max (if boths same, this feature will disabled.)",
+    "dupe": "Remove duplicate prompt"
   }
 }

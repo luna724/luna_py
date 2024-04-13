@@ -4,13 +4,31 @@
 
   "__comment": "Internal",
   "use_average_weights": false,
+  "disable_display_name_exist_check": false,
 
   "__comment": "ControlNet UI Variables",
-  "controlnet_main_processor": ["OpenPose"],
-  "controlnet_control_modes": ["balanced", "My prompt is more important", "ControlNet is more important"],
+  "controlnet_type": ["All", "OpenPose", "Lineart"],
+  "controlnet_control_modes": ["Balanced", "My prompt is more important", "ControlNet is more important"],
   "controlnet_models": {
-    "OPENPOSE": ["OpenPose-version"]},
+    "OPENPOSE": ["v11p_sd15_openpose"],
+    "LINEART": ["v11p_sd15s2_lineart_anime"]},
   "controlnet_preprocessors": {
-    "OPENPOSE": ["OpenPose-full"]},
-  "eac": ""
+    "OPENPOSE": ["OpenPose-full"],
+    "LINEART": [""]},
+  "controlnet_resize_mode": ["Just resize", "Crop and Resize", "Resize and Fill"],
+  
+  "__comment": "ADetailer UI Variables",
+  "adetailer_models": ["face_yolov8n.pt", "face_yolov8s.pt", "hand_yolov8n.pt", "person_yolov8n-seg.pt", "person_yolov8s-seg.pt", "yolov8x-worldv2.pt", "mediapipe_face_full", "mediapipe_face_short", "mediapipe_face_mesh", "mediapipe_face_mesh_eyes_only", "None"],
+  "": "",
+
+
+  "__comment": "UI default values",
+  "ui_default_values": {
+    "low_vram_mode": false,
+    "cn_type": "OpenPose",
+    "pixel_perfect": false,
+    "mask_upload": false,
+    "cn_img2img": false,
+    "activate_controlnet": false
+  }
 }

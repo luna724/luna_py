@@ -63,7 +63,7 @@ class v303(UiTabs):
               fn=show_state_from_checkbox, inputs=[activate_controlnet], outputs=[controlnet_root]
             )
             with FormRow():
-              cn_mode = gr.Dropdown(allow_custom_value=True, label=l["control_mode"], value=config.controlnet_main_processor[0], choices=config.controlnet_main_processor)
+              cn_mode = gr.Dropdown(allow_custom_value=True, label=l["control_mode"], value=config.controlnet_type[0], choices=config.controlnet_type)
               cn_weight = gr.Slider(-1, 2.0, label=l["control_weight"], value=0.75, step=0.01)
             
             cn_image = gr.Image(label=l["control_image"], type='pil', source="upload", width=512, height=512)
