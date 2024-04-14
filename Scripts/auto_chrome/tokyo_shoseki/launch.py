@@ -19,10 +19,7 @@ import base64
 from launch import DRIVER_PATH, ROOT_DIR
 DRIVER_PATH:str;ROOT_DIR:str
 
-class stop_async:
-  when_video_pause_play_video = True
-
-
+class stop_async: when_video_pause_play_video = True
 def jsonread(path): 
   with open(path, "r", encoding="utf-8") as f: return json.load(f)
 
@@ -78,6 +75,9 @@ def launch(url=None) -> None:
   )
   print("Script started!\nautomatically moved to next video!")
   class end_time: text = None
+  asyncio.run(when_video_pause_play_video(wait.until(
+    EC.presence_of_element_located((By.ID, "pictPlayerTool-play"))
+  ), driver=driver))
   
   while True:
     print(f"Moved to next video.. (Previous video time: {end_time.text})")
