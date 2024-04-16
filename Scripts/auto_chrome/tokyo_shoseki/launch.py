@@ -24,18 +24,22 @@ def jsonread(path):
   with open(path, "r", encoding="utf-8") as f: return json.load(f)
 
 async def when_video_pause_play_video(pictPlayerToolPlay_Element:WebElement, driver: webdriver.Chrome):
-  """ 非同期的に再生ボタンを検出する関数 
-  止まった場合、自動的に再開する"""
-  def check(pictPlayerToolPlay_Element:WebElement):
-    if pictPlayerToolPlay_Element.get_attribute("data-value") == "play":
-      return False
-    elif pictPlayerToolPlay_Element.get_attribute("data-value") == "pause":
-      return True
-  
-  while stop_async.when_video_pause_play_video:
-    while check(pictPlayerToolPlay_Element):
-      continue
-    driver.execute_script("arguments[0].click();", pictPlayerToolPlay_Element)
+    """ 非同期的に再生ボタンを検出する関数 
+    "play" になった場合、自動的に再開する"""
+    
+    async def check():
+        """再生ボタンが "play" になるまで待機"""
+        while pictPlayerToolPlay_Element.get_attribute("data-value") != "play":
+            await asyncio.sleep(1)
+        await asyncio.sleep(1.25)
+    
+    while True:  # 無限ループ
+        await check()
+        driver.execute_script("arguments[0].click();", pictPlayerToolPlay_Element)
+        await asyncio.sleep(5)
+async def main(p, d):
+  await when_video_pause_play_video(p, d)
+
 
 def launch(url=None) -> None:
   data = jsonread(os.path.join(ROOT_DIR, "tokyo_shoseki", "login_data.json"))
@@ -75,9 +79,11 @@ def launch(url=None) -> None:
   )
   print("Script started!\nautomatically moved to next video!")
   class end_time: text = None
-  asyncio.run(when_video_pause_play_video(wait.until(
-    EC.presence_of_element_located((By.ID, "pictPlayerTool-play"))
-  ), driver=driver))
+  loop = asyncio.get_event_loop()
+  loop.create_task(main(wait.until(
+      EC.presence_of_element_located((By.ID, "pictPlayerTool-play"))
+  ), driver))
+  loop.run_forever()
   
   while True:
     print(f"Moved to next video.. (Previous video time: {end_time.text})")
