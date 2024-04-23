@@ -1,10 +1,12 @@
-@echo off
-cd ..\..\..\
-call .venv/Scripts/Activate
-cd ./Scripts/sd_tool/prompt_EasyMaker
+@REM @echo off
+@REM cd ..\..\..\
+@REM call .venv/Scripts/Activate
+@REM cd ./Scripts/sd_tool/prompt_EasyMaker
 
-cd /d ./v3
+@REM cd /d ./v3
 
-python launch.py --local --ui_ip 0.0.0.0
+@REM python launch.py --local --ui_ip 0.0.0.0
 
-pause
+@REM pause
+
+echo please read the README.md (if you needs single UI. use v3β.bat for launch)
