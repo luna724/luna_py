@@ -1,10 +1,10 @@
 import os
-import asyncio
 import random
 import time
 import json
-from bs4 import BeautifulSoup
+from math import sqrt
 from tqdm import tqdm
+from typing import Literal
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,34 +12,67 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.webdriver.common.action_chains import ActionChains
-from PIL import Image
-import io
-import base64
 from launch import DRIVER_PATH, ROOT_DIR
 DRIVER_PATH:str;ROOT_DIR:str
 
-class stop_async: when_video_pause_play_video = True
+class humanEvent:
+  @staticmethod
+  def reset():
+    return humanEvent()
+  
+  @staticmethod
+  def rand(min:float=0.01, max:float=10, step=0.01) -> float:
+    max *= 100
+    min *= 100
+    step *= 100
+    
+    v = random.randrange(int(min), int(max), step=int(step))
+    return (v / 100)
+  
+  def video_change_handler(self, seed:float):
+    # シードと実行数に応じて、time.sleep() を実行する
+    self.callCount += 1
+    cc = self.callCount
+    id_range = self.rand(1, 2.75, 0.01)
+    
+    if not cc <= self.rand(3, 12, 1):
+      # √cc == int の場合、増減幅を10倍にする
+      if sqrt(cc).is_integer():
+        id_range *= self.rand(10, 15, 0.01)
+    
+    # 簡易的に非簡略化
+    def r():
+      return self.rand(0.5, 1.5, 0.01)
+    seed *= (r() * r() * r())
+    seed *= r()
+    seed += r()
+    seed = seed - r() * r() - r() + r() + r() * sqrt(r()) + r() * r() - (10 * r())
+    seed = abs(seed)
+    
+    time.sleep((seed * id_range))
+    
+  def video_changed_handler(self, seed:float):
+    time.sleep((240 * seed))
+  
+  def while_loop_handler(self, seed:float):
+    return
+  
+  calllist ={
+    "vidChangeHandler": video_change_handler ,
+    "whileLoopHandler": while_loop_handler ,
+    "vidChangedHandler": video_changed_handler
+  }
+  def __init__(self, handler_type:Literal["vidChangeHandler", "whileLoopHandler", "vidChangedHandler"]):
+    self.seed = self.rand(0.01, 1, 0.01)
+    self.handler = handler_type
+    self.callCount = 0
+    
+  def __call__(self) -> None:
+    self.calllist[self.handler]((self.seed * self.rand(1, 2, 0.01)))
+    time.sleep(self.seed)
+    
 def jsonread(path): 
   with open(path, "r", encoding="utf-8") as f: return json.load(f)
-
-async def when_video_pause_play_video(pictPlayerToolPlay_Element:WebElement, driver: webdriver.Chrome):
-    """ 非同期的に再生ボタンを検出する関数 
-    "play" になった場合、自動的に再開する"""
-    
-    async def check():
-        """再生ボタンが "play" になるまで待機"""
-        while pictPlayerToolPlay_Element.get_attribute("data-value") != "play":
-            await asyncio.sleep(1)
-        await asyncio.sleep(1.25)
-    
-    while True:  # 無限ループ
-        await check()
-        driver.execute_script("arguments[0].click();", pictPlayerToolPlay_Element)
-        await asyncio.sleep(5)
-async def main(p, d):
-  await when_video_pause_play_video(p, d)
-
 
 def launch(url=None) -> None:
   data = jsonread(os.path.join(ROOT_DIR, "tokyo_shoseki", "login_data.json"))
@@ -67,7 +100,7 @@ def launch(url=None) -> None:
         main_input.send_keys(data["password"])
     
     btn_root = loginbox.find_element(By.CLASS_NAME, "button")
-    login_button = btn_root.find_element(By.ID, "loginBtn").click()
+    btn_root.find_element(By.ID, "loginBtn").click()
 
   # 移動を待機
   time.sleep((random.randrange(1, 200, step=1) / 100))
@@ -79,13 +112,12 @@ def launch(url=None) -> None:
   )
   print("Script started!\nautomatically moved to next video!")
   class end_time: text = None
-  loop = asyncio.get_event_loop()
-  loop.create_task(main(wait.until(
-      EC.presence_of_element_located((By.ID, "pictPlayerTool-play"))
-  ), driver))
-  loop.run_forever()
+  VideoChangeHandler = humanEvent("vidChangeHandler")
+  VideoChangedHandler = humanEvent("vidChangedHandler")
+  WhileLoopHandler = humanEvent("whileLoopHandler")
   
   while True:
+    VideoChangedHandler()
     print(f"Moved to next video.. (Previous video time: {end_time.text})")
     time.sleep(3)
     video_toolbar = wait.until(
@@ -96,9 +128,11 @@ def launch(url=None) -> None:
     #video_paused = 
     
     while current_time.text != end_time.text:
+      WhileLoopHandler()
       current_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration1")
       end_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration2")
     
+    VideoChangeHandler()
     clickable = wait.until(
       EC.element_to_be_clickable((By.ID, "pictPlayerTool-next"))
     ).click()
