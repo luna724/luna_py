@@ -89,7 +89,6 @@ def prompt_resizer(prompt:str="AnyPrompt", target_character:str="AnyLoRAKey", pr
         n = n.strip().strip(srp)
       
       weights = re.findall(r":(\d*\.\d+)", n)
-      print("weights: ", weights)
       weight = []
       if len(weights) > 0:
         for w in weights:

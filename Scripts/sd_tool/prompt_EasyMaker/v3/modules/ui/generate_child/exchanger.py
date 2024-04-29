@@ -32,15 +32,12 @@ class Exchanger(UiTabs):
       
       with gr.Blocks():
         with gr.Row():
-          strict_lora = gr.Checkbox(label=l["strict"], value=True)
-          auto_copy = gr.Checkbox(label=l["clip"], value=True)
-        with gr.Row():
           template_mode = gr.Checkbox(label=l["4template"])
         
       status = gr.Textbox(label=l["status"], interactive=False)
       run = gr.Button(l["run"], variant="primary")
       run.click(
        character_exchanger,
-        [mode, target, template, strict_lora, auto_copy, template_mode],
+        [mode, target, template, template_mode],
         [outs, status]
       )
