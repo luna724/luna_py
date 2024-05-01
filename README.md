@@ -48,7 +48,7 @@ Provide / Translated by. ChatGPT
 | SD Tools/dataset utils | - | [2024/01/16](https://github.com/luna724/luna_py/commit/7667148df490f441af885edc5eda8119b3907365) | × | ✅ | × | ✅ | MIT |
 | SD Tools/PEM | v3β-10 | [2024/04/29](https://github.com/luna724/luna_py/commit/6b5fc6323bddb582492f9b26ed548127aaf5d7cf) | × | ✅ | × | ✅ | AGPL-3.0 |
 | Prax config switcher | v1.2 | [2024/02/17](https://github.com/luna724/luna_py/commit/509e45a1cf714be9b31c6fcb95eb1e8d3c756be1) | ✅ | ✅ | ✅ | × | MIT |
-| LGs (Luna's Global Scripts) | - | [2024/04/04](https://github.com/luna724/luna_py/commit/70ca9a7a2a2916ff41e4addb1b9f2e44b8591ed5) | ✅ | × | × | ✅ | MIT |
+| LGS (Luna's Global Scripts) | - | [2024/04/04](https://github.com/luna724/luna_py/commit/70ca9a7a2a2916ff41e4addb1b9f2e44b8591ed5) | ✅ | × | × | ✅ | MIT |
 
 </details> 
 
@@ -57,7 +57,7 @@ Provide / Translated by. ChatGPT
 ## 依存関係
 
 <details><summary> FFmpeg </summary>
-<a href="https://ffmpeg.org"> <center> 公式サイト (ffmpeg.org) </center> </a>
+<a href="https://ffmpeg.org"> <center> 公式サイト (ffmpeg.org) </center> </a><br />
 <a href="https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z">  <center>  >> ダウンロード (win-7.0-full) <<  </center> </a>
 <br />
 <a><h4>必要とするモジュール</h4></a>
@@ -75,7 +75,7 @@ Provide / Translated by. ChatGPT
 </details>
 
 <details><summary> SoX </summary>
-<a href="https://sox.sourceforge.net"> <center> 公式サイト (sourceforge) </center> </a>
+<a href="https://sox.sourceforge.net"> <center> 公式サイト (sourceforge) </center> </a> <br />
 <a href="https://sourceforge.net/projects/sox/files/latest/download"> <center> >> ダウンロード (sourceforge) << </center></a>
 <br />
 <a><h4>必要とするモジュール</h4></a>
@@ -88,7 +88,7 @@ Provide / Translated by. ChatGPT
 </details>
 
 <details><summary> Windows OS </summary>
-<a href="https://www.microsoft.com/ja-jp/software-download/windows10"> <center> 公式サイト (microsoft) </center></a>
+<a href="https://www.microsoft.com/ja-jp/software-download/windows10"> <center> 公式サイト (microsoft) </center></a><br />
 <a href="https://www.microsoft.com/ja-jp/software-download/windows10ISO"> <center> >> ダウンロード << </center></a>
 <br />
 <a><h4>必要とするモジュール</h4></a>
