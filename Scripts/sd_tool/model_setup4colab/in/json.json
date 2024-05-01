@@ -1,6 +1,0 @@
-{
-	"Example": ["Model_Name", "Model_Type(Lora / sd.cp / vae / t_inv)", "Extension (safetensors, ckpt, pt, vae)", "url", "isNSFW str(0 / 1)", "CivitAI Site Name", ["Trigger Word"], "Sample Image URL", "Sample Image Generation Data", "CivitAI Site_URL"],
-	
-	"0001":["prcn_style","Lora","safetensors","https://civitai.com/api/download/models/19708","0","Kokkoro / コッコロ",["kokkoro"], "https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/308e9ddb-f7a9-4ad6-60ca-6dd290c9e700/width=2048/328115.jpeg","masterpiece, best quality, ultra-detailed, 1girl, kokkoro, white dress, detached sleeves, full body, forest, smile <lora:kokkoro_v1:1>,","https://civitai.com/models/24317/kokkoro"],
-	"0035":["yuni_prcn", "Lora", "safetensors", "https://civitai.com/api/download/models/100534", "0", "",[""],"","",""]
-}

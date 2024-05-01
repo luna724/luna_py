@@ -1,8 +1,8 @@
-cd ..\..\
+cd ..\..\..\
 
 call .venv/Scripts/activate
 
-cd ./Scripts/audio_tool
+cd ./Scripts/Archived/audio_tool
 
 python launch.py
 

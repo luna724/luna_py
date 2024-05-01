@@ -1,7 +1,6 @@
 cd ..\..\..\
 call .venv\Scripts\activate
-cd ./Scripts/sd_tool/model_setup4colab
+cd ./Scripts/Archived/audio_augmentation
 python main.py
 
-echo Done.
 pause

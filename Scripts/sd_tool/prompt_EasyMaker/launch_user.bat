@@ -1,4 +1,4 @@
-@REM @echo off
+@echo off
 @REM cd ..\..\..\
 @REM call .venv/Scripts/Activate
 @REM cd ./Scripts/sd_tool/prompt_EasyMaker
@@ -10,3 +10,4 @@
 @REM pause
 
 echo please read the README.md (if you needs single UI. use v3β.bat for launch)
+pause
