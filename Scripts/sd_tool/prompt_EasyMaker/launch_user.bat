@@ -9,5 +9,5 @@
 
 @REM pause
 
-echo please read the README.md (if you needs single UI. use v3β.bat for launch)
+echo please read the README.md (if you needs single UI. use launch_v3.bat for launch)
 pause

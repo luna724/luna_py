@@ -14,7 +14,6 @@ def dbfiles(fp) -> None:
     write({}, os.path.join(DB_PATH, fp))
     
 
-
 if __name__ == "__main__":
   #shared.args = arg_parse()
   

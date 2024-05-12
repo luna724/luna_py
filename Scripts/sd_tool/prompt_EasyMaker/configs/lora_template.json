@@ -1,0 +1,589 @@
+{
+    "laby": [
+        "v3",
+        {
+            "lora": "<lora:LabyElsword:1.0>",
+            "name": "laby",
+            "prompt": "short hair, pink hair, hair between eyes, bare shoulders, pink eyes",
+            "extend": ""
+        }
+    ],
+    "flan_usami": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "flandre scarlet",
+            "prompt": "blonde hair, side ponytail, red eyes, white soft hat, red hat bow, fang",
+            "extend": ""
+        }
+    ],
+    "flan_narugo": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "flandre_scarlet_touhou",
+            "prompt": "blonde_hair, wings, red_eyes, crystal, bangs, hat, one_side_up, flandre_scarlet_narugo",
+            "extend": ""
+        }
+    ],
+    "suwako_narugo": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "moriya_suwako_touhou",
+            "prompt": "blonde_hair, hat, ribbon, hair_ribbon",
+            "extend": ""
+        }
+    ],
+    "kokoro_narugo": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "hata_no_kokoro_touhou",
+            "prompt": "long_hair, pink_hair, pink_eyes, plaid, bow, expressionless, bangs, bowtie, very_long_hair, hair_between_eyes",
+            "extend": ""
+        }
+    ],
+    "reisa_narugo": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "reisa_bluearchive",
+            "prompt": "hair_ornament, star_\\(symbol\\), long_hair, ahoge, star_hair_ornament, twintails, low_twintails, multicolored_hair, bangs, purple_eyes, pink_hair, blue_hair, purple_hair",
+            "extend": ""
+        }
+    ],
+    "rumia_narugo": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "rumia_touhou",
+            "prompt": "blonde_hair, ribbon, short_hair, hair_ribbon, red_eyes, smile, open_mouth, red_ribbon",
+            "extend": ""
+        }
+    ],
+    "cirno_narugo": [
+        "v3",
+        {
+            "lora": "<lora:cirno_touhou:1.0>,",
+            "name": "cirno_touhou",
+            "prompt": "blue_hair, bow, hair_bow, short_hair, wings, ice, blue_bow, ice_wings, blue_eyes, bangs, hair between eyes, cirno_touhou",
+            "extend": ""
+        }
+    ],
+    "yakumo_chen": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "CHEN, YAKUMO_CHEN",
+            "prompt": "short_hair, brown_hair, animal_ears, brown_eyes, cat_ears, cat_tail, two_tails, single_earring, green hat",
+            "extend": ""
+        }
+    ],
+    "remilia_narugo": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "remilia_scarlet_touhou",
+            "prompt": "red_eyes, short_hair, bat_wings, wings, ribbon, hat, blue_hair, mob_cap, hair_between_eyes, hat_ribbon, bangs, red_ribbon",
+            "extend": ""
+        }
+    ],
+    "uzuki_narugo": [
+        "v3",
+        {
+            "lora": "<lora:?:1.0>",
+            "name": "uzuki_kantaicollection",
+            "prompt": "hair_ornament, crescent, long_hair, crescent_hair_ornament, ahoge, red_eyes, ribbon, serafuku, pink_hair, hair_ribbon, red_hair, rabbit_hair_ornament, very_long_hair, low-tied_long_hair, animal_ears, fang",
+            "extend": ""
+        }
+    ],
+    "clownpiece": [
+        "v3",
+        {
+            "lora": "<lora:clownpiece_touho:1.0>",
+            "name": "clownpiece",
+            "prompt": "jester cap, polka dot, pantyhose, fairy wings, star \\(symbol\\)",
+            "extend": ""
+        }
+    ],
+    "luna": [
+        "v3",
+        {
+            "lora": "<lora:ichika3:1.0>",
+            "name": "ichika",
+            "prompt": "multicolored hair, (light blue hair), light purple hair, dark blue eyes, hair between eyes, long hair, small twintails, cat ears, droopy cat ears ",
+            "extend": "10 years old, slim body, small breasts, light blue light refraction"
+        }
+    ],
+    "\u661f\u4e43\u4e00\u6b4c (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:HoshinoIchika:1.0>",
+            "name": "ichika",
+            "prompt": "absorbing long hair, swept bangs, black hair, grey eyes",
+            "extend": "small breasts, 14 years old, blue eyes, medium breasts, straight hair, long hair, dark blue hair",
+            "key": "\u661f\u4e43\u4e00\u6b4c (prsk)"
+        }
+    ],
+    "\u5929\u99ac\u54b2\u5e0c (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:TenmaSaki:1.0>",
+            "name": "saki",
+            "prompt": "blonde hair, pink hair, pink eyes, long hair, twintails",
+            "extend": "medium breasts, two colors hair, 14 years old",
+            "key": "\u5929\u99ac\u54b2\u5e0c (prsk)"
+        }
+    ],
+    "\u671b\u6708\u7a42\u6ce2 (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:HonamiV2:1.0>",
+            "name": "mhonami",
+            "prompt": "short hair, blue eyes, brown hair, hair ornament, hairclip",
+            "extend": "side-up, side tail, medium breasts, 15 years old",
+            "key": "\u671b\u6708\u7a42\u6ce2 (prsk)"
+        }
+    ],
+    "\u65e5\u91ce\u68ee\u5fd7\u6b69 (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:ShihoV3:1.0>",
+            "name": "hinoshiho",
+            "prompt": "green eyes, grey hair",
+            "extend": "straight hair, medium hair, small breasts, 14 years old",
+            "key": "\u65e5\u91ce\u68ee\u5fd7\u6b69 (prsk)"
+        }
+    ],
+    "\u82b1\u91cc\u307f\u306e\u308a (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:HanasatoMinori:1.0>",
+            "name": "minori",
+            "prompt": "brown hair, grey eyes, medium hair",
+            "extend": "medium breasts, 12 yeas old, small breasts, light eyes",
+            "key": "\u82b1\u91cc\u307f\u306e\u308a (prsk)"
+        }
+    ],
+    "\u6850\u8c37\u9065 (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:KiritaniHaruka:1.0>",
+            "name": "kiriharu",
+            "prompt": "short hair, blue eyes, blue hair",
+            "extend": "small breasts, 13 years old",
+            "key": "\u6850\u8c37\u9065 (prsk)"
+        }
+    ],
+    "\u6843\u4e95\u611b\u8389 (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:MomoiAiri:1.0>",
+            "name": "momoai",
+            "prompt": "pink hair, two side up, pink eyes, long hair, fang",
+            "extend": "14 years old, small breasts, twiltails",
+            "key": "\u6843\u4e95\u611b\u8389 (prsk)"
+        }
+    ],
+    "\u65e5\u91ce\u68ee\u96eb (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:Shizuku_H:1.0>",
+            "name": "shizuku",
+            "prompt": "long hair, blue hair, blue eyes, small breasts, mole, mole under mouth",
+            "extend": "",
+            "key": "\u65e5\u91ce\u68ee\u96eb (prsk)"
+        }
+    ],
+    "\u5c0f\u8c46\u6ca2\u3053\u306f\u306d (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:AzusawaKohane:1.0>",
+            "name": "kohane",
+            "prompt": "blonde hair, twintails, brown eyes, hair between eyes",
+            "extend": "medium hair, small breasts, twin tails, low twintails",
+            "key": "\u5c0f\u8c46\u6ca2\u3053\u306f\u306d (prsk)"
+        }
+    ],
+    "\u767d\u77f3\u674f (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:Anv2:1.0>",
+            "name": "shian",
+            "prompt": "long hair, black hair, blue hair, orange eyes, star (symbols), star hair ornament",
+            "extend": "hair between eyes, small breasts",
+            "key": "\u767d\u77f3\u674f (prsk)"
+        }
+    ],
+    "\u9cf3\u3048\u3080 (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:OtoriEmu:1.0>",
+            "name": "wdhemu",
+            "prompt": "pink eyes, pink hair",
+            "extend": "short hair, medium hair, 11 years old, school uniform, grey skirt",
+            "key": "\u9cf3\u3048\u3080 (prsk)"
+        }
+    ],
+    "\u8349\u8599\u5be7\u3005 (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:NotKyo:1.0>",
+            "name": "nene",
+            "prompt": "long hair, purple eyes, green hair, grey hair:0.6",
+            "extend": "1girl, small hair, medium hair, low twintails, low small braid, hair between eyes, 12 years old",
+            "key": "\u8349\u8599\u5be7\u3005 (prsk)"
+        }
+    ],
+    "\u5bb5\u5d0e\u594f (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:YoisakiKanade:1.0>",
+            "name": "yoka",
+            "prompt": "blue eyes, grey hair, blue hair, long hair, very long hair, hair between eyes",
+            "extend": "small breasts",
+            "key": "\u5bb5\u5d0e\u594f (prsk)"
+        }
+    ],
+    "\u671d\u6bd4\u5948\u307e\u3075\u3086 (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:mafuyu:1.0>",
+            "name": "amafuyu",
+            "prompt": "ponytail, scrunchie, high ponytail, long hair, shiny hair, purple hair, blue eyes",
+            "extend": "large breasts, medium breasts, 15 years old",
+            "key": "\u671d\u6bd4\u5948\u307e\u3075\u3086 (prsk)"
+        }
+    ],
+    "\u6681\u5c71\u745e\u5e0c (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:AkiyamaMizukiV1:1.0>",
+            "name": "mizuki",
+            "prompt": "red hair ribbon, pink eyes, small breasts, light pink hair, side ponytail, wavy hair",
+            "extend": "14 years old, pink hair, medium hair",
+            "key": "\u6681\u5c71\u745e\u5e0c (prsk)"
+        }
+    ],
+    "\u521d\u97f3\u30df\u30af (\u901a\u5e38)": [
+        "v4",
+        {
+            "lora": "<lora:hatsunemiku1:1.0>",
+            "name": "mikudef",
+            "prompt": "aqua hair, low twintails, long hair, aqua eyes",
+            "extend": "very long hair, low tails, medium breasts, small breasts, 14 years old, slim legs, slim, number, hair ornament",
+            "key": "\u521d\u97f3\u30df\u30af (\u901a\u5e38)"
+        }
+    ],
+    "\u30ec\u30aa\u30cb\u30df\u30af": [
+        "v4",
+        {
+            "lora": "<lora:hatsune_miku_project_sekai_v1:1.0>",
+            "name": "leomiku",
+            "prompt": "short sleeves, green hair, pink hair",
+            "extend": "twintails, long hair, small breasts, 11 years old, guitar hair ornament",
+            "key": "\u30ec\u30aa\u30cb\u30df\u30af"
+        }
+    ],
+    "\u30d3\u30d3\u30df\u30af (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:hatsune_miku_project_sekai_v1:1.0>",
+            "name": "vivimiku",
+            "prompt": "blue skirt",
+            "extend": "medium hair, small breasts, 13 years old",
+            "key": "\u30d3\u30d3\u30df\u30af (prsk)"
+        }
+    ],
+    "\u30c0\u30b7\u30e7\u30df\u30af (prsk)": [
+        "v4",
+        {
+            "lora": "<lora:hatsune_miku_project_sekai_v1:1.0>",
+            "name": "wondermiku",
+            "prompt": "red dress, aqua hair, twintails",
+            "extend": "low twintails, long hair, very long hair, small breasts, 11 years old",
+            "key": "\u30c0\u30b7\u30e7\u30df\u30af (prsk)"
+        }
+    ],
+    "25\u30df\u30af": [
+        "v4",
+        {
+            "lora": "<lora:hatsune_miku_project_sekai_v1:1.0>",
+            "name": "nigomiku",
+            "prompt": "heterochromia, aqua eyes, pink eyes, grey hair, long hair, twintails",
+            "extend": "",
+            "key": "25\u30df\u30af"
+        }
+    ],
+    "\u521d\u97f3\u30df\u30af (racing2022)": [
+        "v4",
+        {
+            "lora": "<lora:hatsunemiku1:1.0>",
+            "name": "racing2022",
+            "prompt": "aqua hair, aqua eyes, bodysuit",
+            "extend": "very long hair, low tails, medium breasts, small breasts, 14 years old, slim legs, slim, number, hair ornament",
+            "key": "\u521d\u97f3\u30df\u30af (racing2022)"
+        }
+    ],
+    "\u685c\u30df\u30af": [
+        "v4",
+        {
+            "lora": "<lora:hatsunemiku1:1.0>",
+            "name": "sakuramiku",
+            "prompt": "pink hair, low twintails, long hair, pink eyes",
+            "extend": "very long hair, low tails, medium breasts, small breasts, 14 years old, slim legs, slim, number, sakura hair ornament, pastel pink hair",
+            "key": "\u685c\u30df\u30af"
+        }
+    ],
+    "\u93e1\u97f3\u30ea\u30f3": [
+        "v4",
+        {
+            "lora": "<lora:kagamine_rin:1.0>",
+            "name": "Kagamine Rin",
+            "prompt": "number tattoo, short hair, bow",
+            "extend": "yellow hair, gold hair, emerald eyes, hair ornament, 11 years old, small breasts",
+            "key": "\u93e1\u97f3\u30ea\u30f3"
+        }
+    ],
+    "\u30d0\u30fc\u30d0\u30e9 (\u539f\u795e)": [
+        "v4",
+        {
+            "lora": "<lora:barbara1:1.0>",
+            "name": "barbaradef",
+            "prompt": "beige hair, blue eyes, medium hair, twintails",
+            "extend": "medium breasts, 13 years old, white tights",
+            "key": "\u30d0\u30fc\u30d0\u30e9 (\u539f\u795e)"
+        }
+    ],
+    "\u306a\u3072\u30fc\u3060 (\u539f\u795e)": [
+        "v4",
+        {
+            "lora": "<lora:nahida1:1.0>",
+            "name": "nahidadef",
+            "prompt": "lustrous skin, silver hair, side ponytail, long hair, green eyes, medium breasts, cape",
+            "extend": "10 years old, small breasts",
+            "key": "\u306a\u3072\u30fc\u3060 (\u539f\u795e)"
+        }
+    ],
+    "\u30af\u30ec\u30fc (\u539f\u795e)": [
+        "v4",
+        {
+            "lora": "<lora:klee1:1.0>",
+            "name": "kleedef",
+            "prompt": "beige hair, red eyes, low ponytails, medium hair",
+            "extend": "10 years old, small breasts, klee",
+            "key": "\u30af\u30ec\u30fc (\u539f\u795e)"
+        }
+    ],
+    "\u535a\u9e97\u970a\u5922": [
+        "v4",
+        {
+            "lora": "<lora:ReimuLORA:1.0>",
+            "name": "hakurei reimu",
+            "prompt": "black hair, red eyes",
+            "extend": "",
+            "key": "\u535a\u9e97\u970a\u5922"
+        }
+    ],
+    "\u53e4\u660e\u5730\u3055\u3068\u308a (narugo)": [
+        "v4",
+        {
+            "lora": "<lora:komeiji_satori_narugo:1.0>",
+            "name": "komeiji_satori_touhou",
+            "prompt": "heart, short_hair, hairband, pink_hair, third_eye, pink_eyes, blush, hair_ornament, heart_hair_ornament",
+            "extend": "",
+            "key": "\u53e4\u660e\u5730\u3055\u3068\u308a (narugo)"
+        }
+    ],
+    "\u53e4\u660e\u5730\u3053\u3044\u3057 (narugo)": [
+        "v4",
+        {
+            "lora": "<lora:komeiji_koishi_narugo:1.0>",
+            "name": "komeiji_koishi_touhou",
+            "prompt": "hat, green_eyes, black_headwear, short_hair, green_hair, ribbon, bow, hair between eyes",
+            "extend": "",
+            "key": "\u53e4\u660e\u5730\u3053\u3044\u3057 (narugo)"
+        }
+    ],
+    "\u30ad\u30e3\u30eb (\u30d7\u30ea\u30b3\u30cd)": [
+        "v4",
+        {
+            "lora": "<lora:karyl_v1:1.0>",
+            "name": "karyl",
+            "prompt": "two-tone hair, low twintails, white veil, hairband, ((green eyes, fang, cat tail, black hair, cat ears)), karyldd",
+            "extend": "",
+            "key": "\u30ad\u30e3\u30eb (\u30d7\u30ea\u30b3\u30cd)"
+        }
+    ],
+    "\u30b3\u30c3\u30b3\u30ed (\u30d7\u30ea\u30b3\u30cd)": [
+        "v4",
+        {
+            "lora": "<lora:kokkoro_v1:1.0>",
+            "name": "kokkoro",
+            "prompt": "hair ornament, 11 years old",
+            "extend": "silver hair, short hair, green eyes, 10 years old, rori, small breasts, flower hair ornament",
+            "key": "\u30b3\u30c3\u30b3\u30ed (\u30d7\u30ea\u30b3\u30cd)"
+        }
+    ],
+    "\u30ce\u30be\u30df (\u30d7\u30ea\u30b3\u30cd)": [
+        "v4",
+        {
+            "lora": "<lora:nozomi:1.0>",
+            "name": "nozomi",
+            "prompt": "nozomi_routine",
+            "extend": "brown hair, twin tails, long hair, medium breasts, small breasts, 14 years old",
+            "key": "\u30ce\u30be\u30df (\u30d7\u30ea\u30b3\u30cd)"
+        }
+    ],
+    "\u30cd\u30cd\u30ab (\u30d7\u30ea\u30b3\u30cd)": [
+        "v4",
+        {
+            "lora": "<lora:neneka1:1.0>",
+            "name": "nenekadef",
+            "prompt": "pink hair, twintails, small breasts",
+            "extend": "medium hair",
+            "key": "\u30cd\u30cd\u30ab (\u30d7\u30ea\u30b3\u30cd)"
+        }
+    ],
+    "\u30e6\u30cb (\u901a\u5e38) (\u3077\u308a\u3053\u306d)": [
+        "v4",
+        {
+            "lora": "<lora:yuni-v1:1.0>",
+            "name": "(yunischool:1.15)",
+            "prompt": "yuni, long hair, blush, braid, twin braids, bangs, hair between eyes, small breasts, petite, teen",
+            "extend": "purple eyes, brown hair, st. theresa's girls academy school uniform, long sleeves, hat, bow, school uniform, coat, black headwear, beret, blue bow, hooded coat, skirt, pantyhose",
+            "key": "\u30e6\u30cb (\u901a\u5e38) (\u3077\u308a\u3053\u306d)"
+        }
+    ],
+    "\u30e6\u30cb (\u4f53\u64cd\u670d) (\u3077\u308a\u3053\u306d)": [
+        "v4",
+        {
+            "lora": "<lora:yuni-v1:1.0>",
+            "name": "(yunigym:1.15)",
+            "prompt": "yuni, long hair, blush, braid, twin braids, bangs, hair between eyes, small breasts, petite, teen",
+            "extend": "purple eyes, brown hair, shirt, hat, white shirt, short sleeves, shorts, white headwear, gym uniform, blue shorts",
+            "key": "\u30e6\u30cb (\u4f53\u64cd\u670d) (\u3077\u308a\u3053\u306d)"
+        }
+    ],
+    "\u30e6\u30cb (\u73fe\u5b9f\u4e16\u754c) (\u3077\u308a\u3053\u306d)": [
+        "v4",
+        {
+            "lora": "<lora:yuni-v1:1.0>",
+            "name": "(yunireal:1.175)",
+            "prompt": "yuni, long hair, blush, braid, twin braids, bangs, hair between eyes, small breasts, petite, teen",
+            "extend": "purple eyes, brown hair, skirt, school uniform, necktie, cardigan, green necktie",
+            "key": "\u30e6\u30cb (\u73fe\u5b9f\u4e16\u754c) (\u3077\u308a\u3053\u306d)"
+        }
+    ],
+    "\u30ad\u30e7\u30a6\u30ab (\u30d7\u30ea\u30b3\u30cd)": [
+        "v4",
+        {
+            "lora": "<lora:kyouka_prcn:1.0>",
+            "name": "kyouka",
+            "prompt": "halloween, light purple hair, twintails, long hair, 10 years old, yellow eyes",
+            "extend": "purple hair, rori, small breasts",
+            "key": "\u30ad\u30e7\u30a6\u30ab (\u30d7\u30ea\u30b3\u30cd)"
+        }
+    ],
+    "\u30b7\u30ed\u30b3 (\u30d6\u30eb\u30a2\u30ab)": [
+        "v4",
+        {
+            "lora": "<lora:shiroko1:1.0>",
+            "name": "shirokodef",
+            "prompt": "silver hair, aqua eyes, short hair, animal ear, small breasts",
+            "extend": "",
+            "key": "\u30b7\u30ed\u30b3 (\u30d6\u30eb\u30a2\u30ab)"
+        }
+    ],
+    "\u30db\u30b7\u30ce (\u30d6\u30eb\u30a2\u30ab)": [
+        "v4",
+        {
+            "lora": "<lora:hoshino1:1.0>",
+            "name": "hoshinodef",
+            "prompt": "light pink hair, very long hair, long hair, ahoge, heterochromia, orange eyes, blue eyes",
+            "extend": "",
+            "key": "\u30db\u30b7\u30ce (\u30d6\u30eb\u30a2\u30ab)"
+        }
+    ],
+    "\u30df\u30c9\u30ea (\u30d6\u30eb\u30a2\u30ab)": [
+        "v4",
+        {
+            "lora": "<lora:midori1:1.0>",
+            "name": "midoridef",
+            "prompt": "beige hair, green eyes, short hair, small breasts, side mini ponytail, cat ear green bandana",
+            "extend": "",
+            "key": "\u30df\u30c9\u30ea (\u30d6\u30eb\u30a2\u30ab)"
+        }
+    ],
+    "\u30e2\u30e2\u30a4 (\u30d6\u30eb\u30a2\u30ab)": [
+        "v4",
+        {
+            "lora": "<lora:momoi1:1.0>",
+            "name": "momoidef",
+            "prompt": "",
+            "extend": "",
+            "key": "\u30e2\u30e2\u30a4 (\u30d6\u30eb\u30a2\u30ab)"
+        }
+    ],
+    "\u30c1\u30ce - \u3054\u3061\u3046\u3055": [
+        "v4",
+        {
+            "lora": "<lora:Gochuumon_all:1.0>",
+            "name": "kafuu chino",
+            "prompt": "long hair, blue eyes, hair between eyes, light blue hair",
+            "extend": "rabbit house uniform",
+            "key": "\u30c1\u30ce - \u3054\u3061\u3046\u3055"
+        }
+    ],
+    "\u30b3\u30b3\u30a2 - \u3054\u3061\u3046\u3055": [
+        "v4",
+        {
+            "lora": "<lora:Gochuumon_all:1.0>",
+            "name": "hoto cocoa",
+            "prompt": "medium hair, straight hair, purple eyes, hair between eyes, brown hair, sakura hair ornament",
+            "extend": "rabbit house uniform",
+            "key": "\u30b3\u30b3\u30a2 - \u3054\u3061\u3046\u3055"
+        }
+    ],
+    "\u30b7\u30e3\u30ed - \u3054\u3061\u3046\u3055": [
+        "v4",
+        {
+            "lora": "<lora:Gochuumon_all:1.0>",
+            "name": "kirima sharo",
+            "prompt": "medium hair, green eyes, gold hair",
+            "extend": "rabbit house uniform",
+            "key": "\u30b7\u30e3\u30ed - \u3054\u3061\u3046\u3055"
+        }
+    ],
+    "\u3081\u3050\u307f - \u3054\u3061\u3046\u3055": [
+        "v4",
+        {
+            "lora": "<lora:Gochuumon_all:1.0>",
+            "name": "natsu megumi",
+            "prompt": "medium hair, red eyes, dark red hair, low-twintails, 9 years old",
+            "extend": "rabbit house uniform",
+            "key": "\u3081\u3050\u307f - \u3054\u3061\u3046\u3055"
+        }
+    ],
+    "\u30de\u30e4 - \u3054\u3061\u3046\u3055": [
+        "v4",
+        {
+            "lora": "<lora:Gochuumon_all:1.0>",
+            "name": "jouga maya",
+            "prompt": "short hair, yellow eyes, dark blue hair, 10 years old",
+            "extend": "rabbit house uniform",
+            "key": "\u30de\u30e4 - \u3054\u3061\u3046\u3055"
+        }
+    ],
+    "\u306a\u30fc\u3093 (rcake)": [
+        "v4",
+        {
+            "lora": "<lora:Ena:1.0>",
+            "name": "iom",
+            "prompt": "brown hair, red eyes, brown eyes, short hair",
+            "extend": "bow, medium breasts, 14 years old",
+            "key": "\u306a\u30fc\u3093 (rcake)"
+        }
+    ]
+}
