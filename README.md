@@ -33,6 +33,7 @@ Provide / Translated by. ChatGPT
 | LightChanger | Windowsの明るさを変更する。 | v1.1 |
 | wav2mp3 Converter | 音声フォーマットを変換するツール。 多分動かない | v1.1.0 |
 | SD Tools | Stable-Diffusion に関する外部ツールを内蔵。 Audio Tools とは違い All in one ではない | - |
+| SD-PEM | SD Tools/prompt_EasyMaker の略称。 <br />主に様々なテンプレに沿ってプロンプトを効率的に形成するもの <br/>現在luna_pyで活発的に開発されている唯一のモジュールだったので独立した |
 
 <details> <summary> 詳細なリスト </summary>
 
@@ -46,7 +47,7 @@ Provide / Translated by. ChatGPT
 | LightChanger | v1.1 | [2024/01/09](https://github.com/luna724/luna_py/commit/2ddbe38f0ced862d047350fb85b3fbe38668c9cd) | ✅ | × | ✅ | × | MIT |
 | WAV2MP3 Converter | v1.1.0 | [2023/08/11](https://github.com/luna724/luna_py/commit/b2f631256a3bc167476b1b444e337c05fbe6f233) | ✅ | × | ✅ | × | MIT |
 | SD Tools/dataset utils | - | [2024/01/16](https://github.com/luna724/luna_py/commit/7667148df490f441af885edc5eda8119b3907365) | × | ✅ | × | ✅ | MIT |
-| SD Tools/PEM | v3β-10 | [2024/04/29](https://github.com/luna724/luna_py/commit/6b5fc6323bddb582492f9b26ed548127aaf5d7cf) | × | ✅ | × | ✅ | AGPL-3.0 |
+| SD-PEM | β4.0-CE-preview | [2024/05/13](https://github.com/luna724/luna_py/commit/bee0413d98b6ad522ccfa73a6a7986a68e87ff99) | ✅ | ✅ | × | ✅ | AGPL-3.0 |
 | Prax config switcher | v1.2 | [2024/02/17](https://github.com/luna724/luna_py/commit/509e45a1cf714be9b31c6fcb95eb1e8d3c756be1) | ✅ | ✅ | ✅ | × | MIT |
 | LGS (Luna's Global Scripts) | - | [2024/04/04](https://github.com/luna724/luna_py/commit/70ca9a7a2a2916ff41e4addb1b9f2e44b8591ed5) | ✅ | × | × | ✅ | MIT |
 
