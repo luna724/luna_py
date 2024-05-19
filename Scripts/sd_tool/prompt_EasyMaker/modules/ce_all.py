@@ -44,9 +44,9 @@ class Character_Exchanger(generatorTypes):
       raise ValueError("LoRA Template cannot found.")
     
     loraname = re.findall(r"<lora:(.*):", target)[0]
-    weight = self.lib.re4prompt(rf"<lora:{loraname}:(.*)>", prompt)[0]
+    lora_weight = self.lib.re4prompt(rf"<lora:{loraname}:(.*)>", prompt)[0]
     
-    prompt = re.sub(rf"<lora:{loraname}:{weight}>", "$LORA", prompt, count=1)
+    prompt = re.sub(rf"<lora:{loraname}:{lora_weight}>", "$LORA", prompt, count=1)
     key, _, name, ch_prompt, extend = self.generate_common.obtain_lora_list.manual(True, key)
     target_key, target_lora, target_name, target_prompt, target_extend = self.generate_common.obtain_lora_list.manual(
       True, lora_template
@@ -131,7 +131,7 @@ class Character_Exchanger(generatorTypes):
         prompt = prompt.replace(", , ", ", ")
     
       return prompt, f"converted: -> Template mode"
-    prompt = self.generation_finalizer.finalize(prompt, (target_key, (weight, 1.0)))
+    prompt = self.generation_finalizer.finalize(prompt, (target_key, (lora_weight, 1.0)))
     
     while prompt.count(", , ") >= 1:
       prompt = prompt.replace(", , ", ", ")

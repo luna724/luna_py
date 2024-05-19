@@ -9,57 +9,77 @@ class _finalizer:
     self.lib = Importer("modules.lib")
     self.config = Importer("modules.config.get")
     self.get_lora = self.generate_common.obtain_lora_list
-    self.getAny = {
+    self.getAny = { 
       "%LORA%|$LORA|$$LORA": "?AnyLoRA",
       "%CH_NAME%|$NAME|$$NAME": "?AnyName",
       "%CH_PROMPT%|$PROMPT|$$_PROMPT": "?AnyPrompt",
       "$$EXTEND": "?AnyExtend",
       "$$_STYLE": "?AnyStyle"
     }
+    """getAny に関する注意事項 
+    
+    ?AnyPrompt を用いた変換は Character Exchanger 上ではサポートされていません。
+    キャラプロンプトは CE 側がひとつづつ入れ替えを行うためです。
+    CEのコンフィグ /system/ce/disable_stable_name_checking をオンにすると
+    ?AnyPrompt で変換可能になる場合もあります
+    """
+    
     self.script_word = ["#PASS"]
+    
   @staticmethod
   def convert_weight(piece:str, weight:float | int) -> str:
-    weights = re.findall(r":(\d*\.\d+)", piece)
-    if len(weights) >= 1:
-      w = weights[0]
-    else:
-      return piece
-    
-    return piece.replace(w, weight, 1)
+    return re.sub(
+      r":(\d+\.\d+)", f"{weight}", piece, count=1
+    )
   
-  def convert_method_to_any_version(self, prompt:str, updateTo: Literal["v4", "v3-stable"]="v3-stable") -> str:
-    """制約:
-    入力に必要な型
-    1. キーはウェイトを持っていない
-    2. キーは単語ごとに区切られている
+  @staticmethod
+  def delete_prompt_trigger(piece:str, get_item:bool=False) -> str:
+    item = [
+      "[", "]", "(", ")", ":"
+    ]
+    re_pattern = [
+      r"(:\d+\.\d+)"
+    ]
     
-    返り値の規則性
-    1. プロンプトをワードごとに切り、x, ... の型で返す
-    """
-    converting = []
-    for i, value in enumerate(prompt.split(",")):
-      item = None
-      value = value.strip()
-      for any, v in self.getAny.items():
-        if value in any.split("|"):
-          item = v
-        else:
-          continue
-      if item is None:
-        continue
+    if get_item:
+      return (item, re_pattern)
+    
+    loop = -5000
+    while any(s in piece for s in item):
+      loop += 1
+      for i in item:
+        for r in re_pattern:
+          piece = piece.strip(i)
+          piece = re.sub(r, "", piece)
       
-      converted = ver[item]
-      converting.append((i, converted))
+      if loop >= 0:
+        break
     
-    prompts = [x.strip() for x in prompt.split(",")]
-    for (i, t) in converting:
-      prompts[i] = t
-    
-    prompt = ""
-    for x in prompts:
-      prompt += f"{x}, "
-    return prompt.strip(", ")
+    return piece
   
+  def convert_method_to_compatibility_version(self, prompt:str) -> str:
+    # Convert list 
+    conv = self.getAny
+    prompts = [
+      x.strip() for x in prompt.split(",")
+    ]
+    via_prompts = prompts
+    
+    for index, p in enumerate(prompts):
+      for t, converted in conv.items():
+        values = t.split("|")
+        
+        # Weightなどを削除
+        via_p = self.delete_prompt_trigger(p)
+        if via_p in values:
+          # via_prompts の中身を返還し、作成されるプロンプトを変更する
+          via_prompts[index] = converted
+    
+    print("Converted prompts: ", via_prompts)
+    string = ""
+    for p in via_prompts:
+      string += f"{p}, "
+    return string.strip(", ")
   
   def update_legacy_method(self, prompt:str, updateTo:Literal["v4", "v3-stable"]="v3-stable") -> str:
     """制約:
@@ -131,12 +151,13 @@ class _finalizer:
     else:
       name = f"{name}:{weight[1]}"
     keyValue = [
-      ("$LORA", lora), ("$NAME", name), ("$PROMPT", ch_prompt)
+      ("?AnyLoRA", weight_lora), ("?AnyName", name), ("?AnyPrompt", ch_prompt)
     ]
     
     # update methodVer
     if methodVer != "v3-stable":
-      keyValue.append(("?AnyExtend", extend),("?AnyStyle", style))
+      keyValue.append(("?AnyExtend", extend))
+      keyValue.append(("?AnyStyle", style))
     
     # 適用
     p = self.lib.multiple_replace(prompt, keyValue)
@@ -157,8 +178,9 @@ class _finalizer:
     prompt = self.delete_duplicate_commas(
                 self.applicate_keyword( # update, applicate lora, applicate keyword, delete comma の順で処理
                   self.applicate_lora_template(
-                    #self.update_legacy_method(prompt, version),
-                      prompt,
+                    self.convert_method_to_compatibility_version(
+                      prompt
+                    ),
                       methoddata[0], methoddata[1], version)[0]))
     
     prompts = []

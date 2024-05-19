@@ -11,5 +11,10 @@
     {
       "hqt": "<lora:masusu_breast:0.6125>, masterpiece, (best quality:0.7), [<lora:Detail_tweaker_lora:0.25>]"
     }
+  },
+  "/system": {
+    "ce": {
+      "disable_stable_name_checking": false
+    }
   }
 }
