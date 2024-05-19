@@ -74,6 +74,14 @@ class _lib:
     """IndexError を回避しながらリストから複数の値の取得を行い、tuple形式で返す"""
     return tuple(_lib.get_index(input_list, key, rtl_if_fail=if_fail_value) for key in indexes_list)
 
+  @staticmethod
+  def multiple_replace(str: str, replace_key: list =[("src", "rpl")]):
+    
+    for x in replace_key:
+      str = str.replace(x[0], x[1])
+    
+    return str
+  
 class lib(Importable):
   def __init__(self):
     return

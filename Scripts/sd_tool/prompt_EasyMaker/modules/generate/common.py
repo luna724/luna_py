@@ -16,7 +16,7 @@ class obtain_lora_list(collectorTypes):
       os.path.join(self.cfg_root, "lora_template.json")
     )
   
-  def manual(self, parse:bool=False, name:str=None) -> Tuple[str, str, str, str, str] | List[str]:
+  def manual(self, parse:bool=False, name:str=None, method:Literal["v3", "v4.0"]="v3") -> Tuple[str, str, str, str, str] | List[str]:
     self.initialize()
     rtl = list(self.lora_raw.keys())
     
@@ -25,7 +25,11 @@ class obtain_lora_list(collectorTypes):
         raise ValueError(f"Failed. {name} isn't in lora_list")
       data = self.lora_raw[name][1]
       
-      return name, data["lora"], data["name"], data["prompt"], data["extend"]
+      if method == "v3":
+        return name, data["lora"], data["name"], data["prompt"], data["extend"]
+      elif method == "v4.0":
+        return name, data["lora"], data["name"], data["prompt"], data["extend"], None
+      
     
     return rtl
   

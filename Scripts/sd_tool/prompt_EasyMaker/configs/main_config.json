@@ -2,7 +2,14 @@
   "script_version": {
     "call_api":
     {
-      "ce": "v3-stable"
+      "ce": "v3-stable",
+      "finalizer": "v3-stable"
+    }
+  },
+  "user_variable": {
+    "prompt":
+    {
+      "hqt": "<lora:masusu_breast:0.6125>, masterpiece, (best quality:0.7), [<lora:Detail_tweaker_lora:0.25>]"
     }
   }
 }

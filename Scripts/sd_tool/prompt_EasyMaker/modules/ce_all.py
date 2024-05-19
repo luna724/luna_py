@@ -131,7 +131,7 @@ class Character_Exchanger(generatorTypes):
         prompt = prompt.replace(", , ", ", ")
     
       return prompt, f"converted: -> Template mode"
-    #prompt = self.generation_finalizer(prompt, target_key, lora_data=(weight, True, "", ""), ce_mode=True)
+    prompt = self.generation_finalizer.finalize(prompt, (target_key, (weight, 1.0)))
     
     while prompt.count(", , ") >= 1:
       prompt = prompt.replace(", , ", ", ")
