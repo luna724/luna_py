@@ -10,7 +10,7 @@ def main(mode:Literal["ce"]):
     
     with gr.Blocks() as iface:
       with gr.Row():
-        mode = gr.Dropdown(choices=["lora", "name", "prompt"], label="mode", value=["lora", "name", "prompt"], multiselect=True)
+        mode = gr.Dropdown(choices=["lora, name", "prompt", "extend"], label="mode", value=["lora, name", "prompt", "extend"], multiselect=True)
       
       with gr.Row():
         template = gr.Dropdown(label="template", choices=generate_common.obtain_lora_list.manual())

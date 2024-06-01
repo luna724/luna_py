@@ -13,6 +13,16 @@ class Character_Exchanger(generatorTypes):
     return "cev4"
   
   def v3(self, mode, prompt, lora_template, for_template, *args):
+    ### Compatibility for v4
+    if "lora, name" in mode:
+      mode = ["lora", "name"]
+    else:
+      mode = []
+    if "prompt" in mode:
+      mode.append("prompt")
+    if "extend" in mode:
+      print("[WARNING]: CEv3 has not compatibility with 'Extend exchange'.")
+    
     args = None 
     lora_list = [
       (x[0].split(":")[0]+":"+x[0].split(":")[1]+":", x[1], x[2])

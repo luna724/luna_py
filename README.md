@@ -1,6 +1,6 @@
 # lunapy
 
-<details> <summary> Repository WARNING </summary>
+<details> <summary> !WARNING! </summary>
 Do not use modules that were previously committed in this repositories and have now been removed(Archived doesn't including "removed".).
 They have been deemed problematic for distribution.
 I will not be liable for any and all damages caused by their use by third parties.
