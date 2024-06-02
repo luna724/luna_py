@@ -19,7 +19,7 @@ class Character_Exchanger(generatorTypes):
     else:
       mode = []
     if "prompt" in mode:
-      mode.append("prompt")
+      mode.insert(0. "prompt")
     if "extend" in mode:
       print("[WARNING]: CEv3 has not compatibility with 'Extend exchange'.")
     
@@ -75,6 +75,7 @@ class Character_Exchanger(generatorTypes):
       target_prompt = "$PROMPT"
     
     if "prompt" in mode:
+      print("Prompt called.")
       prompts = []
       for p in prompt.split(","):
         for x in  ["(", ")", "[", "]", ""]:

@@ -16,3 +16,4 @@ tqdm
 soundfile
 pyperclip
 bs4
+nbformat
