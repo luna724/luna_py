@@ -37,7 +37,7 @@
 | Gradio IP | gradio_ip | 0.0.0.0 | Gradio UIに使用するIP。?を指定すると Gradio に None を渡す |
 | Gradio Port | gradio_port | 7859 | Gradio UIに使用するポート。?を指定するとGradio に Noneを渡す |
 | luna's RVC-WebUIによるデータの取得 | lunapy_compatibility | false | オーディオと同じ名前の .info ファイルをそのオーディオの生成情報として評価モードの合計値の平均値、中央値の算出に使用する。現在は何の意味もない |
-| 元ファイルの比較モード | based_file_compare | false | モデルではなく、変換に使用した元ファイルによる違いの比較を行う |
+| 元ファイルの比較モード | based_file_compare | false | モデルではなく、変換に使用した元ファイルによる違いの比較を行う。ipynbモード用。gradioモードでは実行のたびに指定可能 |
 | Share UI | _ui_share | false | Gradio UIの share 引数の値。--share と引数に追加することでも設定可能 |
 | 追加推論の無効化 | disable_additional_inference | true | 追加推論機能の無効化。無効化を行うと、PyTorch等のインポートも停止され、使用RAM量が大幅に軽減されたり、CUDA未インストール環境でも実行可能になる。 |
 
@@ -51,6 +51,9 @@
 | ipynb_basic | "/ipynb/basic.ipynb" | 生成されるノートブックのテンプレート |
 | md_template | "/ipynb/basic.md" | 生成されるmdのテンプレート |
 | crt_method | "%Y%m%d%H%M%S" | datetime.datetime.now().strftime() にて使われる値 |
+| known_model_names | [] | - (ハイフン) を含むモデル名がある場合にも正しいファイル名の検出を可能にする。空白などを含まず、モデル名を入れる必要がある |
+| use_known_model_names_to_parse_fn | false | 上記の known_model_names を用いた処理を有効化する。有効化した場合、known_model_names にないモデル名はすべてファイル名として検出する |
+| auto_open_browser | true | gr.Blocks.launch() の inbrowser 引数の値 |
 
 
 ---

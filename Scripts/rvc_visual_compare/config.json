@@ -1,22 +1,20 @@
 {
-  "target_fp": "target",
-  "file_named_rule": "{num}-{model_name}-{based_fn}.{aud_format}",
-  "ipynb_dir_rule": "ipynb/outputs",
-  "ipynb_name_rule": "{datetime}_note",
-  "gradio_ip": "0.0.0.0",
-  "gradio_port": 7859,
-  "lunapy_compatibility": false,
-  "based_file_compare": false,
-  "_ui_share": false,
-  "disable_additional_inference": true,
-
-  "sys": {
-    "ipynb_basic": "ipynb/basic.ipynb",
-    "md_template": "ipynb/basic.md",
-    "crt_method": "%Y%m%d%H%M%S",
-    "known_model_names": [
-      ""
-    ],
-    "use_known_model_names_to_parse_fn": false
-  }
+    "target_fp": "target",
+    "file_named_rule": "{num}-{model_name}-{based_fn}.{aud_format}",
+    "ipynb_dir_rule": "ipynb/outputs",
+    "ipynb_name_rule": "{datetime}_note",
+    "gradio_ip": "0.0.0.0",
+    "gradio_port": 7859,
+    "lunapy_compatibility": false,
+    "based_file_compare": false,
+    "_ui_share": false,
+    "disable_additional_inference": true,
+    "sys": {
+        "ipynb_basic": "ipynb/basic.ipynb",
+        "md_template": "ipynb/basic.md",
+        "crt_method": "%Y%m%d%H%M%S",
+        "known_model_names": [],
+        "use_known_model_names_to_parse_fn": false,
+        "auto_open_browser": true
+    }
 }

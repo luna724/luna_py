@@ -46,9 +46,12 @@ def main():
     main.main(".ipynb")()
     
   elif args.m == "gradio":
-    # from modules import ui
-    # ui.webui()("allow")
-    #COMING SOON
-    pass
+    from modules import ui
+    ui.webui("allow")()
+
+  # elif args.m == "cm":
+  #   from modules import cm
+  #   cm.launch()
+  #COMING SOON
     
 main()

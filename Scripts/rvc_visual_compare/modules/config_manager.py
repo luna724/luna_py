@@ -12,9 +12,19 @@ class sysCfg(BaseModel):
   """datetime.datetime.now().strftime() にて使われる値"""
   known_model_names: list
   use_known_model_names_to_parse_fn: bool
+  auto_open_browser: bool
 
 class cfgMain(BaseModel):
   """注: ここの変数にあるコメントは更新されません。"""
+  
+  @staticmethod
+  def convert_path(v):
+    if v.startswith("//"):
+      v = v.strip("//")
+    else:
+      v = os.path.join(os.getcwd(), v)
+    
+    return v
   
   target_fp: str 
   """使用法1 にある指定位置。rvc_visual_compare からの相対パスだが、//から開始するとフルパスと認識する"""

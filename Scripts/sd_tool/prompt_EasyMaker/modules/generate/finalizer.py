@@ -29,7 +29,7 @@ class _finalizer:
   @staticmethod
   def convert_weight(piece:str, weight:float | int) -> str:
     return re.sub(
-      r":(\d+\.\d+)", f"{weight}", piece, count=1
+      r":(\d+\.\d+)", f":{weight}", piece, count=1
     )
   
   @staticmethod

@@ -12,15 +12,15 @@ class Character_Exchanger(generatorTypes):
   def get_module_name():
     return "cev4"
   
-  def v3(self, mode, prompt, lora_template, for_template, *args):
-    ### Compatibility for v4
-    if "lora, name" in mode:
+  def v3(self, base_mode, prompt, lora_template, for_template, *args):
+    ### Compatibility for v4    
+    if "lora, name" in base_mode:
       mode = ["lora", "name"]
     else:
       mode = []
-    if "prompt" in mode:
-      mode.insert(0. "prompt")
-    if "extend" in mode:
+    if "prompt" in base_mode:
+      mode.insert(0, "prompt")
+    if "extend" in base_mode:
       print("[WARNING]: CEv3 has not compatibility with 'Extend exchange'.")
     
     args = None 
@@ -75,7 +75,6 @@ class Character_Exchanger(generatorTypes):
       target_prompt = "$PROMPT"
     
     if "prompt" in mode:
-      print("Prompt called.")
       prompts = []
       for p in prompt.split(","):
         for x in  ["(", ")", "[", "]", ""]:
@@ -106,8 +105,8 @@ class Character_Exchanger(generatorTypes):
           index = prompts.index(p)
           cp_indexes.append((index, p))
 
-      if len(cp_indexes) != len(ch_prompts):
-        raise ValueError("cannot find character name")
+      # if len(cp_indexes) != len(ch_prompts):
+      #   raise ValueError("cannot find character name")
 
       for running, (i, text) in enumerate(cp_indexes):
         replaceTo = self.lib.get_index(
@@ -120,8 +119,6 @@ class Character_Exchanger(generatorTypes):
         
         last = (running, i)
       
-      print("target_prompts: ", target_prompts)
-      print("last: ", last)
       if not len(target_prompts) == last[0]:
         # prompts を分割、最後の ch_prompts の位置にすべて残りを突っ込む
         prompt1 = prompts[:last[1]+1]
