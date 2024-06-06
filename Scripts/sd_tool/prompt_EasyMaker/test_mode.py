@@ -9,6 +9,10 @@ def main(mode:Literal["ce"]):
     iface = ce.get()
   
   elif mode == "g_template":
-
+    
+    
+    with gr.Blocks() as iface:
+      with gr.Row():
+        template = gr.Dropdown(label="Template", choices=)
     
   iface.queue(64).launch(server_port=9999)

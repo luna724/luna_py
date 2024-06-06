@@ -12,3 +12,4 @@ python {script_name}.py
 | --- | --- | --- |
 | notebookstyleupdater | Colab notebook のモデルリストを新しいコードに適応させるためのもの | 必 |
 | rvcvccmm | R-VCのコンフィグマネージャーのコードを自動生成するもの | 必 |
+| notebookgen | Colab notebook のモデルリストにモデルを追加するもの | 不 |
