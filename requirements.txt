@@ -17,3 +17,7 @@ soundfile
 pyperclip
 bs4
 nbformat
+deepdanbooru
+huggingface_hub
+tensorflow
+tensorflow-io

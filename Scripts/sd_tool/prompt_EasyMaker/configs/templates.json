@@ -1,0 +1,9 @@
+{
+  "Method": "v3",
+  "Values": {
+    "Prompt": "prompt",
+    "Negative": "negative prompt",
+    "AD_Prompt": "ADetailer prompt",
+    "AD_Negative": "ADetailer negative prompt"
+  }
+}

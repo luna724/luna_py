@@ -202,7 +202,9 @@ class _finalizer:
     """High-quality template: クオリティを上げるためのテンプレを提供。 promptの一番最後に代入される"""
     
     if hqt:
-      item += self.config.get_spec_value("user_variable.prompt.hqt")
+      item += self.config.get_spec_value("user_variable.prompt.hqt.normal")
+      if "nsfw" in item:
+        item += self.config.get_spec_value("user_variable.prompt.hqt.nsfw")
     
     return item
 

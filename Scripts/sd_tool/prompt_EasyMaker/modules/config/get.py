@@ -6,7 +6,8 @@ import os
 
 class config_value(BaseModel):
   script_version:dict
-
+  user_variable:dict
+  system:dict
 
 class _get:
   def get_root_path(self) -> str:

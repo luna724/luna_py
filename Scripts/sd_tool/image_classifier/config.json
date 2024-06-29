@@ -1,0 +1,12 @@
+{
+  "model_directory": "dd_models",
+  "custom_tags": [],
+
+  "cache":
+    {
+      "in_path": "",
+      "out_path": "."
+    },
+
+  "use_model_cache": true
+}
