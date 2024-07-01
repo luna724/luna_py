@@ -59,8 +59,9 @@ def run(using_model, in_path:str, out_path:str, classify_tags:str, threshold:flo
   if out_path == ".": 
     out_path = os.path.join(in_path, f"..\\{os.path.basename(in_path)}-outputs")
   
+  out_path = os.path.abspath(out_path)
   os.makedirs(out_path, exist_ok=True)
-  
+    
   # 整理タグの解析と出力パスの作成
   proc.target_tags = []
   for x in classify_tags.split(","):

@@ -13,3 +13,4 @@ python {script_name}.py
 | notebookstyleupdater | Colab notebook のモデルリストを新しいコードに適応させるためのもの | 必 |
 | rvcvccmm | R-VCのコンフィグマネージャーのコードを自動生成するもの | 必 |
 | notebookgen | Colab notebook のモデルリストにモデルを追加するもの | 不 |
+| simple_graph_creator | [SGC_Info.md](!SGC_INFO.md)参照の記述形式のテキストから、2次元グラフを作成するもの | 不 |

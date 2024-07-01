@@ -8,5 +8,6 @@
       "out_path": "."
     },
 
-  "use_model_cache": true
+  "use_model_cache": true,
+  "$Version": null
 }

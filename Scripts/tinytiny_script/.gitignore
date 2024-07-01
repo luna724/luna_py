@@ -1,2 +1,4 @@
 *.out
 outputs/
+*.png
+!docs/*.png
