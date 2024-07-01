@@ -1,6 +1,7 @@
 import os
 from PIL import Image, ImageDraw, ImageFont
 import matplotlib.figure
+import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 
 with open("!SGC_input.txt", "r", encoding="utf-8") as f:
@@ -15,6 +16,8 @@ class data:
     self.graph:str = None
     self.graph_values:list = None
     self.output_path:str = None
+    
+    self.use_meiryo: bool = os.name == "nt"
 
   def __call__(self) -> str:
     # Check output path
@@ -75,36 +78,31 @@ def parse_input(input: str) -> data:
 # 作成
 def create(values:list, i:data) -> Image.Image:
   """Code by GPT-4o"""
-  # ステップ1: グラフの作成
-  fig, ax = plt.subplots()
-  ax.plot(values)
-  plt.xlabel(i.x)
-  plt.ylabel(i.y)
+  if i.use_meiryo:
+    font_path = 'C:/Windows/Fonts/meiryo.ttc'
+    font_prop = fm.FontProperties(fname=font_path)
+    font = ImageFont.truetype(font_path, size=35)
+    # ステップ1: グラフの作成
+    fig, ax = plt.subplots()
+    ax.plot(values)
+    ax.set_xlabel(i.x, fontproperties=font_prop)
+    ax.set_ylabel(i.y, fontproperties=font_prop)
+    ax.set_title(i.graph, fontproperties=font_prop)
+  
+  else:
+    fig, ax = plt.subplots()
+    ax.plot(values)
+    ax.set_xlabel(i.x)
+    ax.set_ylabel(i.y)
+    ax.set_title(i.graph)
   
   # ステップ2: グラフを画像として保存
   fig.canvas.draw()
   width, height = fig.canvas.get_width_height()
   graph_image = Image.frombytes('RGB', (width, height), fig.canvas.tostring_rgb())
-  
-  # ステップ3: 画像の高さを増やしてリスト情報を書き込む
-  new_height = height + 75  # 情報を書くために高さを50ピクセル増やす
-  new_image = Image.new('RGB', (width, new_height), (255, 255, 255))
-  new_image.paste(graph_image, (0, 0))
-  
-  # フォントと描画オブジェクトの作成
-  draw = ImageDraw.Draw(new_image)
-  font = ImageFont.load_default()
-  
-  # リスト情報を書き込む
-  info_text = i.graph
-  text_bbox = draw.textbbox((0, 0), info_text, font=font)
-  text_width, _ = text_bbox[2] - text_bbox[0], text_bbox[3] - text_bbox[1]
-  text_x = (width - text_width) // 2  # 中央に配置
-  text_y = height + 50  # グラフの下に配置
-  draw.text((text_x, text_y), info_text, fill=(0, 0, 0), font=font)
-  
+    
   plt.close(fig)
-  return new_image
+  return graph_image
 
 # 実行
 i = parse_input(txt)

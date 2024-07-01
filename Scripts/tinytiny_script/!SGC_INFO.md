@@ -1,8 +1,15 @@
 ## Simple Graph Creator Syntax Information
  <center>Simple Graph Creator 記述ルール説明</center>
 
+例:
+```txt
+x_axis\&y_axis
+Example Graph
+[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
+!?simple_graph_creator.py.png
+```
 
-Example / 例:
+値:
 ```txt 
    !SGC_input.txt
 {x_label}\&{y_label}
