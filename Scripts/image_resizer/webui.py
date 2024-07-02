@@ -27,7 +27,7 @@ def ui() -> gr.Blocks:
       with gr.Row():
         to_invisible = gr.Checkbox(label="Convert to Invisible (255, 255, 255, 0)", value=True)
       
-      out_cc = gr.Image(label="Result", image_mode="RGBA", interactive=False, show_download_button=True, type="pil", width=512, height=512, image_mode="RGBA")
+      out_cc = gr.Image(label="Result", image_mode="RGBA", interactive=False, show_download_button=True, type="pil", width=512, height=512)
 
       infer_cc = gr.Button("Run", variant="primary")
       infer_cc.click(
