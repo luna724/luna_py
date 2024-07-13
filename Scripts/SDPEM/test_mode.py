@@ -4,7 +4,7 @@ from typing import Literal
 from test_script import ce
 from lunapy_module_importer import Importer
 
-def main(mode:Literal["ce"]):
+def main(mode:Literal["ce", "g_template"]):
   if mode == "ce": #Archived (tests/ce.py)
     iface = ce.get()
   
@@ -23,7 +23,7 @@ def main(mode:Literal["ce"]):
     
     with gr.Blocks() as iface:
       # Initialize
-      module = Importer("modules.generate.template")()
+      module = Importer("modules.generate.template")
       
       with gr.Row():
         template = gr.Dropdown(label="Template", choices=get_template.webui(), scale=4)
@@ -174,17 +174,18 @@ def main(mode:Literal["ce"]):
             
             ## Update database
             lora.change(
-              module.change_lora, lora, [lora_var,
-                lora_var_check_1, lora_var_check_1_info,
-                lora_var_check_2, lora_var_check_2_info]
+              module.change_lora, lora, [lora_var, # 
+                lora_var_check_1, lora_var_check_1_info, #
+                lora_var_check_2, lora_var_check_2_info, # LoRA Variables
+                lora_id_1, lora_nm_1, lora_pm_1, lora_ex_1 # LoRA Example Viewer
+                ]
             )
             template.change(
-              module.change_template, template
-            )
-            
-            ## .change
-            lora.change(
-              
+              module.change_template, template,
+              [
+                method, tmpl_key, tmpl_prompt, tmpl_negative,
+                
+              ]
             )
             
   iface.queue(64).launch(server_port=9999)

@@ -70,7 +70,7 @@ example_template = {"test": {
   }
 }}
 
-example_lora_template = {"test": {
+example_lora_template = {"test": [
   "v5",
   {
     "lora": "<lora:example:1.0>",
@@ -79,11 +79,11 @@ example_lora_template = {"test": {
     "extend": "LoRA assistant",
     "key": "test",
     "lora_variables": [
-      [False, False], #LoRA Variables is Enabled? (1st, 2nd)
-      ["info1", "info2"] #LoRA Variable Information (1st, 2nd)
-    ]
+      [False, False, ...], #LoRA Variables is Enabled? (1st, 2nd)
+      [("Variable1-title", "info1"), ("Variable2-title", "info2"), ...] #LoRA Variable Information (1st, 2nd)
+    ] # V5現在、2つまで対応
   }
-}}
+]}
 
 
 generatorTypes = Importer("modules.types", isTypes="generator")
@@ -92,19 +92,35 @@ class Templates(generatorTypes):
     super().__init__()
     self.get_templates = self.generate_common.obtain_template_list
     self.get_lora = self.generate_common.obtain_lora_list
+    self.ui_config = self.config.get_spec_value("user_variable.ui.system")
     
     self.selected_template:str = None
     self.selected_lora:str = None
     
+    # Template
+    self.blank_template = gr.update(interactive=False, label="")
+    
+    
     # Temporary Variable
     self.lora_template_v5_from_above = ["v5"]
-    
+  
+  
+  class Template:
+    """dataclass"""
+    def __init__(self):
+      pass
+    def __call__(self, key:str):
+      if hasattr(self, key):
+        return getattr(self, key)
+      else:
+        return None
+  
   @staticmethod
   def get_module_name():
     return "templates-v4"
   
   
-  def show_example_values(self, template=None):
+  def show_example_values(self, template=None) -> Template:
     def resize(x: Any, instance: Any = str) -> Any:
       if x is None:
         return instance()
@@ -158,31 +174,70 @@ class Templates(generatorTypes):
       return rtl
     else:
       print("[INFO]: this Template versions too low.")
-      return [(False, ""), (False, "")]
+      return [(False, ["", ""]), (False, ["", ""])]
 
   # Update database
   def change_lora(self, lora) -> tuple:
+    """return > """
     rtl = []
     self.selected_lora = lora
     
     # LoRA Changed triggers
     # 1. LoRA Variable showcase
     lvs = self.detect_lora_variable()
-    if lvs[0][0] or lvs[1][0]:
+    if (lvs[0][0] or lvs[1][0]) and self.ui_config["enable_lora_variable_showcase"]:
       lv = True
     else:
       lv = False
-      
-    rtl += [gr.update(visible=lv), lvs[0][0], lvs[0][1], lvs[1][0], lvs[1][1]]
+    
+    lv1_active = lvs[0][0]
+    if lv1_active:
+      lv1_infos = lvs[0][1]
+      lv1_checkbox = gr.Checkbox.update(
+        label=lv1_infos[0], value=False, interactive=True)
+      lv1_info = lv1_infos[1]
+    else:
+      lv1_checkbox = self.blank_template
+      lv1_info = ""
+    
+    lv2_active = lvs[1][0]
+    if lv2_active:
+      lv2_infos = lvs[1][1]
+      lv2_checkbox = gr.Checkbox.update(
+        label=lv2_infos[0], value=False, interactive=True
+      )
+      lv2_info = lv2_infos[1]
+    else:
+      lv2_checkbox = self.blank_template
+      lv2_info = ""
+    
+    rtl += [gr.update(visible=lv), lv1_checkbox, lv1_info, lv2_checkbox, lv2_info]
+    
+    # 2. LoRA Example Viewer
+    values = self.get_lora.manual(parse=True, name=lora)
+    rtl += [
+      values[1], values[2], values[3], values[4]
+    ]
     
     return tuple(rtl)
     
   def change_template(self, tmpl) -> tuple:
     self.selected_template = tmpl
     rtl = []
-    args_example_view = list(
-      
-    ) 
+    template_value = self.show_example_values(tmpl)
+    
+    # 1. Compact Example Viewer
+    method = template_value("Method")
+    tmpl_key = template_value("Key")
+    tmpl_prompt = template_value("Values")["Prompt"]
+    tmpl_negative = template_value("Values")["Negative"]
+    rtl += [method, tmpl_key, tmpl_prompt, tmpl_negative]
+    
+    # 2. LoRA opts Auto-Setting (from Example value)
+    lw = template_value("Example")["weight"]
+    has_extend = template_value("Example")["extend"]
+    
+    rtl += [lw, has_extend]
     
     return tuple(rtl)
   
@@ -249,4 +304,7 @@ class Templates(generatorTypes):
     # v3.0.3+ Regional Prompter
     rp = data["Regional_Prompter"]["Secondary_Prompt"]
     prompt = rp["prompt"]
-    
+  
+class _template(Importable):
+  def __call__(self, **kwargs):
+    return Templates()

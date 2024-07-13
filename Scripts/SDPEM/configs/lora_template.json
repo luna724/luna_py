@@ -1,4 +1,18 @@
 {
+    "test": [
+        "v5",
+        {
+            "lora": "<lora:example:1.0>",
+            "name": "LoRA Main trigger",
+            "prompt": "LoRA sub trigger",
+            "extend": "LoRA assistant",
+            "key": "test",
+            "lora_variables": [
+            [true, true], 
+            [["Variable1-title", "info1"], ["Variable2-title", "info2"]]
+            ]
+        }
+    ],
     "laby": [
         "v3",
         {

@@ -10,6 +10,16 @@
     "prompt":
     {
       "hqt": "<lora:masusu_breast:0.6125>, masterpiece, (best quality:0.7), [<lora:Detail_tweaker_lora:0.25>]"
+    },
+    "ui": {
+      "system": {
+        "auto_setup_lora_opts": true,
+        "auto_run_compact_example_viewer": true,
+        "enable_lora_variable_showcase": true,
+        "auto_run_lora_example_viewer": true,
+        "automatic_load_example_images": false,
+        "show_optin_values": []
+      } 
     }
   },
   "system": {
