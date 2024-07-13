@@ -16,7 +16,7 @@ class obtain_lora_list(collectorTypes):
       os.path.join(self.cfg_root, "lora_template.json")
     )
   
-  def manual(self, parse:bool=False, name:str=None, method:Literal["v3", "v4.0"]="v3") -> Tuple[str, str, str, str, str] | List[str]:
+  def manual(self, parse:bool=False, name:str=None, method:None=None) -> Tuple[str, str, str, str, str] | List[str]:
     self.initialize()
     rtl = list(self.lora_raw.keys())
     
@@ -25,11 +25,7 @@ class obtain_lora_list(collectorTypes):
         raise ValueError(f"Failed. {name} isn't in lora_list")
       data = self.lora_raw[name][1]
       
-      if method == "v3":
-        return name, data["lora"], data["name"], data["prompt"], data["extend"]
-      elif method == "v4.0":
-        return name, data["lora"], data["name"], data["prompt"], data["extend"], None
-      
+      return name, data["lora"], data["name"], data["prompt"], data["extend"]
     
     return rtl
   
@@ -58,9 +54,13 @@ class obtain_template_list(collectorTypes):
       os.path.join(self.cfg_root, "templates.json")
     )
   
-  def update(self) -> dict:
+  def webui(self) -> list:
     self.initialize()
-    return [X["displayName"] for x in self.templates_raw.values()]
+    return [x["displayName"] for x in self.templates_raw.values()]
+  
+  def update(self) -> dict:
+    values = self.webui()
+    return gr.update(choices=values)
   
   def manual(self) -> list:
     self.initialize()

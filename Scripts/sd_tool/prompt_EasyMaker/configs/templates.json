@@ -1,9 +1,79 @@
-{
-  "Method": "v3",
-  "Values": {
-    "Prompt": "prompt",
-    "Negative": "negative prompt",
-    "AD_Prompt": "ADetailer prompt",
-    "AD_Negative": "ADetailer negative prompt"
+{"\u666e\u901a\u306b\u30b9\u30af\u6c34": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u666e\u901a\u306b\u30b9\u30af\u6c34",
+        "Values": {
+            "Prompt": "school swimsuit, swimsuit, black swimsuit, 14 years old, small breasts, $LORA, $NAME, $PROMPT, sitting, wariza, ocean, cloud, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "D",
+            "AD_Negative": "D"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u685c\u30df\u30af",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u666e\u901a\u306b\u30b9\u30af\u6c34.png",
+            "CustomNegative": "\u666e\u901a\u306e\u30b9\u30af\u6c34\nModel: FuwaFuwaMix1.5"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u666e\u901a\u306b\u30b9\u30af\u6c34",
+        "DatabasePath": "/path/to/this_database"
+    }
   }
-}

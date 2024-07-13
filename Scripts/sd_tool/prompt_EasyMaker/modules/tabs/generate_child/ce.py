@@ -8,7 +8,7 @@ class CE(UiTabs):
     self.child_path = os.path.join(UiTabs.PATH, "generate_child")
   
   def title(self):
-    return "Generate"
+    return "Character Exchanger"
   
   def index(self):
     return 0

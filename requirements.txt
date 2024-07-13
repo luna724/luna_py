@@ -21,3 +21,4 @@ deepdanbooru
 huggingface_hub
 tensorflow
 tensorflow-io
+Discord
