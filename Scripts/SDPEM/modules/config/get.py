@@ -44,7 +44,7 @@ class _get:
           else:
             raise ValueError(f"Cannot find key '{x}' in the config path '{locate}'")
       else:
-        raise ValueError(f"Config path '{locate}' does not point to a dictionary")zzzzzzz
+        raise ValueError(f"Config path '{locate}' does not point to a dictionary")
     else:
       raise ValueError(f"Cannot find top-level key '{p1}' in the config path '{locate}'")
 

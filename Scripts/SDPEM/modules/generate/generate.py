@@ -55,9 +55,9 @@ class g(generatorTypes):
     prompts = self.lib.prompt_converter(prompt)
     new_prompts = prompts.copy()
     
-    # デバッグメッセージ
-    print(f"[DEBUG]: 初期プロンプト: {prompts}")
-    print(f"[DEBUG]: 変換対象: {self.getAny}")
+    # # デバッグメッセージ
+    # print(f"[DEBUG]: 初期プロンプト: {prompts}")
+    # print(f"[DEBUG]: 変換対象: {self.getAny}")
     
     for index, p in enumerate(prompts):
       for converted, triggers in self.getAny.items():
@@ -77,17 +77,17 @@ class g(generatorTypes):
       def replacing(prompt:str, var:List[str], rpTo:str) -> str:
         """ return prompt like str"""
         prompts = self.lib.prompt_converter(prompt, ",")
-        via = prompts
         rpCount = prompts.count(rpTo)
         
-        for index, _ in enumerate(range(rpCount)):
-          for i, p in enumerate(via):
-            # 変換
-            if p == rpTo:
-              if rpCount == 1:
-                prompts[i] = f"{var[0]}, {var[1]}"
-                break
-              prompts[i] = var[index]
+        for index, p in enumerate(prompts):
+          if p == rpTo:
+            if rpCount == 1:
+              prompts[index] = f"{var[0]}, {var[1]}"
+            else:
+              if var == []:
+                _ = prompts.pop(index)
+                continue
+              prompts[index] = var.pop(0)
         
         return self.lib.prompt_converter(prompts, ", ")
       
