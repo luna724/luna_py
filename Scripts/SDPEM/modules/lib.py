@@ -1,5 +1,6 @@
 from lunapy_module_importer import Importable
 import re
+from typing import *
 
 class _lib:
   @staticmethod
@@ -81,6 +82,98 @@ class _lib:
       str = str.replace(x[0], x[1])
     
     return str
+  
+  @staticmethod
+  def control_lora_weight(lora_string: str, weight: float = 1.0):
+    # 変換
+    if not isinstance(weight, float) and not isinstance(weight, int):
+      weight = get_index(weight, 0, 1.0)
+      
+    weight = re.sub(r"<lora:.*:(.+)>", str(weight), lora_string, count=1)
+    loraname = re.findall(r"<lora:(.*):.+>", lora_string)[0]
+    new_lora_string = f"<lora:{loraname}:{weight}>"
+    print(f"[lora Weight controller]: {lora_string} -> {new_lora_string}")
+    
+    return new_lora_string
+  
+  @staticmethod
+  def prompt_converter(prompt:str | List[str], separator:str = ",") -> str | List[str]:
+    if isinstance(prompt, list):
+      txt = ""
+      for p in prompt:
+        txt += p+separator
+      return txt.strip(separator)
+    elif isinstance(prompt, str):
+      prompts = []
+      for p in prompt.split(separator):
+        prompts.append(
+          p.strip()
+        )
+      return prompts
+  
+  @staticmethod
+  def replace_variable(prompt:str, replaceFrom:str, replaceTo:str) -> str:
+    prompts = _lib.prompt_converter(prompt, ",")
+    via = prompts
+    rpCount = prompts.count(replaceFrom)
+
+    for index, p in enumerate(via):
+      if p == replaceFrom:
+        prompts[index] = replaceTo
+        break 
+    return _lib.prompt_converter(prompts, ", ")
+  
+  @staticmethod
+  def comma_tweak(prompt: str) -> str:
+    bad_commas = [
+      ", , ", ", ,", ",, ", ",,"
+    ]
+    while any(s in prompt for s in bad_commas):
+      for bad_comma in bad_commas:
+        prompt = prompt.replace(
+          bad_comma, ", "
+        )
+    
+    return prompt
+  
+  @staticmethod
+  def prompt_head_low(prompt:str, header:str, lower:str) -> str:
+    if header.strip() != "":
+      prompt = header.strip().strip(",")+", "+prompt
+    if lower.strip() != "":
+      if prompt.strip().endswith(","):
+        end = ", "
+      else:
+        end = ""
+      
+      prompt = prompt.strip().strip(",")+", "+lower.strip().strip(",")+end
+    return prompt
+  
+  @staticmethod
+  def delete_weights(prompt_piece:str, zero:bool = False) -> str:
+    if prompt_piece.count(":") > 0:
+      return prompt_piece.split(":")[0]
+    else:
+      return prompt_piece
+  
+  @staticmethod
+  def get_treed_value(d:dict, keys:str = "key1.key1_1", rtl_if_fail:Any = ""):
+    key = keys.split(".")
+    for i, k in enumerate(key):
+      if k == "":
+        continue
+      
+      if i == 0:
+        value = _lib.get_value(d, k, rtl_if_fail)
+      else:
+        if isinstance(value, dict):
+          value = _lib.get_value(value, k, rtl_if_fail)
+        else:
+          return rtl_if_fail
+      if rtl_if_fail == value:
+        return value
+    
+    return value
   
 class lib(Importable):
   def __init__(self):

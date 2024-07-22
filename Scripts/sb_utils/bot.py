@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-import os, importlib, sys
+import os, importlib, json
 
 BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN_FOR_LUNAPY")
 
@@ -35,6 +35,15 @@ for path in extend_files:
     func = mods["modify_bot"]
   
   discord_bot = func(discord_bot)
+
+# Makefiles
+fns = [
+  "coin_tracker", "coins!memo", "coins"
+]
+for fn in fns:
+  if not os.path.exists(f"{fn}.json"):
+    with open(f"{fn}.json", "w", encoding="utf-8") as f:
+      json.dump({}, f)
 
 print("BOT_TOKEN: ", BOT_TOKEN)
 discord_bot.run(BOT_TOKEN)

@@ -17,6 +17,7 @@ def main(mode:Literal["ce", "g_template"]):
         "max_lines": 1
       }
     
+    config = Importer("modules.config.get").get_spec_value("user_variable")["ui"]["system"]["generate"]
     tmpl_common = Importer("modules.generate.common")
     get_template = tmpl_common.obtain_template_list
     get_lora_template = tmpl_common.obtain_lora_list
@@ -24,6 +25,7 @@ def main(mode:Literal["ce", "g_template"]):
     with gr.Blocks() as iface:
       # Initialize
       module = Importer("modules.generate.template")
+      generate = Importer("modules.generate.generate")
       
       with gr.Row():
         template = gr.Dropdown(label="Template", choices=get_template.webui(), scale=4)
@@ -41,8 +43,8 @@ def main(mode:Literal["ce", "g_template"]):
       
       with gr.Accordion("LoRA Variables", open=True, visible=False) as lora_var:
         with gr.Row():
-          lora_var_check_1 = gr.Checkbox(label="", interactive=False)
-          lora_var_check_2 = gr.Checkbox(label="", interactive=False)
+          lora_var_check_1 = gr.Checkbox(label="", interactive=False, value=False)
+          lora_var_check_2 = gr.Checkbox(label="", interactive=False, value=False)
         with gr.Row():
           lora_var_check_1_info = gr.Textbox(label="", **var.cfn)
           lora_var_check_2_info = gr.Textbox(label="", **var.cfn)
@@ -51,7 +53,49 @@ def main(mode:Literal["ce", "g_template"]):
         with gr.Row():
           with gr.Column():
             # Code for user variable
-            pass
+            with gr.Row():
+              lwcfg = config["lora_weight_range"]
+              lora_weight = gr.Slider(lwcfg[0], lwcfg[1], 0.75, step=lwcfg[2], label="LoRA Weight")
+              extend_lora_enable = gr.Checkbox(label="Enable Extend prompt", value=False)
+            with gr.Row():
+              enable_adetailer_lora = gr.Checkbox(label="Enable ADetailer LoRA", value=True)
+              enable_negative_lora = gr.Checkbox(label="Enable negative LoRA", value=True)
+            with gr.Row():
+              realtime_infer = gr.Checkbox(label="Realtime Infer (get Prompt/Negative from right tab)", value=False)
+              use_prompt_nsfw_mode = gr.Checkbox(label="Use prompt NSFW Mode (if prompt supported)", value=False)
+            
+            with gr.Accordion("some variables", open=False):
+              with gr.Row():
+                face = gr.Textbox(label="$FACE")
+                face2 = gr.Textbox(label="$FACE (secondary)")
+              with gr.Row():
+                location = gr.Textbox(label="$LOCATION")
+                location2 = gr.Textbox(label="$LOCATION (secondary)")
+              with gr.Row():
+                accessory = gr.Textbox(label="$ACCESSORY")
+                other = gr.Textbox(label="$OTHER")
+              with gr.Row():
+                header = gr.Textbox(label="Header")
+                lower = gr.Textbox(label="Lower")
+              variables_obtain_from_right = gr.Button("Get from example data")
+              variables_obtain_from_right.click(
+                module.variables_from_example,
+                outputs=[
+                  face, face2, location, location2, accessory, other,
+                  header, lower
+                ]
+              )
+              
+            infer = gr.Button("Generate", variant="primary")
+            sd_paste = gr.Button("copy Paster")
+            
+            with gr.Row():
+              prompt = gr.Textbox(label="output Prompt", lines=5, interactive=False, show_copy_button=True)
+              negative = gr.Textbox(label="output Negative", lines=5, interactive=False, show_copy_button=True)
+            with gr.Row():
+              ad_prompt = gr.Textbox(label="output ADetailer prompt", lines=3, interactive=False, show_copy_button=True)
+              ad_negative = gr.Textbox(label="output ADetailer negative prompt", lines=3, interactive=False, show_copy_button=True)
+            
           with gr.Column():
             # Code for NOT Interactive interface
             # Selected LoRA
@@ -66,9 +110,22 @@ def main(mode:Literal["ce", "g_template"]):
             with gr.Row():
               method = gr.Textbox(label="Method ver.", **var.cfn)
               tmpl_key = gr.Textbox(label="Key", **var.cfn)
+            with gr.Column():
+              gr.Markdown("theses(Prompt/Negative) values are updatable from Left tab's value")
+              tmpl_prompts_info = gr.HTML(every=module.get_prompts_info)
             with gr.Row():
-              tmpl_prompt = gr.Textbox(label="Prompt", lines=5, interactive=False)
-              tmpl_negative = gr.Textbox(label="Negative", lines=5, interactive=False)
+              tmpl_prompt = gr.Textbox(label="Prompt", lines=5, interactive=True)
+              tmpl_negative = gr.Textbox(label="Negative", lines=5, interactive=True)
+            update_tmpl_prompt_negative = gr.Button("Update with this values (Prompt/Negative)", size="sm")
+            update_tmpl_prompt_negative.click(
+              module.update_prompt_only,
+              [tmpl_prompt, tmpl_negative]
+            )
+            use_prompt_nsfw_mode.change(
+              module.use_prompt_nsfw_mode,
+              use_prompt_nsfw_mode, [tmpl_prompt, tmpl_negative]
+            )
+            
             
             tmpl_adetailer = gr.Checkbox(label="ADetailer Status")
             with gr.Row(visible=False) as tmpl_adetailer_visible:
@@ -97,36 +154,36 @@ def main(mode:Literal["ce", "g_template"]):
                   None, [template], tmpl_cn_image
                 ) ## Load CN Image Function
             
-            tmpl_rp = gr.Checkbox(label="Regional Prompter Status")
-            with gr.Group(visible=False) as tmpl_rp_visible:
-              tmpl_rp_mode = gr.Textbox(label="Generation Mode", **var.cfn)
-              with gr.Row():
-                tmpl_rp_base = gr.Checkbox(label="Use base prompt", **var.cfn)
-                tmpl_rp_common = gr.Checkbox(label="Use common prompt", **var.cfn)
-                tmpl_rp_ncommon = gr.Checkbox(label="Use common negative prompt", **var.cfn)
-              tmpl_rp_ratio = gr.Textbox(label="Base Ratio", **var.cfn)
+            # tmpl_rp = gr.Checkbox(label="Regional Prompter Status")
+            # with gr.Group(visible=False) as tmpl_rp_visible:
+            #   tmpl_rp_mode = gr.Textbox(label="Generation Mode", **var.cfn)
+            #   with gr.Row():
+            #     tmpl_rp_base = gr.Checkbox(label="Use base prompt", **var.cfn)
+            #     tmpl_rp_common = gr.Checkbox(label="Use common prompt", **var.cfn)
+            #     tmpl_rp_ncommon = gr.Checkbox(label="Use common negative prompt", **var.cfn)
+            #   tmpl_rp_ratio = gr.Textbox(label="Base Ratio", **var.cfn)
               
-              with gr.Row():
-                tmpl_rp_stop = gr.Slider(0, 150, label="LoRA stop step", **var.cfn)
-                tmpl_rp_hires = gr.Slider(0, 150, label="LoRA Hires stop step", **var.cfn)
+            #   with gr.Row():
+            #     tmpl_rp_stop = gr.Slider(0, 150, label="LoRA stop step", **var.cfn)
+            #     tmpl_rp_hires = gr.Slider(0, 150, label="LoRA Hires stop step", **var.cfn)
               
-              with gr.Row():
-                with gr.Column():
-                  tmpl_rp_split = gr.Textbox(label="Main Matrix mode", **var.cfn)
-                  tmpl_rp_division = gr.Textbox(label="Division Ratio", **var.cfn)
-                with gr.Column():
-                  tmpl_rp_w = gr.Slider(1, 2048, label="Width", **var.cfn)
-                  tmpl_rp_h = gr.Slider(1, 2048, label="Height", **var.cfn)
+            #   with gr.Row():
+            #     with gr.Column():
+            #       tmpl_rp_split = gr.Textbox(label="Main Matrix mode", **var.cfn)
+            #       tmpl_rp_division = gr.Textbox(label="Division Ratio", **var.cfn)
+            #     with gr.Column():
+            #       tmpl_rp_w = gr.Slider(1, 2048, label="Width", **var.cfn)
+            #       tmpl_rp_h = gr.Slider(1, 2048, label="Height", **var.cfn)
               
-              with gr.Row():
-                tmpl_rp_template = gr.Textbox(label="Template", **var.cfn)
+            #   with gr.Row():
+            #     tmpl_rp_template = gr.Textbox(label="Template", **var.cfn)
               
-              with gr.Accordion(label="Sample"):
-                tmpl_rp_image = gr.Image(height=768, width=768, image_mode="RGBA", type="pil", label="COntrolNet Image", elem_classes=["image-center"], **var.cfn)
-                tmpl_rp_load_image = gr.Button("Load", variant="primary")
-                tmpl_rp_load_image.click(
-                  None, [template], tmpl_rp_image
-                ) ## Load RP Sample Image Function
+            #   with gr.Accordion(label="Sample"):
+            #     tmpl_rp_image = gr.Image(height=768, width=768, image_mode="RGBA", type="pil", label="COntrolNet Image", elem_classes=["image-center"], **var.cfn)
+            #     tmpl_rp_load_image = gr.Button("Load", variant="primary")
+            #     tmpl_rp_load_image.click(
+            #       None, [template], tmpl_rp_image
+            #     ) ## Load RP Sample Image Function
             
             tmpl_ex = gr.Checkbox(label="Example values", **var.cfn)
             with gr.Group(visible=False) as tmpl_ex_visible:
@@ -186,6 +243,34 @@ def main(mode:Literal["ce", "g_template"]):
                 method, tmpl_key, tmpl_prompt, tmpl_negative,
                 
               ]
+            )
+            
+            
+            ## Inference
+            infer.click(
+              generate.generate,
+              [
+                template, lora, 
+                lora_weight, extend_lora_enable, enable_adetailer_lora,
+                enable_negative_lora, realtime_infer, tmpl_prompt, tmpl_negative,
+                use_prompt_nsfw_mode, lora_var_check_1, lora_var_check_2,
+                face, face2, location, location2, accessory, other,
+                header, lower
+              ],
+              [prompt, negative, ad_prompt, ad_negative]
+            )
+            
+            sd_paste.click(
+              generate.generate_paster,
+              [
+                template, lora, 
+                lora_weight, extend_lora_enable, enable_adetailer_lora,
+                enable_negative_lora, realtime_infer, tmpl_prompt, tmpl_negative,
+                use_prompt_nsfw_mode, lora_var_check_1, lora_var_check_2,
+                face, face2, location, location2, accessory, other,
+                header, lower
+              ],
+              prompt
             )
             
   iface.queue(64).launch(server_port=9999)

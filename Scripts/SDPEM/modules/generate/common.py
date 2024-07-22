@@ -80,13 +80,13 @@ class obtain_template_list(collectorTypes):
   
   def get_template_value(self, name: str, rtl_resized:bool=False) -> Tuple[dict, str]:
     try:
-      value = self.full[name]
+      value = self.full()[name]
       if rtl_resized and value:
         return name
     except KeyError as e:
       print(f"Exchange displayName: {name} ->", end="")
-      tmp = self.get_key_by_dn(self.full, name)
-      value = self.full[tmp]
+      tmp = self.get_key_by_dn(self.full(), name)
+      value = self.full()[tmp]
       
       if rtl_resized:
         return tmp

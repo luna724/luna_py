@@ -13,18 +13,34 @@
     },
     "ui": {
       "system": {
-        "auto_setup_lora_opts": true,
-        "auto_run_compact_example_viewer": true,
-        "enable_lora_variable_showcase": true,
-        "auto_run_lora_example_viewer": true,
-        "automatic_load_example_images": false,
-        "show_optin_values": []
+        "generate": {
+          "auto_setup_lora_opts": true,
+          "auto_run_compact_example_viewer": true,
+          "enable_lora_variable_showcase": true,
+          "auto_run_lora_example_viewer": true,
+          "automatic_load_example_images": false,
+          "show_optin_values": [],
+          "lora_weight_range": [-1, 2, 0.01]
+        }
       } 
     }
   },
   "system": {
     "ce": {
       "disable_stable_name_checking": false
+    },
+    "generate": {
+      "custom_buildin_shortcut_via": {
+        "LoRA": ["%LORA%", "$LORA", "$$LORA"],
+        "Name": ["%NAME%", "$NAME", "$$NAME"],
+        "Prompt": ["%CH_PROMPT%", "$PROMPT", "$$_PROMPT"],
+        "face": ["%FACE%", "?AnyFace"],
+        "location": ["%LOCATION%", "?AnyLocation"],
+        "accessory": ["?AnyAccessory"],
+        "other": ["?AnyOtherVariable"],
+        "lv1": ["?AnyLV1"],
+        "lv2": ["?AnyLV2"]
+      }
     }
   }
 }

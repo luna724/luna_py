@@ -75,5 +75,49 @@
         "Clip": 2.0,
         "displayName": "\u666e\u901a\u306b\u30b9\u30af\u6c34",
         "DatabasePath": "/path/to/this_database"
-    }
+    },
+    "Example": {
+        "Method": "v4.0.0",
+        "Method_Release": 10,
+        "displayName": "Example!!!",
+        "Key": "Example",
+        "Values": {
+          "Prompt": "prompt here, $LORA, $NAME, $PROMPT, $FACE, $LOCATION, $FACE, $OTHER",
+          "Negative": "negative prompt here, $ACCESSORY",
+          "AD_Prompt": "ADetailer prompt here, $LORA, $NAME",
+          "AD_Negative": "ADetailer negative prompt here",
+          "NSFW_Prompt": "NSFW prompt here, $LORA"
+        },
+        "ControlNet": {
+          "isEnabled": false,
+          "Mode": "OpenPose",
+          "Weight": 0.75,
+          "Image": "path/to/image"
+        },
+        "Hires": {
+          "isEnabled": true,
+          "Upscale": 1.5,
+          "Sampler": "R-ESRGAN 4x+ Anime6B",
+          "Denoising": 0.35,
+          "Steps": 6
+        },
+        "Example": {
+          "lora": "LoRA Template",
+          "weight": 0.75,
+          "extend": false,
+          "face": ["1st Face", "2nd Face"],
+          "location": ["1st Location", "2nd Location"],
+          "Headers": ["Headers", "Lowers"],
+          "Other": ["Accessory", "Other"],
+          "clip": 2,
+          "image": "/path/to/image"
+        },
+        "Buildins": {
+          "model": "SD Checkpoints",
+          "vae": "SD VAE",
+          "sampler": "Sampler",
+          "method": "Sampler method",
+          "refiner": ["SD Checkpoints", 0.85]
+        }
   }
+}

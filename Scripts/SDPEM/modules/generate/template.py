@@ -12,7 +12,8 @@ example_template = {"test": {
     "Prompt": "prompt here",
     "Negative": "negative prompt here",
     "AD_Prompt": "ADetailer prompt here",
-    "AD_Negative": "ADetailer negative prompt here"
+    "AD_Negative": "ADetailer negative prompt here",
+    "NSFW_Prompt": "NSFW prompt here"
   },
   "ControlNet": {
     "isEnabled": False,
@@ -26,30 +27,6 @@ example_template = {"test": {
     "Sampler": "R-ESRGAN 4x+ Anime6B",
     "Denoising": 0.35,
     "Steps": 6
-  },
-  "Regional_Prompter": {
-    "isEnabled": False,
-    "rp_mode": "Matrix",
-    "mode": "Attention",
-    "base": False,
-    "use_common": False,
-    "use_ncommon": False,
-    "lora_stop": 0,
-    "lora_hires_stop": 0,
-    "resolution": [512, 512],
-    "split_mode": "Columns",
-    "split_ratio": "1:1",
-    "base_ratio": 0.2,
-    "template": ["ADDCOL"],
-    "Example": {
-      "lora": "LoRA Template",
-      "weight": 0.75,
-      "extend": False,
-      "face": ["1st Face", "2nd Face"],
-      "location": ["1st Location", "2nd Location"],
-      "Headers": ["Headers", "Lowers"],
-      "Other": ["Accessory", "Other"]
-    }
   },
   "Example": {
     "lora": "LoRA Template",
@@ -66,7 +43,8 @@ example_template = {"test": {
     "model": "SD Checkpoints",
     "vae": "SD VAE",
     "sampler": "Sampler",
-    "method": "Sampler method"
+    "method": "Sampler method",
+    "refiner": ["SD Checkpoints", 0.85]
   }
 }}
 
@@ -88,6 +66,18 @@ example_lora_template = {"test": [
 
 generatorTypes = Importer("modules.types", isTypes="generator")
 class Templates(generatorTypes):
+  class Tweaking:
+    def __init__(self, template: dict):
+      self.t = template
+    
+    def __call__(self, key: str) -> Any:
+      try:
+        return self.t[key]
+      except KeyError:
+        return None
+      except IndexError:
+        return None
+
   def __init__(self):
     super().__init__()
     self.get_templates = self.generate_common.obtain_template_list
@@ -107,8 +97,13 @@ class Templates(generatorTypes):
   
   class Template:
     """dataclass"""
-    def __init__(self):
-      pass
+    def __init__(self, **kwarg):
+      for k, v in kwarg:
+        setattr(self, k.lower(), v)
+    
+    def set(self, k:str, v):
+      setattr(self, k.lower(), v)
+    
     def __call__(self, key:str):
       if hasattr(self, key):
         return getattr(self, key)
@@ -120,36 +115,43 @@ class Templates(generatorTypes):
     return "templates-v4"
   
   
-  def show_example_values(self, template=None) -> Template:
-    def resize(x: Any, instance: Any = str) -> Any:
-      if x is None:
-        return instance()
-      else:
-        return x
-    
-    class Tweaking:
-      def __init__(self, template: dict):
-        self.t = template
-      
-      def __call__(self, key: str) -> Any:
-        try:
-          return self.t[key]
-        except KeyError:
-          return None
-        except IndexError:
-          return None
-        
-    rtl = list()
+  def get_example_values(self, template=None) -> Template:
     if template == None:
       template = self.selected_template
     
     # テンプレート v3 以上で有効
     # 現状、V2 より下のテンプレートは SD-PEM v3 でサポート打ち切り
     tmpl, _ = self.get_templates.get_template_value(template)
-    
-    get = Tweaking(tmpl)
+    value = Templates.Template()
 
+    specify_values_key = [
+      # 変数に登録する辞書キーを定義する
+      "method_ver", "method_release", "template_key",
+      "prompt", "negative", "ad_prompt", "ad_negative", "nsfw_prompt",
+      "cn_enabled", "cn_mode", "cn_weight", "cn_image",
+      "hires_enabled", "hires_upscale", "hires_sampler", "hires_denoise",
+      "hires_steps", "lora", "lora_weight", "has_extend", "faces", "locations",
+      "headers", "others", "clip_skip", "example_image", "sdcp",
+      "sdvae", "sampler", "sampling_method", "refiner_data"
+    ]
+    specify_values = [
+      # 定義した辞書キーに紐づく値がある位置を定義する
+      "Method", "Method_Release", "Key",
+      "Values.Prompt", "Values.Negative", "Values.AD_Prompt", "Values.AD_Negative", "Values.NSFW_Prompt",
+      "ControlNet.isEnabled", "ControlNet.Mode", "ControlNet.Weight", "ControlNet.Image",
+      "Hires.isEnabled", "Hires.Upscale", "Hires.Sampler", "Hires.Denoising",
+      "Hires.Steps", "Example.lora", "Example.weight", "Example.extend", "Example.face", "Example.location",
+      "Example.Headers", "Example.Other", "Example.clip", "Example.image", "Buildins.model",
+      "Buildins.vae", "Buildins.sampler", "Buildins.method", "Buildins.refiner"
+    ]
     
+    for i, vkey in enumerate(specify_values_key):
+      value.set(vkey, 
+                self.lib.get_treed_value(
+                  tmpl, specify_values[i], None
+                ))
+    
+    return value
   
   def detect_lora_variable(self, lora_template=None):
     # v4 method
@@ -224,87 +226,72 @@ class Templates(generatorTypes):
   def change_template(self, tmpl) -> tuple:
     self.selected_template = tmpl
     rtl = []
-    template_value = self.show_example_values(tmpl)
+    template_value = self.get_example_values(tmpl)
     
     # 1. Compact Example Viewer
-    method = template_value("Method")
+    method = template_value("method_ver")
     tmpl_key = template_value("Key")
-    tmpl_prompt = template_value("Values")["Prompt"]
-    tmpl_negative = template_value("Values")["Negative"]
+    tmpl_prompt = template_value("prompt")
+    tmpl_negative = template_value("negative")
     rtl += [method, tmpl_key, tmpl_prompt, tmpl_negative]
     
     # 2. LoRA opts Auto-Setting (from Example value)
-    lw = template_value("Example")["weight"]
-    has_extend = template_value("Example")["extend"]
+    lw = template_value("lora_weight")
+    has_extend = template_value("has_extend")
     
     rtl += [lw, has_extend]
     
     return tuple(rtl)
   
-  
-  def v3(self, template,lora_name:str,
-  lora_id:str,
-  ch_name:str,
-  ch_prompt:str,
-  location:str,
-  face:str,
-  header:str,
-  lower:str,
-  lora_weight:float,
-  has_extend:bool,
-  adetailer_plus:bool,
-  apply_positive:bool,
-  apply_negative:bool,
-  apply_weight_to_positive:bool,
-  apply_weight_to_negative:bool,
-  sp_lora_name:str,
-  sp_lora_id:str,
-  sp_ch_name:str,
-  sp_ch_prompt:str,
-  sp_location:str,
-  sp_face:str,
-  sp_header:str,
-  sp_lower:str,
-  sp_sync_some:bool,
-  sp_lora_weight:float,
-  sp_has_extend:bool,
-  #convert_break_to_template:bool, # beta Function. convert BREAK to Template value (e.g. BREAK -> ADDCOL)
-  face2:str,
-  location2:str,
-  cloth:str,
-  cloth2:str,
-  accessory:str,
-  other:str,
-  quality_prompt:bool):
-    def r(x:str) -> str:
-      return x.strip().strip(",")
-  
-    if lora_name == "" and lora_id == "":
-      print("Catched: lora_name == None and lora_id == None")
-      raise gr.Error("LoRAs not selected.")
-      
-    data, _ = self.get_templates.get_template_value(template)
-    _, lora, name, character_prompt, ch_extend = self.get_lora.manual(True, lora_name)
+  def update_tmpl_prompts_ui_values(self, mode:Literal["NSFW_Prompt", "Default"]) -> Tuple[str]:
+    """ return tmpl_prompt and tmpl_negative"""
+    template_value = self.get_example_values()
     
-    values = data["Values"]
-  
-    prompt = values["Prompt"]
-    negative = values["Negative"]
-    ad_prompt = values["AD_Prompt"]
-    ad_negative = values["AD_Negative"]
+    if mode == "Default":
+      tmpl_prompt = template_value("prompt")
+      tmpl_negative = template_value("negative")
+      return (tmpl_prompt, tmpl_negative)
     
-    lora , name, character_prompt, location, face = r(lora), r(name), r(character_prompt), r(location), r(face)
-    if has_extend and isinstance(ch_extend, str):
-      character_prompt += ", "+r(ch_extend)
-      
-    prompt1 = self.finalizer(
-      prompt, template, (lora_weight, 1.0)
+    elif mode == "NSFW_Prompt":
+      nsfw_prompt = template_value("nsfw_prompt")
+      tmpl_negative = template_value("negative")
+      if nsfw_prompt is None:
+        gr.Info("Templates version is too low! (v3.2 and below), if NSFW Prompt saved, your template will automatically update")
+        nsfw_prompt = ""
+      return (nsfw_prompt, tmpl_negative)
+  
+  def variables_from_example(self):
+    """Button (Get from eaxmple data)'s function
+    return tuple(str, ..) (len=8)"""
+    tv = self.get_example_values()
+    faces = tv("faces")
+    locations = tv("locations")
+    headers = tv("headers")
+    others = tv("others")
+    
+    return (
+      faces[0], faces[1], locations[0], locations[1],
+      others[0], others[1], headers[0], headers[1]
     )
-    
-    # v3.0.3+ Regional Prompter
-    rp = data["Regional_Prompter"]["Secondary_Prompt"]
-    prompt = rp["prompt"]
   
+  def get_prompts_info(self) -> str:
+    """ return HTML style.
+    information for tmpl_prompts
+    """
+    return "COMING SOON"
+  
+  def update_prompt_only(self, new_prompt, new_negative):
+    ## TODO: prompt only SAVE System
+    gr.Info("updated.")
+  
+  
+  # .change() Methods
+  def use_prompt_nsfw_mode(self, slf:bool): # -> Tuple(str, str)
+    if slf:
+      return self.update_tmpl_prompts_ui_values("NSFW_Prompt")
+    else:
+      return self.update_tmpl_prompts_ui_values("Default")
+    
 class _template(Importable):
   def __call__(self, **kwargs):
     return Templates()

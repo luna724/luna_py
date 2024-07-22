@@ -41,9 +41,12 @@ class _get:
         for x in locate.split(".")[1:]:
           if x in value.keys():
             value = value[x]
-    
+          else:
+            raise ValueError(f"Cannot find key '{x}' in the config path '{locate}'")
+      else:
+        raise ValueError(f"Config path '{locate}' does not point to a dictionary")zzzzzzz
     else:
-      raise ValueError("cannot find that config: ", locate)
+      raise ValueError(f"Cannot find top-level key '{p1}' in the config path '{locate}'")
 
     return value
   
