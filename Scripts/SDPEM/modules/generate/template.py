@@ -1,5 +1,7 @@
 from lunapy_module_importer import Importer, Importable
 from typing import *
+import PIL.Image
+from PIL import Image
 import os
 import gradio as gr
 
@@ -86,6 +88,7 @@ class Templates(generatorTypes):
     
     self.selected_template:str = None
     self.selected_lora:str = None
+    self.currently_images:dict = {}
     
     # Template
     self.blank_template = gr.update(interactive=False, label="")
@@ -98,17 +101,28 @@ class Templates(generatorTypes):
   class Template:
     """dataclass"""
     def __init__(self, **kwarg):
-      for k, v in kwarg:
+      for k, v in kwarg.items():
         setattr(self, k.lower(), v)
     
     def set(self, k:str, v):
       setattr(self, k.lower(), v)
     
-    def __call__(self, key:str):
-      if hasattr(self, key):
-        return getattr(self, key)
+    def __call__(self, key:str, *keys) -> Any | Tuple[Any]:
+      if len(keys) > 0:
+        keys = list(keys)
+        keys.insert(0, key)
+        data = []
+        for k in keys:
+          if hasattr(self, k):
+            data.append(getattr(self, k))
+          else:
+            data.append(None)
       else:
-        return None
+        if hasattr(self, key):
+          return getattr(self, key)
+        else:
+          return None
+      return tuple(data)
   
   @staticmethod
   def get_module_name():
@@ -129,7 +143,7 @@ class Templates(generatorTypes):
       "method_ver", "method_release", "template_key",
       "prompt", "negative", "ad_prompt", "ad_negative", "nsfw_prompt",
       "cn_enabled", "cn_mode", "cn_weight", "cn_image",
-      "hires_enabled", "hires_upscale", "hires_sampler", "hires_denoise",
+      "hires_enabled", "hires_upscaler", "hires_upscale", "hires_sampler", "hires_denoise",
       "hires_steps", "lora", "lora_weight", "has_extend", "faces", "locations",
       "headers", "others", "clip_skip", "example_image", "sdcp",
       "sdvae", "sampler", "sampling_method", "refiner_data"
@@ -139,7 +153,7 @@ class Templates(generatorTypes):
       "Method", "Method_Release", "Key",
       "Values.Prompt", "Values.Negative", "Values.AD_Prompt", "Values.AD_Negative", "Values.NSFW_Prompt",
       "ControlNet.isEnabled", "ControlNet.Mode", "ControlNet.Weight", "ControlNet.Image",
-      "Hires.isEnabled", "Hires.Upscale", "Hires.Sampler", "Hires.Denoising",
+      "Hires.isEnabled", "Hires.Sampler", "Hires.Upscale", "Hires.Sampler", "Hires.Denoising",
       "Hires.Steps", "Example.lora", "Example.weight", "Example.extend", "Example.face", "Example.location",
       "Example.Headers", "Example.Other", "Example.clip", "Example.image", "Buildins.model",
       "Buildins.vae", "Buildins.sampler", "Buildins.method", "Buildins.refiner"
@@ -283,7 +297,105 @@ class Templates(generatorTypes):
   def update_prompt_only(self, new_prompt, new_negative):
     ## TODO: prompt only SAVE System
     gr.Info("updated.")
+    
+  def load_image_ui(self, elem_type:Literal["cn_image", "ex_image"]) -> Image.Image:
+    types = {"cn_image": self.currently_images["ControlNet"],
+            "ex_image": self.currently_images["Example"]}
+    
+    image = self.load_image(types[elem_type], semi_load=False)
+    if image is None:
+      gr.Info("images not found.")
+    else:
+      return image
+    
+  def interactive(self, mode:bool = False) -> dict:
+    """for load_viewers() func"""
+    return gr.update(
+      visible=mode, open=mode
+    )
+    
+  def load_image(self, fp:str | None, semi_load:bool = True) -> PIL.Image.Image | str | None:
+    if fp is None: return None
+    if semi_load:
+      path = self.config.get_data_path()
+      path = os.path.join(path, fp)
+      
+      # 画像が存在するかチェック、 PNG以外の拡張子は無視
+      if os.path.exists(path) and os.path.splitext(fp)[1].lower() == ".png":
+        return path
+        #return Image.open(path)
+      else:
+        return None
+    
+    else:
+      return Image.open(fp=fp)
   
+  def load_viewers(self, template) -> Tuple[Any]:
+    """Example view function"""
+    t = self.get_example_values()
+    
+    # ADetailer
+    ad_status = self.interactive(True)
+    ad = Templates.Template(**{
+      "prompt": t("ad_prompt"), "negative": t("ad_negative")
+    })
+    if ad.prompt == "D" or ad.prompt == "":
+      ad_status = self.interactive(False)
+    ad.set("enable", ad_status)
+    
+    #ControlNet
+    controlnet = t("cn_enabled")
+    cn_enabled = self.interactive(controlnet)
+    cndata = t("cn_mode", "cn_weight", "cn_image")
+    cn = Templates.Template(**{
+      "enable": cn_enabled, "mode": cndata[0], "weight": cndata[1], "image": self.load_image(cndata[2])
+    })
+    
+    # hires.fix
+    hires_fix = t("hires_enabled")
+    hf_enabled = self.interactive(hires_fix)
+    hf_data = t("hires_upscale", "hires_sampler", "hires_denoise", "hires_steps")
+    hf = Templates.Template(**{
+      "enable": hf_enabled, "upscale": hf_data[0], "sampler": hf_data[1],
+      "denoise": hf_data[2], "steps": hf_data[3], "upscaler": t("hires_upscaler")
+    })
+    
+    # Example
+    ex_img_path = self.load_image(t("example_image"))
+    ex_img = self.load_image(ex_img_path, semi_load=False)
+    if not ex_img is None: exw, exh = ex_img.size
+    else: exw, exh = (0, 0)
+    
+    example_values = {
+      "enable": self.interactive(True),
+      "lora": t("lora"), "weight": t("lora_weight"), "has_extend": t("has_extend"),
+      "face": t("faces")[0], "face2": t("faces")[1], "location": t("locations")[0],
+      "location2": t("locations")[1], "header": t("headers")[0],
+      "lower": t("headers")[1], "accessory": t("others")[0],
+      "other": t("others")[1], "clip": t("clip_skip"), "image": ex_img_path,
+      "width": exw, "height": exh 
+    }
+    ex = Templates.Template(**example_values)
+    
+    # Buildins
+    bi = Templates.Template(**{
+      "enable": self.interactive(True),
+      "cp": t("sdcp"), "vae": t("sdvae"), "sampler": t("sampler"),
+      "method": t("sampling_method"), "refiner": t("refiner_data")[0], "rf_swap_to": t("refiner_data")[1]
+    })
+    
+    self.currently_images = {
+      "ControlNet": cn("image"),
+      "Example": ex("image")
+    }
+    return (
+      ad.enable, ad.prompt, ad.negative, hf.enable, hf.upscaler, hf.steps,
+      hf.denoise, hf.upscale, cn.enable, cn.mode, cn.weight, ex.enable,
+      ex.lora, ex.weight, ex.has_extend, ex.header, ex.lower, ex.face,
+      ex.face2, ex.location, ex.location2, ex.accessory, ex.other,
+      ex.width, ex.height, ex.clip, bi.enable, bi.cp, bi.vae, bi.sampler,
+      bi.method, bi.refiner, bi.rf_swap_to
+    )
   
   # .change() Methods
   def use_prompt_nsfw_mode(self, slf:bool): # -> Tuple(str, str)
@@ -291,7 +403,7 @@ class Templates(generatorTypes):
       return self.update_tmpl_prompts_ui_values("NSFW_Prompt")
     else:
       return self.update_tmpl_prompts_ui_values("Default")
-    
+  
 class _template(Importable):
   def __call__(self, **kwargs):
     return Templates()

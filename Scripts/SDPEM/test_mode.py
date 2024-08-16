@@ -1,276 +1,147 @@
 import gradio as gr
 from typing import Literal
 
-from test_script import ce
+from test_script import ce, g_template
 from lunapy_module_importer import Importer
 
-def main(mode:Literal["ce", "g_template"]):
+def main(mode:Literal["ce", "g_template", "mt_s_template", "mt_s_lora"]):
   if mode == "ce": #Archived (tests/ce.py)
     iface = ce.get()
-  
-  elif mode == "g_template":
-    class var:
-      refresh = "\U0001f504"
-      cfn:dict = {
-        "interactive": False,
-        "show_copy_button": True,
-        "max_lines": 1
-      }
+  elif mode == "g_template": #Archived (tests/g_template.py)
+    iface = g_template.get()
+  elif mode == "mt_s_template":
+    # tmpl_common = Importer("modules.generate.common")
+    # get_template = tmpl_common.obtain_template_list
+    # get_lora_template = tmpl_common.obtain_lora_list
     
-    config = Importer("modules.config.get").get_spec_value("user_variable")["ui"]["system"]["generate"]
+    # module = Importer("modules.manage.templates.save")
+    # AVV = module.available_versions
+    
+    # with gr.Blocks() as iface:
+    #   selected_version = gr.Dropdown(AVV, value=AVV[0], label="Selected version")
+    #   selected_version.change(
+    #     module.selected_version_changer,
+    #     selected_version
+    #   )
+    #   ## TODO: get versions (e.g. v3/modules/ui/mt_child/define_child/prompt.py)
+      
+    #   ## From below, insert to "/prompts/v4.py"
+    #   with gr.Blocks():
+    #     display_name = gr.Textbox(label="displayName")
+        
+    #     with gr.Row():
+    #       prompt = gr.Textbox(label="Prompt", lines=4, placeholder="All buildins keywords at template_info.md")
+    #       negative = gr.Textbox(label="Negative prompt", lines=4, placeholder="if blank, insteads database's value\nif need blank Negative, set to \".\"")
+        
+    #     with gr.Row():
+    #       with gr.Column():
+    #         with gr.Group():
+    #           adetailer_activate = gr.Checkbox(label="activate ADetailer")
+    #           with gr.Accordion(label="ADetailer", visible=False) as adetailer_root:
+    #             adetailer_disable = gr.Checkbox(label="deactivate ADetailer")
+                
+    #             # change
+    #             adetailer_activate.change(
+    #               module.activate_method,
+    #               [adetailer_activate], 
+    #               [adetailer_activate, adetailer_disable, adetailer_root]
+    #             )
+    #             adetailer_disable.change(
+    #               module.deactivate_method,
+    #               [adetailer_disable], 
+    #               [adetailer_activate, adetailer_disable, adetailer_root]
+    #             )
+                
+    #             adetailer_model = gr.Dropdown(
+    #               allow_custom_value=True, label="ADetailer model",
+    #               choices=module.model_db.get_adetailer_models(),
+    #               value=module.model_db.get_adetaler_primary_model()
+    #             )
+                
+    #             with gr.Row():
+    #               adetailer_prompt = gr.Textbox(
+    #                 label="Prompt", lines=3
+    #               )
+    #               adetailer_negative = gr.Textbox(
+    #                 label="Negative Prompt", lines=3
+    #               )
+            
+    #         with gr.Group():
+    pass
+  elif mode == "mt_s_lora":
     tmpl_common = Importer("modules.generate.common")
-    get_template = tmpl_common.obtain_template_list
     get_lora_template = tmpl_common.obtain_lora_list
+    module = Importer("modules.manage.lora.save")
     
     with gr.Blocks() as iface:
-      # Initialize
-      module = Importer("modules.generate.template")
-      generate = Importer("modules.generate.generate")
-      
       with gr.Row():
-        template = gr.Dropdown(label="Template", choices=get_template.webui(), scale=4)
-        template_refresh = gr.Button(var.refresh, scale=1)
-        template_refresh.click(
-          fn=get_template.update,
-          outputs=template
-        )
-        
-        lora = gr.Dropdown(label="LoRA Template", choices=get_lora_template.manual(), scale=4)
-        lora_refresh = gr.Button(var.refresh, scale=1)
-        lora_refresh.click(
-          fn=get_lora_template.update, outputs=lora
-        )
+        display_name = gr.Textbox(label="displayName", max_lines=1, scale=7)
+        version = gr.Dropdown(label="version", scale=3, choices=module.get_avv(), value=module.get_recommend_version())
       
-      with gr.Accordion("LoRA Variables", open=True, visible=False) as lora_var:
+      
+      with gr.Tab("v5"): # version によって変更するタブ  template/save.py 参照
         with gr.Row():
-          lora_var_check_1 = gr.Checkbox(label="", interactive=False, value=False)
-          lora_var_check_2 = gr.Checkbox(label="", interactive=False, value=False)
+          lora_id = gr.Textbox(label="$LORA trigger", placeholder="<lora:example:1.0>  |  . to Empty", scale=62)
+          lora_id_is_lora = gr.Checkbox(True, scale=20, label="isLoRA")
+          check_lora_id = gr.Button("Check", scale=12)
+          check_lora_id.click(module.check_lora_id, [lora_id, lora_id_is_lora])
+        
         with gr.Row():
-          lora_var_check_1_info = gr.Textbox(label="", **var.cfn)
-          lora_var_check_2_info = gr.Textbox(label="", **var.cfn)
-          
-      with gr.Blocks():
+          name = gr.Textbox(label="$NAME trigger", placeholder="My template treats it as a character name.")
+        
+        with gr.Row():
+          prompt = gr.Textbox(label="$PROMPT trigger", placeholder="My template treats it as a character prompt. (except hair and other variable features)")
+          extend = gr.Textbox(label="$EXTEND trigger", placeholder="My template treats it as a def Character prompt (include ONLY hair and other variables.)")
+        
         with gr.Row():
           with gr.Column():
-            # Code for user variable
+            lora_var1 = gr.Checkbox(label="LoRA Variable1 ($LV1)")
+            with gr.Group(visible=False) as lv1:
+              var1_title = gr.Textbox(label="Title (doesn't affect code/template)", placeholder="memo for user")
+              var1_prompt = gr.Textbox(label="Prompt for this")
+        
+        with gr.Column():
+          lora_var2 = gr.Checkbox(label="LoRA Variable2 ($LV2)")
+          with gr.Group(visible=False) as lv2:
+            var2_title = gr.Textbox(label="Title (doesn't affect code/template)", placeholder="memo for user")
+            var2_prompt = gr.Textbox(label="Prompt for this")
+        
+        lora_var1.change(module.bool2visible, lora_var1, lv1)
+        lora_var2.change(module.bool2visible, lora_var2, lv2)
+        
+        with gr.Row():
+          overwrite = gr.Checkbox(label="Overwrite")
+        
+        status = gr.Textbox(label="Status")
+        save = gr.Button("Save", variant="primary")
+        
+        gr.Markdown("<br />")
+        with gr.Group():
+          with gr.Accordion("Load", open=False):
             with gr.Row():
-              lwcfg = config["lora_weight_range"]
-              lora_weight = gr.Slider(lwcfg[0], lwcfg[1], 0.75, step=lwcfg[2], label="LoRA Weight")
-              extend_lora_enable = gr.Checkbox(label="Enable Extend prompt", value=False)
-            with gr.Row():
-              enable_adetailer_lora = gr.Checkbox(label="Enable ADetailer LoRA", value=True)
-              enable_negative_lora = gr.Checkbox(label="Enable negative LoRA", value=True)
-            with gr.Row():
-              realtime_infer = gr.Checkbox(label="Realtime Infer (get Prompt/Negative from right tab)", value=False)
-              use_prompt_nsfw_mode = gr.Checkbox(label="Use prompt NSFW Mode (if prompt supported)", value=False)
-            
-            with gr.Accordion("some variables", open=False):
-              with gr.Row():
-                face = gr.Textbox(label="$FACE")
-                face2 = gr.Textbox(label="$FACE (secondary)")
-              with gr.Row():
-                location = gr.Textbox(label="$LOCATION")
-                location2 = gr.Textbox(label="$LOCATION (secondary)")
-              with gr.Row():
-                accessory = gr.Textbox(label="$ACCESSORY")
-                other = gr.Textbox(label="$OTHER")
-              with gr.Row():
-                header = gr.Textbox(label="Header")
-                lower = gr.Textbox(label="Lower")
-              variables_obtain_from_right = gr.Button("Get from example data")
-              variables_obtain_from_right.click(
-                module.variables_from_example,
-                outputs=[
-                  face, face2, location, location2, accessory, other,
-                  header, lower
-                ]
+              target = gr.Dropdown(
+                choices=get_lora_template.manual(), label="Target", scale=72
               )
-              
-            infer = gr.Button("Generate", variant="primary")
-            sd_paste = gr.Button("copy Paster")
-            
-            with gr.Row():
-              prompt = gr.Textbox(label="output Prompt", lines=5, interactive=False, show_copy_button=True)
-              negative = gr.Textbox(label="output Negative", lines=5, interactive=False, show_copy_button=True)
-            with gr.Row():
-              ad_prompt = gr.Textbox(label="output ADetailer prompt", lines=3, interactive=False, show_copy_button=True)
-              ad_negative = gr.Textbox(label="output ADetailer negative prompt", lines=3, interactive=False, show_copy_button=True)
-            
-          with gr.Column():
-            # Code for NOT Interactive interface
-            # Selected LoRA
-            with gr.Row():
-              lora_id_1 = gr.Textbox(label="LoRA ID", **var.cfn)
-              lora_nm_1 = gr.Textbox(label="LoRA Name", **var.cfn)
-            with gr.Row():
-              lora_pm_1 = gr.Textbox(label="LoRA Prompt", **var.cfn)
-              lora_ex_1 = gr.Textbox(label="LoRA Extend", **var.cfn)
-            
-            # Selected Template
-            with gr.Row():
-              method = gr.Textbox(label="Method ver.", **var.cfn)
-              tmpl_key = gr.Textbox(label="Key", **var.cfn)
-            with gr.Column():
-              gr.Markdown("theses(Prompt/Negative) values are updatable from Left tab's value")
-              tmpl_prompts_info = gr.HTML(every=module.get_prompts_info)
-            with gr.Row():
-              tmpl_prompt = gr.Textbox(label="Prompt", lines=5, interactive=True)
-              tmpl_negative = gr.Textbox(label="Negative", lines=5, interactive=True)
-            update_tmpl_prompt_negative = gr.Button("Update with this values (Prompt/Negative)", size="sm")
-            update_tmpl_prompt_negative.click(
-              module.update_prompt_only,
-              [tmpl_prompt, tmpl_negative]
+              refresh = gr.Button("♲", scale=28)
+              refresh.click(get_lora_template.manual, outputs=target)
+            load = gr.Button("Load", variant="primary")
+            load.click(
+              module.load_primary, # バージョンが変われば load_primary -> module.legacy.load_for_v5 等に変更
+              [target, display_name, lora_id, lora_id_is_lora, name, prompt, extend,
+                lora_var1, var1_title, var1_prompt, lora_var2, var2_title, var2_prompt,
+                overwrite],
+              [status, display_name, lora_id, name, prompt, extend,
+                lora_var1, var1_title, var1_prompt, lora_var2, var2_title, var2_prompt,
+                lora_id_is_lora, overwrite]
             )
-            use_prompt_nsfw_mode.change(
-              module.use_prompt_nsfw_mode,
-              use_prompt_nsfw_mode, [tmpl_prompt, tmpl_negative]
-            )
-            
-            
-            tmpl_adetailer = gr.Checkbox(label="ADetailer Status")
-            with gr.Row(visible=False) as tmpl_adetailer_visible:
-              tmpl_ad_prompt = gr.Textbox(label="Prompt 1st", lines=3, interactive=False)
-              tmpl_ad_negative = gr.Textbox(label="Negative 1st", lines=3, interactive=False)
-            
-            tmpl_hires = gr.Checkbox(label="Hires.fix Status")
-            with gr.Group(visible=False) as tmpl_hires_visible:
-              with gr.Row():
-                tmpl_hi_upscaler = gr.Textbox(label="Hires UpScaler", **var.cfn)
-                tmpl_hi_step = gr.Slider(0, 150, label="Hires Step", **var.cfn)
-              with gr.Row():
-                tmpl_hi_denoise = gr.Slider(0, 1, label="DeNoising Strength", **var.cfn)
-                tmpl_hi_upscale = gr.Slider(1, 4, label="Upscale (×)", **var.cfn)
-            
-            tmpl_cn = gr.Checkbox(label="ControlNet[1st] Status")
-            with gr.Group(visible=False) as tmpl_cn_visible:
-              with gr.Row():
-                tmpl_cn_mode = gr.Textbox(label="Control Mode", **var.cfn)
-                tmpl_cn_weight = gr.Slider(-1, 2, label="Control Weights", **var.cfn)
-              
-              with gr.Accordion("Image"):
-                tmpl_cn_image = gr.Image(height=768, width=768, image_mode="RGBA", type="pil", label="COntrolNet Image", elem_classes=["image-center"], **var.cfn)
-                tmpl_cn_load_image = gr.Button("Load", variant="primary")
-                tmpl_cn_load_image.click(
-                  None, [template], tmpl_cn_image
-                ) ## Load CN Image Function
-            
-            # tmpl_rp = gr.Checkbox(label="Regional Prompter Status")
-            # with gr.Group(visible=False) as tmpl_rp_visible:
-            #   tmpl_rp_mode = gr.Textbox(label="Generation Mode", **var.cfn)
-            #   with gr.Row():
-            #     tmpl_rp_base = gr.Checkbox(label="Use base prompt", **var.cfn)
-            #     tmpl_rp_common = gr.Checkbox(label="Use common prompt", **var.cfn)
-            #     tmpl_rp_ncommon = gr.Checkbox(label="Use common negative prompt", **var.cfn)
-            #   tmpl_rp_ratio = gr.Textbox(label="Base Ratio", **var.cfn)
-              
-            #   with gr.Row():
-            #     tmpl_rp_stop = gr.Slider(0, 150, label="LoRA stop step", **var.cfn)
-            #     tmpl_rp_hires = gr.Slider(0, 150, label="LoRA Hires stop step", **var.cfn)
-              
-            #   with gr.Row():
-            #     with gr.Column():
-            #       tmpl_rp_split = gr.Textbox(label="Main Matrix mode", **var.cfn)
-            #       tmpl_rp_division = gr.Textbox(label="Division Ratio", **var.cfn)
-            #     with gr.Column():
-            #       tmpl_rp_w = gr.Slider(1, 2048, label="Width", **var.cfn)
-            #       tmpl_rp_h = gr.Slider(1, 2048, label="Height", **var.cfn)
-              
-            #   with gr.Row():
-            #     tmpl_rp_template = gr.Textbox(label="Template", **var.cfn)
-              
-            #   with gr.Accordion(label="Sample"):
-            #     tmpl_rp_image = gr.Image(height=768, width=768, image_mode="RGBA", type="pil", label="COntrolNet Image", elem_classes=["image-center"], **var.cfn)
-            #     tmpl_rp_load_image = gr.Button("Load", variant="primary")
-            #     tmpl_rp_load_image.click(
-            #       None, [template], tmpl_rp_image
-            #     ) ## Load RP Sample Image Function
-            
-            tmpl_ex = gr.Checkbox(label="Example values", **var.cfn)
-            with gr.Group(visible=False) as tmpl_ex_visible:
-              tmpl_ex_lora = gr.Textbox(label="LoRA Template (When saved)", **var.cfn)
-              
-              with gr.Row():
-                tmpl_ex_weight = gr.Slider(-2.0, 2.0, label="LoRA Weight", **var.cfn)
-                tmpl_ex_extend = gr.Checkbox(label="Apply Extend Prompt", **var.cfn)
-              with gr.Row():
-                tmpl_ex_header = gr.Textbox(label="Header", **var.cfn)
-                tmpl_ex_lower = gr.Textbox(label="Lower", **var.cfn)
-              with gr.Row():
-                tmpl_ex_face = gr.Textbox(label="1st Face", **var.cfn)
-                tmpl_ex_face_2 = gr.Textbox(label="2nd Face", **var.cfn)
-              with gr.Row():
-                tmpl_ex_location = gr.Textbox(label="1st Location", **var.cfn)
-                tmpl_ex_location_2 = gr.Textbox(label="2nd Location", **var.cfn)
-              with gr.Row():
-                tmpl_ex_accessory = gr.Textbox(label="Accessory", **var.cfn)
-                tmpl_ex_other = gr.Textbox(label="Other", **var.cfn)
-              
-              with gr.Blocks():
-                with gr.Row():
-                  tmpl_ex_w = gr.Slider(1, 2048, label="Width", **var.cfn)
-                  tmpl_ex_h = gr.Slider(1, 2048, label="Height", **var.cfn)
-                with gr.Row():
-                  clip_skip = gr.Slider(1, 15, label="Clip Skip", **var.cfn)
-              
-              with gr.Accordion("Image"):
-                tmpl_ex_image = gr.Image(height=768, width=768, image_mode="RGBA", type="pil", label="COntrolNet Image", elem_classes=["image-center"], **var.cfn)
-                tmpl_ex_load_image = gr.Button("Load", variant="primary")
-                tmpl_ex_load_image.click(
-                  None, [template], tmpl_ex_image
-                ) ## Load Sample Image Function
-            
-            tmpl_bi = gr.Checkbox(label="Builtins Opts", value=True)
-            with gr.Group(visible=True) as tmpl_bi_visible:
-              with gr.Row():
-                tmpl_bi_model = gr.Textbox(label="Checkpoints", **var.cfn)
-                tmpl_bi_vae = gr.Textbox(label="VAE", value="Auto", **var.cfn)
-              with gr.Row():
-                tmpl_bi_sampler = gr.Textbox(label="Sampler", **var.cfn)
-                tmpl_bi_method = gr.Textbox(label="Sampler Method", **var.cfn)
-            
-            
-            ## Update database
-            lora.change(
-              module.change_lora, lora, [lora_var, # 
-                lora_var_check_1, lora_var_check_1_info, #
-                lora_var_check_2, lora_var_check_2_info, # LoRA Variables
-                lora_id_1, lora_nm_1, lora_pm_1, lora_ex_1 # LoRA Example Viewer
-                ]
-            )
-            template.change(
-              module.change_template, template,
-              [
-                method, tmpl_key, tmpl_prompt, tmpl_negative,
+        
+        save.click(
+          module.save_primary,
+          [target, display_name, lora_id, lora_id_is_lora, name, prompt, extend,
+                lora_var1, var1_title, var1_prompt, lora_var2, var2_title, var2_prompt,
+                overwrite],
+          status
+        )
+
                 
-              ]
-            )
-            
-            
-            ## Inference
-            infer.click(
-              generate.generate,
-              [
-                template, lora, 
-                lora_weight, extend_lora_enable, enable_adetailer_lora,
-                enable_negative_lora, realtime_infer, tmpl_prompt, tmpl_negative,
-                use_prompt_nsfw_mode, lora_var_check_1, lora_var_check_2,
-                face, face2, location, location2, accessory, other,
-                header, lower
-              ],
-              [prompt, negative, ad_prompt, ad_negative]
-            )
-            
-            sd_paste.click(
-              generate.generate_paster,
-              [
-                template, lora, 
-                lora_weight, extend_lora_enable, enable_adetailer_lora,
-                enable_negative_lora, realtime_infer, tmpl_prompt, tmpl_negative,
-                use_prompt_nsfw_mode, lora_var_check_1, lora_var_check_2,
-                face, face2, location, location2, accessory, other,
-                header, lower
-              ],
-              prompt
-            )
-            
   iface.queue(64).launch(server_port=9999)

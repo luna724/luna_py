@@ -1,5 +1,6 @@
 from lunapy_module_importer import Importable
 import re
+import gradio as gr
 from typing import *
 
 class _lib:
@@ -174,6 +175,10 @@ class _lib:
         return value
     
     return value
+  
+  @staticmethod
+  def bool2visible(v:bool):
+    return gr.update(visible=v)
   
 class lib(Importable):
   def __init__(self):

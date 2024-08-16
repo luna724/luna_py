@@ -6,7 +6,7 @@ import gradio as gr
 
 collectorTypes = Importer("modules.types", isTypes="collector")
 
-class obtain_lora_list(collectorTypes):
+class obtain_lora_list(collectorTypes ):
   def __init__(self):
     super().__init__()
     self.cfg_root = super().get_data_path()

@@ -2,17 +2,22 @@ import discord
 from discord.ext import commands
 from typing import *
 from PIL import Image
-import json, os, time, numpy as np, io, hashlib, random, string
+import json, os, time, numpy as np, io, random, string
 
+from main.util import via_ctx
 from main.simple_graph_creator import functional as sgc, data as sgc_data
 
-def convert(v:float) -> str:
+def convert(v:float, **kw) -> str:
     """ 
     Convert integer to text (e.g. 200,000,000 -> 200M)
     Max: B (1000000000)
         Min: K (1000)
     """
-    print(f"[Convert]: Input: {v}")
+    if isinstance(v, int):
+        v = float(v)
+    dic = False
+    
+    # print(f"[Convert]: Input: {v}")
     def under_one(v) -> int:
         if v < 1:
             return 0
@@ -22,8 +27,6 @@ def convert(v:float) -> str:
     if str(v).startswith("-"):
         dic = True
         v *= -1
-    else:
-        dic = False
     
     b = v / 1000000000
     m = v / 1000000
@@ -33,14 +36,14 @@ def convert(v:float) -> str:
     b = under_one(b)
     m = under_one(m)
     k = under_one(k)
-    print(f"[Convert]: first value: b: {b} m: {m} k: {k} last: {last}")
+    # print(f"[Convert]: first value: b: {b} m: {m} k: {k} last: {last}")
     # b, m, k を上にあるものを引いていく
     m = m - (b*1000)
     k = k - (m*1000)
     
     text = ""
     if b != 0:
-        text = f"{b}B"
+        text = f"{b}"
         if m != 0:
             text += f".{int(m)}"
         text += "B"
@@ -60,6 +63,7 @@ def convert(v:float) -> str:
         text = f"{last}coin"
     
     if dic: text = "-"+text
+    
     return text
 
 def txt2coin(x) -> int | float:
@@ -106,6 +110,104 @@ def bz_to_npc_profit_calculator(x: float, y: int, z: float, d: bool = True) -> T
     sellable_days = int(z / npc_daily_limit)
 
     return profit, profit_percentage, sellable_days
+   
+def get_up_percentage(prv: float, new: float) -> str:
+    """floatは .01d"""
+    # 増減率の計算
+    if prv != 0:
+        profit_percentage = ((new-prv) / prv) * 100
+        if profit_percentage < 0: dig = "" 
+        else: dig = "+"
+        profit_percentage = f"{dig}{profit_percentage:.1f}%"
+    else:
+        profit_percentage = "+∞"
+    return profit_percentage
+    
+def remove_zero_dot(v:int | float | str) -> (float | int):
+    def ret(v):
+        if v.count(".") > 0:
+            return float(v)
+        else:
+            return int(v)
+    v = str(v)
+    if not v.count(".") > 0:
+        return ret(v)
+    if not v.endswith("0"):
+        return ret(v)
+    if len(v.split(".")[1]) > 1:
+        while v.endswith("0"):
+            v = v[:-1]
+        return ret(v)
+    else:
+        return ret(v.split(".")[0])
+
+def set_coin_tracker(v:list, k:str):
+    current = v[0]
+    with open("coin_tracker.json", "r", encoding="utf-8") as f:
+        tracker = json.load(f)
+    
+    try:
+        track = tracker[k]
+    except KeyError:
+        track = [0]
+    
+    track.append(v[0])
+    tracker[k] = track
+    with open("coin_tracker.json", "w", encoding="utf-8") as f:
+        json.dump(tracker, f)
+
+async def coin_main(ctx, k, s, v):
+    with open("coins.json", "r", encoding="utf-8") as f:
+        ds = json.load(f)
+    
+    if k == "__tracker__" or k == "$track":
+        if s in ds.keys():
+            ds[s][1] = not ds[s][1]
+            value = ds[s][1]
+            if value:
+                await ctx.send(f"{s} values tracking started.")
+            else:
+                await ctx.send(f"{s} values tracking stopped.")
+
+            with open("coins.json", "w", encoding="utf-8") as f:
+                json.dump(ds, f)
+        
+        else:
+            await ctx.send(f"[stderr]: {s}: Unknown key")
+            return
+
+    else:   
+        if not k in ds.keys():
+            ds[k] = [0, False]
+        
+        if not s in ["-", "+"]:
+            # 解析しようとする
+            legacy_s = s
+            if legacy_s.startswith("-"):
+                s = "-"
+            else:
+                if legacy_s[0].isdigit() or legacy_s.startswith("+"):
+                    s = "+"
+                else:
+                    await ctx.send("入力された値が正しくありません")
+            v = legacy_s[1:]
+            # print("legacy_s & v: ", legacy_s, ", ", v)
+        
+        v = txt2coin(v)
+        if s == "-":
+            v *= -1
+        ds[k][0] += v
+        
+        with open("coins.json", "w", encoding="utf-8") as f:
+            json.dump(ds, f)
+        if ds[k][1]:
+            # Tracker
+            set_coin_tracker(ds[k], k)
+            
+            await ctx.send(f"OK. (with tracking) ({ds[k][0]})")
+            return
+        
+        await ctx.send(f"OK. ({ds[k][0]})")
 
 def make_launch_hash():
     digits = [random.choice(string.ascii_letters + string.digits)
@@ -131,59 +233,7 @@ def modify_bot(bot):
     @bot.command()
     async def coin(ctx, k:str, s:str, v:str="入力なし"):
         print("command executed (coin)")
-        with open("coins.json", "r", encoding="utf-8") as f:
-            ds = json.load(f)
-        
-        if k == "__tracker__" or k == "$track":
-            if s in ds.keys():
-                ds[s][1] = not ds[s][1]
-                value = ds[s][1]
-                if value:
-                    await ctx.send(f"{s} values tracking started.")
-                else:
-                    await ctx.send(f"{s} values tracking stopped.")
-
-                with open("coins.json", "w", encoding="utf-8") as f:
-                    json.dump(ds, f)
-            
-            else:
-                await ctx.send(f"[stderr]: {s}: Unknown key")
-                return
-
-        else:
-            v = txt2coin(v)
-            if s == "-":
-                v *= -1
-                
-            if not k in ds.keys():
-                ds[k] = []
-                ds[k][0] = 0
-                ds[k][1] = False # [Value, Trackerが有効かどうか]
-                
-            ds[k][0] += v
-            
-            with open("coins.json", "w", encoding="utf-8") as f:
-                json.dump(ds, f)
-            if ds[k][1]:
-                # Tracker
-                current = ds[k][0]
-                with open("coin_tracker.json", "r", encoding="utf-8") as f:
-                    tracker = json.load(f)
-                
-                try:
-                    track = tracker[k]
-                except KeyError:
-                    track = [0]
-                
-                track.append(ds[k][0])
-                tracker[k] = track
-                with open("coin_tracker.json", "w", encoding="utf-8") as f:
-                    json.dump(tracker, f)
-                
-                await ctx.send(f"OK. (with tracking) ({ds[k][0]})")
-                return
-            
-            await ctx.send(f"OK. ({ds[k][0]})")
+        await coin_main(ctx, k, s, v)
     
     @bot.command()
     async def coin_load(ctx, k:str):
@@ -249,14 +299,45 @@ def modify_bot(bot):
             tracker = json.load(f)
         
         # list の場合すぐ終わる
-        if k == "list":
-            text = f"{k}'s value history (list mode)\n```"
+        if mode == "list":
+            def text_init(): return f"{k}'s value history (list mode)\n```"
+            def space(v, req) -> str:
+                v = str(v)
+                while not (len(v) == req):
+                    v = f"0{v}"
+                return v
+                
+            def special_convert(x:str) -> str:
+                first = x[0]
+                last = x[-1]
+                if not last.lower() in ["k", "m", "t"]:
+                    if last.lower() == "n":
+                        x = x.replace("coin", "")
+                    if not x.isdigit(): x = float(x)
+                    x = str(int(x))
+                    if first != "-": x = f"+{x}"
+                    return x
+                else:
+                    # 入ってるなら
+                    x = x[:-1]
+                    if not x.isdigit(): x = float(x)
+                    x = str(int(x))
+                    if first != "-": x = f"+{x}"
+                    return x+last
+                
+                
+            text = text_init()
             track = tracker[k]
             
+            v = len(str(len(track))) # len40 -> 40 -> len2
+            #print("[tracker]: [v]: ", v, "[len(track)]: ", len(track))
             for i, t in enumerate(track):
-                text += f"{i+1}. {t}\n"
-                time.sleep(0.05)
-            await ctx.send(text)
+                if len(text) >= 1500:
+                    await ctx.send(text+"```")
+                    text = "```\n"
+                text += f"{space(i+1, v)}. {remove_zero_dot(t):,} ({special_convert(convert(t-track[i-1], silent=True))} ({get_up_percentage(track[i-1], t)}))\n" # (2, 1) -> " "  # (4, 1) -> "   "
+                time.sleep(0.01)
+            await ctx.send(text+"```")
             return
         
         else:
@@ -296,7 +377,13 @@ def modify_bot(bot):
         await ctx.send("Stopping..")
         
         if launch_key == launch_hashes:
-            await ctx.send("Success")
+            await ctx.send("Saving cached data..")
+            import ctmodule.database 
+            with open("db_treas.json", "w", encoding="utf-8") as f:
+                json.dump(ctmodule.database.value.treas, f)
+                print(ctmodule.database.value.treas)
+            
+            await ctx.send("Success. exit_code: 200")
             exit(200)
         else:
             await ctx.send("Failed. unknown key")

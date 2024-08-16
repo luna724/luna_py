@@ -41,6 +41,13 @@
         "lv1": ["?AnyLV1"],
         "lv2": ["?AnyLV2"]
       }
+    },
+    "save": {
+      "model_info": {
+        "primary_model": {
+          "ADetailer": "face_yolov8n.pt"
+        }
+      }
     }
   }
 }

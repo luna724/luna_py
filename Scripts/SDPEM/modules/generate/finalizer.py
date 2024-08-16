@@ -141,8 +141,8 @@ class _finalizer:
           prompt = prompt.replace(s, ", ")
     return prompt
   
-  def applicate_lora_template(self, prompt, template_name, weight, methodVer:Literal["v3-stable", "v4-StylingUpdate"]="v3") -> str:
-    _, lora, name, ch_prompt, extend, style = self.get_lora.manual(True, template_name, "v4.0")
+  def applicate_lora_template(self, prompt, template_name, weight, methodVer:Literal["v3-stable", "v4-StylingUpdate"]="v3-stable") -> str:
+    _, lora, name, ch_prompt, extend = self.get_lora.manual(True, template_name, "v4.0")
     weight_lora = self.convert_weight(lora, weight[0])
     
     # convert to Trigger list
@@ -157,11 +157,11 @@ class _finalizer:
     # update methodVer
     if methodVer != "v3-stable":
       keyValue.append(("?AnyExtend", extend))
-      keyValue.append(("?AnyStyle", style))
+      #keyValue.append(("?AnyStyle", style))
     
     # 適用
     p = self.lib.multiple_replace(prompt, keyValue)
-    return p, ((lora, weight_lora), name, ch_prompt, extend, style)
+    return p, ((lora, weight_lora), name, ch_prompt, extend)
   
   def applicate_keyword(self, prompt):
     return prompt

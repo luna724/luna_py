@@ -11,14 +11,14 @@ class CE(UiTabs):
     return "Character Exchanger"
   
   def index(self):
-    return 0
+    return 1
   
   def ui(self, outlet):
     generate_common = Importer("modules.generate.common")
     character_exchanger = Importer("modules.ce_all")
     
     with gr.Blocks() as iface:
-      gr.Markdown("Last update. CE-v3b4")
+      gr.Markdown("version: CE-v3b4")
       
       with gr.Row():
         mode = gr.Dropdown(choices=["lora, name", "prompt", "extend"], label="mode", value=["lora, name", "prompt", "extend"], multiselect=True)

@@ -60,4 +60,14 @@
 - [Geneaate/Template]: [Beta] 一つのテンプレートに設定できるプロンプトスタイルを追加
 - [Generate/Template]: Negative, ADetailer Prompt にビルドインキーワードを設定可能に
 - [Generate/Template v4.0.0]: Regional Prompter のサポートを終了
-- 
+- [Define/LoRA v5]: v4 -> v5
+- [Generate/Template LoRA json]: いくつかの値を追加
+1. 値の追加
+   ```md
+   - ["loraisLoRA"]
+   ```
+- [Generate/LoRA v5]: LV1, LV2 のセーブ機能を追加
+- [Generate/LoRA v5]: $LoRA Trigger に LoRA ID 以外を入れたことを明記する変数を追加
+- [Generate/LoRA v5]: $LoRA Trigger の値のチェック機能を追加
+- [Generate/LoRA v5]: Load関数の対応バージョンを変更 (v2~v4 -> v4~v5)
+- [Generate/LoRA v5]: Load機能による上書きが行われた際に、draftを保存する機能を削除 (プリントアウトに変更)

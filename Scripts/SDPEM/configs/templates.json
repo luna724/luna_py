@@ -1,4 +1,2822 @@
-{"\u666e\u901a\u306b\u30b9\u30af\u6c34": {
+{
+    "\u30c6\u30fc\u30d6\u30eb\u30aa\u30ca\u30cb\u30fc (\u89d2\u30aa\u30ca)": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u30c6\u30fc\u30d6\u30eb\u30aa\u30ca\u30cb\u30fc (\u89d2\u30aa\u30ca)",
+        "Values": {
+            "Prompt": "orgasm, 1girl, solo, cute, masterpiece, orgasm, (slim, small breasts, $PROMPT:1.2), nsfw, gasping, exhale,  pussy juice, small breasts, 1girl, $LORA, $NAME, (10 years old:1.4), small breasts, orgasm, <lora:masusu_breast:0.65>, pussy juice, $FACE, $LOCATION, <lora:Desk Humping:0.75>, (table sex, desk humping:1.35), best quality, blush, <lora:Detail_tweaker_lora:0.25>",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u30e6\u30cb (\u73fe\u5b9f\u4e16\u754c) (\u3077\u308a\u3053\u306d)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "looking at away",
+            "Location": "cafe",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u30c6\u30fc\u30d6\u30eb\u30aa\u30ca\u30cb\u30fc (\u89d2\u30aa\u30ca).png",
+            "CustomNegative": "\u672c\u5f53\u306e\u5143\u30d7\u30ed\u30f3\u30d7\u30c8: orgasm, 1girl, solo, cute, masterpiece, orgasm, (slim, small breasts, yunireal, skirt, school uniform, necktie, cardigan, green necktie:1.2), nsfw, long hair, blush, braid, gasping, exhale, twin braids, pussy juice,  bangs, hair between eyes, small breasts, petite, teen, 1girl, <lora:yuni-v1:0.75>, yuni, (10 years old:1.4), small breasts, orgasm, <lora:masusu_breast:0.65>, pussy juice, looking at away, cafe, <lora:Desk Humping:0.75>, (table sex, desk humping:1.35), best quality, blush, <lora:Detail_tweaker_lora:0.25>"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "Euler a",
+        "Clip": 1.0,
+        "displayName": "\u30c6\u30fc\u30d6\u30eb\u30aa\u30ca\u30cb\u30fc (\u89d2\u30aa\u30ca)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u30df\u30af\u00d7\u653b\u3081_-_v3.0.3_multidiffusion_test_v0_(3.0.2)": {
+        "Method": "v3",
+        "Method_Release": 2,
+        "Key": "\u30df\u30af\u00d7\u653b\u3081_-_v3.0.3_multidiffusion_test_v0_(3.0.2)",
+        "Values": {
+            "Prompt": "2girl, yuri, yuri sex, nsfw, (nude), aqua hair, girl, lean on other, blush, orgasm, pussy juice, pussy, small breasts, miku, twintails <lora:Detail_tweaker_lora:0.45>, <lora:masusu_breast:0.65>, looking at other, blush, shibari, collars, other's pet, trembling, (10 years old), $LOCATION BREAK\n2girl, yuri, yuri sex, nsfw, touch other's pussy, girl, standing, <lora:Detail_tweaker_lora:-0.125>, $LORA, $NAME, $PROMPT, looking at other, facing viewer, $LOCATION",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1)",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725)"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "None",
+            "Weight": "None",
+            "Image": "None"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "ichika",
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "/path/to/image",
+            "isEnableCSN": false,
+            "CustomNegative": ""
+        },
+        "Resolution": "768x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u30df\u30af\u00d7\u653b\u3081 - v3.0.3 MultiDiffusion Test v0 (3.0.2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u819d\u7acb\u3061\u592a\u3082\u3082": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u819d\u7acb\u3061\u592a\u3082\u3082",
+        "Values": {
+            "Prompt": "(masterpiece, best quality), skirt flipping, $NAME, thigh, beautiful thigh, slim thigh, $PROMPT, bare feet, $FACE, $LORA, $LOCATION, kneeling, miniskirt, black miniskirt, grey skirt, facing at viewer, navel, 11 years old",
+            "Negative": "EasyNegative, badhandv5, nipples, pussy,",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.55,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.39,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u535a\u9e97\u970a\u5922",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "looking at viewer",
+            "Location": "solo, 1girl",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": "ControlNet \u306f My prompt is more important \u3092\u9078\u629e\u3001Low VRAM\u3092\u30aa\u30d5\u3001Pixel Perfect\u3082\u30aa\u30d5\u306b"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Matrix",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "Euler a",
+        "Clip": 2.0,
+        "displayName": "\u819d\u7acb\u3061\u592a\u3082\u3082",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u512a\u3057\u304f\u3057\u3066\u306d..?": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u512a\u3057\u304f\u3057\u3066\u306d..?",
+        "Values": {
+            "Prompt": "$PROMPT, (masterpiece, best quality), medium breasts, hide nipples with hands, blush, (smile:0.75), $NAME, $LORA, pussy, pussy juice, naked miku's coat, worrie, $FACE, $LOCATION, collar",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": true,
+            "Mode": "OpenPose",
+            "Weight": 0.5,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u512a\u3057\u304f\u3057\u3066\u306d.._.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u512a\u3057\u304f\u3057\u3066\u306d..?",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u3057\u3093\u3077\u308b\u3048\u3063\u3061": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u3057\u3093\u3077\u308b\u3048\u3063\u3061",
+        "Values": {
+            "Prompt": "nsfw, cute, (masterpiece, best quality), nsfw, $FACE, $LOCATION, orgasm, $PROMPT, $NAME, $LORA",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u3057\u3093\u3077\u308b\u3048\u3063\u3061",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b (\u7acb\u3061ing)": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u89e6\u624b (\u7acb\u3061ing)",
+        "Values": {
+            "Prompt": "nsfw, $NAME, tentacles, tentacle insertion, <lora:tentacles:0.95>, sex, sex with tentacles, pussy, pussy juice, (masterpiece, best quality:1.15), $PROMPT, (tentacles:1.45), $LORA, $FACE, $LOCATION, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "blush, orgasm, (smile:0), ",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b (\u7acb\u3061ing)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "pyonpyon_-_rabbit_pose": {
+        "Method": "v3",
+        "Method_Release": 2,
+        "Key": "pyonpyon_-_rabbit_pose",
+        "Values": {
+            "Prompt": "standing, $PROMPT, $NAME, <lora:Detail_tweaker_lora:0.45>,  $LORA, <lora:bunny_pose:0.75>, bunny pose, $LOCATION, cute, (masterpiece, best quality:1.24), rabbit pose, arms up, (small breasts:1.2), <lora:masusu_breastandnipples:0.45>, $FACE,",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "None",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "None",
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "multicolored hair, silver hair, white hair, semi-long hair, straight hair, 1girl, solo",
+            "isExtend": false,
+            "Face": "grey skirt, grey school uniform, ichika's school uniform, <lora:ichikaaa:0.24>",
+            "Location": "indoor",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\pyonpyon - rabbit pose.png",
+            "CustomNegative": "Not NSFW Model"
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "pyonpyon - rabbit pose",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u6388\u4e73\u624b\u30de\u30f3 (Pixiv) tmp": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u6388\u4e73\u624b\u30de\u30f3 (Pixiv) tmp",
+        "Values": {
+            "Prompt": "",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": true,
+            "Mode": "Lineart",
+            "Weight": 0,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u6388\u4e73\u624b\u30de\u30f3 (Pixiv) tmp.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": true,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "$PROMPT, $LORA, $NAME, $FACE, breasts, medium breasts, breasts milk, nipple, ",
+                "characters": "",
+                "weight": 0.675,
+                "lora": "<lora:please_remove:1.0>",
+                "name": "pink hair, fake cat ears, miniskirt, ",
+                "ch_prompt": "",
+                "face": "smile, looking at other, open mouth, hair ornament, high twintails, light pink hair, red eyes",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": true,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "3,2",
+            "base_ratio": 0.45
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u6388\u4e73\u624b\u30de\u30f3 (Pixiv) tmp",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u30dd\u30fc\u30c8\u30e9\u30a4\u30c8 (\u9854\u5199\u771f)": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u30dd\u30fc\u30c8\u30e9\u30a4\u30c8 (\u9854\u5199\u771f)",
+        "Values": {
+            "Prompt": "bust shot, 1girl, solo, bust-up shot, smile, looking at viewer, close eyes, face tilt, heart, $LORA, $NAME, $PROMPT, $FACE, $LOCATION, nsfw",
+            "Negative": "EasyNegative, badhandv5,",
+            "AD_Prompt": "masterpiece, best quality, smile, blush, close eyes, ",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u535a\u9e97\u970a\u5922",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": "nsfw \u306e\u5207\u308a\u66ff\u3048\u3067\u304b\u306a\u308a\u5909\u308f\u308b"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "Euler a",
+        "Clip": 2.0,
+        "displayName": "\u30dd\u30fc\u30c8\u30e9\u30a4\u30c8 (\u9854\u5199\u771f)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u3074\u3087\u3093\uff1f (\u819d\u7acb\u3061\u3046\u3055\u304e)": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u3074\u3087\u3093\uff1f (\u819d\u7acb\u3061\u3046\u3055\u304e)",
+        "Values": {
+            "Prompt": " (masterpiece, best quality), skirt flipping, $NAME, thigh, $FACE, beautiful thigh, slim thigh, bare feet, $LORA, miniskirt, black miniskirt, grey skirt, facing at viewer, navel, 11 years old, nsfw, pussy juice, <lora:Ver2:0>, bunny, rabbit, $LOCATION ",
+            "Negative": "EasyNegative, badhandv5, nipples, pussy,animal ear",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "saki",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "smile, blush, looking at viewer",
+            "Location": " <lora:GreekClothes:0.675>, greek clothes, greek cloth, bare feet, bare arms, bedroom, on bed",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u3074\u3087\u3093\uff1f (\u819d\u7acb\u3061\u3046\u3055\u304e).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "Euler a",
+        "Clip": 2.0,
+        "displayName": "\u3074\u3087\u3093\uff1f (\u819d\u7acb\u3061\u3046\u3055\u304e)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u53d7\u3051\u00d7\u653b\u3081 yuri\u3048\u3063\u3061": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "\u53d7\u3051\u00d7\u653b\u3081 yuri\u3048\u3063\u3061",
+        "Values": {
+            "Prompt": "$LOCATION, ADDBASE\n$$HEADER$$, 2girl, yuri, yuri sex, nsfw, girl, (nude), $PROMPT, lean on other, blush, orgasm, pussy juice, pussy, $NAME, $LORA, <lora:Detail_tweaker_lora:0.45>, <lora:masusu_breast:0.65>, $FACE, shibari, collars, other's pet, trembling, (10 years old),",
+            "Negative": "EasyNegative, badhandv5, nipples, pussy,animal ear",
+            "AD_Prompt": "best quality, masterpiece",
+            "AD_Negative": "worst quality"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "lorakeyname",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "miku",
+            "Prompt": "aqua hair, twintails, small breasts",
+            "isExtend": true,
+            "Face": "looking at other, blush",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u53d7\u3051\u00d7\u653b\u3081 yuri\u3048\u3063\u3061.png",
+            "CustomNegative": "first prompt's header is Only work in Code v3.0.4+\n\nHassakuHentai \u306a\u3069\u3067\u306f\u4f7f\u7528\u3057\u306a\u3044\u3053\u3068\u3092\u63a8\u5968\n3/4 \u304f\u3089\u3044\u306e\u6210\u529f\u7387\u304c 1/3 \u304f\u3089\u3044\u306b\u306a\u308b\n\u307e\u305f\u3001\u4e8c\u4eba\u76ee\u306e\u670d\u3082\u6307\u5b9a (Face\u306a\u3069\u306b)\u3092\u63a8\u5968"
+        },
+        "Regional_Prompter": {
+            "isEnabled": true,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "2girl, yuri, yuri sex, nsfw, touch other's pussy, girl, standing, <lora:Detail_tweaker_lora:-0.125>, $LORA, $NAME, $PROMPT, $FACE, nsfw, pussy juice",
+                "characters": "saki",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "looking at other, facing viewer",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": true,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "6:7",
+            "base_ratio": 0.33
+        },
+        "Resolution": "512x512",
+        "Sampler": "Euler a",
+        "Clip": 2.0,
+        "displayName": "\u53d7\u3051\u00d7\u653b\u3081 yuri\u3048\u3063\u3061",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "yuri \u30dd\u30c3\u30ad\u30fc": {
+        "Method": "v3",
+        "Method_Release": 3,
+        "Key": "yuri \u30dd\u30c3\u30ad\u30fc",
+        "Values": {
+            "Prompt": "2 girls, yuri, kiss, kissing, yuri kiss, $LORA, $NAME, 2 girls, 2girl, $FACE, $PROMPT, (masterpiece, best quality:1.2), $LOCATION, view from side, <lora:pockySide1:0.665>",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.5,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\yuri \u30dd\u30c3\u30ad\u30fc.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\yuri \u30dd\u30c3\u30ad\u30fc.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": true,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "2 girls, yuri, kiss, kissing, yuri kiss, $LORA, $NAME, 2 girls, 2girl, $FACE, $PROMPT, (masterpiece, best quality:1.2), $LOCATION, view from side, <lora:pockySide1:0.665>",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": true
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "yuri \u30dd\u30c3\u30ad\u30fc",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u5f31\u3081\u306e O-ring \u62d8\u675f (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u5f31\u3081\u306e O-ring \u62d8\u675f (v1) ",
+        "Values": {
+            "Prompt": "nsfw, $LORA, small breasts, $NAME, kneeling, leaning forward, $LOCATION, solo, 1girl, $FACE, $PROMPT, bondage outfit, harness, o-ring, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii) <lora:BondageOutfitV2:0.89>, pussy juice",
+            "Negative": "(worst quality:1.4), (low quality:1.4), (normal quality:1.4), (depth of field, blurry:1.2), (greyscale, monochrome:1.1), 3D face, nose, cropped, lowres, text, jpeg artifacts, signature, watermark, username, blurry, artist name, trademark, watermark, ((multiple view)), realistic",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u5f31\u3081\u306e O-ring \u62d8\u675f (v1) ",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u9053\u5177\u306a\u3057\u30aa\u30ca\u30cb\u30fc\u57fa\u790e (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u9053\u5177\u306a\u3057\u30aa\u30ca\u30cb\u30fc\u57fa\u790e (v1)",
+        "Values": {
+            "Prompt": "nsfw, nude, masturbation, pussy, small breasts, pussy juice, nipples, $LORA, $NAME, $PROMPT, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), 1girl, solo, <lora:masusu_breast:0.8>, <lora:masturbation-v1:1>, $FACE",
+            "Negative": "EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, sex)))",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "ichika",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u9053\u5177\u306a\u3057\u30aa\u30ca\u30cb\u30fc\u57fa\u790e (v1).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u9053\u5177\u306a\u3057\u30aa\u30ca\u30cb\u30fc\u57fa\u790e (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u6307\u30aa\u30ca (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u6307\u30aa\u30ca (v1)",
+        "Values": {
+            "Prompt": "<lora:solo_masturbation_normal-masturbation:1.0>, nsfw, masturbation, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), nsfw, masturbation, fingering, schlick, pussy, pussy juice, trembling, female focus, $FACE, $LORA, $NAME, $PROMPT, nude, 1girl, $LOCATION",
+            "Negative": "EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, sex)))",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "ichika",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u6307\u30aa\u30ca (v1).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u6307\u30aa\u30ca (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "WHB (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "WHB (v1)",
+        "Values": {
+            "Prompt": "<lora:whb:1>, nsfw, whb, nude, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), $FACE, blush, full body, pussy, pussy juice, nipple, female focus, $LORA, $NAME, $PROMPT, looking at viewer, nude, bare breasts, 14 years old, baby face:0.7, 2dimensional-charactor, trembling, straddling the whb, 1girl",
+            "Negative": "EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, sex)))",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "nene",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\WHB (v1).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "WHB (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u7126\u3089\u3057\u3048\u3063\u3061 (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u7126\u3089\u3057\u3048\u3063\u3061 (v1)",
+        "Values": {
+            "Prompt": "nsfw, $LORA, $NAME, $PROMPT, $FACE, trembling, nude, $LOCATION, <lora:masusu_breast:0.835>, naked coat, pussy, pussy juice, nipples, small breasts, no light eyes, arms behind back, (slim, 14 years old, rori:0.95), cat ears, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii)",
+            "Negative": "EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, sex)))",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "nene",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u7126\u3089\u3057\u3048\u3063\u3061 (v1).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u7126\u3089\u3057\u3048\u3063\u3061 (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "LoRA\u6bd4\u8f03\u7528\u30b7\u30f3\u30d7\u30eb\u30d7\u30ed\u30f3\u30d7\u30c8 (\u7d76\u5bfe\u9818\u57df) (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "LoRA\u6bd4\u8f03\u7528\u30b7\u30f3\u30d7\u30eb\u30d7\u30ed\u30f3\u30d7\u30c8 (\u7d76\u5bfe\u9818\u57df) (v1)",
+        "Values": {
+            "Prompt": "$NAME, $LORA, $PROMPT, smile, blush, shy, no background, simple background, white background, standing, looking at viewer, small breasts, slim, masterpiece, best quality, rori, cute, kawaii, white tights, zettai ryouiki,",
+            "Negative": "EasyNegative, (realistic, low quality, worst quality:1.2), badhandv5",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "saki",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "LoRA\u6bd4\u8f03\u7528\u30b7\u30f3\u30d7\u30eb\u30d7\u30ed\u30f3\u30d7\u30c8 (\u7d76\u5bfe\u9818\u57df) (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "LoRA\u6bd4\u8f03\u7528\u30b7\u30f3\u30d7\u30eb\u30d7\u30ed\u30f3\u30d7\u30c8 (\u88f8\u30b3\u30fc\u30c8ver) (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "LoRA\u6bd4\u8f03\u7528\u30b7\u30f3\u30d7\u30eb\u30d7\u30ed\u30f3\u30d7\u30c8 (\u88f8\u30b3\u30fc\u30c8ver) (v1)",
+        "Values": {
+            "Prompt": "$NAME, $LORA, 12 years old, $PROMPT, shy, baby face:0.75, lying on bed, naked coat, white coat, nude, pussy, nipples, small breasts, blush, looking at away, slim, masterpiece, best quality, rori, cute, kawaii, nsfw, white tights, zettai ryouiki, <lora:masusu_breast:0.65>",
+            "Negative": "EasyNegative, (realistic, low quality, worst quality:1.2), badhandv5",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "saki",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "LoRA\u6bd4\u8f03\u7528\u30b7\u30f3\u30d7\u30eb\u30d7\u30ed\u30f3\u30d7\u30c8 (\u88f8\u30b3\u30fc\u30c8ver) (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u7d76\u9802\u30aa\u30ca\u30cb\u30fc (lying) (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u7d76\u9802\u30aa\u30ca\u30cb\u30fc (lying) (v1)",
+        "Values": {
+            "Prompt": "nsfw, $LORA, $NAME, $FACE, $LOCATION, naked coat, white coat, nude, pussy, pussy juice, small nipples, small breasts, blush, looking at away, slim, masterpiece, best quality, rori, cute, kawaii, nsfw, white tights, zettai ryouiki, <lora:masusu_breast:0.65>, $PROMPT, navel cutout, <lora:stained sheets2:0.525>, stained sheets, <lora:solo_masturbation_normal-masturbation:0.85>, masturbation, female masturbation, hand on pussy, fingering, schlick, trembling, blush, orgasm, one eye closed, ",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, penis))), cat \\\\(animal\\\\), animals, cats, cat, black cat, public hair, extra fingers, anal,",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "karyl",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u7d76\u9802\u30aa\u30ca\u30cb\u30fc (lying) (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u732b\u30b3\u30b9 (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u732b\u30b3\u30b9 (v1)",
+        "Values": {
+            "Prompt": "nsfw, %quality_lite%, 1girl, solo, cute, kawaii, (11 years old, baby face:0.97), rori, (cat ears, cat tails, cat cosplay), $LORA, $NAME, $PROMPT, kneeling, cat cosplay, ((1girl, solo)), $FACE, slim, $LOCATION,",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, sex))),",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "kokkoro",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u732b\u30b3\u30b9 (v1).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u732b\u30b3\u30b9 (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u30d6\u30eb\u30a2\u30ab\u30c1\u30a2\u30b3\u30b9 (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u30d6\u30eb\u30a2\u30ab\u30c1\u30a2\u30b3\u30b9 (v1)",
+        "Values": {
+            "Prompt": "<lora:cheerleader_cosplay_bluearchive:0.75>, cheerleader, crop top, miniskirt, bare shoulders, skirt, holding pom poms, pom pom \\\\(cheerleading\\\\), $LORA, $NAME, $NAME, $PROMPT, $LOCATION, 1girl, solo, slim, %rori%, ",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, sex))),",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "kokkoro",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u30d6\u30eb\u30a2\u30ab\u30c1\u30a2\u30b3\u30b9 (v1).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u30d6\u30eb\u30a2\u30ab\u30c1\u30a2\u30b3\u30b9 (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u7acb\u3061\u89e6\u624b\u30c3\u30af\u30b9 (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u7acb\u3061\u89e6\u624b\u30c3\u30af\u30b9 (v1)",
+        "Values": {
+            "Prompt": "nsfw, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, cowboy shot, sad, (orgasm), blush, wink, $LORA, $NAME, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), $PROMPT,",
+            "Negative": "EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1 boy,",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "2539",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u7acb\u3061\u89e6\u624b\u30c3\u30af\u30b9 (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u5bdd\u89e6\u624b\u30c3\u30af\u30b9 (v1)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u5bdd\u89e6\u624b\u30c3\u30af\u30b9 (v1)",
+        "Values": {
+            "Prompt": "nsfw, lying, tentacle insertion, sex, tentacle sex, <lora:chushou:1.195>, (tentacles), tentacles, nipples, small nipples, sad, (orgasm), blush, wink, $LORA, $NAME, (best quality, masterpiece, detailed, incredibly fine illustration, kawaii), $PROMPT,",
+            "Negative": "EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1 boy,",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "2539",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u5bdd\u89e6\u624b\u30c3\u30af\u30b9 (v1).png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u5bdd\u89e6\u624b\u30c3\u30af\u30b9 (v1)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u670d (v2)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u670d (v2)",
+        "Values": {
+            "Prompt": "(tentacle cum in pussy, tentacle cum on thights:0.875), pussy juice, transpert pussy juice, bikini, bare breasts, miniskirt, frill, frilled miniskirt, nsfw, <lora:tentacle_clothes:0.95>, (tentacle clothes:1.375), (tentacles), trembling, close one eye, open mouth, ((orgasm)), nipples, small nipples, cowboy shot, $FACE, blush, wink, $LORA, $NAME, $LOCATION, %quality_lite%, 1girl, solo, $PROMPT, <lora:chushou111:0.25>, <lora:masusu_breast:0.5>",
+            "Negative": "mosaic, mosaic on pussy, nsfw censor, mosaic censored, EasyNegative, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy, penis))), (transpert pussy juice:-1.0)",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "minori",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u670d (v2).png",
+            "CustomNegative": "\"HassakuHentaiModel\",\n        \"512x768\",\n        \"Euler a\",\n        \"Latent (nearest)\"\n\nFACE, LOCATION, HEADER, LOWER\n\"ocean. open beach\",\n            \"sad, (orgasm), blush\",\n            \"\",\n            \"\""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u670d (v2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u3075\u3047\u3089 (v2)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u3075\u3047\u3089 (v2)",
+        "Values": {
+            "Prompt": "nsfw, ((suck tentacle, tentacle fellatio, fellatio:1.25)), <lora:chushou:1.195>, (tentacles), tentacles, pov, 1girl, solo, tentacle sex, tentacle insertion, touch tentacles, $FACE, $LORA, $NAME, $PROMPT, (best quality, masterpiece:1.25),",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1boy, public hair,",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "minori",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u3075\u3047\u3089 (v2).png",
+            "CustomNegative": "\"HassakuHentaiModel\",\n        \"512x768\",\n        \"Euler a\",\n        \"Latent (nearest)\"\n\nFACE, LOCATION, HEADER, LOWER\n\"ocean. open beach\",\n            \"sad, (orgasm), blush\",\n            \"\",\n            \"\""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u3075\u3047\u3089 (v2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u3075\u3047\u3089pov (v2)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u3075\u3047\u3089pov (v2)",
+        "Values": {
+            "Prompt": "nsfw, ((suck tentacle, tentacle fellatio, fellatio:1.25)), <lora:chushou:1.195>, (tentacles), tentacles, pov, 1girl, solo, tentacle sex, tentacle insertion, touch tentacles, $FACE, $LORA, $NAME, $PROMPT, (best quality, masterpiece:1.25),",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1boy, public hair,",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "minori",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u3075\u3047\u3089pov (v2).png",
+            "CustomNegative": "\"HassakuHentaiModel\",\n        \"512x768\",\n        \"Euler a\",\n        \"Latent (nearest)\"\n\nFACE, LOCATION, HEADER, LOWER\n\"ocean. open beach\",\n            \"sad, (orgasm), blush\",\n            \"\",\n            \"\""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u3075\u3047\u3089pov (v2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u3075\u3047\u3089side (v2)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u3075\u3047\u3089side (v2)",
+        "Values": {
+            "Prompt": "nsfw, lying, ((suck tentacle, tentacle fellatio, fellatio:1.25)), <lora:chushou:1.195>, from side, side view, (tentacles insertion, tentacle sex:1.175), (tentacles), tentacles, tentacle sex, tentacle insertion, $FACE, $LORA, $NAME, $PROMPT, (best quality, masterpiece:1.25), from side, side view, 1girl",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1boy, public hair, multiple view,",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "minori",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u3075\u3047\u3089side (v2).png",
+            "CustomNegative": "\"HassakuHentaiModel\",\n        \"512x768\",\n        \"Euler a\",\n        \"Latent (nearest)\"\n\nFACE, LOCATION, HEADER, LOWER\n\"ocean. open beach\",\n            \"sad, (orgasm), blush\",\n            \"\",\n            \"\""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u3075\u3047\u3089side (v2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "LoRA Tester (v2)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "LoRA Tester (v2)",
+        "Values": {
+            "Prompt": "$NAME, $LORA, $PROMPT, $FACE, $LOCATION, %quality_lite%,",
+            "Negative": "EasyNegative, badhandv5, (bad anatomy, low quality, worst quaity:1.345),",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "OpenPose",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "minori",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\LoRA Tester (v2).png",
+            "CustomNegative": "\"HassakuHentaiModel\",\n        \"512x768\",\n        \"Euler a\",\n        \"Latent (nearest)\"\n\nFACE, LOCATION, HEADER, LOWER\n\"ocean. open beach\",\n            \"sad, (orgasm), blush\",\n            \"\",\n            \"\""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "LoRA Tester (v2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "? \u30c6\u30f3\u30d7\u30ec (v2)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "? \u30c6\u30f3\u30d7\u30ec (v2)",
+        "Values": {
+            "Prompt": "1girl, (nsfw:0.15), knees together feet apart, facing viewer, hands on own knees, from above, $FACE, $LOCATION, $LORA, $NAME, $PROMPT, %quality_lite%,",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": true,
+            "Mode": "OpenPose (without preprocessor)",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\_ \u30c6\u30f3\u30d7\u30ec (v2).png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "minori",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\_ \u30c6\u30f3\u30d7\u30ec (v2).png",
+            "CustomNegative": "\"HassakuHentaiModel\",\n        \"512x768\",\n        \"Euler a\",\n        \"Latent (nearest)\"\n\nFACE, LOCATION, HEADER, LOWER\n\"ocean. open beach\",\n            \"sad, (orgasm), blush\",\n            \"\",\n            \"\""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "? \u30c6\u30f3\u30d7\u30ec (v2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "? \u30c6\u30f3\u30d7\u30ec2 (v2)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "? \u30c6\u30f3\u30d7\u30ec2 (v2)",
+        "Values": {
+            "Prompt": "1girl, (nsfw:0.15), knees together feet apart, facing viewer, hands on own knees, bare foot, sitting, $FACE, $LOCATION, $LORA, $NAME, $PROMPT, %quality_lite%,",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "DISABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": true,
+            "Mode": "OpenPose (without preprocessor)",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\_ \u30c6\u30f3\u30d7\u30ec2 (v2).png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "minori",
+            "Weight": 0.921,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\_ \u30c6\u30f3\u30d7\u30ec2 (v2).png",
+            "CustomNegative": "\"HassakuHentaiModel\",\n        \"512x768\",\n        \"Euler a\",\n        \"Latent (nearest)\"\n\nFACE, LOCATION, HEADER, LOWER\n\"ocean. open beach\",\n            \"sad, (orgasm), blush\",\n            \"\",\n            \"\""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "? \u30c6\u30f3\u30d7\u30ec2 (v2)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u653b\u3081": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u653b\u3081",
+        "Values": {
+            "Prompt": "cum on body, cum at everywhere of body, cum, 10 years old, pussy, small breasts, large quantity of cum in mouth, tentacle cum in pussy, tentacle cum on thights:1.125, full body shot, pussy juice, transparent pussy juice, bare breasts, miniskirt, frill, frilled miniskirt, nsfw, <lora:tentacle_clothes:0.95>, cum on body, cum at everywhere of body, tentacle clothes:1.375, tentacles, trembling, close one eye, open mouth, orgasm, nipples, small nipples, blush, wink, $LORA, $NAME, 1girl, solo, $PROMPT, <lora:chushou111:0.875>, <lora:masusu_breast:0.5>, <lora:Detail_tweaker_lora:0.5>, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), panties",
+            "AD_Prompt": "grey eyes, ichika, <lora:HoshinoIchika:0.75>, masterpiece, blush, looking at away, orgasm, large quantity of cum in mouth, empty eyes, cum at face, cum, ",
+            "AD_Negative": "EasyNegative, worst quality"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 5
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.775,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": false,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u653b\u3081.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u653b\u3081",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u88f8\u30b3\u30fc\u30c8 V2": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u88f8\u30b3\u30fc\u30c8 V2",
+        "Values": {
+            "Prompt": "cum at body, cum at everywhere of body, nsfw, cute cat ears, cat ears, white ribbon on cat ears, naked coat, nude, blush, white firmer on cuffs, multicolored socks, moesode, pussy, pussy juice, $LORA, $NAME, $PROMPT, <lora:masusu_breast:0.8>, best quality, masterpiece, detailed, incredibly fine illustration, kawaii, 1girl, solo, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), panties",
+            "AD_Prompt": "grey eyes, ichika, <lora:HoshinoIchika:0.75>, masterpiece, blush, looking at away, orgasm, large quantity of cum in mouth, empty eyes, cum at face, cum, ",
+            "AD_Negative": "EasyNegative, worst quality"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 5
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.74,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": false,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u88f8\u30b3\u30fc\u30c8 V2.png",
+            "CustomNegative": "DO NOT USE WITH ANYTHINGV3-FULL !!!"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Automatic",
+        "Clip": 2.0,
+        "displayName": "\u88f8\u30b3\u30fc\u30c8 V2",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u9006\u30d0\u30cb\u30fc\u670d": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u9006\u30d0\u30cb\u30fc\u670d",
+        "Values": {
+            "Prompt": "cum in pussy, 1girl, solo, full body shot, nsfw, cute, masterpiece, best quality, nsfw, orgasm, looking at away, blush, red cheeks, nude, indoor, rabbit house, $PROMPT, $NAME, $LORA, <lora:bunnysuit:0.8>, bunnysuit, bunny, bodysuit, rabbit, from below, nipples, bow, medium breasts, 14 years old, ",
+            "Negative": "grey scale, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), panties",
+            "AD_Prompt": "DiSABLED",
+            "AD_Negative": "DISABLED"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u306a\u30fc\u3093 (rcake)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u9006\u30d0\u30cb\u30fc\u670d.png",
+            "CustomNegative": "Refiner\u3092\u4f7f\u7528 0.8 -> FuwaFuwaMix1.5\nCheckpoint: AOM2_hard\n\nGen'd Data: \nSteps: 24, Sampler: DPM++ 2M, Schedule type: Karras, CFG scale: 7, Seed: 1232457505, Size: 512x512, Model hash: 0fc198c490, Model: AbyssOrangeMix2_hard, Denoising strength: 0.45, Clip skip: 2, Hires upscale: 2, Hires steps: 6, Hires upscaler: R-ESRGAN 4x+ Anime6B, Lora hashes: \"Ena: c6045bd2ae17, bunnysuit: 02b629de68d8\", Refiner: fuwafuwamix_v15_with_vae [1a8c14902f], Refiner switch at: 0.8, Version: v1.9.3"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x512",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u9006\u30d0\u30cb\u30fc\u670d",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u306a\u3093\u3067\u51fa\u3057\u305f\u306e!!": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u306a\u3093\u3067\u51fa\u3057\u305f\u306e!!",
+        "Values": {
+            "Prompt": "titty fuck, red ribbon, choker, 1girl, solo, bust shot, bust-up shot, bust-up:1.15, nsfw, cute, masterpiece, best quality, nsfw, cum on body, cum, orgasm, looking at away, angry, crying, blush, red cheeks, nude, $PROMPT, $NAME, $LORA, nipples, bow, medium breasts, 14 years old, ",
+            "Negative": "grey scale, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), panties, penis",
+            "AD_Prompt": "d",
+            "AD_Negative": "d"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u306a\u3093\u3067\u51fa\u3057\u305f\u306e!!.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u306a\u30fc\u3093 (rcake)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": "CFG Scale\u3092\u4e0a\u3052\u308b\u3068\u30ad\u30e3\u30e9\u304c\u5897\u3048\u308b\n\nModel: AOM2_hard ->(0.8) FuwaFuwaMix\n\u30d9\u30fc\u30b9\u3092 FuwaFuwa \u306a\u3069\u306b\u3059\u308b\u5834\u5408\u306f masusu \u5c0e\u5165\u63a8\u5968"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Matrix",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u306a\u3093\u3067\u51fa\u3057\u305f\u306e!!",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u307b\u3089..\u80f8...": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u307b\u3089..\u80f8...",
+        "Values": {
+            "Prompt": "$NAME, <lora:ppfs:0.75>, brown pantyhose, $LORA, gray cardigan, pull clothes, red cheeks, blush, $PROMPT, looking at viewer, bust-up shot, nipples, small breasts, <lora:masusu_breast:0.5>, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "ichika, <lora:HoshinoIchika:0.75>, blue eyes, nsfw, red cheeks, blush",
+            "AD_Negative": "EasyNegative, worst quality, empty eyes"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u307b\u3089..\u80f8....png",
+            "CustomNegative": "brown pantyhose \u3092\u524a\u9664\u3059\u308b\u3068\u30a2\u30c3\u30d7\u753b\u50cf\u304c\u3067\u304d\u3084\u3059\u3044\u304b\u3082"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x512",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u307b\u3089..\u80f8...",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u80f8\u30cf\u30fc\u30c8\u2661": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u80f8\u30cf\u30fc\u30c8\u2661",
+        "Values": {
+            "Prompt": "ichika, <lora:HoshinoIchika:0.75>, gray cardigan, heart, breast heart, boob heart, red cheeks, blush, absorbing long hair, swept bangs, black hair, grey eyes, looking at viewer, bust-up shot, small breasts, <lora:masusu_breast:0.5> <lora:boob_heart:0.75>,",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), ",
+            "AD_Prompt": "ichika, <lora:HoshinoIchika:0.75>, blue eyes, nsfw, red cheeks, blush",
+            "AD_Negative": "EasyNegative, worst quality, empty eyes"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u80f8\u30cf\u30fc\u30c8\u2661.png",
+            "CustomNegative": "FuwaFuwaMix \u975e\u63a8\u5968\nMinaiMix \u3084 AOM2 \u3067\u52d5\u4f5c\n\nRefiner: FuwaFuwaMix (0.8)"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x512",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u80f8\u30cf\u30fc\u30c8\u2661",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u666e\u901a\u306b\u30b9\u30af\u6c34": {
         "Method": "v3.0.4",
         "Method_Release": 4,
         "Key": "\u666e\u901a\u306b\u30b9\u30af\u6c34",
@@ -74,6 +2892,1956 @@
         "Sampler": "DPM++ 2M Karras",
         "Clip": 2.0,
         "displayName": "\u666e\u901a\u306b\u30b9\u30af\u6c34",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u3074\u3087\u3093\u3074\u3087\u3093\u3059\u308b\u30c1\u30a2": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u3074\u3087\u3093\u3074\u3087\u3093\u3059\u308b\u30c1\u30a2",
+        "Values": {
+            "Prompt": "from below, 14 years old, small breasts, $LORA, $NAME, $PROMPT, looking at viewer, smile, blush, bunny pose, rabbit pose:1.25, rabbit ears, $LOCATION, nsfw, cheerleader, cheer, cheer clothes, frill miniskirt, frill bra, nude:0.35]:1.25, red cheeks, <lora:cheerleaderOutfitV2:0.85>, <lora:Ver2:1.15>, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), rabbit",
+            "AD_Prompt": "D",
+            "AD_Negative": "D"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u685c\u30df\u30af",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "[outdoor, sakura, tree, 1girl, solo, plains, sakura tree]",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u3074\u3087\u3093\u3074\u3087\u3093\u3059\u308b\u30c1\u30a2.png",
+            "CustomNegative": "cheerleaderOutfitV2 \u306e Weights \u3092\u4e0b\u3052\u308b\u3068\u30d6\u30eb\u30a2\u30ab\u307f\u306f\u6d88\u3048\u308b\nModel: FuwaFuwaMix1.5"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u3074\u3087\u3093\u3074\u3087\u3093\u3059\u308b\u30c1\u30a2",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u670d Lite": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u670d Lite",
+        "Values": {
+            "Prompt": "nsfw, <lora:tentacle_clothes:1.175>, tentacle clothes, tentacles, tentacle cum, 11 years old, small breasts, $LORA, $NAME, nude, bikini, $PROMPT, orgasm, blush, empty eyes, looking at down, open mouth, close one eye, nsfw, red cheeks, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), rabbit",
+            "AD_Prompt": "D",
+            "AD_Negative": "D"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u685c\u30df\u30af",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u670d Lite.png",
+            "CustomNegative": "Model: FuwaFuwaMix1.5"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u670d Lite",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u88f8\u30bf\u30aa\u30eb": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u88f8\u30bf\u30aa\u30eb",
+        "Values": {
+            "Prompt": "solo, 1girl, nsfw, 10 years old, small breasts, $LORA, breasts, $NAME, bare breasts, $PROMPT, naked towel, looking at viewer, close one eye, nsfw, red cheeks, <lora:naked_towel_v0.1:0.775>, <lora:masusu_breast:0.65>, <lora:Detail_tweaker_lora:0.15>, standing, facing at away, from side, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u88f8\u30bf\u30aa\u30eb.png",
+            "CustomNegative": "\u308d\u304f\u306b\u8a66\u3057\u3066\u306a\u3044\u304b\u3089\u6539\u5584\u306e\u4f59\u5730\u3042\u308a"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u88f8\u30bf\u30aa\u30eb",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u7834\u308c\u305f\u30bf\u30a4\u30c4": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u7834\u308c\u305f\u30bf\u30a4\u30c4",
+        "Values": {
+            "Prompt": "nsfw, cute, masterpiece, best quality, nsfw, orgasm, $PROMPT, $NAME, $LORA, <lora:bodystocking:0.775>, bodystocking, bare breasts, bare pussy, nude, <lora:torn:0.85>, torn, torn clothes, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.4,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u7834\u308c\u305f\u30bf\u30a4\u30c4.png",
+            "CustomNegative": "\u6a2a\u3067\u3082\u7e26\u3067\u3082\u884c\u3051\u308b\nFuwaFuwaMix \u3060\u3068\u30e9\u30a4\u30c8\nAOM2 -> FFM \u3060\u3068\u30cf\u30fc\u30c9\u304c\u4f5c\u6210\u53ef\u80fd"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u7834\u308c\u305f\u30bf\u30a4\u30c4",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u30c0\u30fc\u30af\u30b5\u30a4\u30c9 (\u8863\u88c5) - \u672a\u8abf\u6574": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u30c0\u30fc\u30af\u30b5\u30a4\u30c9 (\u8863\u88c5) - \u672a\u8abf\u6574",
+        "Values": {
+            "Prompt": "(best quality, masterpiece), 1girl, solo, half-closed eyes, $PROMPT, empty eyes, nsfw, $NAME, $LORA, $FACE, glowing pubic tattoo, collar, evil smile, arms at sides, frills, layered skirt, bare shoulders, corruption, see-through leotard:0.9, <lora:Corruptionv2.1XL:0.7>, $LOCATION",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u30c0\u30fc\u30af\u30b5\u30a4\u30c9 (\u8863\u88c5) - \u672a\u8abf\u6574",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u96e8\u3067\u3073\u3061\u3087\u3073\u3061\u3087 - \u672a\u8abf\u6574": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u96e8\u3067\u3073\u3061\u3087\u3073\u3061\u3087 - \u672a\u8abf\u6574",
+        "Values": {
+            "Prompt": "(shiny skin:1.1), oiled skin, raining, rain, outdoor, rainy, nsfw, solo, 1girl, sweat, watered skin, blush, $PROMPT, looking at viewer, $NAME, $LORA, (masterpiece, high quality), <lora:ShinyOiledSkin_v20-LyCORIS:1>, $LOCATION, $FACE",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u96e8\u3067\u3073\u3061\u3087\u3073\u3061\u3087 - \u672a\u8abf\u6574",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u56db\u3064\u3093\u9019\u3044 (\u672a\u8abf\u6574)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u56db\u3064\u3093\u9019\u3044 (\u672a\u8abf\u6574)",
+        "Values": {
+            "Prompt": "all_fours, 1girl, $NAME, motion_lines, $FACE, top-down_bottom-up, solo, trembling, $PROMPT, nude, tail, tail_wagging, dog tails, anal_tail, kemonomimi_mode, blush, looking_at_viewer, breasts, all_fours, ass, <lora:AllFoursFromAboveV1:0.995>,completely nude, $LORA, <lora:masusu_breast:0.65>, <lora:Detail_tweaker_lora:0.25>,",
+            "Negative": "EasyNegative,(worst quality:1.4), (low quality:1.4), (normal quality:1.4), ((female pubic hair:1.3)), lowres,penis, badhandv5",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u56db\u3064\u3093\u9019\u3044 (\u672a\u8abf\u6574)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u56fa\u5b9a\u62d8\u675f\u3060\u3051 - \u672a\u8abf\u6574": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u56fa\u5b9a\u62d8\u675f\u3060\u3051 - \u672a\u8abf\u6574",
+        "Values": {
+            "Prompt": "masterpiece,1girl, solo, heart-shaped pupils, open mouth, $PROMPT, cleavage, $FACE, white bikini, <lora:Four-StationaryRestraintsV1:1.0>, stationary restraints, $LORA, $NAME, $LOCATION",
+            "Negative": "EasyNegative,(worst quality:1.4), (low quality:1.4), (normal quality:1.4), ((female pubic hair:1.3)), lowres,penis, badhandv5",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u56fa\u5b9a\u62d8\u675f\u3060\u3051 - \u672a\u8abf\u6574",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u633f\u308c\u3066\u3042\u3052\u308b (sex) - \u672a\u8abf\u6574": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u633f\u308c\u3066\u3042\u3052\u308b (sex) - \u672a\u8abf\u6574",
+        "Values": {
+            "Prompt": "$LOCATION, $LORA, (masterpiece, best quality), <lora:guipen:1>, gp1,1girl, low-res boy hands, uncensored, collarbone, completely nude, cowgirl position, vaginal, sex, $FACE, looking at away, blush, navel, nipples, nude, open mouth, pov, orgasm, $NAME",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u633f\u308c\u3066\u3042\u3052\u308b (sex) - \u672a\u8abf\u6574.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "bed sheet, bed, ",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u633f\u308c\u3066\u3042\u3052\u308b (sex) - \u672a\u8abf\u6574.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Matrix",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u633f\u308c\u3066\u3042\u3052\u308b (sex) - \u672a\u8abf\u6574",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u898b\u305b\u3082\u306e\u62d8\u675f - \u672a\u8abf\u6574": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u898b\u305b\u3082\u306e\u62d8\u675f - \u672a\u8abf\u6574",
+        "Values": {
+            "Prompt": "1girl, solo, uncensored, completely nude, (stationary restraints:1.4), (suspension:1.4), spread legs, arms behind back, frame binder,  <lora:frame binder41:0.9>, $PROMPT, $NAME, $LORA, $LOCATION, (masterpiece), $FACE",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "bed sheet, bed, ",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u898b\u305b\u3082\u306e\u62d8\u675f - \u672a\u8abf\u6574",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "M\u5b57\u958b\u811a (\u4e0b\u7740 ver)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "M\u5b57\u958b\u811a (\u4e0b\u7740 ver)",
+        "Values": {
+            "Prompt": "<lora:mlegs:1>, blush, bra, $PROMPT, hair bow, $LOCATION, legs up, lying, $FACE, $LORA, on back, on bed, open mouth, panties, $NAME, pink bra, pink hair, pink panties, sweat, underwear, underwear only",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), penis,1boy,boy",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "M\u5b57\u958b\u811a (\u4e0b\u7740 ver)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u6291\u3048\u8fbc\u307e\u308c\u3066\u3059\u308b (sex)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u6291\u3048\u8fbc\u307e\u308c\u3066\u3059\u308b (sex)",
+        "Values": {
+            "Prompt": "10 years old, nsfw, masterpiece, pussy juice, best quality, pussy, absurdres, nude, bottomless, $LORA, empty eyes, $NAME, 1girl, $PROMPT, small breasts, sex, vaginal, insertion, breasts, <lora:sexy_underwear:0.875>, bra, (nipples bra:1.3), penis insertion, cum, bottomless, (t-shirt:0.75), see-through, sweat, POVHipGrabCowgirl, hetero, vaginal, penis, on bed, indoors, open mouth, blush, orgasm, empty eyes, <lora:HipGrabCowgirl:1.125>, medium breasts, <lora:masusu_breast:0.4>, <lora:Detail_tweaker_lora:0.2>, $LOCATION",
+            "Negative": "EasyNegative, badhandv5, (((public hair), abs)), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), skirt",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u6291\u3048\u8fbc\u307e\u308c\u3066\u3059\u308b (sex).png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 1.5,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.35,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.77,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u6291\u3048\u8fbc\u307e\u308c\u3066\u3059\u308b (sex).png",
+            "CustomNegative": "HassakuHentai -> FuwaFuwa (0.8)"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Matrix",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u6291\u3048\u8fbc\u307e\u308c\u3066\u3059\u308b (sex)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u898b\u305b\u3082\u306e\u62d8\u675f 2": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u898b\u305b\u3082\u306e\u62d8\u675f 2",
+        "Values": {
+            "Prompt": "ultra-detailed, <lora:Frogtie1:1>, Frogtie pose, frogtie, bdsm, bondage, bound, bound legs, shibari, rope, spread legs, barefoot, arms behind back, nude, pussy juice, blush, orgasm, looking at away, $NAME, $PROMPT, (masterpiece, best quality), $LORA,",
+            "Negative": "EasyNegative, abs, public hair, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), spread legs,",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u5929\u99ac\u54b2\u5e0c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u898b\u305b\u3082\u306e\u62d8\u675f 2.png",
+            "CustomNegative": "AnyLoRACleanLinearMixClearVAE -> FuwaFuwaMix (0.8) refiner"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u898b\u305b\u3082\u306e\u62d8\u675f 2",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u80a1\u4e0b\u304b\u3089\u898b\u308b": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u80a1\u4e0b\u304b\u3089\u898b\u308b",
+        "Values": {
+            "Prompt": "$NAME, blush, arms behind back, $PROMPT, 1girl, solo, pussy, from below, nude, looking down, clitoris, <lora:PussyFromBelow:1>, $LORA, full body, pussy juice, realistic pussy, ",
+            "Negative": "EasyNegative, abs, public hair, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), spread legs,",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 1.5,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.35,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u9cf3\u3048\u3080 (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u80a1\u4e0b\u304b\u3089\u898b\u308b",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u30a8\u30ed\u30b3\u30b9": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u30a8\u30ed\u30b3\u30b9",
+        "Values": {
+            "Prompt": "nsfw, best quality, small breasts, $PROMPT, 1girl, solo, $LORA, ((crotchless panties), nippleless bra, bra,), pussy juice, $NAME, frills, panties, lace trim, <lora:sexy_underwear:0.85>, nipples, pussy, <lora:perky_breasts:0.75>, <lora:masusu_breast:0.45>",
+            "Negative": "EasyNegative, abs, public hair, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), spread legs,",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u30a8\u30ed\u30b3\u30b9.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u30a8\u30ed\u30b3\u30b9.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Matrix",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u30a8\u30ed\u30b3\u30b9",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u4e0b\u304b\u3089": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u4e0b\u304b\u3089",
+        "Values": {
+            "Prompt": "$NAME, blush, arms behind back, <lora:Cameltoe:1>, $PROMPT, 1girl, solo, pussy, cameltoe, leggings, nude, looking down, $LORA, full body, pussy juice, realistic pussy, ",
+            "Negative": "EasyNegative, abs, public hair, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), spread legs,",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u4e0b\u304b\u3089.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u661f\u4e43\u4e00\u6b4c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u4e0b\u304b\u3089.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Matrix",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u4e0b\u304b\u3089",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u304f\u3071\u3041": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u304f\u3071\u3041",
+        "Values": {
+            "Prompt": "spread pussy, 1girl solo, <lora:Saya-spread pussy(fingers)2:0.95>, $LORA, $NAME, $PROMPT, masterpiece best quality, ultra-detailed, nsfw, nude, pussy juice, ",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u304f\u3071\u3041",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u308b\u306a": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u308b\u306a",
+        "Values": {
+            "Prompt": "1girl, solo, long hair, light blue hair, kemonomimi_mode, heterochromia, light blue eye, pink eye, (light blue right eye, pink left eye, blue eyes, (red eyes:0.7), black eyes:0.875), (white hair:0.75), sky hair, pink hair, gradation hair, gradient hair, blue hair, white hair between eyes, multicolored hair, (cat ears, pink inner cat ears, pastel blue cat ears, light blue cat ears, white tufts:0.8), black skirt, skirt, (miniskirt:0.5), pleated skirt, (black panties:0.15), bare legs, barefoot, cleavage, small breasts, breasts, (medium breasts:0.65), collarbone,\nriver, forest, sky, sunflare, water, depth_of_field, blurry background",
+            "Negative": "EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),sun cloud, (panties:0.7), nipples, pussy, large breasts, huge breasts, tights, socks, yellow hair, twintails, missing tufts, cats, cat, animals",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u308b\u306a",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u308b\u306a (\u591c\u306e\u96ea) V1": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u308b\u306a (\u591c\u306e\u96ea) V1",
+        "Values": {
+            "Prompt": "smile, heart, night, red cheeks, open mouth, blush, midnight, star, 1girl, solo, long hair, light blue hair, kemonomimi_mode, heterochromia, light blue eye, pink eye, gradient hair, blue hair, (cat ears, pink inner cat ears, white tufts:0.8), black skirt, skirt, (miniskirt:0.65), see-through clothes, see-through, transparent cloth, swimsuit, bikini, black bikini, bare legs, cleavage, small breasts, breasts, (medium breasts:0.65), collarbone, snow, water, <lora:TenmaSaki:0.75>, (saki:0.65), <lora:Detail_tweaker_lora:-0.325>, snowy, snowing",
+            "Negative": "yellow hair, twintails, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), nipples, pussy, large breasts, huge breasts, tights, socks, ",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 1.5,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.35,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u308b\u306a (\u591c\u306e\u96ea) V1.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u308b\u306a (\u591c\u306e\u96ea) V1",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9) V1": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9) V1",
+        "Values": {
+            "Prompt": "naked bandage, smile, heart, night, red cheeks, open mouth, blush, midnight, 1girl, solo, long hair, pastel blue hair, light blue hair, kemonomimi_mode, heterochromia, light blue eye, pink eye, gradient hair, blue hair, <lora:attire_nakedbandage:0.725>, outdoor, naked bandage, claw pose, (cat ears, pink inner cat ears, white tufts:0.8), bare legs, skirt, black skirt, miniskirt, cleavage, small breasts, breasts, (medium breasts:0.65), collarbone, <lora:TenmaSaki:0.75>, (saki:0.65), <lora:Detail_tweaker_lora:-0.325>, fang, skin fang, ",
+            "Negative": "yellow hair, twintails, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), nipples, pussy, large breasts, huge breasts, tights, socks, ",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 1.5,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.35,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9) V1.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9) V1",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9&\u4e38\u30e1\u30ac\u30cd) V1": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9&\u4e38\u30e1\u30ac\u30cd) V1",
+        "Values": {
+            "Prompt": "naked bandage, smile, heart, night, red cheeks, open mouth, blush, midnight, 1girl, solo, long hair, circle-glasses, pastel blue hair, light blue hair, kemonomimi_mode, heterochromia, light blue eye, pink eye, gradient hair, blue hair, <lora:attire_nakedbandage:0.725>, indoor, bed, naked bandage, lying, (cat ears, pink inner cat ears, white tufts:0.8), bare legs, skirt, black skirt, miniskirt, cleavage, small breasts, breasts, (medium breasts:0.65), collarbone, <lora:TenmaSaki:0.75>, (saki:0.65), <lora:Detail_tweaker_lora:-0.325>, fang, skin fang, (claw pose:0.7)",
+            "Negative": "yellow hair, twintails, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), nipples, pussy, large breasts, huge breasts, tights, socks, ",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9&\u4e38\u30e1\u30ac\u30cd) V1.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 1.5,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.35,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Matrix",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u308b\u306a (\u304a\u5316\u3051\u30b3\u30b9&\u4e38\u30e1\u30ac\u30cd) V1",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u3058\u30fc (\u3053\u3063\u3061\u3092\u898b\u3064\u3081\u308b)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u3058\u30fc (\u3053\u3063\u3061\u3092\u898b\u3064\u3081\u308b)",
+        "Values": {
+            "Prompt": "looking at viewer, staring, (smile:0.7), (sad:0.5, crying:0.52), $PROMPT, $NAME, bust-up, (masterpiece, best quality), <lora:Detail_tweaker_lora:-0.15>, $LORA, cute, sunlight, day, outdoor, solo, 1girl,",
+            "Negative": "censored, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u3058\u30fc (\u3053\u3063\u3061\u3092\u898b\u3064\u3081\u308b)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u5815\u3061 hard": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u5815\u3061 hard",
+        "Values": {
+            "Prompt": "tentacle insertion:1.25, insert to pussy, uncensored, nsfw, red tentacles, <lora:chushou:1.25>, ((open mouth, orgasm)), bulging belly, (tentacles), puffy tentacle, insertion sex, tentacles, cum, small breasts, completive naked, big tentacle insertion, 1girl, solo, tentacle sex, (tentacle insertion:1.4), cum in pussy, cum in belly, touch tentacles, empty eyes, $LORA, $NAME, $PROMPT, (best quality, masterpiece:1.25), ejaculation, <lora:masusu_breast:0.575>, sitting <lora:HipGrabCowgirl:0>, close eyes",
+            "Negative": "censored, EasyNegative, badhandv5, abs, (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, sad, (inaccurate limb:1.2), (Low resolution:1.1), (((1boy))), 1boy, public hair,",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": true,
+            "Upscale": 1.5,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.35,
+            "Steps": 6
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u5929\u99ac\u54b2\u5e0c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u5815\u3061 hard.png",
+            "CustomNegative": "Refiner 0.85  HassakuHentai -> FuwaFuwaMix "
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u5815\u3061 hard",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u3073\u3057\u3087\u3073\u3057\u3087 (#crotchless pantie)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u3073\u3057\u3087\u3073\u3057\u3087 (#crotchless pantie)",
+        "Values": {
+            "Prompt": "nsfw, uncensored, <lora:mlegs:1>, blush, $PROMPT, looking at away, hair bow, legs up, lying, crotchless panties:1.25, $LORA, on back, on bed, open mouth, panties, $NAME, small breasts, pink hair, black panties, sweat, underwear, underwear only, <lora:sexy_underwear:0.85>, pussy, pussy juice, water in pussy, ",
+            "Negative": "bra, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), penis,1boy,boy",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": false,
+            "Character": "None",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png",
+            "CustomNegative": ""
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u3073\u3057\u3087\u3073\u3057\u3087 (#crotchless pantie)",
+        "DatabasePath": "/path/to/this_database"
+    },
+    "\u89e6\u624b\u305b\u3063\u304f\u3059 lite (#tentacles)": {
+        "Method": "v3.0.4",
+        "Method_Release": 4,
+        "Key": "\u89e6\u624b\u305b\u3063\u304f\u3059 lite (#tentacles)",
+        "Values": {
+            "Prompt": "nsfw, uncensored, <lora:mlegs:0.75>, blush, $PROMPT, looking at away, open mouth, hair bow, pussy juice, legs up, lying, tentacle insertion, insertion, sex, $LORA, on back, on bed, open mouth, panties, $NAME, <lora:chushou:1.25>, tentacles, tentacles bondage, tentacle insertion, cum, chain, arms shibari, arms chain bondage, small breasts, pink hair, black panties, sweat, underwear, underwear only, water in pussy, transparent water, open pussy",
+            "Negative": "censored, bra, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1), ,1boy,boy, puddle, pool of water",
+            "AD_Prompt": "masterpiece, best quality,",
+            "AD_Negative": "worst quality, (EasyNegative:0.725),"
+        },
+        "ControlNet": {
+            "isEnabled": false,
+            "Mode": "All",
+            "Weight": 0.75,
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\noneimg8cmwsvcifvfosi923jrvsvvnsfs.png"
+        },
+        "Hires": {
+            "isEnabled": false,
+            "Upscale": 2.0,
+            "Sampler": "R-ESRGAN 4x+ Anime6B",
+            "Denoising": 0.45,
+            "Steps": 8
+        },
+        "Example": {
+            "isEnabled": true,
+            "Character": "\u5929\u99ac\u54b2\u5e0c (prsk)",
+            "Weight": 0.75,
+            "Lora": "None",
+            "Name": "None",
+            "Prompt": "None",
+            "isExtend": true,
+            "Face": "None",
+            "Location": "None",
+            "Header": "None",
+            "Lower": "None",
+            "Image": "C:\\Users\\luna_\\Desktop\\Invisible Files\\luna_py\\luna_py\\Scripts\\sd_tool\\prompt_EasyMaker\\v3\\database\\v3\\image\\\u89e6\u624b\u305b\u3063\u304f\u3059 lite (#tentacles).png",
+            "CustomNegative": "0.55(0.75(komorebimix_v12) + 0.25(anyloracleanlinearmix_clearvae_for_merge)) + 0.45(Hassaku_Hentai_model).safetensors [4744fa032c]\n-> FuwaFuwaMIx (Refiner 0.85)\n\n0.55(0.75A + 0.25B) + 0.45B2 + C\n\nA = KomorebiMix v1.2\nB = AnyLoracleanLinearMix-clearVAE-for-merge\nB2 = HassakuHentaiModel\nC = FuwaFuwaMix"
+        },
+        "Regional_Prompter": {
+            "isEnabled": false,
+            "rp_mode": "Matrix",
+            "Secondary_Prompt": {
+                "prompt": "",
+                "characters": "",
+                "weight": 0.75,
+                "lora": "",
+                "name": "",
+                "ch_prompt": "",
+                "face": "",
+                "location": "",
+                "header": "",
+                "lower": "",
+                "gFaL_from_Main": false
+            },
+            "mode": "Attention",
+            "base": false,
+            "common": [
+                false,
+                false
+            ],
+            "lora_stop_step": [
+                0,
+                0
+            ],
+            "resolution": [
+                512,
+                512
+            ],
+            "split_mode": "Columns",
+            "split_ratio": "1:1",
+            "base_ratio": 0.2
+        },
+        "Resolution": "512x768",
+        "Sampler": "DPM++ 2M Karras",
+        "Clip": 2.0,
+        "displayName": "\u89e6\u624b\u305b\u3063\u304f\u3059 lite (#tentacles)",
         "DatabasePath": "/path/to/this_database"
     },
     "Example": {
