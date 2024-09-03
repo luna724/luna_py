@@ -2,6 +2,7 @@ from typing import *
 import gradio as gr
 
 import os
+import sys
 import importlib
 
 class UiTabs:
@@ -98,6 +99,17 @@ class launch:
     
   @staticmethod
   def launch_ui(ui:gr.Blocks):
+    # sys.path に addons を追加
+    addons = os.listdir(
+      os.path.join(os.getcwd(), "addons")
+    )
+    for addon in addons:
+      if os.path.isdir(addon):
+        sys.path.append(addon)
+    
+    from modules.addon import _addon as addon_util
+    addon_util().load_addons()
+    
     ui.queue(64)
     ui.launch(inbrowser=True)
     return

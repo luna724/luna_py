@@ -24,7 +24,7 @@ class _save(generatorTypes):
     ]
     return lora_base
   
-  def genBase(self, lora:str, name:str, prompt:str, extend:str, key:str, lv1:bool, lv1s:List[str], lv2:bool, lv2s:List[str], loraisid:bool, **kw):
+  def genBase(self, lora:str, name:str, prompt:str, extend:str, key:str, lv1:bool, lv1s:List[str], lv2:bool, lv2s:List[str], loraisid:bool|None, **kw):
     base = self.getBase()
     basic = {
       "lora": lora,
@@ -53,18 +53,34 @@ class _save(generatorTypes):
   def get_recommend_version(self):
     return self.avv[self.recommend_version]
   
-  def check_lora_id(self, lora_id:str, isID:bool):
+  def check_lora_id(self, lora_id:str, isID:str) -> bool:
+    """return: bool(isID)"""
+    if isID == "Yes":
+      isID = True
+    elif isID == "No":
+      isID = False
+    else:
+      isID = None
+    
     lora_id = lora_id.strip()
     
+    if isID is None:
+      # Auto-detect
+      if "<lora:" in lora_id.lower():
+        isID = True
+      else:
+        isID = False
+    
     if lora_id == "." or not isID:
-      return
+      return isID
     
     try:
       self.lib.control_lora_weight(lora_id)
     except IndexError:
-      raise gr.Error("LoRA ID hasn't correctly!")
-      return
+      gr.Warning("LoRA ID hasn't correctly!")
+      return isID
     gr.Info("No errors occurred")
+    return isID
   
   def bool2visible(self, boo):
     return self.lib.bool2visible(boo)
@@ -94,7 +110,15 @@ class _save(generatorTypes):
       ret = ["Success!", target, data["lora"], data["name"], data["prompt"], data["extend"]]
       if ver == "v5":
         lv = data["lora_variables"]
-        ret += [lv[0][0], lv[1][0][0], lv[1][0][1], lv[1][1], lv[1][1][0], lv[1][1][1], data["loraisLoRA"]]
+        lil = data["loraisLoRA"]
+        if lil is None:
+          lil = "auto"
+        elif lil:
+          lil = "Yes"
+        else:
+          lil = "No"
+          
+        ret += [lv[0][0], lv[1][0][0], lv[1][0][1], lv[1][1], lv[1][1][0], lv[1][1][1], lil]
       else:
         ret += [False, "", "", False, "", "", True]
       return ret+[True]
@@ -108,8 +132,19 @@ class _save(generatorTypes):
     if displayName == "" or displayName == None:
       raise gr.Error("Please enter displayName!")
     
-    if lora_id_is_lora:
-      self.check_lora_id(lora_id, True)
+    if lora_id_is_lora == "Yes":
+      lora_id_is_lora = True
+    elif lora_id_is_lora == "No":
+      lora_id_is_lora = False
+    else:
+      lora_id_is_lora = None
+    
+    if lora_id_is_lora is not None and lora_id_is_lora:
+      try:
+        lora_id_is_lora = self.check_lora_id(lora_id, True)
+      except Exception:
+        lora_id_is_lora = True
+        pass
     
     if lora_id == ".":
       lora_id = ""

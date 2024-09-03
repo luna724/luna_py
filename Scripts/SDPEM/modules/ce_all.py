@@ -57,8 +57,8 @@ class Character_Exchanger(generatorTypes):
     lora_weight = self.lib.re4prompt(rf"<lora:{loraname}:(.*)>", prompt)[0]
     
     prompt = re.sub(rf"<lora:{loraname}:{lora_weight}>", "$LORA", prompt, count=1)
-    key, _, name, ch_prompt, extend = self.generate_common.obtain_lora_list.manual(True, key)
-    target_key, target_lora, target_name, target_prompt, target_extend = self.generate_common.obtain_lora_list.manual(
+    key, _, name, ch_prompt, extend, lv1, lv2, loraislora = self.generate_common.obtain_lora_list.manual(True, key)
+    target_key, target_lora, target_name, target_prompt, target_extend, lv1, lv2, loraislora = self.generate_common.obtain_lora_list.manual(
       True, lora_template
     )
     if not "lora" in mode:

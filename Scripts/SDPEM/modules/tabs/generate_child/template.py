@@ -13,6 +13,8 @@ class Template(UiTabs):
     return 0
   
   def ui(self, outlet):
+    version = "version: v4.1.2R"
+    
     class var:
       refresh = "\U0001f504"
       cfn:dict = {
@@ -27,7 +29,7 @@ class Template(UiTabs):
     get_lora_template = tmpl_common.obtain_lora_list
     
     with gr.Blocks() as iface:
-      gr.Markdown("version: v4.1.1R")
+      gr.Markdown(version)
       
       # Initialize
       module = Importer("modules.generate.template")

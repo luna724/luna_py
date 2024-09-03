@@ -4,6 +4,8 @@ import gradio as gr
 from typing import *
 
 class _lib:
+  empty_variant:List[str] = [""] # var == "" の "" のすべて
+  
   @staticmethod
   def re4prompt(pattern: str, text: str):
     """ コンマで区切り、対象パターンのindex0のすべてを持つリストを返す
@@ -85,15 +87,25 @@ class _lib:
     return str
   
   @staticmethod
-  def control_lora_weight(lora_string: str, weight: float = 1.0):
+  def control_lora_weight(lora_string: str, weight: float = 1.0, loraislora:bool = False):
     # 変換
     if not isinstance(weight, float) and not isinstance(weight, int):
       weight = get_index(weight, 0, 1.0)
       
-    weight = re.sub(r"<lora:.*:(.+)>", str(weight), lora_string, count=1)
-    loraname = re.findall(r"<lora:(.*):.+>", lora_string)[0]
-    new_lora_string = f"<lora:{loraname}:{weight}>"
-    print(f"[lora Weight controller]: {lora_string} -> {new_lora_string}")
+    if loraislora:
+      weight = re.sub(r"<lora:.*:(.+)>", str(weight), lora_string, count=1)
+      loraname = re.findall(r"<lora:(.*):.+>", lora_string)[0]
+      new_lora_string = f"<lora:{loraname}:{weight}>"
+      print(f"[lora Weight controller]: {lora_string} -> {new_lora_string}")
+    else:
+      if lora_string.count(":") > 0:
+        replaced = f":{str(weight)}"
+        new_lora_string = re.sub(
+          r":([\d\.]+)", replaced, lora_string
+        )
+      else:
+        new_lora_string = lora_string + f":{weight}"
+      print(f"[lora Weight controller (NoLoRA Mode)]: {lora_string} -> {new_lora_string}")
     
     return new_lora_string
   

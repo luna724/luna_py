@@ -303,7 +303,7 @@
   "\u6681\u5c71\u745e\u5e0c (prsk)": [
     "v4",
     {
-      "lora": "<lora:AkiyamaMizukiV1:1.0>",
+      "lora": "<lora:AkiyamaMizuki:1.0>",
       "name": "mizuki",
       "prompt": "red hair ribbon, pink eyes, small breasts, light pink hair, side ponytail, wavy hair",
       "extend": "14 years old, pink hair, medium hair",
@@ -631,13 +631,57 @@
     }
   ],
   "\u308b\u306a": [
-    "v4",
+    "v5",
     {
-      "lora": "<lora:DISABLED:1.0>",
-      "name": "<lora:TenmaSaki:0.5>, (saki:0.65)",
-      "prompt": "long hair, pastel blue hair, light blue hair, kemonomimi_mode, heterochromia, light blue eye, pink eye, gradient hair, blue hair, (cat ears, pink inner cat ears, white tufts:0.8),",
-      "extend": "1girl, solo,  small breasts, breasts, (medium breasts:0.65), collarbone,",
-      "key": "\u308b\u306a"
+      "lora": "(saki:1.0)",
+      "name": "<lora:saki:0.45>",
+      "prompt": "light blue hair, heterochromia, light blue eye, pink eye, gradient hair, blue hair, cat ears, pink inner cat ears, white tufts",
+      "extend": "straight hair",
+      "key": "\u308b\u306a",
+      "lora_variables": [
+        [
+          true,
+          true
+        ],
+        [
+          [
+            "\u8eab\u4f53\u7684\u7279\u5fb4",
+            "small breasts, kemonomimi_mode, collarbone"
+          ],
+          [
+            "\u6052\u5e38\u6642\u306e\u670d\u88c5",
+            "black dress, lace-trimmed dress, long sleeves, black skirt, pleated skirt, miniskirt, black panties:0.15, detached sleeves, bare shoulders, black bra, frills"
+          ]
+        ]
+      ],
+      "loraisLoRA": false
+    }
+  ],
+  "\u30bb\u30ea\u30ca (\u30d6\u30eb\u30a2\u30ab)": [
+    "v5",
+    {
+      "lora": "<lora:serina1:1>",
+      "name": "serinadef",
+      "prompt": "",
+      "extend": "",
+      "key": "\u30bb\u30ea\u30ca (\u30d6\u30eb\u30a2\u30ab)",
+      "lora_variables": [
+        [
+          false,
+          false
+        ],
+        [
+          [
+            "",
+            ""
+          ],
+          [
+            "",
+            ""
+          ]
+        ]
+      ],
+      "loraisLoRA": true
     }
   ]
 }

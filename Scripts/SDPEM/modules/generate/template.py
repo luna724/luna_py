@@ -84,7 +84,7 @@ class Templates(generatorTypes):
     super().__init__()
     self.get_templates = self.generate_common.obtain_template_list
     self.get_lora = self.generate_common.obtain_lora_list
-    self.ui_config = self.config.get_spec_value("user_variable.ui.system")
+    self.ui_config = self.config.get_spec_value("user_variable.ui.system.generate")
     
     self.selected_template:str = None
     self.selected_lora:str = None
@@ -174,20 +174,20 @@ class Templates(generatorTypes):
       lora_template = self.selected_lora
     
     # LoRA テンプレ v5.0 以上で有効 (v2 以下なら IndexError)
-    lora = self.get_lora.full()[lora_template]
-    method = lora[0]
-    
-    if method in self.lora_template_v5_from_above:
-      lora = lora[1]
-      lora_vars = lora["lora_variables"]
-      
-      lv1, lv2 = tuple(lora_vars[0])
-      if lv1:
-        rtl.append((True, lora_vars[1][0]))
-      if lv2:
-        rtl.append((True, lora_vars[1][1]))
-
+    lora = self.get_lora.manual(True, lora_template, include_version=True)
+    lv1 = lora[5]
+    lv2 = lora[6]
+    if (lv1[0] or lv2[0]) or (lora[-1] > 0): # ver
+      if lv1[0]:
+        rtl.append((True, [lv1[1], lv1[2]]))
+      else:
+        rtl.append((False, ["", ""]))
+      if lv2[0]:
+        rtl.append((True, [lv2[1], lv2[2]]))
+      else:
+        rtl.append((False, ["", ""]))
       return rtl
+    
     else:
       print("[INFO]: this Template versions too low.")
       return [(False, ["", ""]), (False, ["", ""])]

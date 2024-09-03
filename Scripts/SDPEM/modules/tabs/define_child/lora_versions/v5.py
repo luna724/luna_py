@@ -24,7 +24,7 @@ class v5(UiTabs):
       
       with gr.Row():
         lora_id = gr.Textbox(label="$LORA trigger", placeholder="<lora:example:1.0>  |  . to Empty", scale=62)
-        lora_id_is_lora = gr.Checkbox(True, scale=20, label="isLoRA")
+        lora_id_is_lora = gr.Dropdown(choices=["Yes", "No", "auto"], scale=20, label="isLoRA", value="Yes")
         check_lora_id = gr.Button("Check", scale=12)
         check_lora_id.click(module.check_lora_id, [lora_id, lora_id_is_lora])
       
