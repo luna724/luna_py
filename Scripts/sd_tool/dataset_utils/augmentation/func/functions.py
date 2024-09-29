@@ -312,7 +312,7 @@ def augments_selected_random_update(random_selected):
   return tuple(let)
 
 def jpeg2jpg(string:str) -> str:
-  if string.lower() == "jpeg":
-    return "jpg"
+  if string.lower() == "jpg":
+    return "jpeg"
   else:
     return string

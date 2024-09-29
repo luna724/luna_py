@@ -12,7 +12,7 @@ class v5(UiTabs):
     return "v5"
   
   def index(self):
-    return 1
+    return 41
   
   def ui(self, outlet):
     tmpl_common = Importer("modules.generate.common")

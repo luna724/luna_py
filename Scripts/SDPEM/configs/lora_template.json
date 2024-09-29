@@ -241,13 +241,30 @@
     }
   ],
   "\u5c0f\u8c46\u6ca2\u3053\u306f\u306d (prsk)": [
-    "v4",
+    "v5",
     {
       "lora": "<lora:AzusawaKohane:1.0>",
       "name": "kohane",
       "prompt": "blonde hair, twintails, brown eyes, hair between eyes",
       "extend": "medium hair, small breasts, twin tails, low twintails",
-      "key": "\u5c0f\u8c46\u6ca2\u3053\u306f\u306d (prsk)"
+      "key": "\u5c0f\u8c46\u6ca2\u3053\u306f\u306d (prsk)",
+      "lora_variables": [
+        [
+          false,
+          false
+        ],
+        [
+          [
+            "",
+            ""
+          ],
+          [
+            "",
+            ""
+          ]
+        ]
+      ],
+      "loraisLoRA": null
     }
   ],
   "\u767d\u77f3\u674f (prsk)": [
@@ -351,13 +368,30 @@
     }
   ],
   "25\u30df\u30af": [
-    "v4",
+    "v5",
     {
-      "lora": "<lora:hatsune_miku_project_sekai_v1:1.0>",
+      "lora": "<lora:hatsune_miku_(project_sekai)_v1:1.0>",
       "name": "nigomiku",
       "prompt": "heterochromia, aqua eyes, pink eyes, grey hair, long hair, twintails",
       "extend": "",
-      "key": "25\u30df\u30af"
+      "key": "25\u30df\u30af",
+      "lora_variables": [
+        [
+          false,
+          false
+        ],
+        [
+          [
+            "",
+            ""
+          ],
+          [
+            "",
+            ""
+          ]
+        ]
+      ],
+      "loraisLoRA": true
     }
   ],
   "\u521d\u97f3\u30df\u30af (racing2022)": [
