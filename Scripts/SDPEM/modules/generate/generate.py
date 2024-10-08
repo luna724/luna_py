@@ -15,6 +15,10 @@ class g(generatorTypes):
         return None
       except IndexError:
         return None
+  
+  def compare_addons(self, var):
+    return
+    
       
   def __init__(self):
     super().__init__()
@@ -22,6 +26,7 @@ class g(generatorTypes):
     self.get_lora = self.generate_common.obtain_lora_list
     self.ui_config = self.config.get_spec_value("user_variable.ui.system")
     self.shortcut_via:dict = self.config.get_spec_value("system.generate.custom_buildin_shortcut_via")
+    self.addon_utils = Importer("modules.addon")
     
     self.selected_template:str = None
     self.selected_lora:str = None
@@ -94,6 +99,9 @@ class g(generatorTypes):
       def define_r():
         def r(x:str) -> str:
           """ resize(), delete comma and space from header/lower"""
+          if not isinstance(x, str):
+            print("[ERR]: R() got unknown types input: ", x, "\n", "Instance: ", type(str))
+          
           return x.strip().strip(",")
         return r
       
@@ -104,7 +112,7 @@ class g(generatorTypes):
         raise gr.Error("can't find that LoRA")
 
       template, template_ver = self.get_templates.get_template_value(template_key)
-      _, lora, name, ch_prompt, ch_extend = self.get_lora.manual(True, lora_key)
+      _, lora, name, ch_prompt, ch_extend, lv1, lv2, loraislora = self.get_lora.manual(True, lora_key)
       
       v = template["Values"]
       v_get = self.Tweaking(v)
@@ -113,8 +121,8 @@ class g(generatorTypes):
       negative = self.convert_old_method(v_get("Negative"))
       ad_prompt = self.convert_old_method(v_get("AD_Prompt"))
       ad_negative = self.convert_old_method(v_get("AD_Negative"))
-      
-      lora = self.lib.control_lora_weight(lora, lora_weight)
+
+      lora = self.lib.control_lora_weight(lora, lora_weight, loraislora)
       if extend_lora_enable:
         if not isinstance(ch_extend, str):
           print("[WARN]: this LoRAs not include extend.")
@@ -158,18 +166,15 @@ class g(generatorTypes):
       
       ### TODO: prompt keyword 変換の実装
       # LoRA Variables
-      lv1 = ""
-      lv2 = ""
-      lora_variable = self.lib.get_value(self.get_lora.full()[lora_key][1], "lora_variables", [[False, False], [["", ""], ["", ""]]])
-      
-      if lora_var_1 and lora_variable[0][0]:
-        lv1 = lora_variable[1][0][1]
-      
-      if lora_var_2 and lora_variable[0][1]:
-        lv2 = lora_variable[1][1][1]
+      lv1_info = ""
+      lv2_info = ""
+      if lv1[0]:
+        lv1_info = lv1[2]
+      if lv2[0]:
+        lv2_info = lv2[2]
       
       lvk = ("$LV1", "$LV2")
-      lvv = (r(lv1), r(lv2))
+      lvv = (r(lv1_info), r(lv2_info))
       for (x, y) in zip(lvk, lvv):
         prompt1 = self.lib.replace_variable(
           prompt1, x, y
@@ -182,9 +187,19 @@ class g(generatorTypes):
       if not enable_adetailer_lora:
         def r(*x): return ""
         
-      lvk =("?AnyLoRA", "?AnyName", "?AnyPrompt", "$ACCESSORY", "$OTHER", "$LV1", "$LV2")
-      lvv = (r(lora), r(name), r(ch_prompt), r(accessory), r(other_variable),r(lv1), r(lv2))
+      lvk =("?AnyLoRA", "?AnyName", "?AnyPrompt", "$ACCESSORY", "$OTHER")
+      lvv = (r(lora), r(name), r(ch_prompt), r(accessory), r(other_variable))
       for (x, y) in zip(lvk, lvv):
+        ad_prompt = self.lib.replace_variable(
+          ad_prompt, x, y
+        )
+      
+      if lv1[0]:
+        lv1_info = r(lv1[2])
+      if lv2[0]:
+        lv2_info = r(lv2[2])
+      
+      for (x, y) in zip(("$LV1", "$LV2"), (lv1_info, lv2_info)):
         ad_prompt = self.lib.replace_variable(
           ad_prompt, x, y
         )
@@ -204,13 +219,17 @@ class g(generatorTypes):
       
       lvk = (
           "?AnyLoRA", "?AnyName", "?AnyPrompt", 
-          "$ACCESSORY", "$OTHER", "$LV1", "$LV2"
+          "$ACCESSORY", "$OTHER"
         )
       lvv = (
-          r(lora), r(name), r(ch_prompt), r(accessory), r(other_variable),
-          r(lv1), r(lv2)
+          r(lora), r(name), r(ch_prompt), r(accessory), r(other_variable)
         )
       for (x, y) in zip(lvk, lvv):
+        negative = self.lib.replace_variable(
+          negative, x, y
+        )
+      
+      for (x, y) in zip(("$LV1", "$LV2"), (lv1_info, lv2_info)):
         negative = self.lib.replace_variable(
           negative, x, y
         )
@@ -222,6 +241,8 @@ class g(generatorTypes):
           negative, x, y
         )
       
+      # アドオン
+      self.compare_addons([prompt1, negative, ad_prompt, ad_negative])
       
       return prompt1, negative, ad_prompt, ad_negative
 

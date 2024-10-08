@@ -5,6 +5,7 @@ from LGS import jsoncfg
 import os
 
 class config_value(BaseModel):
+  database_ui:dict
   script_version:dict
   user_variable:dict
   system:dict

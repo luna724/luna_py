@@ -57,6 +57,7 @@ class _collectorTypes:
   INDEX: 1
   """
   def __init__(self):
+    self.lib = Importer("modules.lib")
     self.config = Importer("modules.config.get")
   
   def get_data_path(self):

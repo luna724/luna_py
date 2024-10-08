@@ -18,7 +18,7 @@ class CE(UiTabs):
     character_exchanger = Importer("modules.ce_all")
     
     with gr.Blocks() as iface:
-      gr.Markdown("version: CE-v3b4")
+      gr.Markdown("version: CE-v3b5")
       
       with gr.Row():
         mode = gr.Dropdown(choices=["lora, name", "prompt", "extend"], label="mode", value=["lora, name", "prompt", "extend"], multiselect=True)

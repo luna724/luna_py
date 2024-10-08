@@ -71,3 +71,7 @@
 - [Generate/LoRA v5]: $LoRA Trigger の値のチェック機能を追加
 - [Generate/LoRA v5]: Load関数の対応バージョンを変更 (v2~v4 -> v4~v5)
 - [Generate/LoRA v5]: Load機能による上書きが行われた際に、draftを保存する機能を削除 (プリントアウトに変更)
+- [Generate/LoRA v5]: LoRA ID is LoRA が保持する値を変更 (bool -> bool|null)
+- [Generate/Template]: v5 LoRA json に対応
+- [Character Exchanger v3.03]: v5 LoRA json に部分的対応
+- [Generate/Template]: v5 LoRA json を選択した際に KeyError が起こる問題を修正

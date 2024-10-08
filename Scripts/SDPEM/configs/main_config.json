@@ -1,4 +1,10 @@
 {
+  "database_ui": {
+    "__COMMENT": "普遍的なもののみ。動的情報は /database.jsonに",
+    "negative": "censored, EasyNegative, badhandv5, (((1boy))), (bad anatomy:1.4), (realistic:1.1), (low quality, worst quality:1.1), lips, fat, (inaccurate limb:1.2), (Low resolution:1.1),",
+    "ad_pos": "masterpiece, best quality,",
+    "ad_neg": "worst quality, (EasyNegative:0.725),"
+  },
   "script_version": {
     "call_api":
     {
