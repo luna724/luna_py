@@ -3,7 +3,12 @@ import os
 import importlib
 import requests
 import zipfile
+import json
 from typing import Tuple
+
+metadata_example = {
+  "require_chromedriver": False
+}
 
 def launch(m) -> Tuple[Namespace, bool]:
   parser = ArgumentParser("main")
@@ -53,42 +58,51 @@ def main():
   mode = p.m
   
   parsed_args, API_accessable = launch(mode)
-  
-  # auto download chrome driver
-  start_dir = os.getcwd()
-  if os.path.exists(os.path.join(start_dir, "chromedriver.exe")):
-    os.remove(os.path.join(start_dir, "chromedriver.exe"))
-  latest_chrome_driver = requests.get("https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE").text.strip()
-  chrome_driver_path = f"https://storage.googleapis.com/chrome-for-testing-public/{latest_chrome_driver}"
-  # プラットフォームを検出
-  os_name = os.name
-  if os_name == "nt":
-    pf = "win{}"
-    import platform
-    bit = platform.architecture()[0].replace("bit", "")
-    pf = pf.format(bit)
-    ext = ".exe"
-    
-  elif os_name == "posix":
-    pf = "linux64" 
-    ext = ""
-  
+  if os.path.exists(os.path.join(mode, "metadata.json")):
+    with open(os.path.join(mode, "metadata.json"), "r", encoding="utf-8") as f:
+      metadata = json.load(f)
   else:
-    pf = "mac-x64"
-    ext = ""
+    print(f"can't detected metadata.json in selected module ({mode}).\nrunning with default metadata.json..")
+    metadata = metadata_example
   
-  chrome_driver_path += f"/{pf}/chromedriver-{pf}.zip"
-  chrome_driver_zip = requests.get(chrome_driver_path)
-  zip_file_path = os.path.join(start_dir, f"chromedriver.zip")
-  with open(zip_file_path, "wb") as f:
-    f.write(chrome_driver_zip.content)
- 
-  print("zip_file_Path", zip_file_path) 
-  with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
-    zip_ref.extractall(start_dir)
+  if metadata["require_chromedriver"]:
+    print("Downloading Chromedriver..")
+    
+    # auto download chrome driver
+    start_dir = os.getcwd()
+    if os.path.exists(os.path.join(start_dir, "chromedriver.exe")):
+      os.remove(os.path.join(start_dir, "chromedriver.exe"))
+    latest_chrome_driver = requests.get("https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE").text.strip()
+    chrome_driver_path = f"https://storage.googleapis.com/chrome-for-testing-public/{latest_chrome_driver}"
+    # プラットフォームを検出
+    os_name = os.name
+    if os_name == "nt":
+      pf = "win{}"
+      import platform
+      bit = platform.architecture()[0].replace("bit", "")
+      pf = pf.format(bit)
+      ext = ".exe"
+      
+    elif os_name == "posix":
+      pf = "linux64" 
+      ext = ""
+    
+    else:
+      pf = "mac-x64"
+      ext = ""
+    
+    chrome_driver_path += f"/{pf}/chromedriver-{pf}.zip"
+    chrome_driver_zip = requests.get(chrome_driver_path)
+    zip_file_path = os.path.join(start_dir, f"chromedriver.zip")
+    with open(zip_file_path, "wb") as f:
+      f.write(chrome_driver_zip.content)
   
-  os.rename(os.path.join(start_dir, f"chromedriver-{pf}/chromedriver{ext}"), os.path.join(start_dir, f"chromedriver{ext}"))
-  os.remove(zip_file_path)
+    print("zip_file_Path", zip_file_path) 
+    with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
+      zip_ref.extractall(start_dir)
+    
+    os.rename(os.path.join(start_dir, f"chromedriver-{pf}/chromedriver{ext}"), os.path.join(start_dir, f"chromedriver{ext}"))
+    os.remove(zip_file_path)
   
   API_mode = parsed_args.api and API_accessable
   print(importlib.import_module(f"{mode}.launch").launch(parsed_args, api_mode=API_mode))
