@@ -1,5 +1,5 @@
 import os
-import asyncio
+import sys
 import random
 import time
 import json
@@ -19,29 +19,81 @@ import base64
 from launch import DRIVER_PATH, ROOT_DIR
 DRIVER_PATH:str;ROOT_DIR:str
 
+class VariableStorage:
+  humanize = False
+  looping = True
+  end_estim = time.time() + random.randrange(3600*2, 3600*4, 100)
+variable = VariableStorage()
+
 class stop_async: when_video_pause_play_video = True
 def jsonread(path): 
   with open(path, "r", encoding="utf-8") as f: return json.load(f)
 
-async def when_video_pause_play_video(pictPlayerToolPlay_Element:WebElement, driver: webdriver.Chrome):
-    """ 非同期的に再生ボタンを検出する関数 
-    "play" になった場合、自動的に再開する"""
+def loop_start(wait: WebDriverWait):
+  def click_next():
+    print("click_next called")
+    wait.until(
+      EC.element_to_be_clickable((By.ID, "pictPlayerTool-next"))
+    ).click()
+  
+  def visualizeSleep(times:float):
+    print(f"Sleeping {times}s")
+    while not times == 1:
+      times -= 1
+      print(f"{times}.. ", end="")
+      sys.stdout.flush()
+      time.sleep(1)
+    print("done")
+    return
     
-    async def check():
-        """再生ボタンが "play" になるまで待機"""
-        while pictPlayerToolPlay_Element.get_attribute("data-value") != "play":
-            await asyncio.sleep(1)
-        await asyncio.sleep(1.25)
+  # 60秒以内に動画をユーザーが開始
+  _ = wait.until(
+    EC.element_to_be_clickable((By.ID, "pictPlayerTool-stop"))
+  )
+  print("Script started!\nautomatically moved to next video!")
+  if variable.humanize:
+    print("Humanize = True")
+  class end_time: text = None
+  
+  while variable.looping:
+    print(f"Moved to next video.. (Previous video time: {end_time.text})")
+    if random.randrange(1, 100, 1) == 1 and variable.humanize:
+      print("Stopped by Humanize (onVideoStartedOnePercentage)")
+      break;
+    if random.randrange(1, 1000, 1) < 10 and variable.humanize:
+      print("Video Skipped by Humanize (onVideoStartedSkipHandler)")
+      click_next()
     
-    while True:  # 無限ループ
-        await check()
-        driver.execute_script("arguments[0].click();", pictPlayerToolPlay_Element)
-        await asyncio.sleep(5)
-async def main(p, d):
-  await when_video_pause_play_video(p, d)
+    visualizeSleep(3)
+    video_toolbar = wait.until(
+      EC.presence_of_element_located((By.ID, "pictPlayerToolbar"))
+    )
+    current_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration1")
+    end_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration2")
+    
+    while current_time.text != end_time.text:
+      current_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration1")
+      end_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration2")
+      if current_time.text == end_time.text: break;
+      else:
+        if random.random() < 1e-10 and variable.humanize:
+          # 停止
+          variable.looping = False
+          print("Stopped by Humanize (whileLoopingTrigger)")
+    
+    # クールダウン
+    sleepTime = random.randrange(1, 45)
+    if variable.humanize: 
+      print(f"Sleeping by Humanize ({sleepTime})")
+      visualizeSleep(sleepTime)
+    if variable.humanize and variable.end_estim < time.time():
+      print("Stopped by Humanize (Timeout)")
+      break
+    click_next()
 
+  raise RuntimeError("While loops closed! (maybe Humanize related)")
 
-def launch(url=None) -> None:
+def launch(humanize=False) -> None:
   data = jsonread(os.path.join(ROOT_DIR, "tokyo_shoseki", "login_data.json"))
   
   url = "https://kouza.tokyo-shoseki.co.jp/oslms/login"
@@ -50,6 +102,7 @@ def launch(url=None) -> None:
   driver = webdriver.Chrome(service=service, options=options)
   driver.get(url)
   wait = WebDriverWait(driver, 60)
+  variable.humanize = humanize
   
   # ID loginbox を取得
   loginbox = wait.until(
@@ -73,112 +126,5 @@ def launch(url=None) -> None:
   time.sleep((random.randrange(1, 200, step=1) / 100))
   print("Waiting for starting first video..")
   
-  # 60秒以内に動画をユーザーが開始
-  _ = wait.until(
-    EC.element_to_be_clickable((By.ID, "pictPlayerTool-stop"))
-  )
-  print("Script started!\nautomatically moved to next video!")
-  class end_time: text = None
-  #  loop = asyncio.get_event_loop()
-  #  loop.create_task(main(wait.until(
-  #    EC.presence_of_element_located((By.ID, "pictPlayerTool-play"))
-  #  ), driver))
-  #loop.run_forever()
-  
-  while True:
-    print(f"Moved to next video.. (Previous video time: {end_time.text})")
-    time.sleep(3)
-    video_toolbar = wait.until(
-      EC.presence_of_element_located((By.ID, "pictPlayerToolbar"))
-    )
-    current_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration1")
-    end_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration2")
-    #video_paused = 
-    
-    while current_time.text != end_time.text:
-      current_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration1")
-      end_time = video_toolbar.find_element(By.ID, "pictPlayerTool-duration2")
-      if current_time.text == end_time.text: break;
-    
-    clickable = wait.until(
-      EC.element_to_be_clickable((By.ID, "pictPlayerTool-next"))
-    ).click()
-  
-  # # テーブルリストに飛ぶ
-  # mainbox = wait.until(
-  #   EC.presence_of_element_located((By.ID, "kyokaPages"))
-  # )
-  # contents = mainbox.find_elements(By.CLASS_NAME, "contents")[0]
-  # table = contents.find_element(By.XPATH, "//table[@class='list']")
-  # body = table.find_element(By.TAG_NAME, "tbody")
-  # trs = body.find_elements(By.CLASS_NAME, "dataRow")
-  
-  # # 残りの ToDo を保存
-  # available_kyoka = trs
-  # for todo in trs:
-  #   print("todo started!")
-  #   todo.click()
-  #   time.sleep(1)
-  #   lecture = mainbox.find_element(By.ID, "mLecture")
-  #   content = lecture.find_element(By.CLASS_NAME, "contents")
-  #   # root_div = content.find_element(By.CLASS_NAME, "ckr4kgk")
-  #   list_div = content.find_elements(By.XPATH, "//div/div[@class='bk']")# + content.find_elements(By.XPATH, "//div[@class='rw data1']")
-    
-  #   print("list_div: ", list_div)
-  #   time.sleep(4)
-  #   for div in list_div:
-  #     print("list div called! (near line92)")
-  #     time.sleep(2.5)
-      
-  #     video_lists = div.find_elements(By.XPATH, "//div[@class='rw data2']")
-  #     print("video_lists: ", video_lists)
-  #     for video in video_lists:
-  #       if video.get_attribute("data-playable") != "on":
-  #         continue
-        
-  #       complete = video.get_attribute("data-complete")
-  #       # クリア済みかどうかを取得
-  #       if complete == "on":
-  #         isCompleted = True
-  #       else:
-  #         isCompleted = False
-        
-  #       time.sleep(2)
-  #       integrate = video.find_element(By.XPATH, "//div[@class='co integrate']")
-  #       play_btn = integrate.find_element(By.XPATH, "//div[@class='item play movie']")
-  #       timeroot = play_btn.find_element(By.CLASS_NAME, "icon")
-  #       video_time = timeroot.find_element(By.TAG_NAME, "div")
-  #       size = play_btn.size
-  #       location = play_btn.location
-  #       print(f"Size: {size}, Location: {location}")
-
-        
-  #       print(f"Try to starting play video..\nVideo time: {video_time}")
-  #       # ActionChains(driver).move_to_element(timeroot).perform()
-  #       driver.execute_script("arguments[0].click();", play_btn)
-  #       time.sleep(1)
-  #       #timeroot.click()
-  #       print("Started!")
-  #       # 動画開始処理
-  #       playerpages = wait.until(
-  #         EC.presence_of_element_located((By.ID, "playerPages")))
-  #       toolbar = playerpages.find_element(By.ID, "pictPlayerToolbar")
-  #       maxtime = toolbar.find_element(By.ID, "pictPlayerTool-duration2")
-  #       mintime = None
-        
-  #       # 再生ボタンは常に検知
-  #       asyncio.run(when_video_pause_play_video(toolbar.find_element(By.ID, "pictPlayerTool-play"), driver))
-        
-  #       # 動画が終わるまで待機
-  #       while mintime.text == maxtime.text:
-  #         mintime = toolbar.find_element(By.ID, "pictPlayerTool-duration1")
-
-  #         if mintime.text == maxtime.text:
-  #           break
-  #       stop_async.when_video_pause_play_video = False
-  #       time.sleep(0.5)
-  #       stop_async.when_video_pause_play_video = True
-        
-  #       next_btn = playerpages.find_element(By.ID, "pictPlayerTool-back")
-  #       next_btn.click()
-        
+  if not loop_start(wait):
+    raise RuntimeError("loop's Ended NOT Correctly")

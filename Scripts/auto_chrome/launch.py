@@ -7,7 +7,7 @@ import importlib
 def argparser() -> argparse.Namespace:
   parser = argparse.ArgumentParser(__name__)
   parser.add_argument(
-    "--url", default=None, required=True
+    "--humanize", default=False, required=False, action="store_true"
   )
   parser.add_argument(
     "--mode", required=True
@@ -21,7 +21,7 @@ def launch(args:argparse.Namespace=None, start_dir:str=None):
   if args is None:
     raise ValueError("args is None!")
 
-  url = args.url
+  humanize = args.humanize
   mode = args.mode
   winbit = args.is32bit
   if winbit: winbit = "32"
@@ -52,7 +52,7 @@ def launch(args:argparse.Namespace=None, start_dir:str=None):
   
   # 実行
   if callable(module.launch):
-    return module.launch(url)
+    return module.launch(humanize)
   else:
     raise ValueError(f"{module.launch} isn't callable.")
 
